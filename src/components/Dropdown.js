@@ -12,5 +12,4 @@ function Dropdown({ label, items }) {
     </div>
   );
 }
-
 export default Dropdown;
