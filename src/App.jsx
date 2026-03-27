@@ -1,6 +1,7 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Navbar from './components/Navbar';
+import './App.css'; // Global font settings
 
 // Pages
 import Home from './pages/Home';
@@ -17,30 +18,40 @@ import Faqs from './pages/Support/Faqs';
 import Contact from './pages/Support/Contact';
 import AppDownload from './pages/Support/AppDownload';
 
+// Auth Pages
+import AuthPage from './pages/Auth/AuthPage';
+
 function App() {
   return (
     <Router>
-      <div className="App" style={{ fontFamily: 'sans-serif' }}>
-        <Navbar />
+      <div className="App">
+        {/* We hide the Navbar on the auth page for a true full screen experience */}
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/how-it-works/qlink" element={<HowQlinkWorks />} />
-          <Route path="/how-it-works/emergency" element={<EmergencyScenario />} />
-          <Route path="/shop/bracelet" element={<TheBracelet />} />
-          <Route path="/shop/compare" element={<Compare />} />
-          <Route path="/shop/reviews" element={<Reviews />} />
-          <Route path="/for-caregivers" element={<ForCaregivers />} />
-          <Route path="/about/our-story" element={<OurStory />} />
-          <Route path="/about/privacy" element={<PrivacySecurity />} />
-          <Route path="/support/help-center" element={<HelpCenter />} />
-          <Route path="/support/faqs" element={<Faqs />} />
-          <Route path="/support/contact" element={<Contact />} />
-          <Route path="/support/download" element={<AppDownload />} />
+          <Route path="/auth" element={<AuthPage />} />
+          <Route path="*" element={
+            <>
+              <Navbar />
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/how-it-works/qlink" element={<HowQlinkWorks />} />
+                <Route path="/how-it-works/emergency" element={<EmergencyScenario />} />
+                <Route path="/shop/bracelet" element={<TheBracelet />} />
+                <Route path="/shop/compare" element={<Compare />} />
+                <Route path="/shop/reviews" element={<Reviews />} />
+                <Route path="/for-caregivers" element={<ForCaregivers />} />
+                <Route path="/about/our-story" element={<OurStory />} />
+                <Route path="/about/privacy" element={<PrivacySecurity />} />
+                <Route path="/support/help-center" element={<HelpCenter />} />
+                <Route path="/support/faqs" element={<Faqs />} />
+                <Route path="/support/contact" element={<Contact />} />
+                <Route path="/support/download" element={<AppDownload />} />
+              </Routes>
+            </>
+          } />
         </Routes>
       </div>
     </Router>
   );
 }
-
 
 export default App;

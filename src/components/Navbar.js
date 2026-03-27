@@ -55,6 +55,16 @@ function Navbar() {
             ]}
           />
         </li>
+        <li>
+          <Link to="/auth" style={{
+            background: '#101726',
+            color: 'white',
+            padding: '8px 16px',
+            borderRadius: '6px',
+            fontWeight: 'bold',
+            marginLeft: '10px'
+          }}>Sign In</Link>
+        </li>
       </ul>
     </nav>
   );
