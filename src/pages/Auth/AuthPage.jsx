@@ -14,6 +14,7 @@ function AuthPage() {
     setIsLoading(true);
   };
 
+  
   useEffect(() => {
     if (isLoading) {
       // Simulate loading screen delay before redirecting to Home
