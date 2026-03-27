@@ -56,6 +56,7 @@ function Navbar() {
           />
         </li>
         <li>
+          
           <Link to="/auth" style={{
             background: '#101726',
             color: 'white',
