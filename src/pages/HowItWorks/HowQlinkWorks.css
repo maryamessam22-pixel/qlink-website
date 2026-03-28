@@ -158,7 +158,7 @@
   width: 2px;
   background: #334155; /* slate-700 equivalent */
   transform: none;
-  z-index: 1;
+  z-index: 0;
 }
 
 .timeline-row {
@@ -186,13 +186,14 @@
 }
 
 .timeline-card-left {
-  padding-right: 48px; /* 3rem padding away from the line */
+  padding-right: 48px; 
   text-align: left;
 }
 
 .timeline-card-right {
-  padding-left: 48px; /* 3rem padding away from the line */
+  padding-left: 48px;
   text-align: left;
+  
 }
 
 .timeline-card h3 {
