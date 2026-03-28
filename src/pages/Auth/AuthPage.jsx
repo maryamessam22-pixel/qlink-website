@@ -52,6 +52,7 @@ function AuthPage() {
           <Logo className="splash-logo" />
           <div className="splash-tagline">Your Safety Always On</div>
         </div>
+
       </div>
     );
   }
@@ -143,7 +144,7 @@ function AuthPage() {
                 </div>
               )}
 
-              <button type="submit" className="btn-primary">
+              <button type="submit" className="auth-btn-primary">
                 {isLogin ? 'Sign In' : 'Sign Up'} <span className="btn-arrow">→</span>
               </button>
             </form>

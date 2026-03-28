@@ -16,7 +16,8 @@ import {
   Truck,
   CheckCircle2,
   Sparkles,
-  ArrowUp
+  ArrowUp,
+  Zap
 } from 'lucide-react';
 import './Home.css';
 
@@ -69,18 +70,18 @@ function Home() {
           </p>
 
           <div className="card-grid-3">
-            <div className="info-card">
-              <div className="icon-wrap"><WifiOff size={32} /></div>
+            <div className="info-card" style={{ background: 'rgba(16, 185, 129, 0.08)' }}>
+              <div className="icon-wrap" style={{ color: '#10B981' }}><Zap size={32} /></div>
               <h3>Works Offline</h3>
               <p>No internet required for basic ID.</p>
             </div>
-            <div className="info-card">
-              <div className="icon-wrap"><QrCode size={32} /></div>
+            <div className="info-card" style={{ background: 'rgba(59, 130, 246, 0.08)' }}>
+              <div className="icon-wrap" style={{ color: '#3B82F6' }}><QrCode size={32} /></div>
               <h3>QR Emergency Access</h3>
-              <p>Instant access by EMS and finds.</p>
+              <p>Instant access to ID and Meds.</p>
             </div>
-            <div className="info-card">
-              <div className="icon-wrap"><Lock size={32} /></div>
+            <div className="info-card" style={{ background: 'rgba(224, 50, 50, 0.08)' }}>
+              <div className="icon-wrap" style={{ color: '#E03232' }}><Lock size={32} /></div>
               <h3>Privacy-Controlled</h3>
               <p>You decide what data is public.</p>
             </div>
@@ -236,7 +237,12 @@ function Home() {
         <section className="cta-section">
           <h2 style={{ lineHeight: '1.2' }}>Ready to secure your<br />peace of mind?</h2>
           <button className="btn btn-primary" style={{ padding: '14px 40px', fontSize: '16px' }}>Shop Now</button>
-          <p>Developed in EPS | <span className="red-text">Designed in Switzerland</span></p>
+          
+          <div className="cta-line"></div>
+          
+          <p className="cta-footer-text">
+            Have questions? Visit <a href="#">Support</a> or <a href="#">Contact Us.</a>
+          </p>
         </section>
       </div>
     </div>

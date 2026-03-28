@@ -231,7 +231,7 @@ form {
   font-size: 13px;
 }
 
-.btn-primary {
+.auth-btn-primary {
   width: 100%;
   padding: 12px;
   background-color: #0b111e; 
@@ -249,7 +249,7 @@ form {
   transition: background-color 0.2s;
 }
 
-.btn-primary:hover {
+.auth-btn-primary:hover {
   background-color: #172136;
 }
 
