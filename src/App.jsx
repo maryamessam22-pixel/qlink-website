@@ -2,6 +2,8 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import FloatingActions from './components/FloatingActions';
+import AIAssistantBtn from './components/AIAssistantBtn';
 import './App.css'; // Global font settings
 
 // Pages
@@ -47,6 +49,8 @@ function App() {
                 <Route path="/support/contact" element={<Contact />} />
                 <Route path="/support/download" element={<AppDownload />} />
               </Routes>
+              <AIAssistantBtn />
+              <FloatingActions />
               <Footer />
             </>
           } />

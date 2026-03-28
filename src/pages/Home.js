@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
   WifiOff,
@@ -28,19 +28,29 @@ import watchImg from '../assets/images/watch.png';
 import twoWatchesImg from '../assets/images/2 watches.png';
 
 function Home() {
-  const contentRefs = useRef([]);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 300);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if(entry.isIntersecting) {
           entry.target.classList.add('is-visible');
+        } else {
+          entry.target.classList.remove('is-visible');
         }
       });
-    }, { threshold: 0.25, rootMargin: '0px 0px -50px 0px' });
+    }, { threshold: 0.15, rootMargin: '-50px' });
 
-    contentRefs.current.forEach(ref => {
-      if(ref) observer.observe(ref);
-    });
+    const animatedElements = document.querySelectorAll('.scroll-animate');
+    animatedElements.forEach(el => observer.observe(el));
     
     return () => observer.disconnect();
   }, []);
@@ -55,17 +65,17 @@ function Home() {
 
       <div className="home-content">
         {/* HERO SECTION */}
-        <section ref={el => contentRefs.current.push(el)} className="hero-section scroll-animate">
+        <section className="hero-section scroll-animate">
           <div className="hero-text">
-            <h1 className="hero-title">
+            <h1 className="hero-title scroll-animate stag-1">
               Safety in a <span className="red-text">Scan.</span><br />
               Peace of Mind<br />
               Forever.
             </h1>
-            <p className="hero-desc">
+            <p className="hero-desc scroll-animate stag-2">
               Qlink is a QR-based personal safety bracelet that enables instant access to essential emergency information while protecting user privacy.
             </p>
-            <div className="hero-buttons">
+            <div className="hero-buttons scroll-animate stag-3">
               <button className="btn btn-secondary">How It Works</button>
               <button className="btn btn-primary">Explore the Bracelet</button>
             </div>
@@ -73,33 +83,27 @@ function Home() {
           <div className="hero-image">
             <img src={watchImg} alt="Qlink Bracelets" className="hero-img-element" />
           </div>
-
-          {/* Floating Hero Icons */}
-          <div className="hero-floating-icons">
-            <button className="hero-action-btn"><Sparkles size={20} /></button>
-            <button className="hero-action-btn"><ArrowUp size={20} /></button>
-          </div>
         </section>
 
         {/* WHAT IS QLINK */}
-        <section ref={el => contentRefs.current.push(el)} className="what-section scroll-animate">
+        <section className="what-section scroll-animate">
           <h2 className="section-title">What is Qlink?</h2>
           <p className="section-subtitle">
             Qlink is a state-of-the-art wearable that allows first responders or good samaritans to scan your unique QR code with their mobile device to get vital information bridging the gap between an incident and treatment.
           </p>
 
           <div className="card-grid-3">
-            <div className="info-card" style={{ background: 'rgba(16, 185, 129, 0.08)' }}>
+            <div className="info-card scroll-animate" style={{ background: 'rgba(16, 185, 129, 0.08)' }}>
               <div className="icon-wrap" style={{ color: 'var(--color-success)' }}><Zap size={32} /></div>
               <h3>Works Offline</h3>
               <p>No internet required for basic ID.</p>
             </div>
-            <div className="info-card" style={{ background: 'rgba(59, 130, 246, 0.08)' }}>
+            <div className="info-card scroll-animate" style={{ background: 'rgba(59, 130, 246, 0.08)' }}>
               <div className="icon-wrap" style={{ color: 'var(--color-primary-blue)' }}><QrCode size={32} /></div>
               <h3>QR Emergency Access</h3>
               <p>Instant access to ID and Meds.</p>
             </div>
-            <div className="info-card" style={{ background: 'rgba(224, 50, 50, 0.08)' }}>
+            <div className="info-card scroll-animate" style={{ background: 'rgba(224, 50, 50, 0.08)' }}>
               <div className="icon-wrap" style={{ color: 'var(--color-error)' }}><Lock size={32} /></div>
               <h3>Privacy-Controlled</h3>
               <p>You decide what data is public.</p>
@@ -108,29 +112,29 @@ function Home() {
         </section>
 
         {/* WHY CHOOSE QLINK */}
-        <section ref={el => contentRefs.current.push(el)} className="why-section scroll-animate">
+        <section className="why-section scroll-animate">
           <h2 className="section-title">Why Choose Qlink?</h2>
           <p className="section-subtitle">
             Designed for peace of mind in a modern world. Simple, reliable, and secure.
           </p>
 
           <div className="card-grid-4">
-            <div className="why-card">
+            <div className="why-card scroll-animate">
               <div className="icon-wrap"><Wifi size={20} /></div>
               <h4>Works without internet</h4>
               <p>Data securely stored directly in the QR standard, accessible anywhere on earth.</p>
             </div>
-            <div className="why-card">
+            <div className="why-card scroll-animate">
               <div className="icon-wrap"><ShieldCheck size={20} /></div>
               <h4>Privacy control</h4>
               <p>You control exactly what info is publicly available and what is kept secure.</p>
             </div>
-            <div className="why-card">
+            <div className="why-card scroll-animate">
               <div className="icon-wrap"><Smartphone size={20} /></div>
               <h4>No app needed</h4>
               <p>First responders simply scan with their phone camera. No software required.</p>
             </div>
-            <div className="why-card">
+            <div className="why-card scroll-animate">
               <div className="icon-wrap"><HeartPulse size={20} /></div>
               <h4>Always Medical ID tags</h4>
               <p>The perfect alternative to emergency tags in a very slim profile that fits anywhere.</p>
@@ -139,7 +143,7 @@ function Home() {
         </section>
 
         {/* SPLIT FEATURE 1 */}
-        <section ref={el => contentRefs.current.push(el)} className="split-feature scroll-animate">
+        <section className="split-feature scroll-animate">
           <div className="split-text">
             <h2 className="split-title">Simple. Secure. Always There.</h2>
             <p className="split-desc">
@@ -156,28 +160,28 @@ function Home() {
         </section>
 
         {/* WHO IS QLINK FOR */}
-        <section ref={el => contentRefs.current.push(el)} className="what-section scroll-animate">
+        <section className="what-section scroll-animate">
           <h2 className="section-title">Who is Qlink for?</h2>
           <p className="section-subtitle">
             Safety and peace of mind for every stage of life and lifestyle.
           </p>
 
           <div className="card-grid-3">
-            <div className="info-card" style={{ padding: '40px 24px' }}>
+            <div className="info-card scroll-animate" style={{ padding: '40px 24px' }}>
               <div className="icon-wrap" style={{ margin: '0 auto 20px auto', background: 'rgba(255,255,255,0.05)', width: 60, height: 60, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <Users size={24} color="#b0b8c8" />
               </div>
               <h3>The Elderly</h3>
               <p>Maintain independence with the safety net of instant medical info during falls.</p>
             </div>
-            <div className="info-card" style={{ padding: '40px 24px' }}>
+            <div className="info-card scroll-animate" style={{ padding: '40px 24px' }}>
               <div className="icon-wrap" style={{ margin: '0 auto 20px auto', background: 'rgba(224, 50, 50, 0.1)', width: 60, height: 60, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <Activity size={24} color="#E03232" />
               </div>
               <h3>Chronic Conditions</h3>
               <p>Diabetes, epilepsy, or allergies? Details clearly state rules when you can't.</p>
             </div>
-            <div className="info-card" style={{ padding: '40px 24px' }}>
+            <div className="info-card scroll-animate" style={{ padding: '40px 24px' }}>
               <div className="icon-wrap" style={{ margin: '0 auto 20px auto', background: 'rgba(255,255,255,0.05)', width: 60, height: 60, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <Baby size={24} color="#b0b8c8" />
               </div>
@@ -188,7 +192,7 @@ function Home() {
         </section>
 
         {/* JOURNEY SECTION */}
-        <section ref={el => contentRefs.current.push(el)} className="journey-section scroll-animate">
+        <section className="journey-section scroll-animate">
           <h2 className="section-title">Start Your Safety Journey</h2>
           <p className="section-subtitle">
             Four simple steps to peace of mind.
@@ -219,7 +223,7 @@ function Home() {
         </section>
 
         {/* HALF CARDS */}
-        <section ref={el => contentRefs.current.push(el)} className="half-cards-section scroll-animate">
+        <section className="half-cards-section scroll-animate">
           <div className="half-card">
             <h3>Public vs Private Information</h3>
             <p>You control what data is shown on a public QR scan and what is securely retained behind an encrypted wall. You can update your emergency contacts while keeping your core medical info totally secure.</p>
@@ -231,7 +235,7 @@ function Home() {
         </section>
 
         {/* APP MOCKUP SECTION */}
-        <section ref={el => contentRefs.current.push(el)} className="app-section scroll-animate">
+        <section className="app-section scroll-animate">
           <div className="app-text">
             <h2 className="split-title">Manage Your Safety with the Qlink App</h2>
             <p className="split-desc">
@@ -254,7 +258,7 @@ function Home() {
         </section>
 
         {/* CTA */}
-        <section ref={el => contentRefs.current.push(el)} className="cta-section scroll-animate">
+        <section className="cta-section scroll-animate">
           <h2 style={{ lineHeight: '1.2' }}>Ready to secure your<br />peace of mind?</h2>
           <button className="btn btn-primary" style={{ padding: '14px 40px', fontSize: '16px' }}>Shop Now</button>
           

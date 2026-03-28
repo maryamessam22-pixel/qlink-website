@@ -173,7 +173,7 @@
 
 .btn-primary:hover {
   background-color: var(--color-primary-red-hover);
-  transform: translateY(-2px);
+  transform: translateY(-2px) scale(1.03);
 }
 
 .hero-image {
@@ -196,36 +196,7 @@
   animation: floatHero 6s infinite alternate ease-in-out;
 }
 
-.hero-floating-icons {
-  position: absolute;
-  bottom: 0px;
-  right: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  z-index: 10;
-}
-
-.hero-action-btn {
-  width: 52px;
-  height: 52px;
-  border-radius: 50%;
-  background: white;
-  color: var(--color-primary-red);
-  border: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.hero-action-btn:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
-}
-
+/* CARDS */
 @keyframes float {
   0% {
     transform: translateY(0);
@@ -260,8 +231,8 @@
 }
 
 .info-card:hover {
-  transform: translateY(-5px);
-  border-color: rgba(255, 255, 255, 0.1);
+  transform: translateY(-10px);
+  border-color: rgba(255, 255, 255, 0.2);
 }
 
 .info-card .icon-wrap {
@@ -295,22 +266,38 @@
 }
 
 .why-card {
-  padding: 24px;
+  padding: 32px 24px;
   border-radius: 16px;
-  background: transparent;
+  background: #1C2331;
   text-align: left;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  cursor: default;
+}
+
+.why-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+  border-color: rgba(224, 50, 50, 0.2);
+}
+
+.why-card:hover .icon-wrap {
+  transform: scale(1.1) rotate(5deg);
+  background: rgba(224, 50, 50, 0.15);
 }
 
 .why-card .icon-wrap {
   color: var(--color-primary-red);
-  margin-bottom: 16px;
-  background: rgba(224, 50, 50, 0.1);
-  width: 40px;
-  height: 40px;
+  margin-bottom: 20px;
+  background: rgba(224, 50, 50, 0.08);
+  width: 48px;
+  height: 48px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 8px;
+  border-radius: 12px;
+  transition: all 0.3s ease;
 }
 
 .why-card h4 {
@@ -650,11 +637,20 @@
 .scroll-animate {
   opacity: 0;
   transform: translateY(30px);
-  transition: opacity 0.8s cubic-bezier(0.165, 0.84, 0.44, 1), transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   will-change: opacity, transform;
 }
 .scroll-animate.is-visible {
   opacity: 1;
   transform: translateY(0);
-
 }
+
+.stag-1 { transition-delay: 0ms; }
+.stag-2 { transition-delay: 200ms; }
+.stag-3 { transition-delay: 400ms; }
+
+/* In CSS, Feature Cards (Left-to-Right Stagger) */
+.card-grid-3 > *:nth-child(1), .card-grid-4 > *:nth-child(1) { transition-delay: 0ms; }
+.card-grid-3 > *:nth-child(2), .card-grid-4 > *:nth-child(2) { transition-delay: 150ms; }
+.card-grid-3 > *:nth-child(3), .card-grid-4 > *:nth-child(3) { transition-delay: 300ms; }
+.card-grid-4 > *:nth-child(4) { transition-delay: 450ms; }
