@@ -146,6 +146,7 @@ function HowQlinkWorks() {
           />
         </div>
 
+
         <div className="features-video-wrapper scroll-animate" ref={lensRef}>
           {/* Layer 1: Blurred Background Pill */}
           <div className="hw-layer hw-blurred-layer">
