@@ -43,7 +43,7 @@
 /* Base Link Style inside Pill */
 .navbar-links li a.nav-link {
   text-decoration: none;
-  color: #e0e5ed; /* Light gray/white */
+  color: var(--text-muted); /* Light gray/white */
   font-weight: 500;
   font-size: 14px;
   padding: 10px 30px;
@@ -54,19 +54,19 @@
 
 .navbar-links li a.nav-link:hover {
   background: rgba(255, 255, 255, 0.1);
-  color: #fff;
+  color: var(--text-primary);
 }
 
 /* RED ACTIVE LINK ('Home') */
 .navbar-links li a.active,
 .dropbtn.active {
-  background-color: #E03232;
-  color: #ffffff;
+  background-color: var(--color-primary-red);
+  color: var(--text-primary);
 }
 
 .navbar-links li a.active:hover,
 .dropbtn.active:hover {
-  background-color: #c72929;
+  background-color: var(--color-primary-red-hover);
 }
 
 /* RIGHT ACTIONS (AR, Cart, User) */
@@ -78,8 +78,8 @@
 }
 
 .lang-btn {
-  background-color: #E03232;
-  color: #fff;
+  background-color: var(--color-primary-red);
+  color: var(--text-primary);
   width: 38px;
   height: 38px;
   border-radius: 50%;
@@ -102,7 +102,7 @@
   background: transparent;
   border: none;
   cursor: pointer;
-  color: #fff;
+  color: var(--text-primary);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -125,7 +125,7 @@
 
 .dropbtn {
   background-color: transparent;
-  color: #e0e5ed;
+  color: var(--text-muted);
   padding: 10px 16px;
   border-radius: 8px;
   font-size: 15px;
@@ -157,7 +157,7 @@
 
 .dropdown:hover .dropbtn {
   background: rgba(255, 255, 255, 0.1);
-  color: #fff;
+  color: var(--text-primary);
 }
 
 .dropdown-content {
@@ -179,7 +179,7 @@
 }
 
 .dropdown-content a {
-  color: #e0e5ed;
+  color: var(--text-muted);
   padding: 12px 20px;
   text-decoration: none;
   display: block;
@@ -189,14 +189,14 @@
 }
 
 .dropdown-content a.submenu-active {
-  color: #E03232;
+  color: var(--color-primary-red);
   font-weight: 700;
   background-color: rgba(224, 50, 50, 0.05);
 }
 
 .dropdown-content a:hover {
   background-color: rgba(255, 255, 255, 0.1);
-  color: #fff;
+  color: var(--text-primary);
 }
 
 .dropdown:hover .dropdown-content {

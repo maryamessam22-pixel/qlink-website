@@ -3,8 +3,8 @@
   min-height: 100vh;
   position: relative;
   overflow: hidden;
-  background: linear-gradient(180deg, #131C2F 0%, #192149 100%);
-  font-family: 'Roboto', sans-serif;
+  background: linear-gradient(180deg, var(--color-primary-navy) 0%, var(--bg-gradient-dark) 100%);
+  font-family: var(--font-family-primary);
 }
 
 .home-liquid-bg {
@@ -76,20 +76,20 @@
   font-size: 28px;
   font-weight: 700;
   margin-bottom: 16px;
-  color: #fff;
+  color: var(--text-primary);
 }
 
 .section-subtitle {
   text-align: center;
   font-size: 15px;
-  color: #8892b0;
+  color: var(--text-secondary);
   max-width: 600px;
   margin: 0 auto 40px auto;
   line-height: 1.6;
 }
 
 .red-text {
-  color: #E03232;
+  color: var(--color-primary-red);
 }
 
 /* HERO SECTION */
@@ -158,14 +158,14 @@
 }
 
 .btn-primary {
-  background-color: #E03232;
+  background-color: var(--color-primary-red);
   color: white;
   box-shadow: 0 4px 20px rgba(224, 50, 50, 0.2);
   width: 250px;
 }
 
 .btn-primary:hover {
-  background-color: #c92c2c;
+  background-color: var(--color-primary-red-hover);
   transform: translateY(-2px);
 }
 
@@ -204,7 +204,7 @@
   height: 52px;
   border-radius: 50%;
   background: white;
-  color: #E03232;
+  color: var(--color-primary-red);
   border: none;
   display: flex;
   align-items: center;
@@ -259,18 +259,18 @@
 
 .info-card .icon-wrap {
   margin-bottom: 16px;
-  color: #E03232;
+  color: var(--color-primary-red);
 }
 
 .info-card h3 {
   font-size: 16px;
   margin-bottom: 12px;
-  color: #fff;
+  color: var(--text-primary);
 }
 
 .info-card p {
   font-size: 13px;
-  color: #8892b0;
+  color: var(--text-secondary);
   line-height: 1.5;
 }
 
@@ -295,7 +295,7 @@
 }
 
 .why-card .icon-wrap {
-  color: #E03232;
+  color: var(--color-primary-red);
   margin-bottom: 16px;
   background: rgba(224, 50, 50, 0.1);
   width: 40px;
@@ -313,7 +313,7 @@
 
 .why-card p {
   font-size: 13px;
-  color: #8892b0;
+  color: var(--text-secondary);
   line-height: 1.5;
 }
 
@@ -345,7 +345,7 @@
 
 .split-desc {
   font-size: 15px;
-  color: #b0b8c8;
+  color: var(--text-muted);
   line-height: 1.6;
   margin-bottom: 24px;
 }
@@ -391,7 +391,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: #151d34;
+  background: var(--bg-surface-navy);
   padding: 24px;
   border-radius: 12px;
   border: 1px solid rgba(255, 255, 255, 0.05);
@@ -401,13 +401,13 @@
   width: 60px;
   height: 60px;
   background: rgba(224, 50, 50, 0.1);
-  color: #E03232;
+  color: var(--color-primary-red);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 20px;
-  box-shadow: 0 0 0 10px #131C2F;
+  box-shadow: 0 0 0 10px var(--color-primary-navy);
 }
 
 .step-item h4 {
@@ -417,7 +417,7 @@
 
 .step-item p {
   font-size: 13px;
-  color: #8892b0;
+  color: var(--text-secondary);
 }
 
 /* HALF CARDS */
@@ -444,7 +444,7 @@
 
 .half-card p {
   font-size: 14px;
-  color: #8892b0;
+  color: var(--text-secondary);
   line-height: 1.6;
 }
 
@@ -474,11 +474,11 @@
   gap: 12px;
   margin-bottom: 16px;
   font-size: 15px;
-  color: #b0b8c8;
+  color: var(--text-muted);
 }
 
 .app-text li .check {
-  color: #10B981;
+  color: var(--color-success);
   background: rgba(16, 185, 129, 0.1);
   border-radius: 50%;
   padding: 4px;
@@ -522,7 +522,7 @@
   text-align: center;
   margin: 80px 0 0 0;
   padding: 80px 20px;
-  background: #131C2F; /* Dark navy background */
+  background: var(--color-primary-navy); /* Dark navy background */
   width: 100vw;
   position: relative;
   left: 50%;
@@ -570,12 +570,12 @@
 
 .cta-footer-text {
   font-size: 15px;
-  color: #fff;
+  color: var(--text-primary);
   margin: 0;
 }
 
 .cta-footer-text a {
-  color: #E03232;
+  color: var(--color-primary-red);
   text-decoration: none;
   font-weight: 600;
 }

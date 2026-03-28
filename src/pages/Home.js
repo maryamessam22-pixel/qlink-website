@@ -71,17 +71,17 @@ function Home() {
 
           <div className="card-grid-3">
             <div className="info-card" style={{ background: 'rgba(16, 185, 129, 0.08)' }}>
-              <div className="icon-wrap" style={{ color: '#10B981' }}><Zap size={32} /></div>
+              <div className="icon-wrap" style={{ color: 'var(--color-success)' }}><Zap size={32} /></div>
               <h3>Works Offline</h3>
               <p>No internet required for basic ID.</p>
             </div>
             <div className="info-card" style={{ background: 'rgba(59, 130, 246, 0.08)' }}>
-              <div className="icon-wrap" style={{ color: '#3B82F6' }}><QrCode size={32} /></div>
+              <div className="icon-wrap" style={{ color: 'var(--color-primary-blue)' }}><QrCode size={32} /></div>
               <h3>QR Emergency Access</h3>
               <p>Instant access to ID and Meds.</p>
             </div>
             <div className="info-card" style={{ background: 'rgba(224, 50, 50, 0.08)' }}>
-              <div className="icon-wrap" style={{ color: '#E03232' }}><Lock size={32} /></div>
+              <div className="icon-wrap" style={{ color: 'var(--color-error)' }}><Lock size={32} /></div>
               <h3>Privacy-Controlled</h3>
               <p>You decide what data is public.</p>
             </div>

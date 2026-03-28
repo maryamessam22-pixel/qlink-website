@@ -3,11 +3,11 @@
 .auth-container {
   min-height: 100vh;
   width: 100%;
-  background-color: #101726; /* Specific background requested */
+  background-color: var(--bg-surface-dark); /* Specific background requested */
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: 'Roboto', sans-serif;
+  font-family: var(--font-family-primary);
   color: white;
   position: relative;
   overflow: hidden;
@@ -129,7 +129,7 @@
 }
 
 .tagline {
-  color: #8892b0;
+  color: var(--text-secondary);
   margin-top: 10px;
   margin-bottom: 25px;
   font-size: 14px;
@@ -138,7 +138,7 @@
 .card {
   width: 100%;
   background: transparent;
-  border: 1px solid #23304c;
+  border: 1px solid var(--border-subtle);
   border-radius: 12px;
   padding: 30px;
   backdrop-filter: blur(10px);
@@ -146,7 +146,7 @@
 
 .tab-row {
   display: flex;
-  background-color: #172136;
+  background-color: var(--bg-surface-input);
   border-radius: 8px;
   margin-bottom: 24px;
   overflow: hidden;
@@ -157,7 +157,7 @@
   padding: 12px 0;
   background: transparent;
   border: none;
-  color: #8892b0;
+  color: var(--text-secondary);
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;
@@ -166,7 +166,7 @@
 }
 
 .tab-btn.active {
-  background-color: #3b5074; /* subtle highlight */
+  background-color: var(--bg-surface-highlight); /* subtle highlight */
   color: white;
   border-radius: 6px;
   margin: 4px;
@@ -186,7 +186,7 @@ form {
 
 .field label {
   font-size: 13px;
-  color: #b0b8c8;
+  color: var(--text-muted);
 }
 
 .input-wrap {
@@ -198,7 +198,7 @@ form {
 .input-icon {
   position: absolute;
   left: 14px;
-  color: #616e88;
+  color: var(--text-muted-dark);
   width: 18px;
   height: 18px;
 }
@@ -206,8 +206,8 @@ form {
 .input-wrap input {
   width: 100%;
   padding: 12px 14px 12px 40px;
-  background-color: #0b111e;
-  border: 1px solid #23304c;
+  background-color: var(--bg-surface-deep);
+  border: 1px solid var(--border-subtle);
   border-radius: 8px;
   color: white;
   font-size: 14px;
@@ -217,7 +217,7 @@ form {
 }
 
 .input-wrap input:focus {
-  border-color: #3b82f6;
+  border-color: var(--color-primary-blue);
 }
 
 .forgot-row {
@@ -226,7 +226,7 @@ form {
 }
 
 .forgot-row a {
-  color: #3b82f6;
+  color: var(--color-primary-blue);
   text-decoration: none;
   font-size: 13px;
 }
@@ -234,7 +234,7 @@ form {
 .auth-btn-primary {
   width: 100%;
   padding: 12px;
-  background-color: #0b111e; 
+  background-color: var(--bg-surface-deep); 
   color: white;
   border: none;
   border-radius: 8px;
@@ -250,7 +250,7 @@ form {
 }
 
 .auth-btn-primary:hover {
-  background-color: #172136;
+  background-color: var(--bg-surface-input);
 }
 
 .divider {
@@ -258,7 +258,7 @@ form {
   align-items: center;
   text-align: center;
   margin: 24px 0;
-  color: #616e88;
+  color: var(--text-muted-dark);
   font-size: 13px;
 }
 
@@ -266,7 +266,7 @@ form {
 .divider::after {
   content: '';
   flex: 1;
-  border-bottom: 1px solid #23304c;
+  border-bottom: 1px solid var(--border-subtle);
 }
 
 .divider span {
@@ -286,9 +286,9 @@ form {
   gap: 8px;
   padding: 10px;
   background-color: transparent;
-  border: 1px solid #23304c;
+  border: 1px solid var(--border-subtle);
   border-radius: 8px;
-  color: #b0b8c8;
+  color: var(--text-muted);
   font-size: 13px;
   cursor: pointer;
   font-family: inherit;
@@ -296,18 +296,18 @@ form {
 }
 
 .btn-social:hover {
-  background-color: #172136;
+  background-color: var(--bg-surface-input);
 }
 
 .card-footer {
   margin-top: 24px;
   font-size: 14px;
-  color: #8892b0;
+  color: var(--text-secondary);
   text-align: center;
 }
 
 .card-footer a {
-  color: #3b82f6;
+  color: var(--color-primary-blue);
   cursor: pointer;
   font-weight: 500;
   text-decoration: none;
@@ -369,7 +369,7 @@ form {
 }
 
 .splash-tagline {
-  color: #8892b0;
+  color: var(--text-secondary);
   font-size: 15px;
   font-weight: 500;
   letter-spacing: 2px;
