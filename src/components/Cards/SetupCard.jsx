@@ -12,4 +12,5 @@ function SetupCard({ icon: Icon, title, description, iconBgColor, iconColor }) {
   );
 }
 
+
 export default SetupCard;
