@@ -7,6 +7,8 @@ function HalfCard({ title, description }) {
       <p>{description}</p>
     </div>
   );
+  
 }
+
 
 export default HalfCard;
