@@ -4,7 +4,7 @@
   padding: 60px 40px 40px 40px;
   color: var(--text-primary);
   font-family: var(--font-family-primary);
-  width: 100%;
+  /* width: 100%; */
 }
 
 .footer-content {
@@ -103,7 +103,7 @@
 }
 
 .subscribe-form input {
-  
+
   flex: 1;
   background-color: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.1);

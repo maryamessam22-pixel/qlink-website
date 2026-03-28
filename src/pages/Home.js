@@ -16,16 +16,19 @@ import {
   ShoppingCart,
   Truck,
   CheckCircle2,
-  Sparkles,
   ArrowUp,
-  Zap
-
+  Zap,
+  Apple,
+  Play,
+  Watch,
+  FileText
 } from 'lucide-react';
 import './Home.css';
 
 // Using the same watch image from assets as a placeholder
 import watchImg from '../assets/images/watch.png';
 import twoWatchesImg from '../assets/images/2 watches.png';
+import appScreenImg from '../assets/images/appscreen.png';
 
 function Home() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -199,25 +202,25 @@ function Home() {
           </p>
 
           <div className="step-grid">
-            <div className="step-item">
-              <div className="step-icon"><MousePointerClick size={24} /></div>
-              <h4>Choose Line</h4>
-              <p>Select your bracelet from our products</p>
+            <div className="step-item scroll-animate">
+              <div className="step-icon"><Watch size={28} color="#E03232" /></div>
+              <h4>Choose One</h4>
+              <p>Select your own bracelet from our products.</p>
             </div>
-            <div className="step-item">
-              <div className="step-icon"><Settings size={24} /></div>
+            <div className="step-item scroll-animate">
+              <div className="step-icon"><FileText size={28} color="#E03232" /></div>
               <h4>Personalize</h4>
-              <p>Add your medical, diet, or emergency details</p>
+              <p>Unput your vital medical data and emergency contacts.</p>
             </div>
-            <div className="step-item">
-              <div className="step-icon"><ShoppingCart size={24} /></div>
+            <div className="step-item scroll-animate">
+              <div className="step-icon"><CheckCircle2 size={28} color="#E03232" /></div>
               <h4>Confirm Order</h4>
-              <p>Secure checkout and start tracking order</p>
+              <p>Secure checkout with instant digital profile creation.</p>
             </div>
-            <div className="step-item">
-              <div className="step-icon"><Truck size={24} /></div>
+            <div className="step-item scroll-animate">
+              <div className="step-icon"><Truck size={28} color="#E03232" /></div>
               <h4>Receive Bracelet</h4>
-              <p>Stay protected using your new Qlink</p>
+              <p>Fast, tracked shipping to your doorstep.</p>
             </div>
           </div>
         </section>
@@ -235,27 +238,40 @@ function Home() {
         </section>
 
         {/* APP MOCKUP SECTION */}
-        <section className="app-section scroll-animate">
-          <div className="app-text">
+        <div className="app-section-wrapper scroll-animate">
+          <section className="app-section">
+            <div className="app-text">
             <h2 className="split-title">Manage Your Safety with the Qlink App</h2>
             <p className="split-desc">
               The Qlink app allows you to fully manage your account, emergency information securely, monitor limits, connect devices, and manage your preferences, all from one place.
             </p>
             <ul>
-              <li><CheckCircle2 size={18} className="check" /> Manage your emergency and personal information</li>
+              <li><CheckCircle2 size={18} className="check" /> Manage emergency and personal information</li>
               <li><CheckCircle2 size={18} className="check" /> Control privacy and data sharing</li>
               <li><CheckCircle2 size={18} className="check" /> Monitor and update profiles anytime</li>
             </ul>
             <div className="store-buttons">
-              <a href="#" className="store-btn">Download on the App Store</a>
-              <a href="#" className="store-btn">Get it on Google Play</a>
+              <a href="#" className="store-btn">
+                <Apple size={28} />
+                <div className="store-btn-text">
+                  <span className="store-btn-sub">Download on the</span>
+                  <span className="store-btn-title">App Store</span>
+                </div>
+              </a>
+              <a href="#" className="store-btn store-btn-google">
+                <Play size={28} />
+                <div className="store-btn-text">
+                  <span className="store-btn-sub">Get it on</span>
+                  <span className="store-btn-title">Google Play</span>
+                </div>
+              </a>
             </div>
           </div>
           <div className="app-image">
-            {/* Using watchImg as a placeholder for the app mockup until an asset is provided */}
-            <img src={watchImg} alt="Qlink App" style={{ filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.5))' }} />
+            <img src={appScreenImg} alt="Qlink App" className="floating-app-screen" style={{ filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.6))' }} />
           </div>
-        </section>
+          </section>
+        </div>
 
         {/* CTA */}
         <section className="cta-section scroll-animate">
