@@ -30,6 +30,7 @@ import WhyCard from '../components/Cards/WhyCard';
 import StepItem from '../components/Cards/StepItem';
 import HalfCard from '../components/Cards/HalfCard';
 
+
 import watchImg from '../assets/images/watch.png';
 import twoWatchesImg from '../assets/images/2 watches.png';
 import appScreenImg from '../assets/images/appscreen.png';
