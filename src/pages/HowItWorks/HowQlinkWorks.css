@@ -1,10 +1,84 @@
 /* BASE PAGE STYLES */
 .how-works-page {
-  background-color: var(--color-primary-navy, #0B1120);
+  background: linear-gradient(180deg, #1D2C4B 0%, #192149 100%);
   min-height: 100vh;
   color: white;
   padding-bottom: 100px;
+  position: relative;
+  overflow: hidden;
 }
+
+.how-works-page a {
+  text-decoration: none !important;
+}
+
+/* Scroll Animation System */
+.how-works-page .scroll-animate {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.how-works-page .scroll-animate.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Liquid Animated Glow Background */
+.hw-liquid-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.hw-glow {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(17, 107, 253, 0.15) 0%, rgba(17, 107, 253, 0) 70%);
+  filter: blur(50px);
+  animation: hwFloatOrb 20s infinite alternate ease-in-out;
+}
+
+.hw-glow-1 {
+  width: 600px;
+  height: 600px;
+  top: 5%;
+  left: 5%;
+  animation-duration: 25s;
+}
+
+.hw-glow-2 {
+  width: 500px;
+  height: 500px;
+  top: 40%;
+  right: -5%;
+  animation-duration: 35s;
+}
+
+.hw-glow-3 {
+  width: 700px;
+  height: 700px;
+  bottom: 10%;
+  left: 30%;
+  animation-duration: 30s;
+}
+
+@keyframes hwFloatOrb {
+  0% { transform: translate(0, 0) scale(1.1); }
+  50% { transform: translate(5vw, 10vh) scale(0.9); }
+  100% { transform: translate(-10vw, -5vh) scale(1); }
+}
+
+/* Stagger for timeline rows specifically, if they enter viewport together */
+.timeline-row.scroll-animate:nth-child(1) { transition-delay: 0.1s; }
+.timeline-row.scroll-animate:nth-child(2) { transition-delay: 0.2s; }
+.timeline-row.scroll-animate:nth-child(3) { transition-delay: 0.3s; }
+.timeline-row.scroll-animate:nth-child(4) { transition-delay: 0.4s; }
 
 /* HERO SECTION */
 .hw-hero {
@@ -18,7 +92,7 @@
   text-align: center;
   overflow: hidden;
   margin-bottom: 80px;
-  
+
 }
 
 .hw-hero-video {
@@ -78,35 +152,54 @@
 .timeline-container::before {
   content: '';
   position: absolute;
-  left: 50%;
-  top: 0;
-  bottom: 0;
+  left: calc(50% - 1px);
+  top: 96px; /* Clamps line perfectly within first marker */
+  bottom: 96px; /* Clamps line perfectly within last marker */
   width: 2px;
-  background: rgba(255, 255, 255, 0.1);
-  transform: translateX(-50%);
+  background: #334155; /* slate-700 equivalent */
+  transform: none;
+  z-index: 1;
 }
 
 .timeline-row {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   position: relative;
   width: 100%;
 }
 
+.timeline-row:nth-child(odd) { justify-content: flex-start; }
+.timeline-row:nth-child(even) { justify-content: flex-end; }
+
 .timeline-card {
-  width: 45%;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  width: 50%;
+  background: rgba(15, 23, 42, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05); /* thin 1px opacity for glass edge */
   border-radius: 16px;
   padding: 32px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2), 0 0 15px rgba(15, 23, 42, 0.4); /* subtle outer glow/shadow */
+  position: relative;
+  z-index: 2;
+  box-sizing: border-box;
+}
+
+.timeline-card-left {
+  padding-right: 48px; /* 3rem padding away from the line */
+  text-align: left;
+}
+
+.timeline-card-right {
+  padding-left: 48px; /* 3rem padding away from the line */
+  text-align: left;
 }
 
 .timeline-card h3 {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 700;
   margin-bottom: 12px;
+  color: white;
 }
 
 .timeline-card p {
@@ -115,25 +208,29 @@
   line-height: 1.6;
 }
 
-.timeline-empty {
-  width: 45%;
-}
-
 .timeline-marker {
   position: absolute;
-  left: 50%;
+  left: calc(50% - 1px);
   top: 50%;
   transform: translate(-50%, -50%);
-  width: 48px;
-  height: 48px;
-  background: rgba(224, 50, 50, 0.15);
-  border: 4px solid #0B1120;
-  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 2;
-  color: var(--color-primary-red);
+  z-index: 3;
+}
+
+.timeline-marker-inner {
+  width: 48px;
+  height: 48px;
+  background: #E03232;
+  border-radius: 50%; /* strictly circular */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  box-shadow: 0 0 20px rgba(224, 50, 50, 0.4); /* soft outer glow acting as a timeline node */
+  position: relative;
+  z-index: 4;
 }
 
 /* SPLIT FEATURES VIDEO SECTION */
@@ -160,7 +257,8 @@
   transition: border-color 0.3s ease;
 }
 
-.feature-block.active, .feature-block:hover {
+.feature-block.active,
+.feature-block:hover {
   border-left-color: var(--color-primary-red);
 }
 
@@ -179,18 +277,74 @@
 
 .features-video-wrapper {
   flex: 1.5;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   position: relative;
+  width: 100%;
+  max-width: 320px;
+  height: 520px;
+  /* Pill shape like in the image */
+  margin: 0 auto;
+  border-radius: 200px;
+  overflow: hidden;
+  --lens-x: 50%;
+  --lens-y: 50%;
+  cursor: crosshair;
+  background: rgba(11, 17, 32, 0.5);
+  box-shadow: inset 0 0 50px rgba(0, 0, 0, 1), 0 20px 60px rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.features-video-wrapper .hw-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .features-center-video {
-  width: 100%;
-  max-width: 500px;
-  border-radius: 24px;
-  mask-image: radial-gradient(circle, black 60%, transparent 100%);
-  -webkit-mask-image: radial-gradient(circle, black 60%, transparent 100%);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 100%;
+  min-height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+/* Layer 1 - Blurred and darkened background watch */
+.hw-blurred-layer .features-center-video {
+  /* Significant blur, drops the brightness down for legibility */
+  filter: blur(12px) brightness(0.4);
+  /* Scale slightly so the blurred edge artifacts are hidden off bounds */
+  transform: translate(-50%, -50%) scale(1.15);
+}
+
+/* Layer 2 - Clear lens circle mask */
+.hw-clear-layer {
+  display: block;
+  /* 120px static radius circle acting like a magnifying punch hole */
+  clip-path: circle(120px at var(--lens-x) var(--lens-y));
+  z-index: 2;
+}
+
+.hw-clear-layer .features-center-video {
+  filter: brightness(1.1) contrast(1.1);
+}
+
+/* The glass edge ring hugging the lens */
+.lens-ring-overlay {
+  display: block;
+  position: absolute;
+  width: 240px; /* 2x radius of clip-path */
+  height: 240px;
+  border-radius: 50%;
+  top: calc(var(--lens-y) - 120px);
+  left: calc(var(--lens-x) - 120px);
+  box-shadow: inset 0 0 30px rgba(255, 255, 255, 0.1), 0 0 20px rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  pointer-events: none;
+  z-index: 3;
 }
 
 /* COMPARISON SECTION */
@@ -367,26 +521,42 @@
 @media (max-width: 768px) {
   .timeline-container::before {
     left: 24px;
+    top: 60px; /* Adjusted smaller for mobile card scale */
+    bottom: 60px;
+    transform: none;
   }
-  .timeline-row {
+
+  .timeline-row,
+  .timeline-row:nth-child(odd),
+  .timeline-row:nth-child(even) {
     flex-direction: column;
     align-items: flex-end;
+    justify-content: flex-start;
   }
-  .timeline-empty {
-    display: none;
-  }
-  .timeline-card {
+
+  .timeline-card,
+  .timeline-card-left,
+  .timeline-card-right {
     width: calc(100% - 64px);
+    padding: 32px 24px;
+    text-align: left;
   }
+
   .timeline-marker {
-    left: 24px;
+    left: 25px; /* Centers the 48px element safely on the 24px baseline */
+    transform: translate(-50%, -50%); /* Reapplies the center transform explicitly for mobile flow */
   }
-  .hw-features-section, .hw-compare-section {
+
+  .hw-features-section,
+  .hw-compare-section {
     flex-direction: column;
   }
-  .setup-grid, .hw-help-grid {
+
+  .setup-grid,
+  .hw-help-grid {
     grid-template-columns: 1fr;
   }
+
   .hw-cta-buttons {
     flex-direction: column;
     align-items: center;
