@@ -149,6 +149,7 @@
     flex-direction: column;
   }
   .footer-links-group {
+    
     flex-direction: column;
     gap: 40px;
   }
