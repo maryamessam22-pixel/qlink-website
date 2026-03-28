@@ -10,6 +10,7 @@ function StepItem({ icon: Icon, iconColor, title, description }) {
       <p>{description}</p>
     </div>
   );
+  
 }
 
 export default StepItem;
