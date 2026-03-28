@@ -41,7 +41,7 @@
   height: 500px;
   top: 50%;
   right: -10%;
-  animation-duration: 22s;
+  animation-duration: 5s;
 }
 
 .home-glow-3 {
@@ -49,7 +49,7 @@
   height: 700px;
   bottom: -20%;
   left: 30%;
-  animation-duration: 30s;
+  animation-duration: 10s;
 }
 
 @keyframes floatOrb {
@@ -656,5 +656,5 @@
 .scroll-animate.is-visible {
   opacity: 1;
   transform: translateY(0);
-  
+
 }
