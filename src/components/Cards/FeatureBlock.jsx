@@ -7,6 +7,8 @@ function FeatureBlock({ title, description }) {
       <p>{description}</p>
     </div>
   );
+
+  
 }
 
 export default FeatureBlock;
