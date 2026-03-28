@@ -1,0 +1,155 @@
+.footer-container {
+  background-color: #131C2F;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 60px 40px 20px 40px;
+  color: white;
+  font-family: 'Roboto', sans-serif;
+  width: 100%;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 40px;
+  margin-bottom: 60px;
+}
+
+.footer-brand {
+  flex: 1;
+  min-width: 250px;
+  max-width: 350px;
+}
+
+.footer-logo {
+  height: 48px;
+  margin-bottom: 20px;
+}
+
+.footer-brand p {
+  font-size: 14px;
+  color: #b0b8c8;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.footer-socials {
+  display: flex;
+  gap: 16px;
+  color: #b0b8c8;
+}
+
+.footer-socials svg {
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.footer-socials svg:hover {
+  color: white;
+}
+
+.footer-links-group {
+  display: flex;
+  gap: 80px;
+  flex: 1;
+  min-width: 250px;
+}
+
+.footer-links-col h4 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: white;
+}
+
+.footer-links-col ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links-col li {
+  margin-bottom: 12px;
+}
+
+.footer-links-col a {
+  color: #b0b8c8;
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.2s;
+}
+
+.footer-links-col a:hover {
+  color: white;
+}
+
+.footer-subscribe {
+  flex: 1;
+  min-width: 300px;
+}
+
+.footer-subscribe h4 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: white;
+}
+
+.subscribe-form {
+  display: flex;
+  gap: 10px;
+}
+
+.subscribe-form input {
+  flex: 1;
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 12px 16px;
+  border-radius: 8px;
+  color: white;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.subscribe-form input:focus {
+  border-color: #3b82f6;
+}
+
+.subscribe-form button {
+  background-color: #E03232;
+  color: white;
+  border: none;
+  padding: 0 24px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+  transition: background-color 0.2s;
+}
+
+.subscribe-form button:hover {
+  background-color: #c92c2c;
+}
+
+.footer-bottom {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding-top: 24px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+@media (max-width: 768px) {
+  .footer-content {
+    flex-direction: column;
+  }
+  .footer-links-group {
+    flex-direction: column;
+    gap: 40px;
+  }
+}
