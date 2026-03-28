@@ -51,9 +51,17 @@
 }
 
 @keyframes floatOrb {
-  0% { transform: translate(0, 0) scale(1.1); }
-  50% { transform: translate(5vw, 10vh) scale(0.9); }
-  100% { transform: translate(-10vw, -5vh) scale(1); }
+  0% {
+    transform: translate(0, 0) scale(1.1);
+  }
+
+  50% {
+    transform: translate(5vw, 10vh) scale(0.9);
+  }
+
+  100% {
+    transform: translate(-10vw, -5vh) scale(1);
+  }
 }
 
 .home-content {
@@ -138,9 +146,11 @@
 }
 
 .btn-secondary {
-  background: rgba(25, 33, 73, 0.5); /* Deep translucent navy */
+  background: rgba(25, 33, 73, 0.5);
+  /* Deep translucent navy */
   border: 1px solid rgba(255, 255, 255, 0.2);
   color: white;
+      width: 200px;
 }
 
 .btn-secondary:hover {
@@ -172,8 +182,9 @@
 
 .hero-img-element {
   max-width: none;
-  width: 470px; /* Scaling up to match reference */
-  filter: drop-shadow(0px 30px 40px rgba(0,0,0,0.5));
+  width: 470px;
+  /* Scaling up to match reference */
+  filter: drop-shadow(0px 30px 40px rgba(0, 0, 0, 0.5));
   animation: floatHero 6s infinite alternate ease-in-out;
 }
 
@@ -198,18 +209,23 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .hero-action-btn:hover {
   transform: translateY(-4px);
-  box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
 }
 
-@keyframes floatHero {
-  0% { transform: translateY(0); }
-  100% { transform: translateY(-15px); }
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(-20px);
+  }
 }
 
 /* WHAT IS QLINK */
@@ -365,7 +381,7 @@
   left: 10%;
   right: 10%;
   height: 1px;
-  border-top: 1px dashed rgba(255,255,255,0.2);
+  border-top: 1px dashed rgba(255, 255, 255, 0.2);
   z-index: -1;
 }
 
@@ -377,7 +393,7 @@
   background: #151d34;
   padding: 24px;
   border-radius: 12px;
-  border: 1px solid rgba(255,255,255,0.05);
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .step-icon {
@@ -417,7 +433,7 @@
   background: rgba(15, 23, 42, 0.4);
   padding: 40px;
   border-radius: 16px;
-  border: 1px solid rgba(255,255,255,0.05);
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .half-card h3 {
@@ -520,15 +536,35 @@
 }
 
 @media (max-width: 900px) {
-  .hero-section, .split-feature, .split-feature.reverse, .app-section {
+
+  .hero-section,
+  .split-feature,
+  .split-feature.reverse,
+  .app-section {
     flex-direction: column;
     text-align: center;
   }
-  .card-grid-3, .card-grid-4, .step-grid, .half-cards-section {
+
+  .card-grid-3,
+  .card-grid-4,
+  .step-grid,
+  .half-cards-section {
     grid-template-columns: 1fr;
   }
-  .step-grid::after { display: none; }
-  .hero-buttons { justify-content: center; }
-  .store-buttons { justify-content: center; }
-  .split-image img { margin-top: 40px; }
+
+  .step-grid::after {
+    display: none;
+  }
+
+  .hero-buttons {
+    justify-content: center;
+  }
+
+  .store-buttons {
+    justify-content: center;
+  }
+
+  .split-image img {
+    margin-top: 40px;
+  }
 }
