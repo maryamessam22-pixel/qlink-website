@@ -138,13 +138,18 @@
 }
 
 .btn {
-  padding: 12px 28px;
-  border-radius: 8px;
-  font-size: 14px;
+  padding: 0 28px;
+  height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  font-size: 15px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
   border: none;
+  box-sizing: border-box;
 }
 
 .btn-secondary {
@@ -380,11 +385,11 @@
 .step-grid::after {
   content: '';
   position: absolute;
-  top: 30px;
+  top: 74px; /* 40px padding + 34px half height of icon */
   left: 10%;
   right: 10%;
   height: 1px;
-  border-top: 1px dashed rgba(255, 255, 255, 0.2);
+  border-top: 1px dashed rgba(255, 255, 255, 0.1);
   z-index: -1;
 }
 
@@ -394,32 +399,51 @@
   flex-direction: column;
   align-items: center;
   background: var(--bg-surface-navy);
-  padding: 24px;
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 40px 24px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Professional bouncy effect */
+  cursor: default;
+  position: relative;
+  z-index: 1; /* Keep above line */
+}
+
+.step-item:hover {
+  transform: translateY(-12px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  border-color: rgba(224, 50, 50, 0.2);
+}
+
+.step-item:hover .step-icon {
+  transform: scale(1.1) rotate(5deg);
+  background: rgba(224, 50, 50, 0.2);
 }
 
 .step-icon {
-  width: 60px;
-  height: 60px;
+  width: 68px;
+  height: 68px;
   background: rgba(224, 50, 50, 0.1);
   color: var(--color-primary-red);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 20px;
-  box-shadow: 0 0 0 10px var(--color-primary-navy);
+  margin-bottom: 24px;
+  transition: all 0.3s ease;
 }
 
 .step-item h4 {
-  font-size: 15px;
-  margin-bottom: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: var(--text-primary);
 }
 
 .step-item p {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--text-secondary);
+  line-height: 1.5;
 }
 
 /* HALF CARDS */
@@ -497,11 +521,13 @@
   gap: 10px;
   background: white;
   color: black;
-  padding: 8px 16px;
-  border-radius: 8px;
+  padding: 0 16px;
+  height: 48px;
+  border-radius: 10px;
   font-size: 12px;
   font-weight: 600;
   text-decoration: none;
+  box-sizing: border-box;
 }
 
 .store-btn .icon {
@@ -618,4 +644,16 @@
   .split-image img {
     margin-top: 40px;
   }
+}
+
+/* SCROLL ANIMATION SYSTEM */
+.scroll-animate {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s cubic-bezier(0.165, 0.84, 0.44, 1), transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+  will-change: opacity, transform;
+}
+.scroll-animate.is-visible {
+  opacity: 1;
+  transform: translateY(0);
 }

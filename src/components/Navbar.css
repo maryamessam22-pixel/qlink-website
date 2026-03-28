@@ -46,10 +46,15 @@
   color: var(--text-muted); /* Light gray/white */
   font-weight: 500;
   font-size: 14px;
-  padding: 10px 30px;
-  border-radius: 8px; /* Red active button matches this */
+  padding: 0 30px;
+  height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px; /* Red active button matches this */
   transition: all 0.2s ease;
   white-space: nowrap;
+  box-sizing: border-box;
 }
 
 .navbar-links li a.nav-link:hover {
@@ -126,8 +131,9 @@
 .dropbtn {
   background-color: transparent;
   color: var(--text-muted);
-  padding: 10px 16px;
-  border-radius: 8px;
+  padding: 0 16px;
+  height: 48px;
+  border-radius: 10px;
   font-size: 15px;
   border: none;
   cursor: pointer;
@@ -136,8 +142,10 @@
   transition: all 0.2s ease;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 6px; /* Space between text and chevron */
   white-space: nowrap;
+  box-sizing: border-box;
 }
 
 /* Invisible bridge to prevent dropdown gap disappearance */

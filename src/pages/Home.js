@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import {
   WifiOff,
   QrCode,
@@ -18,13 +19,31 @@ import {
   Sparkles,
   ArrowUp,
   Zap
+  
 } from 'lucide-react';
 import './Home.css';
 
 // Using the same watch image from assets as a placeholder
 import watchImg from '../assets/images/watch.png';
+import twoWatchesImg from '../assets/images/2 watches.png';
 
 function Home() {
+  const contentRefs = useRef([]);
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+
+    contentRefs.current.forEach(ref => {
+      if(ref) observer.observe(ref);
+    });
+    
+    return () => observer.disconnect();
+  }, []);
   return (
     <div className="home-wrapper">
       {/* Liquid background effect */}
@@ -36,7 +55,7 @@ function Home() {
 
       <div className="home-content">
         {/* HERO SECTION */}
-        <section className="hero-section">
+        <section ref={el => contentRefs.current.push(el)} className="hero-section scroll-animate">
           <div className="hero-text">
             <h1 className="hero-title">
               Safety in a <span className="red-text">Scan.</span><br />
@@ -63,7 +82,7 @@ function Home() {
         </section>
 
         {/* WHAT IS QLINK */}
-        <section className="what-section">
+        <section ref={el => contentRefs.current.push(el)} className="what-section scroll-animate">
           <h2 className="section-title">What is Qlink?</h2>
           <p className="section-subtitle">
             Qlink is a state-of-the-art wearable that allows first responders or good samaritans to scan your unique QR code with their mobile device to get vital information bridging the gap between an incident and treatment.
@@ -89,7 +108,7 @@ function Home() {
         </section>
 
         {/* WHY CHOOSE QLINK */}
-        <section className="why-section">
+        <section ref={el => contentRefs.current.push(el)} className="why-section scroll-animate">
           <h2 className="section-title">Why Choose Qlink?</h2>
           <p className="section-subtitle">
             Designed for peace of mind in a modern world. Simple, reliable, and secure.
@@ -120,23 +139,24 @@ function Home() {
         </section>
 
         {/* SPLIT FEATURE 1 */}
-        <section className="split-feature">
+        <section ref={el => contentRefs.current.push(el)} className="split-feature scroll-animate">
           <div className="split-text">
             <h2 className="split-title">Simple. Secure. Always There.</h2>
             <p className="split-desc">
-              The bracelet is designed to be a sleek, essential accessory and emergency information under the scanner. It works seamlessly wherever, by scanning the QR code, crucial medical info instantly becomes available to them when they need it. No external app required.
+              This bracelet is designed to help share essential personal and emergency information when the wearer is unable to communicate. By scanning the QR code, trusted information becomes instantly accessible without the need for an app or internet connection.
             </p>
             <p className="split-desc">
-              Built for everyday life. Qlink works completely offline and uses state of the art minimal tech with maximum outcomes. You decide what to share, what stays private, and when it's accessed. Simple, reliable, and designed for peace of mind for you and the people who care about you.
+              Built for everyday life, Qlink works completely offline and puts you in full control of what information is shared. You decide what's visible, what stays private, and when it's accessed. Simple, reliable, and designed for peace of mind for you and the people who care about you.
             </p>
+            <Link to="/about" className="btn btn-primary" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', textDecoration: 'none', marginTop: '16px' }}>More about Qlink</Link>
           </div>
           <div className="split-image">
-            <img src={watchImg} alt="Qlink Bracelets Dark" />
+            <img src={twoWatchesImg} alt="2 Qlink Bracelets" />
           </div>
         </section>
 
         {/* WHO IS QLINK FOR */}
-        <section className="what-section">
+        <section ref={el => contentRefs.current.push(el)} className="what-section scroll-animate">
           <h2 className="section-title">Who is Qlink for?</h2>
           <p className="section-subtitle">
             Safety and peace of mind for every stage of life and lifestyle.
@@ -168,7 +188,7 @@ function Home() {
         </section>
 
         {/* JOURNEY SECTION */}
-        <section className="journey-section">
+        <section ref={el => contentRefs.current.push(el)} className="journey-section scroll-animate">
           <h2 className="section-title">Start Your Safety Journey</h2>
           <p className="section-subtitle">
             Four simple steps to peace of mind.
@@ -199,7 +219,7 @@ function Home() {
         </section>
 
         {/* HALF CARDS */}
-        <section className="half-cards-section">
+        <section ref={el => contentRefs.current.push(el)} className="half-cards-section scroll-animate">
           <div className="half-card">
             <h3>Public vs Private Information</h3>
             <p>You control what data is shown on a public QR scan and what is securely retained behind an encrypted wall. You can update your emergency contacts while keeping your core medical info totally secure.</p>
@@ -211,7 +231,7 @@ function Home() {
         </section>
 
         {/* APP MOCKUP SECTION */}
-        <section className="app-section">
+        <section ref={el => contentRefs.current.push(el)} className="app-section scroll-animate">
           <div className="app-text">
             <h2 className="split-title">Manage Your Safety with the Qlink App</h2>
             <p className="split-desc">
@@ -234,7 +254,7 @@ function Home() {
         </section>
 
         {/* CTA */}
-        <section className="cta-section">
+        <section ref={el => contentRefs.current.push(el)} className="cta-section scroll-animate">
           <h2 style={{ lineHeight: '1.2' }}>Ready to secure your<br />peace of mind?</h2>
           <button className="btn btn-primary" style={{ padding: '14px 40px', fontSize: '16px' }}>Shop Now</button>
           

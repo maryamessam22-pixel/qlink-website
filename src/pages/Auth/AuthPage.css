@@ -206,15 +206,17 @@ form {
 
 .input-wrap input {
   width: 100%;
-  padding: 12px 14px 12px 40px;
+  padding: 0 14px 0 40px;
+  height: 48px;
   background-color: var(--bg-surface-deep);
   border: 1px solid var(--border-subtle);
-  border-radius: 8px;
+  border-radius: 10px;
   color: white;
   font-size: 14px;
   font-family: inherit;
   outline: none;
   transition: border-color 0.2s;
+  box-sizing: border-box;
 }
 
 .input-wrap input:focus {
@@ -234,11 +236,12 @@ form {
 
 .auth-btn-primary {
   width: 100%;
-  padding: 12px;
+  padding: 0 12px;
+  height: 48px;
   background-color: var(--bg-surface-deep); 
   color: white;
   border: none;
-  border-radius: 8px;
+  border-radius: 10px;
   font-size: 14px;
   font-weight: 500;
   display: flex;
@@ -248,6 +251,7 @@ form {
   cursor: pointer;
   margin-top: 8px;
   transition: background-color 0.2s;
+  box-sizing: border-box;
 }
 
 .auth-btn-primary:hover {
@@ -285,15 +289,17 @@ form {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: 10px;
+  padding: 0 10px;
+  height: 48px;
   background-color: transparent;
   border: 1px solid var(--border-subtle);
-  border-radius: 8px;
+  border-radius: 10px;
   color: var(--text-muted);
   font-size: 13px;
   cursor: pointer;
   font-family: inherit;
   transition: background-color 0.2s;
+  box-sizing: border-box;
 }
 
 .btn-social:hover {
