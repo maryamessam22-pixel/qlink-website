@@ -14,7 +14,9 @@ import {
   Settings, 
   ShoppingCart, 
   Truck,
-  CheckCircle2
+  CheckCircle2,
+  Sparkles,
+  ArrowUp
 } from 'lucide-react';
 import './Home.css';
 
@@ -41,7 +43,7 @@ function Home() {
                 Forever.
               </h1>
               <p className="hero-desc">
-                Qlink is a QR-based personal safety bracelet that ensures your critical health and emergency information is instantly accessible, anywhere, anytime.
+                Qlink is a QR-based personal safety bracelet that enables instant access to essential emergency information while protecting user privacy.
               </p>
               <div className="hero-buttons">
                 <button className="btn btn-secondary">How It Works</button>
@@ -50,6 +52,12 @@ function Home() {
           </div>
           <div className="hero-image">
               <img src={watchImg} alt="Qlink Bracelets" className="hero-img-element" />
+          </div>
+
+          {/* Floating Hero Icons */}
+          <div className="hero-floating-icons">
+            <button className="hero-action-btn"><Sparkles size={20} /></button>
+            <button className="hero-action-btn"><ArrowUp size={20} /></button>
           </div>
         </section>
 

@@ -89,33 +89,42 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  max-width: 1100px;
-  margin: 60px auto 100px auto;
-  padding: 0 24px;
+  max-width: 1200px;
+  margin: 120px auto 100px auto;
+  padding: 0 40px;
+  position: relative;
+  min-height: 60vh;
 }
 
 .hero-text {
   flex: 1;
-  max-width: 500px;
+  max-width: 650px;
+  z-index: 2;
+  position: relative;
 }
 
 .hero-title {
-  font-size: 48px;
-  font-weight: 700;
+  font-size: 76px;
+  font-weight: 900;
   line-height: 1.1;
   margin-bottom: 24px;
+  font-style: italic;
+  letter-spacing: -1px;
 }
 
 .hero-desc {
-  font-size: 16px;
-  color: #b0b8c8;
+  font-size: 19px;
+  color: rgba(255, 255, 255, 0.75);
   line-height: 1.6;
   margin-bottom: 40px;
+  font-style: italic;
+  font-weight: 500;
+  max-width: 550px;
 }
 
 .hero-buttons {
   display: flex;
-  gap: 16px;
+  gap: 20px;
 }
 
 .btn {
@@ -129,13 +138,13 @@
 }
 
 .btn-secondary {
-  background: transparent;
-  border: 1px solid #23304c;
+  background: rgba(25, 33, 73, 0.5); /* Deep translucent navy */
+  border: 1px solid rgba(255, 255, 255, 0.2);
   color: white;
 }
 
 .btn-secondary:hover {
-  background: rgba(35, 48, 76, 0.4);
+  background: rgba(35, 48, 76, 0.8);
 }
 
 .btn-primary {
@@ -150,17 +159,52 @@
 }
 
 .hero-image {
-  flex: 1;
+  flex: 1.2;
   display: flex;
   justify-content: flex-end;
-  position: relative;
+  position: absolute;
+  right: 2%;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+  pointer-events: none;
 }
 
 .hero-img-element {
-  max-width: 100%;
-  width: 450px;
-  filter: drop-shadow(0px 30px 40px rgba(0,0,0,0.4));
-  animation: floatHero 4s infinite alternate ease-in-out;
+  max-width: none;
+  width: 470px; /* Scaling up to match reference */
+  filter: drop-shadow(0px 30px 40px rgba(0,0,0,0.5));
+  animation: floatHero 6s infinite alternate ease-in-out;
+}
+
+.hero-floating-icons {
+  position: absolute;
+  bottom: 0px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  z-index: 10;
+}
+
+.hero-action-btn {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: white;
+  color: #E03232;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.hero-action-btn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.35);
 }
 
 @keyframes floatHero {
