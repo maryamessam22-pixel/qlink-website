@@ -111,6 +111,14 @@
   max-width: 650px;
   z-index: 2;
   position: relative;
+  opacity: 0;
+  animation: slideInLeft 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  animation-delay: 0.1s;
+}
+
+@keyframes slideInLeft {
+  0% { transform: translateX(-40px); opacity: 0; }
+  100% { transform: translateX(0); opacity: 1; }
 }
 
 .hero-title {
@@ -186,6 +194,14 @@
   transform: translateY(-50%);
   z-index: 1;
   pointer-events: none;
+  opacity: 0;
+  animation: slideInRight 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  animation-delay: 0.8s;
+}
+
+@keyframes slideInRight {
+  0% { transform: translate(60px, -50%); opacity: 0; }
+  100% { transform: translate(0, -50%); opacity: 1; }
 }
 
 .hero-img-element {
