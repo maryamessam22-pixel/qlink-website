@@ -2,7 +2,7 @@
 
 .navbar-wrapper {
   position: fixed;
-  top: 1.5rem;
+  top: 24px;
   left: 0;
   width: 100%;
   display: flex;
@@ -18,22 +18,6 @@
   flex-shrink: 0;
 }
 
-
-.logo-text {
-  font-size: 1.8rem;
-  font-weight: 800;
-  color: #fff;
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  letter-spacing: -0.5px;
-}
-
-.q-icon {
-  font-size: 2.2rem;
-  margin-right: 2px;
-}
-
 /* THE CENTER GLASS PILL */
 .navbar-pill {
   display: flex;
@@ -42,7 +26,7 @@
   border: 1px solid rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+  padding: 14px 34px;
   border-radius: 12px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
@@ -51,7 +35,7 @@
   list-style: none;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 24px;
   margin: 0;
   padding: 0;
 }
@@ -61,8 +45,8 @@
   text-decoration: none;
   color: #e0e5ed; /* Light gray/white */
   font-weight: 500;
-  font-size: 0.9rem;
-  padding: 0.6rem 1rem;
+  font-size: 14px;
+  padding: 10px 30px;
   border-radius: 8px; /* Red active button matches this */
   transition: all 0.2s ease;
   white-space: nowrap;
@@ -87,7 +71,7 @@
 .navbar-actions {
   display: flex;
   align-items: center;
-  gap: 1.5rem;
+  gap: 24px;
   flex-shrink: 0;
 }
 
@@ -101,7 +85,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.9rem;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition: transform 0.2s ease, opacity 0.2s ease;
@@ -140,9 +124,9 @@
 .dropbtn {
   background-color: transparent;
   color: #e0e5ed;
-  padding: 0.6rem 1rem;
+  padding: 10px 16px;
   border-radius: 8px;
-  font-size: 0.9rem;
+  font-size: 15px;
   border: none;
   cursor: pointer;
   font-weight: 500;
@@ -150,8 +134,18 @@
   transition: all 0.2s ease;
   display: flex;
   align-items: center;
-  gap: 0.3rem; /* Space between text and chevron */
+  gap: 6px; /* Space between text and chevron */
   white-space: nowrap;
+}
+
+/* Invisible bridge to prevent dropdown gap disappearance */
+.dropbtn::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 25px; /* Corresponds to the margin-top of the dropdown content */
 }
 
 .dropdown-chevron {
@@ -187,7 +181,7 @@
   padding: 12px 20px;
   text-decoration: none;
   display: block;
-  font-size: 0.9rem;
+  font-size: 14px;
   font-weight: 500;
   transition: background 0.2s ease, color 0.2s ease;
 }
@@ -204,7 +198,7 @@
 /* Mobile responsive fixes */
 @media (max-width: 1024px) {
   .navbar-wrapper {
-    padding: 0 1.5rem;
+    padding: 0 24px;
   }
   .navbar-pill {
     display: none; /* Use a hamburger menu typically */

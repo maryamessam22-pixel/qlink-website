@@ -2,15 +2,15 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { ShoppingCart, User } from 'lucide-react';
 import Dropdown from './Dropdown';
+import Logo from './Logo';
 import './Navbar.css';
 
 function Navbar() {
   return (
     <nav className="navbar-wrapper">
       <div className="navbar-brand">
-        {/* Replace with actual image logo if you have one, falling back to styled text */}
-        <Link to="/" className="logo-text">
-          <span className="q-icon">Q</span>link
+        <Link to="/">
+          <Logo style={{ height: '35px', display: 'block' }} />
         </Link>
       </div>
 
