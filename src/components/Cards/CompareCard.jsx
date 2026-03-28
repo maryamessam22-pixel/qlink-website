@@ -13,6 +13,7 @@ function CompareCard({ headerIcon: HeaderIcon, headerText, box1Title, box1Text, 
           {box1Title}
         </h5>
         <p>{box1Text}</p>
+        
       </div>
       <div className="compare-box" style={box2HighlightColor ? { borderLeft: `2px solid ${box2HighlightColor}` } : {}}>
         <h5 style={box2HighlightColor ? { color: box2HighlightColor } : {}}>
