@@ -24,6 +24,7 @@ function TimelineRow({ title, description, icon: Icon, isRight }) {
       ) : null}
     </div>
   );
+  
 }
 
 export default TimelineRow;
