@@ -73,8 +73,8 @@ function Navbar() {
 
       <div className="navbar-actions">
         <button className="lang-btn">AR</button>
-        <button className="icon-btn"><ShoppingCart size={22} color="#fff" /></button>
-        <Link to="/auth" className="icon-btn"><User size={22} color="#fff" /></Link>
+        <button className="icon-btn"><ShoppingCart size={22} color="var(--text-primary)" /></button>
+        <Link to="/auth" className="icon-btn"><User size={22} color="var(--text-primary)" /></Link>
       </div>
     </nav>
   );
