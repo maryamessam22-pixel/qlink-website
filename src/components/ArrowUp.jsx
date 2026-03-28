@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { ArrowUp} from 'lucide-react';
-import './FloatingActions.css';
+import { ArrowUp as ArrowUpIcon } from 'lucide-react';
+import './ArrowUp.css';
 
-const FloatingActions = () => {
+const ArrowUp = () => {
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
@@ -20,10 +20,10 @@ const FloatingActions = () => {
   return (
     <div className={`floating-actions ${isScrolled ? 'show' : ''}`}>
       <button className="floating-btn top-btn" aria-label="Scroll to top" onClick={scrollToTop}>
-        <ArrowUp size={24} />
+        <ArrowUpIcon size={24} />
       </button>
     </div>
   );
 };
 
-export default FloatingActions;
+export default ArrowUp;

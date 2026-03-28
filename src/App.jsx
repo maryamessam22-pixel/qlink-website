@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import FloatingActions from './components/FloatingActions';
+import ArrowUp from './components/ArrowUp';
 import AIAssistantBtn from './components/AIAssistantBtn';
 import './App.css'; // Global font settings
 
@@ -50,13 +50,14 @@ function App() {
                 <Route path="/support/download" element={<AppDownload />} />
               </Routes>
               <AIAssistantBtn />
-              <FloatingActions />
+              <ArrowUp />
               <Footer />
             </>
           } />
         </Routes>
       </div>
     </Router>
+    
   );
 }
 

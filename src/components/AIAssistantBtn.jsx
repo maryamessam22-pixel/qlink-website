@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Sparkles } from 'lucide-react';
-import './FloatingActions.css';
+import './ArrowUp.css';
 
 const AIAssistantBtn = () => {
   const navigate = useNavigate();
