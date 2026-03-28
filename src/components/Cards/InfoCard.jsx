@@ -12,4 +12,5 @@ function InfoCard({ icon: Icon, iconColor, iconBgColor, title, description, styl
   );
 }
 
+
 export default InfoCard;
