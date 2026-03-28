@@ -19,7 +19,7 @@ import {
   Sparkles,
   ArrowUp,
   Zap
-  
+
 } from 'lucide-react';
 import './Home.css';
 
@@ -36,7 +36,7 @@ function Home() {
           entry.target.classList.add('is-visible');
         }
       });
-    }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+    }, { threshold: 0.25, rootMargin: '0px 0px -50px 0px' });
 
     contentRefs.current.forEach(ref => {
       if(ref) observer.observe(ref);
