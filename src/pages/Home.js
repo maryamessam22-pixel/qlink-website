@@ -25,7 +25,11 @@ import {
 } from 'lucide-react';
 import './Home.css';
 
-// Using the same watch image from assets as a placeholder
+import InfoCard from '../components/Cards/InfoCard';
+import WhyCard from '../components/Cards/WhyCard';
+import StepItem from '../components/Cards/StepItem';
+import HalfCard from '../components/Cards/HalfCard';
+
 import watchImg from '../assets/images/watch.png';
 import twoWatchesImg from '../assets/images/2 watches.png';
 import appScreenImg from '../assets/images/appscreen.png';
@@ -96,21 +100,27 @@ function Home() {
           </p>
 
           <div className="card-grid-3">
-            <div className="info-card scroll-animate" style={{ background: 'rgba(16, 185, 129, 0.08)' }}>
-              <div className="icon-wrap" style={{ color: 'var(--color-success)' }}><Zap size={32} /></div>
-              <h3>Works Offline</h3>
-              <p>No internet required for basic ID.</p>
-            </div>
-            <div className="info-card scroll-animate" style={{ background: 'rgba(59, 130, 246, 0.08)' }}>
-              <div className="icon-wrap" style={{ color: 'var(--color-primary-blue)' }}><QrCode size={32} /></div>
-              <h3>QR Emergency Access</h3>
-              <p>Instant access to ID and Meds.</p>
-            </div>
-            <div className="info-card scroll-animate" style={{ background: 'rgba(224, 50, 50, 0.08)' }}>
-              <div className="icon-wrap" style={{ color: 'var(--color-error)' }}><Lock size={32} /></div>
-              <h3>Privacy-Controlled</h3>
-              <p>You decide what data is public.</p>
-            </div>
+            <InfoCard 
+              style={{ background: 'rgba(16, 185, 129, 0.08)' }}
+              icon={Zap}
+              iconColor="var(--color-success)"
+              title="Works Offline"
+              description="No internet required for basic ID."
+            />
+            <InfoCard 
+              style={{ background: 'rgba(59, 130, 246, 0.08)' }}
+              icon={QrCode}
+              iconColor="var(--color-primary-blue)"
+              title="QR Emergency Access"
+              description="Instant access to ID and Meds."
+            />
+            <InfoCard 
+              style={{ background: 'rgba(224, 50, 50, 0.08)' }}
+              icon={Lock}
+              iconColor="var(--color-error)"
+              title="Privacy-Controlled"
+              description="You decide what data is public."
+            />
           </div>
         </section>
 
@@ -122,26 +132,26 @@ function Home() {
           </p>
 
           <div className="card-grid-4">
-            <div className="why-card scroll-animate">
-              <div className="icon-wrap"><Wifi size={20} /></div>
-              <h4>Works without internet</h4>
-              <p>Data securely stored directly in the QR standard, accessible anywhere on earth.</p>
-            </div>
-            <div className="why-card scroll-animate">
-              <div className="icon-wrap"><ShieldCheck size={20} /></div>
-              <h4>Privacy control</h4>
-              <p>You control exactly what info is publicly available and what is kept secure.</p>
-            </div>
-            <div className="why-card scroll-animate">
-              <div className="icon-wrap"><Smartphone size={20} /></div>
-              <h4>No app needed</h4>
-              <p>First responders simply scan with their phone camera. No software required.</p>
-            </div>
-            <div className="why-card scroll-animate">
-              <div className="icon-wrap"><HeartPulse size={20} /></div>
-              <h4>Always Medical ID tags</h4>
-              <p>The perfect alternative to emergency tags in a very slim profile that fits anywhere.</p>
-            </div>
+            <WhyCard 
+              icon={Wifi}
+              title="Works without internet"
+              description="Data securely stored directly in the QR standard, accessible anywhere on earth."
+            />
+            <WhyCard 
+              icon={ShieldCheck}
+              title="Privacy control"
+              description="You control exactly what info is publicly available and what is kept secure."
+            />
+            <WhyCard 
+              icon={Smartphone}
+              title="No app needed"
+              description="First responders simply scan with their phone camera. No software required."
+            />
+            <WhyCard 
+              icon={HeartPulse}
+              title="Always Medical ID tags"
+              description="The perfect alternative to emergency tags in a very slim profile that fits anywhere."
+            />
           </div>
         </section>
 
@@ -170,27 +180,33 @@ function Home() {
           </p>
 
           <div className="card-grid-3">
-            <div className="info-card scroll-animate" style={{ padding: '40px 24px' }}>
-              <div className="icon-wrap" style={{ margin: '0 auto 20px auto', background: 'rgba(255,255,255,0.05)', width: 60, height: 60, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <Users size={24} color="#b0b8c8" />
-              </div>
-              <h3>The Elderly</h3>
-              <p>Maintain independence with the safety net of instant medical info during falls.</p>
-            </div>
-            <div className="info-card scroll-animate" style={{ padding: '40px 24px' }}>
-              <div className="icon-wrap" style={{ margin: '0 auto 20px auto', background: 'rgba(224, 50, 50, 0.1)', width: 60, height: 60, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <Activity size={24} color="#E03232" />
-              </div>
-              <h3>Chronic Conditions</h3>
-              <p>Diabetes, epilepsy, or allergies? Details clearly state rules when you can't.</p>
-            </div>
-            <div className="info-card scroll-animate" style={{ padding: '40px 24px' }}>
-              <div className="icon-wrap" style={{ margin: '0 auto 20px auto', background: 'rgba(255,255,255,0.05)', width: 60, height: 60, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <Baby size={24} color="#b0b8c8" />
-              </div>
-              <h3>Children</h3>
-              <p>Perfect for school trips or busy places. Ensure your contact info always with them.</p>
-            </div>
+            <InfoCard 
+              style={{ padding: '40px 24px' }}
+              iconWrapperStyle={{ margin: '0 auto 20px auto', background: 'rgba(255,255,255,0.05)', width: 60, height: 60, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+              icon={Users}
+              iconSize={24}
+              iconColor="#b0b8c8"
+              title="The Elderly"
+              description="Maintain independence with the safety net of instant medical info during falls."
+            />
+            <InfoCard 
+              style={{ padding: '40px 24px' }}
+              iconWrapperStyle={{ margin: '0 auto 20px auto', background: 'rgba(224, 50, 50, 0.1)', width: 60, height: 60, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+              icon={Activity}
+              iconSize={24}
+              iconColor="#E03232"
+              title="Chronic Conditions"
+              description="Diabetes, epilepsy, or allergies? Details clearly state rules when you can't."
+            />
+            <InfoCard 
+              style={{ padding: '40px 24px' }}
+              iconWrapperStyle={{ margin: '0 auto 20px auto', background: 'rgba(255,255,255,0.05)', width: 60, height: 60, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+              icon={Baby}
+              iconSize={24}
+              iconColor="#b0b8c8"
+              title="Children"
+              description="Perfect for school trips or busy places. Ensure your contact info always with them."
+            />
           </div>
         </section>
 
@@ -202,39 +218,43 @@ function Home() {
           </p>
 
           <div className="step-grid">
-            <div className="step-item scroll-animate">
-              <div className="step-icon"><Watch size={28} color="#E03232" /></div>
-              <h4>Choose One</h4>
-              <p>Select your own bracelet from our products.</p>
-            </div>
-            <div className="step-item scroll-animate">
-              <div className="step-icon"><FileText size={28} color="#E03232" /></div>
-              <h4>Personalize</h4>
-              <p>Unput your vital medical data and emergency contacts.</p>
-            </div>
-            <div className="step-item scroll-animate">
-              <div className="step-icon"><CheckCircle2 size={28} color="#E03232" /></div>
-              <h4>Confirm Order</h4>
-              <p>Secure checkout with instant digital profile creation.</p>
-            </div>
-            <div className="step-item scroll-animate">
-              <div className="step-icon"><Truck size={28} color="#E03232" /></div>
-              <h4>Receive Bracelet</h4>
-              <p>Fast, tracked shipping to your doorstep.</p>
-            </div>
+            <StepItem 
+              icon={Watch}
+              iconColor="#E03232"
+              title="Choose One"
+              description="Select your own bracelet from our products."
+            />
+            <StepItem 
+              icon={FileText}
+              iconColor="#E03232"
+              title="Personalize"
+              description="Unput your vital medical data and emergency contacts."
+            />
+            <StepItem 
+              icon={CheckCircle2}
+              iconColor="#E03232"
+              title="Confirm Order"
+              description="Secure checkout with instant digital profile creation."
+            />
+            <StepItem 
+              icon={Truck}
+              iconColor="#E03232"
+              title="Receive Bracelet"
+              description="Fast, tracked shipping to your doorstep."
+            />
           </div>
         </section>
 
         {/* HALF CARDS */}
         <section className="half-cards-section scroll-animate">
-          <div className="half-card">
-            <h3>Public vs Private Information</h3>
-            <p>You control what data is shown on a public QR scan and what is securely retained behind an encrypted wall. You can update your emergency contacts while keeping your core medical info totally secure.</p>
-          </div>
-          <div className="half-card">
-            <h3>Hybrid Retrieval Tech</h3>
-            <p>We engineered proprietary hybrid architecture that instantly delivers offline basic data while dynamically loading advanced online information for a seamless experience of rapid emergency ID.</p>
-          </div>
+          <HalfCard 
+            title="Public vs Private Information"
+            description="You control what data is shown on a public QR scan and what is securely retained behind an encrypted wall. You can update your emergency contacts while keeping your core medical info totally secure."
+          />
+          <HalfCard 
+            title="Hybrid Retrieval Tech"
+            description="We engineered proprietary hybrid architecture that instantly delivers offline basic data while dynamically loading advanced online information for a seamless experience of rapid emergency ID."
+          />
         </section>
 
         {/* APP MOCKUP SECTION */}
