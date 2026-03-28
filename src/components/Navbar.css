@@ -58,12 +58,14 @@
 }
 
 /* RED ACTIVE LINK ('Home') */
-.navbar-links li a.active {
+.navbar-links li a.active,
+.dropbtn.active {
   background-color: #E03232;
   color: #ffffff;
 }
 
-.navbar-links li a.active:hover {
+.navbar-links li a.active:hover,
+.dropbtn.active:hover {
   background-color: #c72929;
 }
 
@@ -184,6 +186,12 @@
   font-size: 14px;
   font-weight: 500;
   transition: background 0.2s ease, color 0.2s ease;
+}
+
+.dropdown-content a.submenu-active {
+  color: #E03232;
+  font-weight: 700;
+  background-color: rgba(224, 50, 50, 0.05);
 }
 
 .dropdown-content a:hover {

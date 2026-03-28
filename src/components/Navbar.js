@@ -1,11 +1,14 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { ShoppingCart, User } from 'lucide-react';
 import Dropdown from './Dropdown';
 import Logo from './Logo';
 import './Navbar.css';
 
 function Navbar() {
+  const location = useLocation();
+  const { pathname } = location;
+
   return (
     <nav className="navbar-wrapper">
       <div className="navbar-brand">
@@ -17,11 +20,12 @@ function Navbar() {
       <div className="navbar-pill">
         <ul className="navbar-links">
           <li>
-            <Link to="/" className="nav-link active">Home</Link>
+            <Link to="/" className={`nav-link ${pathname === '/' ? 'active' : ''}`}>Home</Link>
           </li>
           <li>
             <Dropdown
               label="How It Works"
+              isActive={pathname.startsWith('/how-it-works')}
               items={[
                 { name: 'How Qlink Works', href: '/how-it-works/qlink' },
                 { name: 'Emergency Scenario', href: '/how-it-works/emergency' },
@@ -31,6 +35,7 @@ function Navbar() {
           <li>
             <Dropdown
               label="Shop"
+              isActive={pathname.startsWith('/shop')}
               items={[
                 { name: 'The Bracelet', href: '/shop/bracelet' },
                 { name: 'Compare', href: '/shop/compare' },
@@ -39,11 +44,12 @@ function Navbar() {
             />
           </li>
           <li>
-            <Link to="/for-caregivers" className="nav-link">For Caregivers</Link>
+            <Link to="/for-caregivers" className={`nav-link ${pathname.startsWith('/for-caregivers') ? 'active' : ''}`}>For Caregivers</Link>
           </li>
           <li>
             <Dropdown
               label="About"
+              isActive={pathname.startsWith('/about')}
               items={[
                 { name: 'Our Story', href: '/about/our-story' },
                 { name: 'Privacy & Security', href: '/about/privacy' },
@@ -53,6 +59,7 @@ function Navbar() {
           <li>
             <Dropdown
               label="Support"
+              isActive={pathname.startsWith('/support')}
               items={[
                 { name: 'Help Center', href: '/support/help-center' },
                 { name: 'FAQs', href: '/support/faqs' },
