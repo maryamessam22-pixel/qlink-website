@@ -9,6 +9,10 @@
   font-family: inherit;
 }
 
+.es-page *, .es-page *::before, .es-page *::after {
+  box-sizing: border-box;
+}
+
 /* Hide the main vertical scrollbar but keep page scrolling regular (3adeya) */
 ::-webkit-scrollbar {
   display: none;

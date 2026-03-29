@@ -13,6 +13,10 @@ import w4 from '../../assets/images/w4.png';
 import w5 from '../../assets/images/w5.png';
 import mobiles from '../../assets/images/2mobiles.png';
 
+// Components
+import EmergencyFeatureCard from '../../components/Cards/EmergencyFeatureCard';
+import EmergencyStepCard from '../../components/Cards/EmergencyStepCard';
+
 // Icons 
 import { ArrowLeft, ArrowRight, ShieldAlert, ScanLine, FileText, BellRing, Apple, Play } from 'lucide-react';
 
@@ -58,38 +62,25 @@ function EmergencyScenario({
 
       {/* THREE FEATURE ROWS */}
       <section className="es-features">
-        <div className="es-feature-row">
-          <div className="es-feature-text">
-            <div className="es-f-subtitle">NO ID. NO PHONE. NO WALLET.</div>
-            <h2 className="es-f-title">Sudden Collapse</h2>
-            <p className="es-f-desc">You are out for your morning run when you collapse. Bystanders try to help, but no one knows you. The paramedics arrive and don't know your medical history or who to contact. You have no phone or ID on you.</p>
-          </div>
-          <div className="es-feature-img">
-            <img src={img1} alt="Sudden Collapse" />
-          </div>
-        </div>
-
-        <div className="es-feature-row reverse">
-          <div className="es-feature-text">
-            <div className="es-f-subtitle">PARAMEDICS SCANS THE BRACELET</div>
-            <h2 className="es-f-title">Instant Identification</h2>
-            <p className="es-f-desc">A paramedic arriving on the scene sees the Qlink bracelet. They scan the code on your bracelet using their smartphone, safely revealing your profile without an app.</p>
-          </div>
-          <div className="es-feature-img">
-            <img src={img2} alt="Instant Identification" />
-          </div>
-        </div>
-
-        <div className="es-feature-row">
-          <div className="es-feature-text">
-            <div className="es-f-subtitle">PARAMEDICS READ VITAL DATA</div>
-            <h2 className="es-f-title">Life-Saving Information</h2>
-            <p className="es-f-desc">A single glance reveals your critical profile: Blood type, allergies, medications, and emergency contacts. The treatment protocol changes quickly in line with medical protocol.</p>
-          </div>
-          <div className="es-feature-img">
-            <img src={img3} alt="Life-Saving Information" />
-          </div>
-        </div>
+        <EmergencyFeatureCard
+          subtitle="NO ID. NO PHONE. NO WALLET."
+          title="Sudden Collapse"
+          desc="You are out for your morning run when you collapse. Bystanders try to help, but no one knows you. The paramedics arrive and don't know your medical history or who to contact. You have no phone or ID on you."
+          img={img1}
+        />
+        <EmergencyFeatureCard
+          subtitle="PARAMEDICS SCANS THE BRACELET"
+          title="Instant Identification"
+          desc="A paramedic arriving on the scene sees the Qlink bracelet. They scan the code on your bracelet using their smartphone, safely revealing your profile without an app."
+          img={img2}
+          reverse={true}
+        />
+        <EmergencyFeatureCard
+          subtitle="PARAMEDICS READ VITAL DATA"
+          title="Life-Saving Information"
+          desc="A single glance reveals your critical profile: Blood type, allergies, medications, and emergency contacts. The treatment protocol changes quickly in line with medical protocol."
+          img={img3}
+        />
       </section>
 
       {/* MARQUEE */}
@@ -108,21 +99,27 @@ function EmergencyScenario({
       {/* 3 STEPS CARDS */}
       
       <section className="es-steps-section">
-        <div className="es-step-card">
-          <div className="es-step-icon es-icon-blue"><ScanLine size={24} color="#38bdf8"/></div>
-          <h3>1. Scan</h3>
-          <p>First responders scan the QR code on your Qlink bracelet in any mobile or phone camera.</p>
-        </div>
-        <div className="es-step-card">
-          <div className="es-step-icon es-icon-gray"><FileText size={24} color="#94A3B8"/></div>
-          <h3>2. Access</h3>
-          <p>Your secure medical profile is instantly displayed on their screen alongside medical contacts.</p>
-        </div>
-        <div className="es-step-card">
-          <div className="es-step-icon es-icon-red"><BellRing size={24} color="#E03232"/></div>
-          <h3>3. Notify</h3>
-          <p>Your emergency contacts are automatically notified with your exact GPS location.</p>
-        </div>
+        <EmergencyStepCard
+          IconComponent={ScanLine}
+          iconWrapClass="es-icon-blue"
+          iconColor="#38bdf8"
+          title="1. Scan"
+          desc="First responders scan the QR code on your Qlink bracelet in any mobile or phone camera."
+        />
+        <EmergencyStepCard
+          IconComponent={FileText}
+          iconWrapClass="es-icon-gray"
+          iconColor="#94A3B8"
+          title="2. Access"
+          desc="Your secure medical profile is instantly displayed on their screen alongside medical contacts."
+        />
+        <EmergencyStepCard
+          IconComponent={BellRing}
+          iconWrapClass="es-icon-red"
+          iconColor="#E03232"
+          title="3. Notify"
+          desc="Your emergency contacts are automatically notified with your exact GPS location."
+        />
       </section>
 
       {/* WATCH CAROUSEL */}
