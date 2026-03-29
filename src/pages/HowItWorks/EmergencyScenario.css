@@ -4,7 +4,8 @@
   color: white;
   padding-bottom: 0px;
   position: relative;
-  overflow-y: hidden;
+  /* overflow-x: hidden; */
+  /* overflow-y: hidden; */
   font-family: inherit;
 }
 
@@ -310,7 +311,7 @@ body {
 
 /* CTA BOX SECTION */
 .es-cta-box-section {
-  max-width: 800px;
+  max-width: 1200px;
   margin: 0 auto 100px;
   padding: 0 24px;
 }
@@ -360,7 +361,11 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 24px;
+  /* padding: 0 24px; */
+  padding-left: 24px;
+  padding-right: 24px;
+  padding-top: 0px;
+  padding-bottom: 180px;
   min-height: 400px;
 }
 
