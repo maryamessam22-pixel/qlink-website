@@ -22,14 +22,7 @@ import { ArrowLeft, ArrowRight, ShieldAlert, ScanLine, FileText, BellRing, Apple
 
 const watchImages = [w1, w2, w3, w4, w5];
 
-function EmergencyScenario({
-  titleTop = "Every Second",
-  titleBottom = "Matters",
-  subtitle = "When you're out running, riding, going to the gym, or traveling, accidents happen. You shouldn't have to leave without access to your vital medical data when it counts the most.",
-  btn1Text = "How It Works",
-  btn2Text = "Get Protected Now!",
-  ...props
-}) {
+const EmergencyScenario = () => {
   const [currentWatch, setCurrentWatch] = useState(0);
 
   const handleNextWatch = () => {
@@ -49,13 +42,13 @@ function EmergencyScenario({
           <div className="es-badge">
             <ShieldAlert size={16} color="#E03232" /> <span style={{color: '#E03232', fontWeight: 600, fontSize: '12px'}}>CRITICAL RESPONSE SYSTEM</span>
           </div>
-          <h1 className="es-hero-title">{titleTop}<br/><span className="red-text">{titleBottom}</span></h1>
+          <h1 className="es-hero-title">Every Second<br/><span className="red-text">Matters</span></h1>
           <p className="es-hero-subtitle">
-            {subtitle}
+            When you're out running, riding, going to the gym, or traveling, accidents happen. You shouldn't have to leave without access to your vital medical data when it counts the most.
           </p>
           <div className="es-hero-buttons">
-            <button className="btn btn-secondary">{btn1Text}</button>
-            <button className="btn btn-primary">{btn2Text}</button>
+            <button className="btn btn-secondary">How It Works</button>
+            <button className="btn btn-primary">Get Protected Now!</button>
           </div>
         </div>
       </section>
