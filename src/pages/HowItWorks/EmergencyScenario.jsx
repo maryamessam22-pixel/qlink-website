@@ -106,6 +106,7 @@ function EmergencyScenario({
       </div>
 
       {/* 3 STEPS CARDS */}
+      
       <section className="es-steps-section">
         <div className="es-step-card">
           <div className="es-step-icon es-icon-blue"><ScanLine size={24} color="#38bdf8"/></div>
