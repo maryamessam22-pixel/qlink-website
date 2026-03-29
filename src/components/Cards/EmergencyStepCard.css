@@ -1,0 +1,38 @@
+.es-step-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  padding: 40px 30px;
+  transition: transform 0.3s;
+}
+
+.es-step-card:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.es-step-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+.es-icon-blue { background: rgba(59, 130, 246, 0.15); }
+.es-icon-gray { background: rgba(148, 163, 184, 0.15); }
+.es-icon-red  { background: rgba(224, 50, 50, 0.15); }
+
+.es-step-card h3 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.es-step-card p {
+  font-size: 14px;
+  color: #94A3B8;
+  line-height: 1.6;
+}

@@ -115,7 +115,7 @@ body {
   justify-content: center;
 }
 
-/* FEATURE ROWS */
+/* FEATURE ROWS CONTAINER */
 .es-features {
   max-width: 1100px;
   margin: 0 auto;
@@ -123,66 +123,6 @@ body {
   display: flex;
   flex-direction: column;
   gap: 100px;
-}
-
-.es-feature-row {
-  display: flex;
-  align-items: center;
-  gap: 60px;
-  justify-content: space-between;
-}
-
-.es-feature-row.reverse {
-  flex-direction: row-reverse;
-}
-
-.es-feature-text {
-  flex: 1;
-  max-width: 480px;
-}
-
-.es-f-subtitle {
-  color: #38bdf8;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 1.5px;
-  margin-bottom: 12px;
-  text-transform: uppercase;
-}
-
-.es-feature-row:nth-child(2) .es-f-subtitle {
-  color: #10B981;
-}
-
-.es-feature-row:nth-child(3) .es-f-subtitle {
-  color: #A78BFA;
-}
-
-.es-f-title {
-  font-size: 32px;
-  font-weight: 700;
-  margin-bottom: 20px;
-  color: white;
-}
-
-.es-f-desc {
-  font-size: 16px;
-  color: #94A3B8;
-  line-height: 1.6;
-}
-
-.es-feature-img {
-  flex: 1;
-  border-radius: 20px;
-  overflow: hidden;
-  /* box-shadow: 0 20px 40px rgba(0,0,0,0.3); */
-  position: relative;
-  max-width: 500px;
-}
-.es-feature-img img {
-  width: 100%;
-  height: auto;
-  display: block;
 }
 
 /* MARQUEE */
@@ -211,7 +151,7 @@ body {
   100% { transform: translateX(-50%); }
 }
 
-/* STEPS SECTION */
+/* STEPS SECTION CONTAINER */
 .es-steps-section {
   max-width: 1100px;
   margin: 100px auto;
@@ -219,45 +159,6 @@ body {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 30px;
-}
-
-.es-step-card {
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  border-radius: 16px;
-  padding: 40px 30px;
-  transition: transform 0.3s;
-}
-
-.es-step-card:hover {
-  transform: translateY(-5px);
-  background: rgba(255, 255, 255, 0.04);
-}
-
-.es-step-icon {
-  width: 48px;
-  height: 48px;
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 24px;
-}
-
-.es-icon-blue { background: rgba(59, 130, 246, 0.15); }
-.es-icon-gray { background: rgba(148, 163, 184, 0.15); }
-.es-icon-red  { background: rgba(224, 50, 50, 0.15); }
-
-.es-step-card h3 {
-  font-size: 20px;
-  font-weight: 700;
-  margin-bottom: 12px;
-}
-
-.es-step-card p {
-  font-size: 14px;
-  color: #94A3B8;
-  line-height: 1.6;
 }
 
 /* CAROUSEL */
@@ -445,14 +346,6 @@ body {
 }
 
 @media (max-width: 900px) {
-  .es-feature-row, .es-feature-row.reverse {
-    flex-direction: column;
-    text-align: center;
-    gap: 40px;
-  }
-  .es-feature-text {
-    max-width: 100%;
-  }
   .es-steps-section {
     grid-template-columns: 1fr;
   }

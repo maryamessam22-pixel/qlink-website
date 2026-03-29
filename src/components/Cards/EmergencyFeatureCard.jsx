@@ -1,4 +1,5 @@
 import React from 'react';
+import './EmergencyFeatureCard.css';
 
 const EmergencyFeatureCard = (props) => {
   return (

@@ -1,4 +1,5 @@
 import React from 'react';
+import './EmergencyStepCard.css';
 
 const EmergencyStepCard = (props) => {
   const IconComponent = props.IconComponent;
