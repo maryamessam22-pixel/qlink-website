@@ -1,4 +1,5 @@
 import React from 'react';
+import './StepItem.css';
 
 function StepItem({ icon: Icon, iconColor, title, description }) {
   return (

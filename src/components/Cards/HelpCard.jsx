@@ -1,4 +1,5 @@
 import React from 'react';
+import './HelpCard.css';
 
 function HelpCard({ icon: Icon, iconColor, title, description, href = "#" }) {
   return (

@@ -1,4 +1,5 @@
 import React from 'react';
+import './HalfCard.css';
 
 function HalfCard({ title, description }) {
   return (

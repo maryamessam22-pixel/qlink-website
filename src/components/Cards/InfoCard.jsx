@@ -1,4 +1,5 @@
 import React from 'react';
+import './InfoCard.css';
 
 function InfoCard({ icon: Icon, iconColor, iconBgColor, title, description, style, iconWrapperStyle, iconSize = 32 }) {
   return (

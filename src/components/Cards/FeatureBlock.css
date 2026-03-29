@@ -1,0 +1,23 @@
+.feature-block {
+  padding-left: 20px;
+  border-left: 3px solid var(--border-light);
+  transition: border-color 0.3s ease;
+}
+
+.feature-block.active,
+.feature-block:hover {
+  border-left-color: var(--color-primary-red);
+}
+
+.feature-block h4 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: var(--text-primary);
+}
+
+.feature-block p {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}

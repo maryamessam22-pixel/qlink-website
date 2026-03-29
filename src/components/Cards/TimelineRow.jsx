@@ -1,4 +1,5 @@
 import React from 'react';
+import './TimelineRow.css';
 
 function TimelineRow({ title, description, icon: Icon, isRight }) {
   return (

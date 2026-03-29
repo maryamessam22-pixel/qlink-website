@@ -236,38 +236,6 @@
   gap: 24px;
 }
 
-.info-card {
-  background: rgba(15, 23, 42, 0.5);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  padding: 32px 24px;
-  border-radius: 16px;
-  text-align: center;
-  backdrop-filter: blur(10px);
-  transition: transform 0.2s ease;
-}
-
-.info-card:hover {
-  transform: translateY(-10px);
-  border-color: rgba(255, 255, 255, 0.2);
-}
-
-.info-card .icon-wrap {
-  margin-bottom: 16px;
-  color: var(--color-primary-red);
-}
-
-.info-card h3 {
-  font-size: 16px;
-  margin-bottom: 12px;
-  color: var(--text-primary);
-}
-
-.info-card p {
-  font-size: 13px;
-  color: var(--text-secondary);
-  line-height: 1.5;
-}
-
 /* WHY CHOOSE */
 .why-section {
   max-width: 1100px;
@@ -279,52 +247,6 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 24px;
-}
-
-.why-card {
-  padding: 32px 24px;
-  border-radius: 16px;
-  background: #0d16298a;
-  text-align: left;
-  border: 1px solid rgba(255, 255, 255, 0.03);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  cursor: default;
-}
-
-.why-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
-  border-color: rgba(224, 50, 50, 0.2);
-}
-
-.why-card:hover .icon-wrap {
-  transform: scale(1.1) rotate(5deg);
-  background: rgba(224, 50, 50, 0.15);
-}
-
-.why-card .icon-wrap {
-  color: var(--color-primary-red);
-  margin-bottom: 20px;
-  background: rgba(224, 50, 50, 0.08);
-  width: 48px;
-  height: 48px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 12px;
-  transition: all 0.3s ease;
-}
-
-.why-card h4 {
-  font-size: 15px;
-  margin-bottom: 10px;
-}
-
-.why-card p {
-  font-size: 13px;
-  color: var(--text-secondary);
-  line-height: 1.5;
 }
 
 /* LEFT-RIGHT TEXT FEATURES */
@@ -405,55 +327,6 @@
   100% { background-position: -200% 0; }
 }
 
-.step-item {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background: transparent;
-  padding: 0;
-  border-radius: 0;
-  border: none;
-  box-shadow: none;
-  cursor: default;
-  position: relative;
-  z-index: 1;
-}
-
-.step-item:hover {
-  transform: translateY(-5px);
-}
-
-.step-item:hover .step-icon {
-  transform: scale(1.05);
-}
-
-.step-icon {
-  width: 68px;
-  height: 68px;
-  background: #E2E8F0;
-  color: var(--color-primary-red);
-  border-radius: 18px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 24px;
-  transition: all 0.3s ease;
-}
-
-.step-item h4 {
-  font-size: 18px;
-  font-weight: 700;
-  margin-bottom: 12px;
-  color: #FFFFFF;
-}
-
-.step-item p {
-  font-size: 14px;
-  color: var(--text-secondary);
-  line-height: 1.5;
-}
-
 /* HALF CARDS */
 .half-cards-section {
   display: grid;
@@ -462,24 +335,6 @@
   max-width: 1100px;
   margin: 0 auto 100px auto;
   padding: 0 24px;
-}
-
-.half-card {
-  background: rgba(15, 23, 42, 0.4);
-  padding: 40px;
-  border-radius: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.half-card h3 {
-  font-size: 18px;
-  margin-bottom: 16px;
-}
-
-.half-card p {
-  font-size: 14px;
-  color: var(--text-secondary);
-  line-height: 1.6;
 }
 
 /* APP MOCKUP */

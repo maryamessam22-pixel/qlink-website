@@ -1,4 +1,5 @@
 import React from 'react';
+import './WhyCard.css';
 
 function WhyCard({ icon: Icon, title, description }) {
   return (

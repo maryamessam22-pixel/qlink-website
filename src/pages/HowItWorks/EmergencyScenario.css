@@ -1,12 +1,12 @@
 .es-page {
   background: linear-gradient(180deg, #1D2C4B 0%, #192149 100%);
   min-height: 100vh;
-  color: white;
+  color: var(--text-primary);
   padding-bottom: 0px;
   position: relative;
   /* overflow-x: hidden; */
   /* overflow-y: hidden; */
-  font-family: inherit;
+  font-family: var(--font-family-primary);
 }
 
 .es-page *, .es-page *::before, .es-page *::after {
@@ -32,16 +32,16 @@ body {
   border: none;
 }
 .btn-primary {
-  background: #E03232;
-  color: white;
+  background: var(--color-primary-red);
+  color: var(--text-primary);
 }
 .btn-primary:hover {
-  background: #C42626;
+  background: var(--color-primary-red-hover);
 }
 .btn-secondary {
   background: transparent;
-  color: white;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--text-primary);
+  border: 1px solid var(--border-light);
 }
 .btn-secondary:hover {
   background: rgba(255, 255, 255, 0.05);
@@ -98,12 +98,12 @@ body {
 }
 
 .red-text {
-  color: #E03232;
+  color: var(--color-primary-red);
 }
 
 .es-hero-subtitle {
   font-size: 18px;
-  color: #CBD5E1;
+  color: var(--text-secondary);
   max-width: 600px;
   line-height: 1.6;
   margin-bottom: 40px;
@@ -140,7 +140,7 @@ body {
   gap: 40px;
   align-items: center;
   animation: esMarquee 20s linear infinite;
-  color: white;
+  color: var(--text-primary);
   font-weight: 600;
   font-size: 14px;
   letter-spacing: 1px;
@@ -177,8 +177,8 @@ body {
 
 .es-arrow-btn {
   background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.1);
-  color: white;
+  border: 1px solid var(--border-light);
+  color: var(--text-primary);
   width: 48px;
   height: 48px;
   border-radius: 50%;
@@ -222,8 +222,8 @@ body {
 }
 
 .es-cta-box {
-  background: linear-gradient(135deg, rgba(8, 14, 33, 0.8) 0%, rgba(20, 31, 61, 0.9) 100%);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: linear-gradient(135deg, var(--bg-surface-deep) 0%, var(--bg-surface-navy) 100%);
+  border: 1px solid var(--border-light);
   border-radius: 20px;
   padding: 60px 40px;
   text-align: center;
@@ -246,7 +246,7 @@ body {
 
 .es-cta-box p {
   font-size: 16px;
-  color: #94A3B8;
+  color: var(--text-secondary);
   max-width: 500px;
   margin-bottom: 32px;
   line-height: 1.6;
@@ -283,11 +283,12 @@ body {
   font-size: 36px;
   font-weight: 800;
   margin-bottom: 16px;
+  color: var(--text-primary);
 }
 
 .es-promo-content p {
   font-size: 18px;
-  color: #94A3B8;
+  color: var(--text-secondary);
   margin-bottom: 32px;
   line-height: 1.5;
 }

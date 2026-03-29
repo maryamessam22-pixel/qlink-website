@@ -1,4 +1,5 @@
 import React from 'react';
+import './FeatureBlock.css';
 
 function FeatureBlock({ title, description }) {
   return (

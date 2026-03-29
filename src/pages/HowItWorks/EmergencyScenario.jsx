@@ -40,7 +40,7 @@ const EmergencyScenario = () => {
         <div className="es-hero-overlay"></div>
         <div className="es-hero-content">
           <div className="es-badge">
-            <ShieldAlert size={16} color="#E03232" /> <span style={{color: '#E03232', fontWeight: 600, fontSize: '12px'}}>CRITICAL RESPONSE SYSTEM</span>
+            <ShieldAlert size={16} color="var(--color-primary-red)" /> <span style={{color: 'var(--color-primary-red)', fontWeight: 600, fontSize: '12px'}}>CRITICAL RESPONSE SYSTEM</span>
           </div>
           <h1 className="es-hero-title">Every Second<br/><span className="red-text">Matters</span></h1>
           <p className="es-hero-subtitle">
@@ -95,21 +95,21 @@ const EmergencyScenario = () => {
         <EmergencyStepCard
           IconComponent={ScanLine}
           iconWrapClass="es-icon-blue"
-          iconColor="#38bdf8"
+          iconColor="var(--color-primary-blue)"
           title="1. Scan"
           desc="First responders scan the QR code on your Qlink bracelet in any mobile or phone camera."
         />
         <EmergencyStepCard
           IconComponent={FileText}
           iconWrapClass="es-icon-gray"
-          iconColor="#94A3B8"
+          iconColor="var(--text-secondary)"
           title="2. Access"
           desc="Your secure medical profile is instantly displayed on their screen alongside medical contacts."
         />
         <EmergencyStepCard
           IconComponent={BellRing}
           iconWrapClass="es-icon-red"
-          iconColor="#E03232"
+          iconColor="var(--color-primary-red)"
           title="3. Notify"
           desc="Your emergency contacts are automatically notified with your exact GPS location."
         />
@@ -134,7 +134,7 @@ const EmergencyScenario = () => {
       <section className="es-cta-box-section">
         <div className="es-cta-box">
           <div className="es-cta-icon">
-             <ShieldAlert size={36} color="#38bdf8" />
+             <ShieldAlert size={36} color="var(--color-primary-blue)" />
           </div>
           <h2>Be Prepared<br/>Before It Happens!</h2>
           <p>Emergencies rarely give warnings. Yet, only 1 in 10 adults carry emergency info. Empower yourself, protect those you love.</p>

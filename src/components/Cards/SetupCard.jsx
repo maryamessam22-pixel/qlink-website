@@ -1,4 +1,5 @@
 import React from 'react';
+import './SetupCard.css';
 
 function SetupCard({ icon: Icon, title, description, iconBgColor, iconColor }) {
   return (

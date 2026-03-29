@@ -15,7 +15,7 @@
 }
 
 .es-f-subtitle {
-  color: #38bdf8;
+  color: var(--color-primary-blue);
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 1.5px;
@@ -24,23 +24,23 @@
 }
 
 .es-feature-row:nth-child(2) .es-f-subtitle {
-  color: #10B981;
+  color: var(--color-success);
 }
 
 .es-feature-row:nth-child(3) .es-f-subtitle {
-  color: #A78BFA;
+  color: var(--color-brand-blue-glow);
 }
 
 .es-f-title {
   font-size: 32px;
   font-weight: 700;
   margin-bottom: 20px;
-  color: white;
+  color: var(--text-primary);
 }
 
 .es-f-desc {
   font-size: 16px;
-  color: #94A3B8;
+  color: var(--text-secondary);
   line-height: 1.6;
 }
 
