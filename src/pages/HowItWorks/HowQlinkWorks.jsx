@@ -23,6 +23,7 @@ import SetupCard from '../../components/Cards/SetupCard';
 import HelpCard from '../../components/Cards/HelpCard';
 
 import watchVidSrc from '../../assets/videos/watch vid.mp4';
+import qlinkVideoSrc from '../../assets/videos/qlink-video.mp4';
 
 function HowQlinkWorks() {
   const lensRef = useRef(null);
@@ -46,7 +47,6 @@ function HowQlinkWorks() {
   }, []);
 
   // Placeholder images/videos
-  const heroImgSrc = "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2070&auto=format&fit=crop";
   const centerVideoSrc = watchVidSrc;
 
   useEffect(() => {
@@ -95,7 +95,7 @@ function HowQlinkWorks() {
 
       {/* HERO SECTION */}
       <section className="hw-hero scroll-animate">
-        <img className="hw-hero-video" src={heroImgSrc} alt="How Qlink Works" />
+        <video className="hw-hero-video" src={qlinkVideoSrc} autoPlay loop muted playsInline />
         <div className="hw-hero-overlay"></div>
         <div className="hw-hero-content">
           <h1>How <span className="red-text">Qlink</span> Works</h1>
