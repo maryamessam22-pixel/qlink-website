@@ -1,10 +1,10 @@
 .es-page {
-  background: linear-gradient(180deg, #121A31 0%, #151B38 50%, #0F1629 100%);
+  background: linear-gradient(180deg, #1D2C4B 0%, #192149 100%);
   min-height: 100vh;
   color: white;
   padding-bottom: 0px;
   position: relative;
-  overflow-x: hidden;
+  overflow-y: hidden;
   font-family: inherit;
 }
 
