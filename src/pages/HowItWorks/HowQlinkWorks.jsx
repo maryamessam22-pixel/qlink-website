@@ -32,7 +32,7 @@ function HowQlinkWorks() {
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        if(entry.isIntersecting) {
+        if (entry.isIntersecting) {
           entry.target.classList.add('is-visible');
         } else {
           entry.target.classList.remove('is-visible');
@@ -42,7 +42,7 @@ function HowQlinkWorks() {
 
     const animatedElements = document.querySelectorAll('.scroll-animate');
     animatedElements.forEach(el => observer.observe(el));
-    
+
     return () => observer.disconnect();
   }, []);
 
@@ -106,25 +106,25 @@ function HowQlinkWorks() {
       {/* TIMELINE SECTION */}
       <section className="hw-timeline-section scroll-animate">
         <div className="timeline-container">
-          <TimelineRow 
+          <TimelineRow
             title="1. Setup Your Profile"
             description="Download the Qlink app or scan your own bracelet, enter your medical history, emergency contacts, and insurance details."
             icon={Database}
             isRight={false}
           />
-          <TimelineRow 
+          <TimelineRow
             title="2. Set Privacy Layers"
             description="Mask sensitive data (HIV status, mental health history) vs Public Data (Allergies, Diabetes) so vital info is hidden unless needed."
             icon={Shield}
             isRight={true}
           />
-          <TimelineRow 
+          <TimelineRow
             title="3. Wear The Band"
             description="Put on your Qlink bracelet. It requires zero monthly charging, pairs in 3 seconds, is fully waterproof, and easily locked."
             icon={Smartphone}
             isRight={false}
           />
-          <TimelineRow 
+          <TimelineRow
             title="4. Emergency Event"
             description="In an accident, a bystander or paramedic scans the QR code or scans it using an emergency mobile camera."
             icon={Bell}
@@ -136,11 +136,11 @@ function HowQlinkWorks() {
       {/* SPLIT FEATURES VIDEO SECTION */}
       <section className="hw-features-section scroll-animate">
         <div className="features-col">
-          <FeatureBlock 
+          <FeatureBlock
             title="Instant Emergency Identity"
             description="Qlink connects an emergency identity system that provides instant access to critical medical and contact information through a secure QR code."
           />
-          <FeatureBlock 
+          <FeatureBlock
             title="Privacy-First Technology"
             description="Qlink operates on a privacy-first system. Your data is protected, controlled, and only accessible when scanned in an emergency."
           />
@@ -167,11 +167,11 @@ function HowQlinkWorks() {
         </div>
 
         <div className="features-col">
-          <FeatureBlock 
+          <FeatureBlock
             title="Voice-Free Communication"
             description="It allows first responders or bystanders to access essential data in events where the patient is unconscious or unable to speak."
           />
-          <FeatureBlock 
+          <FeatureBlock
             title="Bridge Between Accident & Treatment"
             description="It bridges the critical gap between accident and medical response, reducing delays and enabling faster, safer intervention."
           />
@@ -180,7 +180,7 @@ function HowQlinkWorks() {
 
       {/* COMPARISON CARDS */}
       <section className="hw-compare-section">
-        <CompareCard 
+        <CompareCard
           headerIcon={WifiOff}
           headerText="Offline vs online"
           box1Title="Online Mode"
@@ -190,7 +190,7 @@ function HowQlinkWorks() {
           box2HighlightColor="#E03232"
         />
 
-        <CompareCard 
+        <CompareCard
           headerIcon={MonitorSmartphone}
           headerText="App vs no-app"
           box1Icon={CheckCircle2}
@@ -208,21 +208,21 @@ function HowQlinkWorks() {
         <h2 className="hw-section-title">Setup in seconds</h2>
 
         <div className="setup-grid">
-          <SetupCard 
+          <SetupCard
             icon={LogIn}
             iconBgColor="rgba(56, 189, 248, 0.15)"
             iconColor="#38bdf8"
             title="1. Login"
             description="Create your account and pair device."
           />
-          <SetupCard 
+          <SetupCard
             icon={ShieldCheck}
             iconBgColor="rgba(16, 185, 129, 0.15)"
             iconColor="#10B981"
             title="2. Create Profile"
             description="Drop your vital medical details securely."
           />
-          <SetupCard 
+          <SetupCard
             icon={Package}
             iconBgColor="rgba(224, 50, 50, 0.15)"
             iconColor="#E03232"
@@ -234,13 +234,13 @@ function HowQlinkWorks() {
 
       {/* HELP CENTER TILES */}
       <section className="hw-help-grid scroll-animate">
-        <HelpCard 
+        <HelpCard
           icon={HelpCircle}
           iconColor="#E03232"
           title="Help Center"
           description="How to setup in 5 Min"
         />
-        <HelpCard 
+        <HelpCard
           icon={PhoneCall}
           iconColor="#10B981"
           title="Help Center"
