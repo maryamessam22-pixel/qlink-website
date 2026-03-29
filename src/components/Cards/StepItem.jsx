@@ -1,6 +1,6 @@
 import React from 'react';
 import './StepItem.css';
-import './StepItem.css';
+
 function StepItem({ icon: Icon, iconColor, title, description }) {
   return (
     <div className="step-item scroll-animate">
