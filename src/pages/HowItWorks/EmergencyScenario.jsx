@@ -44,7 +44,7 @@ const EmergencyScenario = () => {
           <div className="es-badge">
             <ShieldAlert size={16} color="var(--color-primary-red)" /> <span style={{color: 'var(--color-primary-red)', fontWeight: 600, fontSize: '12px'}}>{t('emergency.heroBadge')}</span>
           </div>
-          <h1 className="es-hero-title" style={{ whiteSpace: 'pre-wrap' }}>{t('emergency.heroTitleTop')}<span className="red-text">{t('emergency.heroTitleHighlight')}</span></h1>
+          <h1 className="es-hero-title" style={lang === 'ar' ? {} : { whiteSpace: 'pre-wrap' }}>{t('emergency.heroTitleTop')}<span className="red-text">{t('emergency.heroTitleHighlight')}</span></h1>
           <p className="es-hero-subtitle">
             {t('emergency.heroSubtitle')}
           </p>
@@ -138,7 +138,7 @@ const EmergencyScenario = () => {
           <div className="es-cta-icon">
              <ShieldAlert size={36} color="var(--color-primary-blue)" />
           </div>
-          <h2 style={{ whiteSpace: 'pre-wrap' }}>{t('emergency.ctaSubtitle')}</h2>
+          <h2 style={lang === 'ar' ? {} : { whiteSpace: 'pre-wrap' }}>{t('emergency.ctaSubtitle')}</h2>
           <p>{t('emergency.ctaDesc')}</p>
           <button className="btn btn-primary" style={lang === 'ar' ? { display: 'flex', gap: '8px', alignItems: 'center' } : {}}>{t('emergency.ctaBtn')} {lang === 'ar' ? <ArrowLeft size={16}/> : <ArrowRight size={16}/>}</button>
         </div>

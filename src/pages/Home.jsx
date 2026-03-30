@@ -77,7 +77,7 @@ function Home() {
         {/* HERO SECTION */}
         <section className={`hero-section scroll-animate ${lang === 'ar' ? 'rtl-text' : ''}`}>
           <div className="hero-text">
-            <h1 className="hero-title scroll-animate stag-1" style={{ whiteSpace: "pre-wrap" }}>
+            <h1 className="hero-title scroll-animate stag-1" style={lang === 'ar' ? {} : { whiteSpace: "pre-wrap" }}>
               {t('hero.titleTop')}<span className="red-text">{t('hero.titleHighlight')}</span><br />
               {t('hero.titleBottom')}
             </h1>
@@ -297,7 +297,7 @@ function Home() {
 
         {/* CTA */}
         <section className={`cta-section scroll-animate ${lang === 'ar' ? 'rtl-text' : ''}`}>
-          <h2 style={{ lineHeight: '1.2', whiteSpace: 'pre-wrap' }}>{t('cta.title')}</h2>
+          <h2 style={{ lineHeight: '1.2', ...(lang === 'ar' ? {} : { whiteSpace: 'pre-wrap' }) }}>{t('cta.title')}</h2>
           <button className="btn btn-primary" style={{ padding: '14px 40px', fontSize: '16px' }}>{t('cta.btn')}</button>
           
           <div className="cta-line"></div>
