@@ -106,6 +106,10 @@
   min-height: 60vh;
 }
 
+.hero-section.rtl-text {
+  flex-direction: row-reverse;
+}
+
 .hero-text {
   flex: 1;
   max-width: 650px;
@@ -544,6 +548,7 @@
 @media (max-width: 900px) {
 
   .hero-section,
+  .hero-section.rtl-text,
   .split-feature,
   .split-feature.reverse,
   .app-section {

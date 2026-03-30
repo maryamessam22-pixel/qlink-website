@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@300;400;500;600;700;800&display=swap');
 
+/* body.rtl-active  {
+  text-align: right;
+} */
 :root {
   /* Brand Colors */
   --color-primary-navy: #131C2F;
@@ -47,4 +51,29 @@ body {
 
 .App {
   font-family: var(--font-family-primary);
+}
+
+/* RTL Support */
+body.rtl-active, 
+body.rtl-active * {
+  font-family: 'Noto Kufi Arabic', sans-serif !important;
+}
+
+body.rtl-active {
+  direction: rtl;
+  text-align: right;
+}
+
+body.rtl-active .hero-title {
+  line-height: 1.4;
+}
+
+body.rtl-active .navbar-brand {
+  margin-right: 0;
+  margin-left: 24px;
+}
+
+body.rtl-active .icon-btn {
+  margin-left: 0;
+  margin-right: 12px;
 }

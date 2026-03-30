@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { LanguageContext } from '../context/LanguageContext';
 import {
   WifiOff,
   QrCode,
@@ -37,6 +38,7 @@ import appScreenImg from '../assets/images/appscreen.png';
 
 function Home() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const { t, lang } = useContext(LanguageContext);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -73,19 +75,18 @@ function Home() {
 
       <div className="home-content">
         {/* HERO SECTION */}
-        <section className="hero-section scroll-animate">
+        <section className={`hero-section scroll-animate ${lang === 'ar' ? 'rtl-text' : ''}`}>
           <div className="hero-text">
-            <h1 className="hero-title scroll-animate stag-1">
-              Safety in a <span className="red-text">Scan.</span><br />
-              Peace of Mind<br />
-              Forever.
+            <h1 className="hero-title scroll-animate stag-1" style={{ whiteSpace: "pre-wrap" }}>
+              {t('hero.titleTop')}<span className="red-text">{t('hero.titleHighlight')}</span><br />
+              {t('hero.titleBottom')}
             </h1>
             <p className="hero-desc scroll-animate stag-2">
-              Qlink is a QR-based personal safety bracelet that enables instant access to essential emergency information while protecting user privacy.
+              {t('hero.desc')}
             </p>
-            <div className="hero-buttons scroll-animate stag-3">
-              <button className="btn btn-secondary">How It Works</button>
-              <button className="btn btn-primary">Explore the Bracelet</button>
+            <div className={`hero-buttons scroll-animate stag-3 ${lang === 'ar' ? 'rtl-buttons' : ''}`}>
+              <button className="btn btn-secondary">{t('hero.btnHow')}</button>
+              <button className="btn btn-primary">{t('hero.btnExplore')}</button>
             </div>
           </div>
           <div className="hero-image">
@@ -94,10 +95,10 @@ function Home() {
         </section>
 
         {/* WHAT IS QLINK */}
-        <section className="what-section scroll-animate">
-          <h2 className="section-title">What is Qlink?</h2>
+        <section className={`what-section scroll-animate ${lang === 'ar' ? 'rtl-text' : ''}`}>
+          <h2 className="section-title">{t('whatIs.title')}</h2>
           <p className="section-subtitle">
-            Qlink is a state-of-the-art wearable that allows first responders or good samaritans to scan your unique QR code with their mobile device to get vital information bridging the gap between an incident and treatment.
+            {t('whatIs.subtitle')}
           </p>
 
           <div className="card-grid-3">
@@ -105,68 +106,68 @@ function Home() {
               style={{ background: 'rgba(16, 185, 129, 0.08)' }}
               icon={Zap}
               iconColor="var(--color-success)"
-              title="Works Offline"
-              description="No internet required for basic ID."
+              title={t('whatIs.c1Title')}
+              description={t('whatIs.c1Desc')}
             />
             <InfoCard 
               style={{ background: 'rgba(59, 130, 246, 0.08)' }}
               icon={QrCode}
               iconColor="var(--color-primary-blue)"
-              title="QR Emergency Access"
-              description="Instant access to ID and Meds."
+              title={t('whatIs.c2Title')}
+              description={t('whatIs.c2Desc')}
             />
             <InfoCard 
               style={{ background: 'rgba(224, 50, 50, 0.08)' }}
               icon={Lock}
               iconColor="var(--color-error)"
-              title="Privacy-Controlled"
-              description="You decide what data is public."
+              title={t('whatIs.c3Title')}
+              description={t('whatIs.c3Desc')}
             />
           </div>
         </section>
 
         {/* WHY CHOOSE QLINK */}
-        <section className="why-section scroll-animate">
-          <h2 className="section-title">Why Choose Qlink?</h2>
+        <section className={`why-section scroll-animate ${lang === 'ar' ? 'rtl-text' : ''}`}>
+          <h2 className="section-title">{t('whyChoose.title')}</h2>
           <p className="section-subtitle">
-            Designed for peace of mind in a modern world. Simple, reliable, and secure.
+            {t('whyChoose.subtitle')}
           </p>
 
           <div className="card-grid-4">
             <WhyCard 
               icon={Wifi}
-              title="Works without internet"
-              description="Data securely stored directly in the QR standard, accessible anywhere on earth."
+              title={t('whyChoose.w1Title')}
+              description={t('whyChoose.w1Desc')}
             />
             <WhyCard 
               icon={ShieldCheck}
-              title="Privacy control"
-              description="You control exactly what info is publicly available and what is kept secure."
+              title={t('whyChoose.w2Title')}
+              description={t('whyChoose.w2Desc')}
             />
             <WhyCard 
               icon={Smartphone}
-              title="No app needed"
-              description="First responders simply scan with their phone camera. No software required."
+              title={t('whyChoose.w3Title')}
+              description={t('whyChoose.w3Desc')}
             />
             <WhyCard 
               icon={HeartPulse}
-              title="Always Medical ID tags"
-              description="The perfect alternative to emergency tags in a very slim profile that fits anywhere."
+              title={t('whyChoose.w4Title')}
+              description={t('whyChoose.w4Desc')}
             />
           </div>
         </section>
 
         {/* SPLIT FEATURE 1 */}
-        <section className="split-feature scroll-animate">
+        <section className={`split-feature scroll-animate ${lang === 'ar' ? 'rtl-text' : ''}`}>
           <div className="split-text">
-            <h2 className="split-title">Simple. Secure. Always There.</h2>
+            <h2 className="split-title">{t('splitFeature.title')}</h2>
             <p className="split-desc">
-              This bracelet is designed to help share essential personal and emergency information when the wearer is unable to communicate. By scanning the QR code, trusted information becomes instantly accessible without the need for an app or internet connection.
+              {t('splitFeature.desc1')}
             </p>
             <p className="split-desc">
-              Built for everyday life, Qlink works completely offline and puts you in full control of what information is shared. You decide what's visible, what stays private, and when it's accessed. Simple, reliable, and designed for peace of mind for you and the people who care about you.
+              {t('splitFeature.desc2')}
             </p>
-            <Link to="/about" className="btn btn-primary" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', textDecoration: 'none', marginTop: '16px' }}>More about Qlink</Link>
+            <Link to="/about" className="btn btn-primary" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', textDecoration: 'none', marginTop: '16px' }}>{t('splitFeature.btn')}</Link>
           </div>
           <div className="split-image">
             <img src={twoWatchesImg} alt="2 Qlink Bracelets" />
@@ -174,10 +175,10 @@ function Home() {
         </section>
 
         {/* WHO IS QLINK FOR */}
-        <section className="what-section scroll-animate">
-          <h2 className="section-title">Who is Qlink for?</h2>
+        <section className={`what-section scroll-animate ${lang === 'ar' ? 'rtl-text' : ''}`}>
+          <h2 className="section-title">{t('whoIsFor.title')}</h2>
           <p className="section-subtitle">
-            Safety and peace of mind for every stage of life and lifestyle.
+            {t('whoIsFor.subtitle')}
           </p>
 
           <div className="card-grid-3">
@@ -187,8 +188,8 @@ function Home() {
               icon={Users}
               iconSize={24}
               iconColor="#b0b8c8"
-              title="The Elderly"
-              description="Maintain independence with the safety net of instant medical info during falls."
+              title={t('whoIsFor.c1Title')}
+              description={t('whoIsFor.c1Desc')}
             />
             <InfoCard 
               style={{ padding: '40px 24px' }}
@@ -196,8 +197,8 @@ function Home() {
               icon={Activity}
               iconSize={24}
               iconColor="#E03232"
-              title="Chronic Conditions"
-              description="Diabetes, epilepsy, or allergies? Details clearly state rules when you can't."
+              title={t('whoIsFor.c2Title')}
+              description={t('whoIsFor.c2Desc')}
             />
             <InfoCard 
               style={{ padding: '40px 24px' }}
@@ -205,85 +206,85 @@ function Home() {
               icon={Baby}
               iconSize={24}
               iconColor="#b0b8c8"
-              title="Children"
-              description="Perfect for school trips or busy places. Ensure your contact info always with them."
+              title={t('whoIsFor.c3Title')}
+              description={t('whoIsFor.c3Desc')}
             />
           </div>
         </section>
 
         {/* JOURNEY SECTION */}
-        <section className="journey-section scroll-animate">
-          <h2 className="section-title">Start Your Safety Journey</h2>
+        <section className={`journey-section scroll-animate ${lang === 'ar' ? 'rtl-text' : ''}`}>
+          <h2 className="section-title">{t('journey.title')}</h2>
           <p className="section-subtitle">
-            Four simple steps to peace of mind.
+            {t('journey.subtitle')}
           </p>
 
           <div className="step-grid">
             <StepItem 
               icon={Watch}
               iconColor="#E03232"
-              title="Choose One"
-              description="Select your own bracelet from our products."
+              title={t('journey.s1Title')}
+              description={t('journey.s1Desc')}
             />
             <StepItem 
               icon={FileText}
               iconColor="#E03232"
-              title="Personalize"
-              description="Unput your vital medical data and emergency contacts."
+              title={t('journey.s2Title')}
+              description={t('journey.s2Desc')}
             />
             <StepItem 
               icon={CheckCircle2}
               iconColor="#E03232"
-              title="Confirm Order"
-              description="Secure checkout with instant digital profile creation."
+              title={t('journey.s3Title')}
+              description={t('journey.s3Desc')}
             />
             <StepItem 
               icon={Truck}
               iconColor="#E03232"
-              title="Receive Bracelet"
-              description="Fast, tracked shipping to your doorstep."
+              title={t('journey.s4Title')}
+              description={t('journey.s4Desc')}
             />
           </div>
         </section>
 
         {/* HALF CARDS */}
-        <section className="half-cards-section scroll-animate">
+        <section className={`half-cards-section scroll-animate ${lang === 'ar' ? 'rtl-text' : ''}`}>
           <HalfCard 
-            title="Public vs Private Information"
-            description="You control what data is shown on a public QR scan and what is securely retained behind an encrypted wall. You can update your emergency contacts while keeping your core medical info totally secure."
+            title={t('halfCards.c1Title')}
+            description={t('halfCards.c1Desc')}
           />
           <HalfCard 
-            title="Hybrid Retrieval Tech"
-            description="We engineered proprietary hybrid architecture that instantly delivers offline basic data while dynamically loading advanced online information for a seamless experience of rapid emergency ID."
+            title={t('halfCards.c2Title')}
+            description={t('halfCards.c2Desc')}
           />
         </section>
 
         {/* APP MOCKUP SECTION */}
-        <div className="app-section-wrapper scroll-animate">
+        <div className={`app-section-wrapper scroll-animate ${lang === 'ar' ? 'rtl-text' : ''}`}>
           <section className="app-section">
             <div className="app-text">
-            <h2 className="split-title">Manage Your Safety with the Qlink App</h2>
+            <h2 className="split-title">{t('appSection.title')}</h2>
             <p className="split-desc">
-              The Qlink app allows you to fully manage your account, emergency information securely, monitor limits, connect devices, and manage your preferences, all from one place.
+              {t('appSection.desc')}
             </p>
-            <ul>
-              <li><CheckCircle2 size={18} className="check" /> Manage emergency and personal information</li>
-              <li><CheckCircle2 size={18} className="check" /> Control privacy and data sharing</li>
-              <li><CheckCircle2 size={18} className="check" /> Monitor and update profiles anytime</li>
+            <ul style={lang === 'ar' ? { paddingRight: '0', paddingLeft: '0' } : {}}>
+              <li style={{ display: 'flex', alignItems: 'center', gap: '10px' }}><CheckCircle2 size={18} className="check" /> {t('appSection.l1')}</li>
+              <li style={{ display: 'flex', alignItems: 'center', gap: '10px' }}><CheckCircle2 size={18} className="check" /> {t('appSection.l2')}</li>
+              <li style={{ display: 'flex', alignItems: 'center', gap: '10px' }}><CheckCircle2 size={18} className="check" /> {t('appSection.l3')}</li>
             </ul>
-            <div className="store-buttons">
+            <div className={`store-buttons ${lang === 'ar' ? 'rtl-buttons' : ''}`}>
               <a href="#" className="store-btn">
                 <Apple size={28} />
                 <div className="store-btn-text">
-                  <span className="store-btn-sub">Download on the</span>
-                  <span className="store-btn-title">App Store</span>
+                  <span className="store-btn-sub">{t('appSection.appStore')}</span>
+                  <span className="store-btn-title">{t('appSection.appStoreTitle')}</span>
                 </div>
               </a>
               <a href="#" className="store-btn store-btn-google">
                 <Play size={28} />
                 <div className="store-btn-text">
-                  <span className="store-btn-sub">Get it on</span>
-                  <span className="store-btn-title">Google Play</span>
+                  <span className="store-btn-sub">{t('appSection.googlePlay')}</span>
+                  <span className="store-btn-title">{t('appSection.googlePlayTitle')}</span>
                 </div>
               </a>
             </div>
@@ -295,14 +296,14 @@ function Home() {
         </div>
 
         {/* CTA */}
-        <section className="cta-section scroll-animate">
-          <h2 style={{ lineHeight: '1.2' }}>Ready to secure your<br />peace of mind?</h2>
-          <button className="btn btn-primary" style={{ padding: '14px 40px', fontSize: '16px' }}>Shop Now</button>
+        <section className={`cta-section scroll-animate ${lang === 'ar' ? 'rtl-text' : ''}`}>
+          <h2 style={{ lineHeight: '1.2', whiteSpace: 'pre-wrap' }}>{t('cta.title')}</h2>
+          <button className="btn btn-primary" style={{ padding: '14px 40px', fontSize: '16px' }}>{t('cta.btn')}</button>
           
           <div className="cta-line"></div>
           
           <p className="cta-footer-text">
-            Have questions? Visit <a href="#">Support</a> or <a href="#">Contact Us.</a>
+            {t('cta.footer')}
           </p>
         </section>
       </div>

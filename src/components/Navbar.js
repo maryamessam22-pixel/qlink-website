@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { ShoppingCart, User } from 'lucide-react';
+import { LanguageContext } from '../context/LanguageContext';
 import Dropdown from './Dropdown';
 import Logo from './Logo';
 import './Navbar.css';
@@ -8,6 +9,7 @@ import './Navbar.css';
 function Navbar() {
   const location = useLocation();
   const { pathname } = location;
+  const { lang, toggleLanguage, t } = useContext(LanguageContext);
 
   return (
     <nav className="navbar-wrapper">
@@ -20,51 +22,51 @@ function Navbar() {
       <div className="navbar-pill">
         <ul className="navbar-links">
           <li>
-            <Link to="/" className={`nav-link ${pathname === '/' ? 'active' : ''}`}>Home</Link>
+            <Link to="/" className={`nav-link ${pathname === '/' ? 'active' : ''}`}>{t('nav.home')}</Link>
           </li>
           <li>
             <Dropdown
-              label="How It Works"
+              label={t('nav.howItWorks')}
               isActive={pathname.startsWith('/how-it-works')}
               items={[
-                { name: 'How Qlink Works', href: '/how-it-works/qlink' },
-                { name: 'Emergency Scenario', href: '/how-it-works/emergency' },
+                { name: t('nav.drop.howQlink'), href: '/how-it-works/qlink' },
+                { name: t('nav.drop.emergency'), href: '/how-it-works/emergency' },
               ]}
             />
           </li>
           <li>
             <Dropdown
-              label="Shop"
+              label={t('nav.shop')}
               isActive={pathname.startsWith('/shop')}
               items={[
-                { name: 'The Bracelet', href: '/shop/bracelet' },
-                { name: 'Compare', href: '/shop/compare' },
-                { name: 'Reviews', href: '/shop/reviews' },
+                { name: t('nav.drop.bracelet'), href: '/shop/bracelet' },
+                { name: t('nav.drop.compare'), href: '/shop/compare' },
+                { name: t('nav.drop.reviews'), href: '/shop/reviews' },
               ]}
             />
           </li>
           <li>
-            <Link to="/for-caregivers" className={`nav-link ${pathname.startsWith('/for-caregivers') ? 'active' : ''}`}>For Caregivers</Link>
+            <Link to="/for-caregivers" className={`nav-link ${pathname.startsWith('/for-caregivers') ? 'active' : ''}`}>{t('nav.forCaregivers')}</Link>
           </li>
           <li>
             <Dropdown
-              label="About"
+              label={t('nav.about')}
               isActive={pathname.startsWith('/about')}
               items={[
-                { name: 'Our Story', href: '/about/our-story' },
-                { name: 'Privacy & Security', href: '/about/privacy' },
+                { name: t('nav.drop.story'), href: '/about/our-story' },
+                { name: t('nav.drop.privacy'), href: '/about/privacy' },
               ]}
             />
           </li>
           <li>
             <Dropdown
-              label="Support"
+              label={t('nav.support')}
               isActive={pathname.startsWith('/support')}
               items={[
-                { name: 'Help Center', href: '/support/help-center' },
-                { name: 'FAQs', href: '/support/faqs' },
-                { name: 'Contact', href: '/support/contact' },
-                { name: 'App Download', href: '/support/download' },
+                { name: t('nav.drop.help'), href: '/support/help-center' },
+                { name: t('nav.drop.faqs'), href: '/support/faqs' },
+                { name: t('nav.drop.contact'), href: '/support/contact' },
+                { name: t('nav.drop.download'), href: '/support/download' },
               ]}
             />
           </li>
@@ -72,7 +74,7 @@ function Navbar() {
       </div>
 
       <div className="navbar-actions">
-        <button className="lang-btn">AR</button>
+        <button className="lang-btn" onClick={toggleLanguage}>{lang === 'en' ? 'AR' : 'EN'}</button>
         <button className="icon-btn"><ShoppingCart size={22} color="var(--text-primary)" /></button>
         <Link to="/auth" className="icon-btn"><User size={22} color="var(--text-primary)" /></Link>
       </div>

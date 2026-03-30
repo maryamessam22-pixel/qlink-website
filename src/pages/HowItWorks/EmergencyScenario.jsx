@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import './EmergencyScenario.css';
+import { LanguageContext } from '../../context/LanguageContext';
 
 // Importing assets
 import heroImg from '../../assets/images/hero-emergency.png';
@@ -24,6 +25,7 @@ const watchImages = [w1, w2, w3, w4, w5];
 
 const EmergencyScenario = () => {
   const [currentWatch, setCurrentWatch] = useState(0);
+  const { t, lang } = useContext(LanguageContext);
 
   const handleNextWatch = () => {
     setCurrentWatch((prev) => (prev + 1) % watchImages.length);
@@ -36,42 +38,42 @@ const EmergencyScenario = () => {
   return (
     <div className="es-page">
       {/* HERO */}
-      <section className="es-hero" style={{ backgroundImage: `url(${heroImg})` }}>
+      <section className={`es-hero ${lang === 'ar' ? 'rtl-text' : ''}`} style={{ backgroundImage: `url(${heroImg})` }}>
         <div className="es-hero-overlay"></div>
         <div className="es-hero-content">
           <div className="es-badge">
-            <ShieldAlert size={16} color="var(--color-primary-red)" /> <span style={{color: 'var(--color-primary-red)', fontWeight: 600, fontSize: '12px'}}>CRITICAL RESPONSE SYSTEM</span>
+            <ShieldAlert size={16} color="var(--color-primary-red)" /> <span style={{color: 'var(--color-primary-red)', fontWeight: 600, fontSize: '12px'}}>{t('emergency.heroBadge')}</span>
           </div>
-          <h1 className="es-hero-title">Every Second<br/><span className="red-text">Matters</span></h1>
+          <h1 className="es-hero-title" style={{ whiteSpace: 'pre-wrap' }}>{t('emergency.heroTitleTop')}<span className="red-text">{t('emergency.heroTitleHighlight')}</span></h1>
           <p className="es-hero-subtitle">
-            When you're out running, riding, going to the gym, or traveling, accidents happen. You shouldn't have to leave without access to your vital medical data when it counts the most.
+            {t('emergency.heroSubtitle')}
           </p>
-          <div className="es-hero-buttons">
-            <button className="btn btn-secondary">How It Works</button>
-            <button className="btn btn-primary">Get Protected Now!</button>
+          <div className={`es-hero-buttons ${lang === 'ar' ? 'rtl-buttons' : ''}`}>
+            <button className="btn btn-secondary">{t('emergency.btnHow')}</button>
+            <button className="btn btn-primary">{t('emergency.btnProtect')}</button>
           </div>
         </div>
       </section>
 
       {/* THREE FEATURE ROWS */}
-      <section className="es-features">
+      <section className={`es-features ${lang === 'ar' ? 'rtl-text' : ''}`}>
         <EmergencyFeatureCard
-          subtitle="NO ID. NO PHONE. NO WALLET."
-          title="Sudden Collapse"
-          desc="You are out for your morning run when you collapse. Bystanders try to help, but no one knows you. The paramedics arrive and don't know your medical history or who to contact. You have no phone or ID on you."
+          subtitle={t('emergency.f1Sub')}
+          title={t('emergency.f1Title')}
+          desc={t('emergency.f1Desc')}
           img={img1}
         />
         <EmergencyFeatureCard
-          subtitle="PARAMEDICS SCANS THE BRACELET"
-          title="Instant Identification"
-          desc="A paramedic arriving on the scene sees the Qlink bracelet. They scan the code on your bracelet using their smartphone, safely revealing your profile without an app."
+          subtitle={t('emergency.f2Sub')}
+          title={t('emergency.f2Title')}
+          desc={t('emergency.f2Desc')}
           img={img2}
           reverse={true}
         />
         <EmergencyFeatureCard
-          subtitle="PARAMEDICS READ VITAL DATA"
-          title="Life-Saving Information"
-          desc="A single glance reveals your critical profile: Blood type, allergies, medications, and emergency contacts. The treatment protocol changes quickly in line with medical protocol."
+          subtitle={t('emergency.f3Sub')}
+          title={t('emergency.f3Title')}
+          desc={t('emergency.f3Desc')}
           img={img3}
         />
       </section>
@@ -79,39 +81,39 @@ const EmergencyScenario = () => {
       {/* MARQUEE */}
       <div className="es-marquee-container">
         <div className="es-marquee">
-          <span>Qlink. Always Connected. Always Protected.</span>
+          <span>{t('emergency.marquee')}</span>
           <span>&bull;</span>
-          <span>Qlink. Always Connected. Always Protected.</span>
+          <span>{t('emergency.marquee')}</span>
           <span>&bull;</span>
-          <span>Qlink. Always Connected. Always Protected.</span>
+          <span>{t('emergency.marquee')}</span>
           <span>&bull;</span>
-          <span>Qlink. Always Connected. Always Protected.</span>
+          <span>{t('emergency.marquee')}</span>
         </div>
       </div>
 
       {/* 3 STEPS CARDS */}
       
-      <section className="es-steps-section">
+      <section className={`es-steps-section ${lang === 'ar' ? 'rtl-text' : ''}`}>
         <EmergencyStepCard
           IconComponent={ScanLine}
           iconWrapClass="es-icon-blue"
           iconColor="var(--color-primary-blue)"
-          title="1. Scan"
-          desc="First responders scan the QR code on your Qlink bracelet in any mobile or phone camera."
+          title={t('emergency.s1Title')}
+          desc={t('emergency.s1Desc')}
         />
         <EmergencyStepCard
           IconComponent={FileText}
           iconWrapClass="es-icon-gray"
           iconColor="var(--text-secondary)"
-          title="2. Access"
-          desc="Your secure medical profile is instantly displayed on their screen alongside medical contacts."
+          title={t('emergency.s2Title')}
+          desc={t('emergency.s2Desc')}
         />
         <EmergencyStepCard
           IconComponent={BellRing}
           iconWrapClass="es-icon-red"
           iconColor="var(--color-primary-red)"
-          title="3. Notify"
-          desc="Your emergency contacts are automatically notified with your exact GPS location."
+          title={t('emergency.s3Title')}
+          desc={t('emergency.s3Desc')}
         />
       </section>
 
@@ -131,30 +133,30 @@ const EmergencyScenario = () => {
       </section>
 
       {/* CTA PREPARED */}
-      <section className="es-cta-box-section">
+      <section className={`es-cta-box-section ${lang === 'ar' ? 'rtl-text' : ''}`}>
         <div className="es-cta-box">
           <div className="es-cta-icon">
              <ShieldAlert size={36} color="var(--color-primary-blue)" />
           </div>
-          <h2>Be Prepared<br/>Before It Happens!</h2>
-          <p>Emergencies rarely give warnings. Yet, only 1 in 10 adults carry emergency info. Empower yourself, protect those you love.</p>
-          <button className="btn btn-primary">Shop Qlink Now <ArrowRight size={16}/></button>
+          <h2 style={{ whiteSpace: 'pre-wrap' }}>{t('emergency.ctaSubtitle')}</h2>
+          <p>{t('emergency.ctaDesc')}</p>
+          <button className="btn btn-primary" style={lang === 'ar' ? { display: 'flex', gap: '8px', alignItems: 'center' } : {}}>{t('emergency.ctaBtn')} {lang === 'ar' ? <ArrowLeft size={16}/> : <ArrowRight size={16}/>}</button>
         </div>
       </section>
 
       {/* GET PROTECTED FOOTER CALL */}
-      <section className="es-footer-promo">
+      <section className={`es-footer-promo ${lang === 'ar' ? 'rtl-text' : ''}`}>
         <div className="es-promo-content">
-          <h2>Get Protected <span className="red-text">Today!</span></h2>
-          <p>Download the Qlink app and experience the future of personal safety.</p>
-          <div className="es-app-buttons">
+          <h2>{t('emergency.promoTitle')}<span className="red-text">{t('emergency.promoFocus')}</span></h2>
+          <p>{t('emergency.promoDesc')}</p>
+          <div className={`es-app-buttons ${lang === 'ar' ? 'rtl-buttons' : ''}`}>
             <button className="app-btn">
                <Apple size={24} />
-               <div className="btn-text"><span>Download on the</span><strong>App Store</strong></div>
+               <div className="btn-text" style={lang === 'ar' ? {textAlign: 'right'} : {}}><span>{t('appSection.appStore')}</span><strong>{t('appSection.appStoreTitle')}</strong></div>
             </button>
             <button className="app-btn" style={{background: 'rgba(255,255,255,0.05)', color: 'white', border: '1px solid rgba(255,255,255,0.1)'}}>
                <Play size={24} />
-               <div className="btn-text"><span>Get it on</span><strong>Google Play</strong></div>
+               <div className="btn-text" style={lang === 'ar' ? {textAlign: 'right'} : {}}><span>{t('appSection.googlePlay')}</span><strong>{t('appSection.googlePlayTitle')}</strong></div>
             </button>
           </div>
         </div>

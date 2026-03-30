@@ -1,5 +1,6 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useContext } from 'react';
 import './HowQlinkWorks.css';
+import { LanguageContext } from '../../context/LanguageContext';
 import {
   ShieldCheck,
   Database,
@@ -27,6 +28,7 @@ import qlinkVideoSrc from '../../assets/videos/qlink-video.mp4';
 
 function HowQlinkWorks() {
   const lensRef = useRef(null);
+  const { t, lang } = useContext(LanguageContext);
 
   // Intersection Observer for scroll animations
   useEffect(() => {
@@ -94,55 +96,55 @@ function HowQlinkWorks() {
       </div>
 
       {/* HERO SECTION */}
-      <section className="hw-hero scroll-animate">
+      <section className={`hw-hero scroll-animate ${lang === 'ar' ? 'rtl-text' : ''}`}>
         <video className="hw-hero-video" src={qlinkVideoSrc} autoPlay loop muted playsInline />
         <div className="hw-hero-overlay"></div>
         <div className="hw-hero-content">
-          <h1>How <span className="red-text">Qlink</span> Works</h1>
-          <p>A deep dive into the technology that keeps you safe.</p>
+          <h1>{t('howWorks.heroTitle')}<span className="red-text">{t('howWorks.heroHighlight')}</span>{t('howWorks.heroTitleEnd')}</h1>
+          <p>{t('howWorks.heroSubtitle')}</p>
         </div>
       </section>
 
       {/* TIMELINE SECTION */}
-      <section className="hw-timeline-section scroll-animate">
+      <section className={`hw-timeline-section scroll-animate ${lang === 'ar' ? 'rtl-text' : ''}`}>
         <div className="timeline-container">
           <TimelineRow
-            title="1. Setup Your Profile"
-            description="Download the Qlink app or scan your own bracelet, enter your medical history, emergency contacts, and insurance details."
+            title={t('howWorks.t1Title')}
+            description={t('howWorks.t1Desc')}
             icon={Database}
-            isRight={false}
+            isRight={lang === 'ar' ? true : false}
           />
           <TimelineRow
-            title="2. Set Privacy Layers"
-            description="Mask sensitive data (HIV status, mental health history) vs Public Data (Allergies, Diabetes) so vital info is hidden unless needed."
+            title={t('howWorks.t2Title')}
+            description={t('howWorks.t2Desc')}
             icon={Shield}
-            isRight={true}
+            isRight={lang === 'ar' ? false : true}
           />
           <TimelineRow
-            title="3. Wear The Band"
-            description="Put on your Qlink bracelet. It requires zero monthly charging, pairs in 3 seconds, is fully waterproof, and easily locked."
+            title={t('howWorks.t3Title')}
+            description={t('howWorks.t3Desc')}
             icon={Smartphone}
-            isRight={false}
+            isRight={lang === 'ar' ? true : false}
           />
           <TimelineRow
-            title="4. Emergency Event"
-            description="In an accident, a bystander or paramedic scans the QR code or scans it using an emergency mobile camera."
+            title={t('howWorks.t4Title')}
+            description={t('howWorks.t4Desc')}
             icon={Bell}
-            isRight={true}
+            isRight={lang === 'ar' ? false : true}
           />
         </div>
       </section>
 
       {/* SPLIT FEATURES VIDEO SECTION */}
-      <section className="hw-features-section scroll-animate">
+      <section className={`hw-features-section scroll-animate ${lang === 'ar' ? 'rtl-text' : ''}`}>
         <div className="features-col">
           <FeatureBlock
-            title="Instant Emergency Identity"
-            description="Qlink connects an emergency identity system that provides instant access to critical medical and contact information through a secure QR code."
+            title={t('howWorks.f1Title')}
+            description={t('howWorks.f1Desc')}
           />
           <FeatureBlock
-            title="Privacy-First Technology"
-            description="Qlink operates on a privacy-first system. Your data is protected, controlled, and only accessible when scanned in an emergency."
+            title={t('howWorks.f2Title')}
+            description={t('howWorks.f2Desc')}
           />
         </div>
 
@@ -168,92 +170,92 @@ function HowQlinkWorks() {
 
         <div className="features-col">
           <FeatureBlock
-            title="Voice-Free Communication"
-            description="It allows first responders or bystanders to access essential data in events where the patient is unconscious or unable to speak."
+            title={t('howWorks.f3Title')}
+            description={t('howWorks.f3Desc')}
           />
           <FeatureBlock
-            title="Bridge Between Accident & Treatment"
-            description="It bridges the critical gap between accident and medical response, reducing delays and enabling faster, safer intervention."
+            title={t('howWorks.f4Title')}
+            description={t('howWorks.f4Desc')}
           />
         </div>
       </section>
 
       {/* COMPARISON CARDS */}
-      <section className="hw-compare-section">
+      <section className={`hw-compare-section ${lang === 'ar' ? 'rtl-text' : ''}`}>
         <CompareCard
           headerIcon={WifiOff}
-          headerText="Offline vs online"
-          box1Title="Online Mode"
-          box1Text="A full scan instantly provides cloud-synced advanced conditions, doctors info, dynamic PDF reports and photos."
-          box2Title="Offline Mode"
-          box2Text="No internet required! Critical blood type and allergies are hardcoded dynamically into the chip."
+          headerText={t('howWorks.c1Head')}
+          box1Title={t('howWorks.c1Box1Title')}
+          box1Text={t('howWorks.c1Box1Text')}
+          box2Title={t('howWorks.c1Box2Title')}
+          box2Text={t('howWorks.c1Box2Text')}
           box2HighlightColor="#E03232"
         />
 
         <CompareCard
           headerIcon={MonitorSmartphone}
-          headerText="App vs no-app"
+          headerText={t('howWorks.c2Head')}
           box1Icon={CheckCircle2}
-          box1Title="App (For User)"
-          box1Text="Use the app to securely store and update medical records. Seamless control over your privacy layers."
+          box1Title={t('howWorks.c2Box1Title')}
+          box1Text={t('howWorks.c2Box1Text')}
           box2Icon={Check}
-          box2Title="No App (For Rescuer)"
-          box2Text="Scanning is natively supported by iOS and Android. No rescuer app install needed to rescue a life."
+          box2Title={t('howWorks.c2Box2Title')}
+          box2Text={t('howWorks.c2Box2Text')}
         />
       </section>
 
       {/* SETUP IN SECONDS */}
-      <section className="hw-setup-section scroll-animate">
-        <div className="hw-section-sub">Easy Steps</div>
-        <h2 className="hw-section-title">Setup in seconds</h2>
+      <section className={`hw-setup-section scroll-animate ${lang === 'ar' ? 'rtl-text' : ''}`}>
+        <div className="hw-section-sub">{t('howWorks.setupSub')}</div>
+        <h2 className="hw-section-title">{t('howWorks.setupTitle')}</h2>
 
         <div className="setup-grid">
           <SetupCard
             icon={LogIn}
             iconBgColor="rgba(56, 189, 248, 0.15)"
             iconColor="#38bdf8"
-            title="1. Login"
-            description="Create your account and pair device."
+            title={t('howWorks.s1Title')}
+            description={t('howWorks.s1Desc')}
           />
           <SetupCard
             icon={ShieldCheck}
             iconBgColor="rgba(16, 185, 129, 0.15)"
             iconColor="#10B981"
-            title="2. Create Profile"
-            description="Drop your vital medical details securely."
+            title={t('howWorks.s2Title')}
+            description={t('howWorks.s2Desc')}
           />
           <SetupCard
             icon={Package}
             iconBgColor="rgba(224, 50, 50, 0.15)"
             iconColor="#E03232"
-            title="3. Delivery"
-            description="You are protected and ready on contact."
+            title={t('howWorks.s3Title')}
+            description={t('howWorks.s3Desc')}
           />
         </div>
       </section>
 
       {/* HELP CENTER TILES */}
-      <section className="hw-help-grid scroll-animate">
+      <section className={`hw-help-grid scroll-animate ${lang === 'ar' ? 'rtl-text' : ''}`}>
         <HelpCard
           icon={HelpCircle}
           iconColor="#E03232"
-          title="Help Center"
-          description="How to setup in 5 Min"
+          title={t('howWorks.helpTitle')}
+          description={t('howWorks.helpDesc')}
         />
         <HelpCard
           icon={PhoneCall}
           iconColor="#10B981"
-          title="Help Center"
-          description="How to setup in 5 Min"
+          title={t('howWorks.helpTitle')}
+          description={t('howWorks.helpDesc')}
         />
       </section>
 
       {/* CTA SECTION */}
-      <section className="hw-cta-section scroll-animate">
-        <h2 style={{ fontSize: '32px', fontWeight: '800' }}>Ready to get protected?</h2>
-        <div className="hw-cta-buttons">
-          <a href="#" className="btn btn-primary">Shop Now</a>
-          <a href="#" className="btn btn-secondary" style={{ width: '250px', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'transparent', border: '1px solid rgba(255,255,255,0.2)' }}>See Emergency Preview</a>
+      <section className={`hw-cta-section scroll-animate ${lang === 'ar' ? 'rtl-text' : ''}`}>
+        <h2 style={{ fontSize: '32px', fontWeight: '800' }}>{t('howWorks.ctaTitle')}</h2>
+        <div className={`hw-cta-buttons ${lang === 'ar' ? 'rtl-buttons' : ''}`}>
+          <a href="#" className="btn btn-primary">{t('howWorks.ctaBtn1')}</a>
+          <a href="#" className="btn btn-secondary" style={{ width: '250px', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'transparent', border: '1px solid rgba(255,255,255,0.2)' }}>{t('howWorks.ctaBtn2')}</a>
         </div>
       </section>
 
