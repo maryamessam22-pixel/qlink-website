@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Logo from '../../components/Logo';
+import Logo from '../../components/layout/Logo';
 import qlinkBg from '../../assets/images/qlink-bg.png';
 import watchImg from '../../assets/images/watch.png';
 import './AuthPage.css';

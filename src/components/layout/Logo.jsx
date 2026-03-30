@@ -1,5 +1,5 @@
 import React from 'react';
-import qlinkLogo from '../assets/logos/QLINK.png';
+import qlinkLogo from '../../assets/logos/QLINK.png';
 import './Logo.css';
 
 const Logo = ({ className = '', style }) => (

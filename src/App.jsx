@@ -1,10 +1,12 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
-import ArrowUp from './components/ArrowUp';
-import AIAssistantBtn from './components/AIAssistantBtn';
+import Navbar from './components/layout/Navbar';
+import Footer from './components/layout/Footer';
+import ArrowUp from './components/layout/ArrowUp';
+import AIAssistantBtn from './components/layout/AIAssistantBtn';
 import './App.css'; // Global font settings
+import Preloader from './components/common/Preloader';
+import ScrollToTop from './components/layout/ScrollToTop';
 
 // Pages
 import Home from './pages/Home';
@@ -25,15 +27,20 @@ import AppDownload from './pages/Support/AppDownload';
 import AuthPage from './pages/Auth/AuthPage';
 
 function App() {
+  const [loading, setLoading] = React.useState(true);
+
   return (
     <Router>
       <div className="App">
+        {loading && <Preloader onFinish={() => setLoading(false)} />}
+
         {/* We hide the Navbar on the auth page for a true full screen experience */}
         <Routes>
           <Route path="/auth" element={<AuthPage />} />
           <Route path="*" element={
             <>
               <Navbar />
+              <ScrollToTop />
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/how-it-works/qlink" element={<HowQlinkWorks />} />
@@ -57,7 +64,7 @@ function App() {
         </Routes>
       </div>
     </Router>
-    
+
   );
 }
 

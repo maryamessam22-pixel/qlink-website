@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { ShoppingCart, User } from 'lucide-react';
-import { LanguageContext } from '../context/LanguageContext';
+import { LanguageContext } from '../../context/LanguageContext';
 import Dropdown from './Dropdown';
 import Logo from './Logo';
 import './Navbar.css';

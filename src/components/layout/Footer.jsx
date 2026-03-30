@@ -28,7 +28,7 @@ const Footer = () => {
             </svg>
           </div>
         </div>
-        
+
         <div className="footer-links-group">
           <div className="footer-links-col">
             <h4>Product</h4>
@@ -57,7 +57,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      
+
       <div className="footer-bottom">
         &copy; 2026 Qlink. All rights reserved.Always connected. Always protected
       </div>
