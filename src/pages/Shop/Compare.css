@@ -54,3 +54,18 @@ display: flex;
     font-size: 15px;
   }
 }
+
+/* Specific Promo Image Overrides for Compare Screen */
+.compare-promo-large {
+  max-height: 450px !important;
+  transform: scale(1.15);
+  transform-origin: bottom right;
+}
+
+@media (max-width: 900px) {
+  .compare-promo-large {
+    transform: scale(1);
+    max-height: 500px !important;
+    transform-origin: bottom center;
+  }
+}

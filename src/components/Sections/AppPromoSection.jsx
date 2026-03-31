@@ -3,7 +3,7 @@ import { Apple, Play } from 'lucide-react';
 import { LanguageContext } from '../../context/LanguageContext';
 import './AppPromoSection.css';
 
-const AppPromoSection = ({ imageSrc }) => {
+const AppPromoSection = ({ imageSrc, imgClassName }) => {
   const { t, lang } = useContext(LanguageContext);
 
   useEffect(() => {
@@ -46,7 +46,7 @@ const AppPromoSection = ({ imageSrc }) => {
         </div>
       </div>
       <div className="promo-img">
-        <img src={imageSrc} alt="Qlink App Access" />
+        <img src={imageSrc} alt="Qlink App Access" className={imgClassName} />
       </div>
     </section>
   );

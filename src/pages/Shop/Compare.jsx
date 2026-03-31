@@ -87,7 +87,7 @@ function Compare() {
         />
       </div>
       <SetupSection />
-      <AppPromoSection imageSrc={promoAltImg} />
+      <AppPromoSection imageSrc={promoAltImg} imgClassName="compare-promo-large" />
     </div>
 
   );
