@@ -10,6 +10,7 @@ import SetupSection from '../../components/Sections/SetupSection';
 import AppPromoSection from '../../components/Sections/AppPromoSection';
 import promoAltImg from '../../assets/images/mobile2.png';
 import DynamicBackground from '../../components/common/DynamicBackground';
+import ShopCTA from '../../components/Sections/ShopCTA';
 
 
 function Compare() {
@@ -88,6 +89,7 @@ function Compare() {
         />
       </div>
       <SetupSection />
+      <ShopCTA />
       <AppPromoSection imageSrc={promoAltImg} imgClassName="compare-promo-large" />
     </div>
 
