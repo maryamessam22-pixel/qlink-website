@@ -1,5 +1,5 @@
 .compare-card {
-  background-color: var(--bg-surface-navy); /* الكحلي الغامق جداً */
+  background-color: var(--bg-surface-navy);   
   border-radius: 10px;
   width: 435px;
   color: var(--text-primary);
@@ -19,17 +19,13 @@ body.rtl-active .compare-card {
   flex-grow: 1;
 }
 
-.icon-box {
-  width: 45px;
-  height: 45px;
-  border: 1.5px solid;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.card-custom-icon {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  display: block;
   margin: 0 auto 20px;
-  font-size: 20px;
-  background: rgba(255, 255, 255, 0.03);
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.3));
 }
 
 .card-main-title {
@@ -52,7 +48,7 @@ body.rtl-active .compare-card {
 }
 
 .feature-label-text {
-  color: var(--text-muted); /* رمادي خفيف للعنوان الجانبي */
+  color: var(--text-muted); 
   font-size: 11px;
   display: block;
   margin-bottom: 6px;
@@ -65,6 +61,13 @@ body.rtl-active .compare-card {
   gap: 10px;
 }
 
+.feature-inline-icon {
+  width: 52px;
+  height: 72px;
+  object-fit: contain;
+  display: block;
+}
+
 .feature-value-text {
   font-size: 14px;
   font-weight: 600;
@@ -72,9 +75,9 @@ body.rtl-active .compare-card {
   color: var(--text-primary);
 }
 
-/* الجزء السفلي المنفصل */
+
 .card-bottom-section {
-  background-color: var(--bg-surface-input); /* لون أفتح بسيط للفصل */
+  background-color: var(--bg-surface-input); 
   padding: 25px 30px;
   border-top: 1px solid var(--border-light);
 }

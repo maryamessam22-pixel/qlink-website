@@ -14,9 +14,7 @@ const CompareCard = ({
     <div className="compare-card">
       {/* الجزء العلوي: التفاصيل */}
       <div className="card-top-section">
-        <div className="icon-box" style={{ color: accentColor, borderColor: accentColor }}>
-          {icon}
-        </div>
+        {icon && <img src={icon} alt={title} className="card-custom-icon" />}
         
         <h2 className="card-main-title">{title}</h2>
         <p className="card-sub-title" style={{ color: accentColor }}>{subTitle}</p>
@@ -26,7 +24,11 @@ const CompareCard = ({
             <div key={index} className="feature-row">
               <span className="feature-label-text">{item.label}</span>
               <div className="feature-value-container">
-                {item.valueIcon && <span className="value-icon">{item.valueIcon}</span>}
+                {item.valueIcon && (
+                  <span className="value-icon">
+                    <img src={item.valueIcon} alt="" className="feature-inline-icon" />
+                  </span>
+                )}
                 <p className="feature-value-text">{item.value}</p>
               </div>
             </div>
@@ -34,7 +36,7 @@ const CompareCard = ({
         </div>
       </div>
 
-      {/* الجزء السفلي: السعر والزرار */}
+      
       <div className="card-bottom-section">
         <div className="price-display">
           <span className="currency-label">EGP</span>

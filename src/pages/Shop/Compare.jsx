@@ -3,12 +3,16 @@ import './Compare.css';
 import CompareCard from '../../components/Cards/CompareCard';
 import { LanguageContext } from '../../context/LanguageContext';
 
+// Place your new files in the icons folder named below!
+import novaIcon from '../../assets/icons/NOVA-ICON.png'; 
+import pulseIcon from '../../assets/icons/PULSE-ICON.png';
+
 
 function Compare() {
   const { t, lang } = React.useContext(LanguageContext);
 
   const novaFeatures = [
-    { label: t('compare.fInterface'), value: t('compare.fInterfaceV1'), valueIcon: "📱" },
+    { label: t('compare.fInterface'), value: t('compare.fInterfaceV1'), valueIcon: novaIcon },
     { label: t('compare.fEmergency'), value: t('compare.fEmergencyV1') },
     { label: t('compare.fMedical'), value: t('compare.fMedicalV') },
     { label: t('compare.fPrivacy'), value: t('compare.fPrivacyV1') },
@@ -18,7 +22,7 @@ function Compare() {
   ];
 
   const pulseFeatures = [
-    { label: t('compare.fInterface'), value: t('compare.fInterfaceV2'), valueIcon: "🔘" },
+    { label: t('compare.fInterface'), value: t('compare.fInterfaceV2'), valueIcon: pulseIcon },
     { label: t('compare.fEmergency'), value: t('compare.fEmergencyV2') },
     { label: t('compare.fMedical'), value: t('compare.fMedicalV') },
     { label: t('compare.fPrivacy'), value: t('compare.fPrivacyV2') },
@@ -45,7 +49,7 @@ function Compare() {
         <CompareCard 
           title={t('compare.novaTitle')}
           subTitle={t('compare.novaSub')}
-          icon="📱"
+          icon={novaIcon}
           features={novaFeatures}
           price="1,499"
           buttonText={t('compare.novaBtn')}
@@ -55,7 +59,7 @@ function Compare() {
         <CompareCard 
           title={t('compare.pulseTitle')}
           subTitle={t('compare.pulseSub')}
-          icon="🔘"
+          icon={pulseIcon}
           features={pulseFeatures}
           price="1,199"
           buttonText={t('compare.pulseBtn')}
