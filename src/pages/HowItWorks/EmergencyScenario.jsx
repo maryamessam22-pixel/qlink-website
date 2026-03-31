@@ -19,10 +19,10 @@ import mobiles from '../../assets/images/2mobiles.png';
 import EmergencyFeatureCard from '../../components/Cards/EmergencyFeatureCard';
 import EmergencyStepCard from '../../components/Cards/EmergencyStepCard';
 import AppPromoSection from '../../components/Sections/AppPromoSection';
+import DynamicBackground from '../../components/common/DynamicBackground';
 
 // Icons 
 import { ArrowLeft, ArrowRight, ShieldAlert, ScanLine, FileText, BellRing, Apple, Play } from 'lucide-react';
-import DynamicBackground from '../../components/common/DynamicBackground';
 
 const watchImages = [w1, w2, w3, w4, w5];
 
@@ -45,7 +45,7 @@ const EmergencyScenario = () => {
     animatedElements.forEach(el => observer.observe(el));
     
     return () => observer.disconnect();
-    <DynamicBackground/>
+   
   }, []);
 
   const handleNextWatch = () => {
@@ -58,6 +58,7 @@ const EmergencyScenario = () => {
 
   return (
     <div className="es-page">
+      <DynamicBackground/>
       {/* HERO */}
       <section className={`es-hero scroll-animate ${lang === 'ar' ? 'rtl-text' : ''}`} style={{ backgroundImage: `url(${heroImg})` }}>
         <div className="es-hero-overlay"></div>
