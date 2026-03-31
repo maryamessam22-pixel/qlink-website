@@ -38,7 +38,9 @@ body.rtl-active .compare-hero {
 .compare-page-container{
 
 display: flex;
-justify-content: space-evenly
+/* justify-content: space-evenly */
+    justify-content: center;
+    gap: 100px;
 
 
 }

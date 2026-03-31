@@ -1,7 +1,8 @@
 import React from 'react';
 import './Compare.css';
 import CompareCard from '../../components/Cards/CompareCard';
-import { LanguageContext } from '../context/LanguageContext';
+import { LanguageContext } from '../../context/LanguageContext';
+
 
 function Compare() {
   const { t, lang } = React.useContext(LanguageContext);
