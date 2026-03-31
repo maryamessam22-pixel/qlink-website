@@ -174,6 +174,38 @@ const translations = {
     ctaTitle: "Ready to get protected?",
     ctaBtn1: "Shop Now",
     ctaBtn2: "See Emergency Preview"
+  },
+  compare: {
+    heroTitleTop: "Choose Your ",
+    heroTitleHighlight: "Safety",
+    heroTitleBottom: " Companion",
+    heroSubtitle: "Compare the Nova Touchscreen Bracelet and Pulse Tactical Button Bracelet\nto find the perfect fit for your lifestyle.",
+    novaTitle: "Nova",
+    novaSub: "Touchscreen Bracelet",
+    novaBtn: "Shop Nova",
+    pulseTitle: "Pulse",
+    pulseSub: "Tactical Button Bracelet",
+    pulseBtn: "Shop Pulse",
+    fInterface: "Interface",
+    fInterfaceV1: "Smart Touchscreen",
+    fInterfaceV2: "Tactical Button",
+    fEmergency: "Emergency Activation",
+    fEmergencyV1: "Touchscreen emergency interface",
+    fEmergencyV2: "One-press SOS activation",
+    fMedical: "Medical Info Access",
+    fMedicalV: "Instant QR medical access",
+    fPrivacy: "Privacy & Security",
+    fPrivacyV1: "Privacy-first protection system",
+    fPrivacyV2: "Same protection core system",
+    fFeedback: "Alert Feedback",
+    fFeedbackV1: "Real-time alert animation",
+    fFeedbackV2: "Simple & reliable alert design",
+    fDesign: "Design Style",
+    fDesignV1: "Modern, interactive",
+    fDesignV2: "Minimalist, Tactical",
+    fBestFor: "Best For",
+    fBestForV1: "Tech-savvy users",
+    fBestForV2: "Users who prefer quick activation"
   }
 };
 

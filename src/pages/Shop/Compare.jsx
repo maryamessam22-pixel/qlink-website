@@ -4,59 +4,60 @@ import CompareCard from '../../components/Cards/CompareCard';
 import { LanguageContext } from '../context/LanguageContext';
 
 function Compare() {
+  const { t, lang } = React.useContext(LanguageContext);
 
   const novaFeatures = [
-    { label: "Interface", value: "Smart Touchscreen", valueIcon: "📱" },
-    { label: "Emergency Activation", value: "Touchscreen emergency interface" },
-    { label: "Medical Info Access", value: "Instant QR medical access" },
-    { label: "Privacy & Security", value: "Privacy-first protection system" },
-    { label: "Alert Feedback", value: "Real-time alert animation" },
-    { label: "Design Style", value: "Modern, interactive" },
-    { label: "Best For", value: "Tech-savvy users" },
+    { label: t('compare.fInterface'), value: t('compare.fInterfaceV1'), valueIcon: "📱" },
+    { label: t('compare.fEmergency'), value: t('compare.fEmergencyV1') },
+    { label: t('compare.fMedical'), value: t('compare.fMedicalV') },
+    { label: t('compare.fPrivacy'), value: t('compare.fPrivacyV1') },
+    { label: t('compare.fFeedback'), value: t('compare.fFeedbackV1') },
+    { label: t('compare.fDesign'), value: t('compare.fDesignV1') },
+    { label: t('compare.fBestFor'), value: t('compare.fBestForV1') },
   ];
 
-  
   const pulseFeatures = [
-    { label: "Interface", value: "Tactical Button", valueIcon: "🔘" },
-    { label: "Emergency Activation", value: "One-press SOS activation" },
-    { label: "Medical Info Access", value: "Instant QR medical access" },
-    { label: "Privacy & Security", value: "Same protection core system" },
-    { label: "Alert Feedback", value: "Simple & reliable alert design" },
-    { label: "Design Style", value: "Minimalist, Tactical" },
-    { label: "Best For", value: "Users who prefer quick activation" },
+    { label: t('compare.fInterface'), value: t('compare.fInterfaceV2'), valueIcon: "🔘" },
+    { label: t('compare.fEmergency'), value: t('compare.fEmergencyV2') },
+    { label: t('compare.fMedical'), value: t('compare.fMedicalV') },
+    { label: t('compare.fPrivacy'), value: t('compare.fPrivacyV2') },
+    { label: t('compare.fFeedback'), value: t('compare.fFeedbackV2') },
+    { label: t('compare.fDesign'), value: t('compare.fDesignV2') },
+    { label: t('compare.fBestFor'), value: t('compare.fBestForV2') },
   ];
 
   return (
-    <div className="compare-page">
+    <div className={`compare-page ${lang === 'ar' ? 'rtl-text' : ''}`}>
   
       <div className="compare-hero">
         <h1 className="compare-title">
-          Choose Your <span className="compare-highlight">Safety</span> Companion
+          {t('compare.heroTitleTop')}
+          <span className="compare-highlight">{t('compare.heroTitleHighlight')}</span>
+          {t('compare.heroTitleBottom')}
         </h1>
-        <p className="compare-subtitle">
-          Compare the Nova Touchscreen Bracelet and Pulse Tactical Button Bracelet<br />
-          to find the perfect fit for your lifestyle.
+        <p className="compare-subtitle" style={lang === 'ar' ? {} : { whiteSpace: 'pre-wrap' }}>
+          {t('compare.heroSubtitle')}
         </p>
       </div>
 
       <div className="compare-page-container">
         <CompareCard 
-          title="Nova"
-          subTitle="Touchscreen Bracelet"
+          title={t('compare.novaTitle')}
+          subTitle={t('compare.novaSub')}
           icon="📱"
           features={novaFeatures}
           price="1,499"
-          buttonText="Shop Nova"
+          buttonText={t('compare.novaBtn')}
           accentColor="#0097b2" 
         />
 
         <CompareCard 
-          title="Pulse"
-          subTitle="Tactical Button Bracelet"
+          title={t('compare.pulseTitle')}
+          subTitle={t('compare.pulseSub')}
           icon="🔘"
           features={pulseFeatures}
           price="1,199"
-          buttonText="Shop Pulse"
+          buttonText={t('compare.pulseBtn')}
           accentColor="#00c853" 
         />
       </div>

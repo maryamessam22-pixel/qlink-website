@@ -174,6 +174,38 @@ const arTranslations = {
     ctaTitle: "هل أنت مستعد للحماية؟",
     ctaBtn1: "تسوق الآن",
     ctaBtn2: "رؤية معاينة الطوارئ"
+  },
+  compare: {
+    heroTitleTop: "اختر رفيق ",
+    heroTitleHighlight: "أمانك",
+    heroTitleBottom: "",
+    heroSubtitle: "قارن بين سوار Nova الذكي وسوار Pulse التكتيكي\nللعثور على الخيار المثالي لأسلوب حياتك.",
+    novaTitle: "نوفا (Nova)",
+    novaSub: "سوار بشاشة لمس",
+    novaBtn: "تسوق نوفا",
+    pulseTitle: "بالس (Pulse)",
+    pulseSub: "سوار بزر تكتيكي",
+    pulseBtn: "تسوق بالس",
+    fInterface: "واجهة المستخدم",
+    fInterfaceV1: "شاشة لمس ذكية",
+    fInterfaceV2: "زر تكتيكي",
+    fEmergency: "تفعيل الطوارئ",
+    fEmergencyV1: "واجهة طوارئ تعمل باللمس",
+    fEmergencyV2: "تفعيل من ضغطة واحدة",
+    fMedical: "الوصول للمعلومات الطبية",
+    fMedicalV: "وصول طبي فوري عبر QR",
+    fPrivacy: "الخصوصية والأمان",
+    fPrivacyV1: "نظام حماية يركز على الخصوصية",
+    fPrivacyV2: "نفس نظام الحماية الأساسي القطعي",
+    fFeedback: "استجابة التنبيه",
+    fFeedbackV1: "رسم متحرك للتنبيه الفوري",
+    fFeedbackV2: "تنبيه بسيط وموثوق",
+    fDesign: "أسلوب التصميم",
+    fDesignV1: "عصري وتفاعلي",
+    fDesignV2: "بسيط وتكتيكي",
+    fBestFor: "الأفضل لـ",
+    fBestForV1: "المستخدمين المحبين للتكنولوجيا",
+    fBestForV2: "من يفضلون التفعيل السريع"
   }
 };
 
