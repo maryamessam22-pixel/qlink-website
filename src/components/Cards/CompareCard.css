@@ -1,7 +1,7 @@
 .compare-card {
   background-color: var(--bg-surface-navy); /* الكحلي الغامق جداً */
   border-radius: 10px;
-  width: 360px;
+  width: 435px;
   color: var(--text-primary);
   display: flex;
   flex-direction: column;
