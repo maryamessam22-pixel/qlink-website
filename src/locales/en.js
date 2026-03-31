@@ -206,6 +206,29 @@ const translations = {
     fBestFor: "Best For",
     fBestForV1: "Tech-savvy users",
     fBestForV2: "Users who prefer quick activation"
+  },
+  bracelet: {
+    title: "Choose Your Style",
+    subtitle: "From touchscreens to tactical buttons and high-vis beacons. All devices\nprovide the same privacy-first safety system.",
+    novaTitle: "Qlink Nova (Touch)",
+    novaSub: "Smart touchscreen safety bracelet",
+    novaFeatures: [
+      "Touchscreen emergency interface",
+      "Instant QR medical access",
+      "Privacy-first protection system",
+      "Real-time alert animation"
+    ],
+    pulseTitle: "Qlink Pulse",
+    pulseSub: "Tactical button safety bracelet",
+    pulseFeatures: [
+      "One-press SOS activation",
+      "Instant QR medical access",
+      "Simple & reliable design",
+      "Same protection core system"
+    ],
+    priceNova: "EGP 1,499",
+    pricePulse: "EGP 1,199",
+    btnView: "View Details"
   }
 };
 
