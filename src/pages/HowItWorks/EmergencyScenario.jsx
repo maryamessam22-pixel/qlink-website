@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import './EmergencyScenario.css';
 import { LanguageContext } from '../../context/LanguageContext';
 
@@ -27,6 +27,23 @@ const EmergencyScenario = () => {
   const [currentWatch, setCurrentWatch] = useState(0);
   const { t, lang } = useContext(LanguageContext);
 
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+        } else {
+          entry.target.classList.remove('is-visible');
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '-50px' });
+
+    const animatedElements = document.querySelectorAll('.scroll-animate');
+    animatedElements.forEach(el => observer.observe(el));
+    
+    return () => observer.disconnect();
+  }, []);
+
   const handleNextWatch = () => {
     setCurrentWatch((prev) => (prev + 1) % watchImages.length);
   };
@@ -38,9 +55,9 @@ const EmergencyScenario = () => {
   return (
     <div className="es-page">
       {/* HERO */}
-      <section className={`es-hero ${lang === 'ar' ? 'rtl-text' : ''}`} style={{ backgroundImage: `url(${heroImg})` }}>
+      <section className={`es-hero scroll-animate ${lang === 'ar' ? 'rtl-text' : ''}`} style={{ backgroundImage: `url(${heroImg})` }}>
         <div className="es-hero-overlay"></div>
-        <div className="es-hero-content">
+        <div className="es-hero-content scroll-animate stag-1">
           <div className="es-badge">
             <ShieldAlert size={16} color="var(--color-primary-red)" /> <span style={{color: 'var(--color-primary-red)', fontWeight: 600, fontSize: '12px'}}>{t('emergency.heroBadge')}</span>
           </div>
@@ -56,7 +73,7 @@ const EmergencyScenario = () => {
       </section>
 
       {/* THREE FEATURE ROWS */}
-      <section className={`es-features ${lang === 'ar' ? 'rtl-text' : ''}`}>
+      <section className={`es-features scroll-animate ${lang === 'ar' ? 'rtl-text' : ''}`}>
         <EmergencyFeatureCard
           subtitle={t('emergency.f1Sub')}
           title={t('emergency.f1Title')}
@@ -93,7 +110,7 @@ const EmergencyScenario = () => {
 
       {/* 3 STEPS CARDS */}
       
-      <section className={`es-steps-section ${lang === 'ar' ? 'rtl-text' : ''}`}>
+      <section className={`es-steps-section scroll-animate ${lang === 'ar' ? 'rtl-text' : ''}`}>
         <EmergencyStepCard
           IconComponent={ScanLine}
           iconWrapClass="es-icon-blue"
@@ -118,7 +135,7 @@ const EmergencyScenario = () => {
       </section>
 
       {/* WATCH CAROUSEL */}
-      <section className="es-carousel-section">
+      <section className="es-carousel-section scroll-animate">
         <div className="es-carousel-inner">
           <button className="es-arrow-btn" onClick={handlePrevWatch} aria-label="Previous Watch">
             <ArrowLeft size={24} />
@@ -133,7 +150,7 @@ const EmergencyScenario = () => {
       </section>
 
       {/* CTA PREPARED */}
-      <section className={`es-cta-box-section ${lang === 'ar' ? 'rtl-text' : ''}`}>
+      <section className={`es-cta-box-section scroll-animate ${lang === 'ar' ? 'rtl-text' : ''}`}>
         <div className="es-cta-box">
           <div className="es-cta-icon">
              <ShieldAlert size={36} color="var(--color-primary-blue)" />
@@ -145,7 +162,7 @@ const EmergencyScenario = () => {
       </section>
 
       {/* GET PROTECTED FOOTER CALL */}
-      <section className={`es-footer-promo ${lang === 'ar' ? 'rtl-text' : ''}`}>
+      <section className={`es-footer-promo scroll-animate ${lang === 'ar' ? 'rtl-text' : ''}`}>
         <div className="es-promo-content">
           <h2>{t('emergency.promoTitle')}<span className="red-text">{t('emergency.promoFocus')}</span></h2>
           <p>{t('emergency.promoDesc')}</p>

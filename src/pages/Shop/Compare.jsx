@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './Compare.css';
 import CompareCard from '../../components/Cards/CompareCard';
 import { LanguageContext } from '../../context/LanguageContext';
@@ -11,6 +11,23 @@ import SetupSection from '../../components/Sections/SetupSection';
 
 function Compare() {
   const { t, lang } = React.useContext(LanguageContext);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+        } else {
+          entry.target.classList.remove('is-visible');
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '-50px' });
+
+    const animatedElements = document.querySelectorAll('.scroll-animate');
+    animatedElements.forEach(el => observer.observe(el));
+    
+    return () => observer.disconnect();
+  }, []);
 
   const novaFeatures = [
     { label: t('compare.fInterface'), value: t('compare.fInterfaceV1'), valueIcon: novaIcon },
@@ -35,7 +52,7 @@ function Compare() {
   return (
     <div className={`compare-page ${lang === 'ar' ? 'rtl-text' : ''}`}>
   
-      <div className="compare-hero">
+      <div className="compare-hero scroll-animate">
         <h1 className="compare-title">
           {t('compare.heroTitleTop')}
           <span className="compare-highlight">{t('compare.heroTitleHighlight')}</span>
@@ -46,7 +63,7 @@ function Compare() {
         </p>
       </div>
 
-      <div className="compare-page-container">
+      <div className="compare-page-container scroll-animate stag-1">
         <CompareCard 
           title={t('compare.novaTitle')}
           subTitle={t('compare.novaSub')}
