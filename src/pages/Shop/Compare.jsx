@@ -6,6 +6,7 @@ import { LanguageContext } from '../../context/LanguageContext';
 // Place your new files in the icons folder named below!
 import novaIcon from '../../assets/icons/NOVA-ICON.png'; 
 import pulseIcon from '../../assets/icons/PULSE-ICON.png';
+import SetupSection from '../../components/Sections/SetupSection';
 
 
 function Compare() {
@@ -66,7 +67,9 @@ function Compare() {
           accentColor="#00c853" 
         />
       </div>
+      <SetupSection />
     </div>
+
   );
 }
 
