@@ -15,14 +15,14 @@
   border-radius: 50%;
   filter: blur(80px);
   opacity: 0.5;
-  animation: floatBalls 15s infinite alternate ease-in-out;
+  animation: floatBalls 10s infinite alternate ease-in-out;
   z-index: 0;
 }
 
 .ball-1 {
   width: 400px;
   height: 400px;
-  background: var(--bg-surface-highlight);
+  background: #0e1654d6;
   top: -100px;
   left: -100px;
   animation-delay: 0s;
@@ -53,10 +53,10 @@
     transform: translate(0, 0) scale(1);
   }
   50% {
-    transform: translate(30px, -50px) scale(1.1);
+    transform: translate(30px, -80px) scale(1.1);
   }
   100% {
-    transform: translate(-30px, 50px) scale(0.9);
+    transform: translate(-20px, 50px) scale(0.9);
   }
 }
 
@@ -97,10 +97,10 @@
   gap: 30px;
 }
 
-/* Individual Card */
+
 .setup-step-card {
   flex: 1;
-  background: var(--bg-surface-navy); /* matches reference aesthetic */
+  background: var(--bg-surface-navy); 
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--border-light);
