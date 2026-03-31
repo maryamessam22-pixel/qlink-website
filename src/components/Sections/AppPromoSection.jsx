@@ -7,7 +7,6 @@ const AppPromoSection = ({ imageSrc }) => {
   const { t, lang } = useContext(LanguageContext);
 
   useEffect(() => {
-    // Only re-run the observer if necessary, but it should animate via scroll-animate
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if(entry.isIntersecting) {
