@@ -1,0 +1,104 @@
+.app-promo-section {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 24px;
+  padding-right: 24px;
+  padding-top: 0px;
+  padding-bottom: 180px;
+  min-height: 400px;
+}
+
+.promo-content {
+  flex: 1;
+  max-width: 500px;
+}
+
+.promo-content h2 {
+  font-size: 36px;
+  font-weight: 800;
+  margin-bottom: 16px;
+  color: var(--text-primary);
+}
+
+.red-text {
+  color: var(--color-primary-red);
+}
+
+.promo-content p {
+  font-size: 18px;
+  color: var(--text-secondary);
+  margin-bottom: 32px;
+  line-height: 1.5;
+}
+
+.promo-app-buttons {
+  display: flex;
+  gap: 16px;
+}
+
+.promo-app-btn {
+  background: white;
+  color: black;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.promo-app-btn:hover {
+  transform: translateY(-2px);
+}
+
+.promo-app-btn .btn-text {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+}
+
+.promo-app-btn .btn-text span {
+  font-size: 10px;
+  line-height: 1;
+}
+
+.promo-app-btn .btn-text strong {
+  font-size: 16px;
+  line-height: 1.2;
+}
+
+.promo-img {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  position: relative;
+}
+
+.promo-img img {
+  max-width: 100%;
+  height: auto;
+  max-height: 500px;
+  object-fit: contain;
+  margin-bottom: -150px;
+}
+
+@media (max-width: 900px) {
+  .app-promo-section {
+    flex-direction: column;
+    text-align: center;
+    gap: 40px;
+  }
+  
+  .promo-app-buttons {
+    justify-content: center;
+  }
+  
+  .promo-img img {
+    margin-bottom: -50px;
+  }
+}

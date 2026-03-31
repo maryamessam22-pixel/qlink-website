@@ -17,6 +17,7 @@ import mobiles from '../../assets/images/2mobiles.png';
 // Components
 import EmergencyFeatureCard from '../../components/Cards/EmergencyFeatureCard';
 import EmergencyStepCard from '../../components/Cards/EmergencyStepCard';
+import AppPromoSection from '../../components/Sections/AppPromoSection';
 
 // Icons 
 import { ArrowLeft, ArrowRight, ShieldAlert, ScanLine, FileText, BellRing, Apple, Play } from 'lucide-react';
@@ -162,25 +163,7 @@ const EmergencyScenario = () => {
       </section>
 
       {/* GET PROTECTED FOOTER CALL */}
-      <section className={`es-footer-promo scroll-animate ${lang === 'ar' ? 'rtl-text' : ''}`}>
-        <div className="es-promo-content">
-          <h2>{t('emergency.promoTitle')}<span className="red-text">{t('emergency.promoFocus')}</span></h2>
-          <p>{t('emergency.promoDesc')}</p>
-          <div className={`es-app-buttons ${lang === 'ar' ? 'rtl-buttons' : ''}`}>
-            <button className="app-btn">
-               <Apple size={24} />
-               <div className="btn-text" style={lang === 'ar' ? {textAlign: 'right'} : {}}><span>{t('appSection.appStore')}</span><strong>{t('appSection.appStoreTitle')}</strong></div>
-            </button>
-            <button className="app-btn" style={{background: 'rgba(255,255,255,0.05)', color: 'white', border: '1px solid rgba(255,255,255,0.1)'}}>
-               <Play size={24} />
-               <div className="btn-text" style={lang === 'ar' ? {textAlign: 'right'} : {}}><span>{t('appSection.googlePlay')}</span><strong>{t('appSection.googlePlayTitle')}</strong></div>
-            </button>
-          </div>
-        </div>
-        <div className="es-promo-img">
-          <img src={mobiles} alt="Qlink Mobile Apps" />
-        </div>
-      </section>
+      <AppPromoSection imageSrc={mobiles} />
 
     </div>
   );

@@ -7,6 +7,8 @@ import { LanguageContext } from '../../context/LanguageContext';
 import novaIcon from '../../assets/icons/NOVA-ICON.png'; 
 import pulseIcon from '../../assets/icons/PULSE-ICON.png';
 import SetupSection from '../../components/Sections/SetupSection';
+import AppPromoSection from '../../components/Sections/AppPromoSection';
+import promoAltImg from '../../assets/images/mobile2.png';
 
 
 function Compare() {
@@ -85,6 +87,7 @@ function Compare() {
         />
       </div>
       <SetupSection />
+      <AppPromoSection imageSrc={promoAltImg} />
     </div>
 
   );
