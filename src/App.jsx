@@ -7,6 +7,7 @@ import AIAssistantBtn from './components/layout/AIAssistantBtn';
 import './App.css'; // Global font settings
 import Preloader from './components/common/Preloader';
 import ScrollToTop from './components/layout/ScrollToTop';
+import DynamicBackground from './components/common/DynamicBackground';
 
 // Pages
 import Home from './pages/Home';
@@ -32,6 +33,7 @@ function App() {
   return (
     <Router>
       <div className="App">
+        {/* <DynamicBackground /> */}
         {loading && <Preloader onFinish={() => setLoading(false)} />}
 
         {/* We hide the Navbar on the auth page for a true full screen experience */}

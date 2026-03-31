@@ -51,7 +51,7 @@ function Home() {
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        if(entry.isIntersecting) {
+        if (entry.isIntersecting) {
           entry.target.classList.add('is-visible');
         } else {
           entry.target.classList.remove('is-visible');
@@ -61,7 +61,7 @@ function Home() {
 
     const animatedElements = document.querySelectorAll('.scroll-animate');
     animatedElements.forEach(el => observer.observe(el));
-    
+
     return () => observer.disconnect();
   }, []);
   return (
@@ -102,21 +102,21 @@ function Home() {
           </p>
 
           <div className="card-grid-3">
-            <InfoCard 
+            <InfoCard
               className="bg-success-light"
               icon={Zap}
               iconColor="var(--color-success)"
               title={t('whatIs.c1Title')}
               description={t('whatIs.c1Desc')}
             />
-            <InfoCard 
+            <InfoCard
               className="bg-blue-light"
               icon={QrCode}
               iconColor="var(--color-primary-blue)"
               title={t('whatIs.c2Title')}
               description={t('whatIs.c2Desc')}
             />
-            <InfoCard 
+            <InfoCard
               className="bg-error-light"
               icon={Lock}
               iconColor="var(--color-error)"
@@ -134,22 +134,22 @@ function Home() {
           </p>
 
           <div className="card-grid-4">
-            <WhyCard 
+            <WhyCard
               icon={Wifi}
               title={t('whyChoose.w1Title')}
               description={t('whyChoose.w1Desc')}
             />
-            <WhyCard 
+            <WhyCard
               icon={ShieldCheck}
               title={t('whyChoose.w2Title')}
               description={t('whyChoose.w2Desc')}
             />
-            <WhyCard 
+            <WhyCard
               icon={Smartphone}
               title={t('whyChoose.w3Title')}
               description={t('whyChoose.w3Desc')}
             />
-            <WhyCard 
+            <WhyCard
               icon={HeartPulse}
               title={t('whyChoose.w4Title')}
               description={t('whyChoose.w4Desc')}
@@ -182,7 +182,7 @@ function Home() {
           </p>
 
           <div className="card-grid-3">
-            <InfoCard 
+            <InfoCard
               className="pad-40-24"
               iconWrapperClassName="icon-wrap-glass"
               icon={Users}
@@ -191,7 +191,7 @@ function Home() {
               title={t('whoIsFor.c1Title')}
               description={t('whoIsFor.c1Desc')}
             />
-            <InfoCard 
+            <InfoCard
               className="pad-40-24"
               iconWrapperClassName="icon-wrap-red"
               icon={Activity}
@@ -200,7 +200,7 @@ function Home() {
               title={t('whoIsFor.c2Title')}
               description={t('whoIsFor.c2Desc')}
             />
-            <InfoCard 
+            <InfoCard
               className="pad-40-24"
               iconWrapperClassName="icon-wrap-glass"
               icon={Baby}
@@ -220,25 +220,25 @@ function Home() {
           </p>
 
           <div className="step-grid">
-            <StepItem 
+            <StepItem
               icon={Watch}
               iconColor="#E03232"
               title={t('journey.s1Title')}
               description={t('journey.s1Desc')}
             />
-            <StepItem 
+            <StepItem
               icon={FileText}
               iconColor="#E03232"
               title={t('journey.s2Title')}
               description={t('journey.s2Desc')}
             />
-            <StepItem 
+            <StepItem
               icon={CheckCircle2}
               iconColor="#E03232"
               title={t('journey.s3Title')}
               description={t('journey.s3Desc')}
             />
-            <StepItem 
+            <StepItem
               icon={Truck}
               iconColor="#E03232"
               title={t('journey.s4Title')}
@@ -249,11 +249,11 @@ function Home() {
 
         {/* HALF CARDS */}
         <section className={`half-cards-section scroll-animate ${lang === 'ar' ? 'rtl-text' : ''}`}>
-          <HalfCard 
+          <HalfCard
             title={t('halfCards.c1Title')}
             description={t('halfCards.c1Desc')}
           />
-          <HalfCard 
+          <HalfCard
             title={t('halfCards.c2Title')}
             description={t('halfCards.c2Desc')}
           />
@@ -263,35 +263,35 @@ function Home() {
         <div className={`app-section-wrapper scroll-animate ${lang === 'ar' ? 'rtl-text' : ''}`}>
           <section className="app-section">
             <div className="app-text">
-            <h2 className="split-title">{t('appSection.title')}</h2>
-            <p className="split-desc">
-              {t('appSection.desc')}
-            </p>
-            <ul className="app-list">
-              <li className="app-list-item"><CheckCircle2 size={18} className="check" /> {t('appSection.l1')}</li>
-              <li className="app-list-item"><CheckCircle2 size={18} className="check" /> {t('appSection.l2')}</li>
-              <li className="app-list-item"><CheckCircle2 size={18} className="check" /> {t('appSection.l3')}</li>
-            </ul>
-            <div className={`store-buttons ${lang === 'ar' ? 'rtl-buttons' : ''}`}>
-              <a href="#" className="store-btn">
-                <Apple size={28} />
-                <div className="store-btn-text">
-                  <span className="store-btn-sub">{t('appSection.appStore')}</span>
-                  <span className="store-btn-title">{t('appSection.appStoreTitle')}</span>
-                </div>
-              </a>
-              <a href="#" className="store-btn store-btn-google">
-                <Play size={28} />
-                <div className="store-btn-text">
-                  <span className="store-btn-sub">{t('appSection.googlePlay')}</span>
-                  <span className="store-btn-title">{t('appSection.googlePlayTitle')}</span>
-                </div>
-              </a>
+              <h2 className="split-title">{t('appSection.title')}</h2>
+              <p className="split-desc">
+                {t('appSection.desc')}
+              </p>
+              <ul className="app-list">
+                <li className="app-list-item"><CheckCircle2 size={18} className="check" /> {t('appSection.l1')}</li>
+                <li className="app-list-item"><CheckCircle2 size={18} className="check" /> {t('appSection.l2')}</li>
+                <li className="app-list-item"><CheckCircle2 size={18} className="check" /> {t('appSection.l3')}</li>
+              </ul>
+              <div className={`store-buttons ${lang === 'ar' ? 'rtl-buttons' : ''}`}>
+                <a href="#" className="store-btn">
+                  <Apple size={28} />
+                  <div className="store-btn-text">
+                    <span className="store-btn-sub">{t('appSection.appStore')}</span>
+                    <span className="store-btn-title">{t('appSection.appStoreTitle')}</span>
+                  </div>
+                </a>
+                <a href="#" className="store-btn store-btn-google">
+                  <Play size={28} />
+                  <div className="store-btn-text">
+                    <span className="store-btn-sub">{t('appSection.googlePlay')}</span>
+                    <span className="store-btn-title">{t('appSection.googlePlayTitle')}</span>
+                  </div>
+                </a>
+              </div>
             </div>
-          </div>
-          <div className="app-image">
-            <img src={appScreenImg} alt="Qlink App" className="floating-app-screen img-shadow-dark" />
-          </div>
+            <div className="app-image">
+              <img src={appScreenImg} alt="Qlink App" className="floating-app-screen img-shadow-dark" />
+            </div>
           </section>
         </div>
 
@@ -299,9 +299,9 @@ function Home() {
         <section className={`cta-section scroll-animate ${lang === 'ar' ? 'rtl-text' : ''}`}>
           <h2 className={`cta-title ${lang === 'ar' ? '' : 'cta-title-eng'}`}>{t('cta.title')}</h2>
           <button className="btn btn-primary btn-large-pad">{t('cta.btn')}</button>
-          
+
           <div className="cta-line"></div>
-          
+
           <p className="cta-footer-text">
             {t('cta.footer')}
           </p>

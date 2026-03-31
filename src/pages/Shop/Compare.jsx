@@ -9,6 +9,7 @@ import pulseIcon from '../../assets/icons/PULSE-ICON.png';
 import SetupSection from '../../components/Sections/SetupSection';
 import AppPromoSection from '../../components/Sections/AppPromoSection';
 import promoAltImg from '../../assets/images/mobile2.png';
+import DynamicBackground from '../../components/common/DynamicBackground';
 
 
 function Compare() {
@@ -53,6 +54,7 @@ function Compare() {
 
   return (
     <div className={`compare-page ${lang === 'ar' ? 'rtl-text' : ''}`}>
+<DynamicBackground/>
   
       <div className="compare-hero scroll-animate">
         <h1 className="compare-title">
@@ -64,7 +66,6 @@ function Compare() {
           {t('compare.heroSubtitle')}
         </p>
       </div>
-
       <div className="compare-page-container scroll-animate stag-1">
         <CompareCard 
           title={t('compare.novaTitle')}
