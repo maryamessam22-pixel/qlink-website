@@ -1,12 +1,17 @@
 .compare-card {
-  background-color: #0d1626; /* الكحلي الغامق جداً */
+  background-color: var(--bg-surface-navy); /* الكحلي الغامق جداً */
   border-radius: 10px;
   width: 360px;
-  color: #ffffff;
+  color: var(--text-primary);
   display: flex;
   flex-direction: column;
   overflow: hidden;
   box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+body.rtl-active .compare-card {
+  text-align: right;
+  direction: rtl;
 }
 
 .card-top-section {
@@ -47,7 +52,7 @@
 }
 
 .feature-label-text {
-  color: #8a92a6; /* رمادي خفيف للعنوان الجانبي */
+  color: var(--text-muted); /* رمادي خفيف للعنوان الجانبي */
   font-size: 11px;
   display: block;
   margin-bottom: 6px;
@@ -64,14 +69,14 @@
   font-size: 14px;
   font-weight: 600;
   margin: 0;
-  color: #e2e8f0;
+  color: var(--text-primary);
 }
 
 /* الجزء السفلي المنفصل */
 .card-bottom-section {
-  background-color: #161f30; /* لون أفتح بسيط للفصل */
+  background-color: var(--bg-surface-input); /* لون أفتح بسيط للفصل */
   padding: 25px 30px;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-top: 1px solid var(--border-light);
 }
 
 .price-display {
