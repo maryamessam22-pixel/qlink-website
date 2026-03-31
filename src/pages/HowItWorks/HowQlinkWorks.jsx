@@ -25,6 +25,7 @@ import HelpCard from '../../components/Cards/HelpCard';
 
 import watchVidSrc from '../../assets/videos/watch vid.mp4';
 import qlinkVideoSrc from '../../assets/videos/qlink-video.mp4';
+import DynamicBackground from '../../components/common/DynamicBackground';
 
 function HowQlinkWorks() {
   const lensRef = useRef(null);
@@ -88,6 +89,7 @@ function HowQlinkWorks() {
 
   return (
     <div className="how-works-page">
+      <DynamicBackground/>
       {/* Liquid background effect */}
       <div className="hw-liquid-bg">
         <div className="hw-glow hw-glow-1"></div>
