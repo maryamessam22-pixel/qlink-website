@@ -77,7 +77,7 @@ function Home() {
         {/* HERO SECTION */}
         <section className={`hero-section scroll-animate ${lang === 'ar' ? 'rtl-text' : ''}`}>
           <div className="hero-text">
-            <h1 className="hero-title scroll-animate stag-1" style={lang === 'ar' ? {} : { whiteSpace: "pre-wrap" }}>
+            <h1 className={`hero-title scroll-animate stag-1 ${lang === 'ar' ? '' : 'hero-title-eng'}`}>
               {t('hero.titleTop')}<span className="red-text">{t('hero.titleHighlight')}</span><br />
               {t('hero.titleBottom')}
             </h1>
@@ -103,21 +103,21 @@ function Home() {
 
           <div className="card-grid-3">
             <InfoCard 
-              style={{ background: 'rgba(16, 185, 129, 0.08)' }}
+              className="bg-success-light"
               icon={Zap}
               iconColor="var(--color-success)"
               title={t('whatIs.c1Title')}
               description={t('whatIs.c1Desc')}
             />
             <InfoCard 
-              style={{ background: 'rgba(59, 130, 246, 0.08)' }}
+              className="bg-blue-light"
               icon={QrCode}
               iconColor="var(--color-primary-blue)"
               title={t('whatIs.c2Title')}
               description={t('whatIs.c2Desc')}
             />
             <InfoCard 
-              style={{ background: 'rgba(224, 50, 50, 0.08)' }}
+              className="bg-error-light"
               icon={Lock}
               iconColor="var(--color-error)"
               title={t('whatIs.c3Title')}
@@ -167,7 +167,7 @@ function Home() {
             <p className="split-desc">
               {t('splitFeature.desc2')}
             </p>
-            <Link to="/about" className="btn btn-primary" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', textDecoration: 'none', marginTop: '16px' }}>{t('splitFeature.btn')}</Link>
+            <Link to="/about" className="btn btn-primary link-btn-inline">{t('splitFeature.btn')}</Link>
           </div>
           <div className="split-image">
             <img src={twoWatchesImg} alt="2 Qlink Bracelets" />
@@ -183,8 +183,8 @@ function Home() {
 
           <div className="card-grid-3">
             <InfoCard 
-              style={{ padding: '40px 24px' }}
-              iconWrapperStyle={{ margin: '0 auto 20px auto', background: 'rgba(255,255,255,0.05)', width: 60, height: 60, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+              className="pad-40-24"
+              iconWrapperClassName="icon-wrap-glass"
               icon={Users}
               iconSize={24}
               iconColor="#b0b8c8"
@@ -192,8 +192,8 @@ function Home() {
               description={t('whoIsFor.c1Desc')}
             />
             <InfoCard 
-              style={{ padding: '40px 24px' }}
-              iconWrapperStyle={{ margin: '0 auto 20px auto', background: 'rgba(224, 50, 50, 0.1)', width: 60, height: 60, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+              className="pad-40-24"
+              iconWrapperClassName="icon-wrap-red"
               icon={Activity}
               iconSize={24}
               iconColor="#E03232"
@@ -201,8 +201,8 @@ function Home() {
               description={t('whoIsFor.c2Desc')}
             />
             <InfoCard 
-              style={{ padding: '40px 24px' }}
-              iconWrapperStyle={{ margin: '0 auto 20px auto', background: 'rgba(255,255,255,0.05)', width: 60, height: 60, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+              className="pad-40-24"
+              iconWrapperClassName="icon-wrap-glass"
               icon={Baby}
               iconSize={24}
               iconColor="#b0b8c8"
@@ -267,10 +267,10 @@ function Home() {
             <p className="split-desc">
               {t('appSection.desc')}
             </p>
-            <ul style={lang === 'ar' ? { paddingRight: '0', paddingLeft: '0' } : {}}>
-              <li style={{ display: 'flex', alignItems: 'center', gap: '10px' }}><CheckCircle2 size={18} className="check" /> {t('appSection.l1')}</li>
-              <li style={{ display: 'flex', alignItems: 'center', gap: '10px' }}><CheckCircle2 size={18} className="check" /> {t('appSection.l2')}</li>
-              <li style={{ display: 'flex', alignItems: 'center', gap: '10px' }}><CheckCircle2 size={18} className="check" /> {t('appSection.l3')}</li>
+            <ul className="app-list">
+              <li className="app-list-item"><CheckCircle2 size={18} className="check" /> {t('appSection.l1')}</li>
+              <li className="app-list-item"><CheckCircle2 size={18} className="check" /> {t('appSection.l2')}</li>
+              <li className="app-list-item"><CheckCircle2 size={18} className="check" /> {t('appSection.l3')}</li>
             </ul>
             <div className={`store-buttons ${lang === 'ar' ? 'rtl-buttons' : ''}`}>
               <a href="#" className="store-btn">
@@ -290,15 +290,15 @@ function Home() {
             </div>
           </div>
           <div className="app-image">
-            <img src={appScreenImg} alt="Qlink App" className="floating-app-screen" style={{ filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.6))' }} />
+            <img src={appScreenImg} alt="Qlink App" className="floating-app-screen img-shadow-dark" />
           </div>
           </section>
         </div>
 
         {/* CTA */}
         <section className={`cta-section scroll-animate ${lang === 'ar' ? 'rtl-text' : ''}`}>
-          <h2 style={{ lineHeight: '1.2', ...(lang === 'ar' ? {} : { whiteSpace: 'pre-wrap' }) }}>{t('cta.title')}</h2>
-          <button className="btn btn-primary" style={{ padding: '14px 40px', fontSize: '16px' }}>{t('cta.btn')}</button>
+          <h2 className={`cta-title ${lang === 'ar' ? '' : 'cta-title-eng'}`}>{t('cta.title')}</h2>
+          <button className="btn btn-primary btn-large-pad">{t('cta.btn')}</button>
           
           <div className="cta-line"></div>
           

@@ -19,7 +19,7 @@ import {
 
 import TimelineRow from '../../components/Cards/TimelineRow';
 import FeatureBlock from '../../components/Cards/FeatureBlock';
-import CompareCard from '../../components/Cards/CompareCard';
+import PricingCard from '../../components/Cards/PricingCard';
 import SetupCard from '../../components/Cards/SetupCard';
 import HelpCard from '../../components/Cards/HelpCard';
 
@@ -182,7 +182,7 @@ function HowQlinkWorks() {
 
       {/* COMPARISON CARDS */}
       <section className={`hw-compare-section ${lang === 'ar' ? 'rtl-text' : ''}`}>
-        <CompareCard
+        <PricingCard
           headerIcon={WifiOff}
           headerText={t('howWorks.c1Head')}
           box1Title={t('howWorks.c1Box1Title')}
@@ -192,7 +192,7 @@ function HowQlinkWorks() {
           box2HighlightColor="#E03232"
         />
 
-        <CompareCard
+        <PricingCard
           headerIcon={MonitorSmartphone}
           headerText={t('howWorks.c2Head')}
           box1Icon={CheckCircle2}

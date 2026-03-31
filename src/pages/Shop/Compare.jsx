@@ -19,6 +19,7 @@ function Compare() {
         {/* Compare Table */}
       </div>
     </div>
+    
   );
 }
 
