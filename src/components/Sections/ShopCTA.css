@@ -1,9 +1,11 @@
 .shop-cta-section {
     padding: 100px 24px;
-    background: #151e36;
+    background: #151e36c6;
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 100px;
+    margin-bottom: 100px;
     text-align: center;
     position: relative;
     z-index: 5;
