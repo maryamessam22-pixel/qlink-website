@@ -2,9 +2,7 @@
   font-family: var(--font-family-primary);
   min-height: 100vh;
   color: var(--text-primary);
-  /* The global App.css background is already handling the body dark gradient,
-     but we can ensure this wrapper spans correctly. */
-  padding-top: 155px; /* Accounting for Navbar */
+  padding-top: 155px;
 }
 
 .compare-hero {
@@ -28,12 +26,10 @@
 
 .compare-subtitle {
   font-size: 16px;
-  color: var(--text-muted); /* A soft blue-grey to match the image text */
+  color: var(--text-muted);
   line-height: 1.6;
   font-weight: 400;
 }
-
-/* RTL overrides for Arabic support if added later */
 body.rtl-active .compare-hero {
   direction: rtl;
 }
