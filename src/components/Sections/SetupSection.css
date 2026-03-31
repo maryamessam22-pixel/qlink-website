@@ -60,11 +60,11 @@
   }
 }
 
-/* Content Container */
+
 .setup-content-container {
   position: relative;
   z-index: 1;
-  max-width: 1000px; /* kept moderate for balanced cards */
+  max-width: 1000px; 
   width: 100%;
 }
 
