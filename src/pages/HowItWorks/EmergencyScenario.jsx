@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import './EmergencyScenario.css';
 import { LanguageContext } from '../../context/LanguageContext';
 
-// Importing assets
+// Importing images
 import heroImg from '../../assets/images/hero-emergency.png';
 import img1 from '../../assets/images/1img.png';
 import img2 from '../../assets/images/2img.png';
