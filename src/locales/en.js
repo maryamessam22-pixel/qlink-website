@@ -356,7 +356,51 @@ const translations = {
         quote: "The tactical design is great. I recommended this to all my athletes who train out in the sun and outdoors.",
         readMore: "Read Full Story"
       }
-    ]
+    ],
+    caregivers: {
+      heroTitle: "Because You Can't Be ",
+      heroHighlight: "There Every Second.",
+      heroDesc: "Qlink gives caregivers the ultimate peace of mind. Know that your loved ones are protected, identified, and connected to help even when you're apart.",
+      heroBtn: "Start Protecting Today",
+      
+      connectTitle: "Stay Connected to What Matters Most",
+      connectDesc: "Caring for a loved one is a full-time responsibility, but you can't be everywhere at once. Qlink fills the gap, ensuring that no matter what happens, vital medical information and your contact details are always available.",
+      
+      f1Title: "Instant Identification",
+      f1Desc: "Key medical data is visible on the wristband instantly.",
+      f2Title: "Emergency Contacts",
+      f2Desc: "Help can contact the right person when they need it most.",
+      f3Title: "24/7 Protection",
+      f3Desc: "Works across the globe, no batteries required.",
+      
+      familyTitle: "Designed for Every Family Member",
+      familySubtitle: "A SAFETY NET FOR ALL",
+      
+      card1Title: "Elderly Parents",
+      card1Desc: "Peace of mind for seniors with dementia, Alzheimer's, or heart conditions.",
+      card2Title: "Chronic Conditions",
+      card2Desc: "Vital for diabetes, epilepsy, and severe allergies.",
+      card3Title: "Active Children",
+      card3Desc: "Proactive safety for kids on field trips, playdates, or busy parks.",
+      
+      setupTitle: "Simple Setup. Easy Management.",
+      setupDesc: "You don't need to be tech-savvy to use Qlink. We've designed the entire experience to be intuitive for caregivers of all ages.",
+      
+      step1Title: "Create Profile",
+      step1Desc: "Enter medical details on our secure portal.",
+      step2Title: "Link Device",
+      step2Desc: "Scan the band to link it to the profile.",
+      step3Title: "Stay Updated",
+      step3Desc: "Update info anytime from your phone.",
+      
+      giftTitle: "Give the Gift of Safety",
+      giftDesc: "Join thousands of caregivers who sleep better tonight knowing their loved ones are protected by Qlink.",
+      giftBtn: "Shop for your loved ones!",
+      
+      promoTitle: "Get Protected ",
+      promoFocus: "Today!",
+      promoDesc: "Download the Qlink app and experience the future of personal safety."
+    }
   }
 };
 
