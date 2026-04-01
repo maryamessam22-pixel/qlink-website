@@ -87,6 +87,35 @@ function ForCaregivers() {
             </div>
           </div>
         </section>
+        
+        <section className="fc-family scroll-animate">
+          <div className="fc-family-badge">{t("reviews.caregivers.familySubtitle")}</div>
+          <h2 className="fc-family-title">{t("reviews.caregivers.familyTitle")}</h2>
+          
+          <div className="fc-family-grid">
+            <div className="fc-family-card">
+              <div className="card-image"><img src={elderlyParentsImg} alt={t("reviews.caregivers.card1Title")} /></div>
+              <div className="card-body">
+                <h3>{t("reviews.caregivers.card1Title")}</h3>
+                <p>{t("reviews.caregivers.card1Desc")}</p>
+              </div>
+            </div>
+            <div className="fc-family-card">
+              <div className="card-image"><img src={chronicConditionsImg} alt={t("reviews.caregivers.card2Title")} /></div>
+              <div className="card-body">
+                <h3>{t("reviews.caregivers.card2Title")}</h3>
+                <p>{t("reviews.caregivers.card2Desc")}</p>
+              </div>
+            </div>
+            <div className="fc-family-card">
+              <div className="card-image"><img src={activeChildrenImg} alt={t("reviews.caregivers.card3Title")} /></div>
+              <div className="card-body">
+                <h3>{t("reviews.caregivers.card3Title")}</h3>
+                <p>{t("reviews.caregivers.card3Desc")}</p>
+              </div>
+            </div>
+          </div>
+        </section>
 
         <section className="fc-steps scroll-animate">
           <h2>Simple Setup. Easy Management.</h2>
