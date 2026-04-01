@@ -129,6 +129,10 @@
   background: #ff3b30;
   color: #fff;
   border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
   border-radius: 8px;
   padding: 0.8rem 0rem;
   font-size: 1rem;
