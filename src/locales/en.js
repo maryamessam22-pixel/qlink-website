@@ -298,6 +298,28 @@ const translations = {
     feature2Desc: "IP67 rated for swim and shower.",
     feature3Title: "Hybrid Power",
     feature3Desc: "Battery + Kinetic backup system"
+  },
+  reviews: {
+    heroTitleTop: "Customer ",
+    heroTitleHighlight: "Stories",
+    heroSubtitle: "See why thousands of families trust Qlink for their safety and peace of mind.",
+    featuredQuote: "It saved my father's life when every second counted.",
+    featuredStory: "My father collapsed while gardening. The paramedics scanned his Qlink and immediately knew about his type 2 diabetes and medical allergies. That information stay critical for his treatment on the way to the hospital.",
+    featuredAuthor: "Mona Hassan",
+    verified: "Verified Purchase",
+    statUsers: "10k+",
+    statUsersLabel: "Verified Users",
+    statTrust: "4.9/5",
+    statTrustLabel: "TrustPilot",
+    statRecommend: "99%",
+    statRecommendLabel: "Recommendation Rate",
+    score: "4.9",
+    basedOn: "Based on 1,200 reviews",
+    shareTitle: "Share Your Experience",
+    shareDesc: "Your feedback helps us improve. Tell us what you think of our products and share your safety story.",
+    shareBtn: "Send review + Message now",
+    joinTitle: "Join The Community",
+    joinDesc: "Experience the peace of mind that thousands of others are already enjoying."
   }
 };
 
