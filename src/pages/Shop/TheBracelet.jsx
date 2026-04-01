@@ -1,4 +1,5 @@
 import React, { useEffect, useContext } from 'react';
+import { Link } from 'react-router-dom';
 import { LanguageContext } from '../../context/LanguageContext';
 import SetupSection from '../../components/Sections/SetupSection';
 import AppPromoSection from '../../components/Sections/AppPromoSection';
@@ -60,7 +61,7 @@ const TheBracelet = () => {
           </ul>
           
           <div className="bracelet-card-price">{t('bracelet.priceNova')}</div>
-          <button className="bracelet-card-btn">{t('bracelet.btnView')}</button>
+          <Link to="/shop/nova" className="bracelet-card-btn" style={{textAlign: 'center', display: 'block', textDecoration: 'none'}}>{t('bracelet.btnView')}</Link>
         </div>
 
         {/* Pulse Tactical Card */}
