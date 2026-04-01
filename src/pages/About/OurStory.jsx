@@ -40,7 +40,7 @@ function OurStory() {
         {/* Header */}
         <header className="story-page-header scroll-animate stag-1">
           <span className="badge-red">{t('ourStory.heroBadge')}</span>
-          <h1 className="main-title">{t('ourStory.heroTitle')}</h1>
+          <h1 className="main-title">{t('ourStory.heroTitle').split('QLink')[0]}<span>QLink</span>{t('ourStory.heroTitle').split('QLink')[1]}</h1>
         </header>
 
         {/* Step 1: The Spark */}

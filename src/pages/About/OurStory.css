@@ -1,7 +1,7 @@
 .our-story-detailed-page {
   min-height: 100vh;
   position: relative;
-  background-color: #0b111e;
+ 
   color: var(--text-primary);
   padding-bottom: 120px;
   overflow-x: hidden;
@@ -428,12 +428,117 @@
   text-align: center;
 }
 
-@media (max-width: 1000px) {
-  .case-grid, .team-grid { grid-template-columns: 1fr 1fr; }
-  .values-grid-new { grid-template-columns: 1fr; }
+@media (max-width: 1024px) {
+  .case-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  
+  .team-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+  }
+
+  .values-grid-new {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
-@media (max-width: 600px) {
-  .case-grid, .team-grid, .stats-grid-story { grid-template-columns: 1fr; }
-  .main-title { font-size: 32px; }
+@media (max-width: 768px) {
+  .story-content-container {
+    padding-top: 100px;
+  }
+
+  .main-title {
+    font-size: 40px;
+    margin-bottom: 60px;
+  }
+
+  .story-step-section {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .step-number {
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+  }
+
+  .step-title {
+    font-size: 24px;
+  }
+
+  .step-paragraph {
+    font-size: 16px;
+  }
+
+  .case-card-main {
+    padding: 32px 24px;
+  }
+
+  .mission-glass-box {
+    padding: 60px 24px;
+  }
+
+  .mission-title {
+    font-size: 28px;
+  }
+
+  .mission-text {
+    font-size: 16px;
+  }
+
+  .values-grid-new, .team-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stats-grid-story {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+  }
+
+  .member-photo-wrapper {
+    width: 150px;
+    height: 150px;
+  }
+
+  .stat-item-story h3 {
+    font-size: 32px;
+  }
+
+  .story-final-cta h2 {
+    font-size: 32px;
+  }
+
+  .story-final-cta p {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-title {
+    font-size: 32px;
+  }
+
+  .case-card-main {
+    padding: 24px 16px;
+  }
+
+  .case-title-row h3 {
+    font-size: 20px;
+  }
+
+  .stats-grid-story {
+    grid-template-columns: 1fr;
+  }
+
+  .founder-name {
+    font-size: 18px;
+  }
+
+  .contact-btn-red {
+    width: 100%;
+    padding: 16px 24px;
+  }
 }
