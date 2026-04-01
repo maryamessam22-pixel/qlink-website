@@ -52,27 +52,38 @@ function ForCaregivers() {
           </div>
         </section>
 
-        <section className="fc-section scroll-animate">
-          <div className="fc-split">
-            <div className="fc-card">
-              <div className="fc-icon-wrap"><Users size={20} /></div>
-              <h3>Stay Connected</h3>
-              <p>Real-time updates so you always know your loved one’s status and immediate location.</p>
+        <section className="fc-connect scroll-animate">
+          <div className="fc-connect-grid">
+            <div className="fc-connect-image">
+              <img src={stayConnectedImg} alt={t("reviews.caregivers.connectTitle")} />
             </div>
-            <div className="fc-card">
-              <div className="fc-icon-wrap"><Activity size={20} /></div>
-              <h3>Life-saving Alerts</h3>
-              <p>Instant emergency responses when medical help is needed most.</p>
-            </div>
-            <div className="fc-card">
-              <div className="fc-icon-wrap"><Baby size={20} /></div>
-              <h3>Trusted for Families</h3>
-              <p>Designed with seniors, kids, and chronic condition caregivers in mind.</p>
-            </div>
-            <div className="fc-card">
-              <div className="fc-icon-wrap"><HeartPulse size={20} /></div>
-              <h3>Medical Data Access</h3>
-              <p>Quick emergency medical info access without compromising privacy.</p>
+            <div className="fc-connect-info">
+              <h2>{t("reviews.caregivers.connectTitle")}</h2>
+              <p>{t("reviews.caregivers.connectDesc")}</p>
+              
+              <div className="fc-feature-list">
+                <div className="fc-feature-item">
+                  <div className="fc-feature-icon"><ShieldCheck size={24} /></div>
+                  <div className="fc-feature-text">
+                    <h4>{t("reviews.caregivers.f1Title")}</h4>
+                    <p>{t("reviews.caregivers.f1Desc")}</p>
+                  </div>
+                </div>
+                <div className="fc-feature-item">
+                  <div className="fc-feature-icon"><MapPin size={24} /></div>
+                  <div className="fc-feature-text">
+                    <h4>{t("reviews.caregivers.f2Title")}</h4>
+                    <p>{t("reviews.caregivers.f2Desc")}</p>
+                  </div>
+                </div>
+                <div className="fc-feature-item">
+                  <div className="fc-feature-icon"><BellRing size={24} /></div>
+                  <div className="fc-feature-text">
+                    <h4>{t("reviews.caregivers.f3Title")}</h4>
+                    <p>{t("reviews.caregivers.f3Desc")}</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </section>
