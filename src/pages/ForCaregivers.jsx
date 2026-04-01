@@ -11,6 +11,7 @@ import stayConnectedImg from '../assets/images/stay-pic.png';
 import elderlyParentsImg from '../assets/images/one.png';
 import chronicConditionsImg from '../assets/images/two.png';
 import activeChildrenImg from '../assets/images/three.png';
+import promoMobiles from '../assets/images/2mobiles.png';
 
 function ForCaregivers() {
   const { t, lang } = useContext(LanguageContext);
@@ -155,7 +156,7 @@ function ForCaregivers() {
           </div>
         </section>
         
-        <AppPromoSection />
+        <AppPromoSection imageSrc={promoMobiles} imgClassName="promo-phones-img" />
       </main>
     </div>
   );
