@@ -49,7 +49,7 @@ function App() {
                 <Route path="/how-it-works/qlink" element={<HowQlinkWorks />} />
                 <Route path="/how-it-works/emergency" element={<EmergencyScenario />} />
                 <Route path="/shop/bracelet" element={<TheBracelet />} />
-                <Route path="/shop/nova" element={<NovaDetails />} />
+                <Route path="/shop/:productId" element={<NovaDetails />} />
                 <Route path="/shop/compare" element={<Compare />} />
                 <Route path="/shop/reviews" element={<Reviews />} />
                 <Route path="/for-caregivers" element={<ForCaregivers />} />

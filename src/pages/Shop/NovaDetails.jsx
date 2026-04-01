@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { 
   ArrowLeft, Star, Droplets, Zap, Shield, HeartPulse, 
   ShoppingCart, Truck, ShieldCheck, Undo2, WifiOff
@@ -17,6 +17,7 @@ import thumb3 from '../../assets/images/w1.png';
 import thumb4 from '../../assets/images/w2.png';
 
 const NovaDetails = () => {
+  const { productId } = useParams();
   const { t, lang } = useContext(LanguageContext);
   const [qty, setQty] = useState(1);
   const [activeColor, setActiveColor] = useState('black');
