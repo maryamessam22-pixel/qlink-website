@@ -405,32 +405,57 @@ const translations = {
     },
   },
   ourStory: {
-    heroTitle: "Born to Save Lives.",
-    heroSubtitle: "Our story began with a simple observation: every second matters in an emergency, yet vital information remains locked behind locked phones and missing wallets.",
+    heroBadge: "OUR STORY",
+    heroTitle: "The Vision Behind The QLink",
     
-    originTitle: "The Critical Gap in Care",
-    originDesc: "Back in 2023, we saw first-hand how first responders struggled to identify patients who couldn't communicate. We knew there had to be a way to bridge the gap between an incident and life-saving treatment using tech that just works.",
+    sparkTitle: "1. The Spark: When Help Becomes Harm",
+    sparkText: "In 2023, I witnessed a life-altering moment that changed my perspective on human safety forever. I watched as paramedics were hesitant and unable to provide critical help because of a simple lack of information. At that moment, I realized that identity is life.",
+    sparkQuote: "In a medical emergency, a minute's silence can be the difference between life and death.",
     
-    visionTitle: "A Vision for Global Safety",
-    visionDesc: "We didn't just want an app. We wanted a standard. A global identifier that requires no internet, no battery, and no specialized hardware. Qlink was born from the desire to give everyone a voice when they cannot speak.",
+    caseTitle: "The case of Karma Ahmed",
+    caseText: "This reality is best seen in patients like Karma Ahmed, she has a chronic medical condition. When she faints, she doesn't just need help, she needs a way to speak when she's unconscious.",
+    caseProblemTitle: "The Problem",
+    caseProblemDesc: "Silence stands for death in emergencies. If you can't speak for yourself, you're at the mercy of chance.",
+    caseSolutionTitle: "The Solution",
+    caseSolutionDesc: "A Digital 'Soap Sign' that speaks for you when you cannot.",
+    caseBtn: "LEARN TECHNOLOGY",
     
-    valuesTitle: "The Principles That Lead Us",
+    innovationTitle: "2. The innovation: Qlink was born",
+    innovationText: "As the founder and creator of Qlink, we refused to accept that silence should be the end of the story. We replaced the outdated medical ID bracelets of the past with a sophisticated connected safety ecosystem.",
+    innovationExtra: "Qlink transforms the medical ID into a digital Identity sign. For users like Karma, our QR technology acts as a physical key to her survival. When a rescuer scans her bracelet, they aren't just seeing a name; they are greeted with a high-contrast, critical command.",
+    
+    missionTitle: "My Mission As Founder",
+    missionQuote: "Today, I am not just the designer behind the brand, I am the eternal student committed to maintaining this 'Digital Voice' so that every Karma out there is safe and guarded on her way.",
+    founderName: "Mariam Essam",
+    founderRole: "CEO / Founder",
+    
+    valuesTitle: "OUR VALUES",
+    valuesSubtitle: "Our Core Values",
     values: [
-      { id: 1, title: "Privacy First", desc: "You decide what to share. Your medical history stays secure behind the scanner's door." },
-      { id: 2, title: "Universal Access", desc: "Works on any smartphone, anywhere, with or without a data connection." },
-      { id: 3, title: "Reliable Innovation", desc: "Zero batteries, zero charging, 100% ready for the moment it's scanned." }
+      { id: 1, title: "Empathy First", desc: "We design for the moment when trust matters most." },
+      { id: 2, title: "Universal Access", desc: "Safety shouldn't be a luxury. We serve everyone, everywhere." },
+      { id: 3, title: "Excellence", desc: "We don't compromise when lives are on the line." }
     ],
     
-    journeyTitle: "Our Journey",
-    journey: [
-      { id: 1, date: "2023", title: "The Concept", desc: "Developing the hybrid QR technology that works offline." },
-      { id: 2, date: "2024", title: "Refining the Band", desc: "Perfecting the waterproof, skin-safe, and secure locking design." },
-      { id: 3, date: "2025", title: "Qlink Global", desc: "Helping thousands across 10+ countries secure their families' futures." }
+    teamTitle: "Our Team",
+    teamSubtitle: "Meet the minds",
+    team: [
+      { id: 1, name: "Mariam Essam", role: "CEO / Founder" },
+      { id: 2, name: "Ola Abdelaal", role: "Manager" },
+      { id: 3, name: "Amira Hassan", role: "Product Designer" },
+      { id: 4, name: "Youseff Wahba", role: "Team Leader" }
     ],
     
-    ctaTitle: "Be Part of the Story.",
-    ctaDesc: "Join thousands who trust Qlink Every day.",
-    ctaBtn: "Start Your Journey"
+    stats: [
+      { label: "Lives Protected", value: "10k+" },
+      { label: "Uptime", value: "99.9%" },
+      { label: "Partner Hospitals", value: "50+" },
+      { label: "Support", value: "24/7" }
+    ],
+    
+    ctaTitle: "Join Our Mission",
+    ctaSubtitle: "Whether as a partner, a team member, or a user, we want you to be part of the safety revolution.",
+    ctaBtn: "Contact Us"
   }
 };
 
