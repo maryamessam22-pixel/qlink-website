@@ -42,6 +42,41 @@ function OurStory() {
             <p>{t('ourStory.missionText')}</p>
           </div>
         </section>
+
+        {/* Values Section */}
+        <section className="story-values scroll-animate stag-3">
+          <h2>{t('ourStory.valuesTitle')}</h2>
+          <div className="values-grid">
+            <div className="value-card">
+              <Zap className="value-icon" size={28} />
+              <h3>{t('ourStory.values.0.title')}</h3>
+              <p>{t('ourStory.values.0.desc')}</p>
+            </div>
+            <div className="value-card">
+              <ShieldCheck className="value-icon" size={28} />
+              <h3>{t('ourStory.values.1.title')}</h3>
+              <p>{t('ourStory.values.1.desc')}</p>
+            </div>
+            <div className="value-card">
+              <Heart className="value-icon" size={28} />
+              <h3>{t('ourStory.values.2.title')}</h3>
+              <p>{t('ourStory.values.2.desc')}</p>
+            </div>
+            <div className="value-card">
+              <Zap className="value-icon" size={28} />
+              <h3>{t('ourStory.values.3.title')}</h3>
+              <p>{t('ourStory.values.3.desc')}</p>
+            </div>
+          </div>
+        </section>
+
+        {/* CTA Section */}
+        <section className="story-cta scroll-animate stag-1">
+          <div className="cta-box">
+            <h2>{t('ourStory.ctaTitle')}</h2>
+            <button className="btn-primary">{t('ourStory.ctaBtn')}</button>
+          </div>
+        </section>
       </div>
     </div>
   );
