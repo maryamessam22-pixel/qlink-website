@@ -121,6 +121,48 @@ const Reviews = () => {
           ))}
         </div>
 
+        {/* Detailed Rating Histogram */}
+        <div className="rating-breakdown-section scroll-animate stag-2">
+          <div className="overall-score-card">
+            <h1>{t('reviews.score')}</h1>
+            <div className="star-row-medium">
+              {[...Array(5)].map((_, i) => <Star key={i} size={24} fill="#ffb800" color="#ffb800" />)}
+            </div>
+            <p>{t('reviews.basedOn')}</p>
+          </div>
+          <div className="histogram-list">
+            {[92, 5, 2, 1, 0].map((percent, index) => (
+              <div key={index} className="histogram-item">
+                <span className="star-label">{5 - index} ★</span>
+                <div className="progress-bg">
+                  <div className="progress-fill" style={{ width: `${percent}%` }}></div>
+                </div>
+                <span className="percent-label">{percent}%</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* CTA Sections */}
+        <div className="reviews-cta-grid scroll-animate stag-3">
+          <div className="cta-box share-box">
+             <MessageSquare size={32} className="cta-icon" />
+             <h3>{t('reviews.shareTitle')}</h3>
+             <p>{t('reviews.shareDesc')}</p>
+             <button className="cta-btn-primary">{t('reviews.shareBtn')}</button>
+          </div>
+          <div className="cta-box join-box">
+             <Users size={32} className="cta-icon" />
+             <h3>{t('reviews.joinTitle')}</h3>
+             <p>{t('reviews.joinDesc')}</p>
+          </div>
+        </div>
+
+        {/* App Promo */}
+        <div className="scroll-animate stag-1" style={{ marginTop: '120px', marginBottom: '80px' }}>
+          <AppPromoSection imageSrc={mobilesImg} />
+        </div>
+
       </div>
     </div>
   );

@@ -258,6 +258,137 @@
   opacity: 0.7;
 }
 
+/* Rating Breakdown */
+.rating-breakdown-section {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 64px;
+  background: var(--card-bg, rgba(30,30,45,0.4));
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 20px;
+  padding: 48px;
+  margin-bottom: 80px;
+  align-items: center;
+}
+
+@media (max-width: 900px) {
+  .rating-breakdown-section {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    padding: 32px;
+  }
+}
+
+.overall-score-card {
+  text-align: center;
+}
+
+.overall-score-card h1 {
+  font-size: 64px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.star-row-medium {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.overall-score-card p {
+  font-size: 14px;
+  color: rgba(255,255,255,0.5);
+}
+
+.histogram-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.histogram-item {
+  display: grid;
+  grid-template-columns: 40px 1fr 40px;
+  align-items: center;
+  gap: 16px;
+}
+
+.star-label, .percent-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.6);
+}
+
+.progress-bg {
+  height: 8px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 4px;
+}
+
+.progress-fill {
+  height: 100%;
+  background: #3b82f6;
+  border-radius: 4px;
+}
+
+/* CTA Sections */
+.reviews-cta-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  margin-bottom: 80px;
+}
+
+@media (max-width: 768px) {
+  .reviews-cta-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.cta-box {
+  background: var(--card-bg, rgba(30,30,45,0.4));
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 16px;
+  padding: 48px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.cta-icon {
+  margin-bottom: 8px;
+  color: #3b82f6;
+}
+
+.cta-box h3 {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.cta-box p {
+  color: rgba(255,255,255,0.7);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.cta-btn-primary {
+  background: #ff3b30;
+  color: white;
+  border: none;
+  padding: 12px 32px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.cta-btn-primary:hover {
+  background: #ff453a;
+}
+
 /* Animations */
 .scroll-animate {
   opacity: 0;
