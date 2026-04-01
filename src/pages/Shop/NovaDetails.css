@@ -1,7 +1,7 @@
 .nova-details-container {
   min-height: 100vh;
   padding-top: 150px;
-  background-color: transparent;
+  /* background-color: transparent; */
   position: relative;
   z-index: 1;
   color: white;

@@ -1,7 +1,7 @@
 .bracelet-page-container {
   min-height: 100vh;
   padding-top: 120px;
-  background-color: transparent;
+  /* background-color: transparent; */
   position: relative;
   z-index: 1;
   color: white;

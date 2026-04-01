@@ -1,7 +1,7 @@
 .for-caregivers-page {
   min-height: 100vh;
   position: relative;
-  background: linear-gradient(180deg, #12203a 0%, #0a1423 100%);
+  /* background: linear-gradient(180deg, #12203a 0%, #0a1423 100%); */
   color: var(--text-primary);
   overflow: hidden;
 }

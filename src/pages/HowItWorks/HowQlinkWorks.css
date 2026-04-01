@@ -1,6 +1,7 @@
 /* BASE PAGE STYLES */
 .how-works-page {
-  background: linear-gradient(180deg, #1D2C4B 0%, #192149 100%);
+  /* background: linear-gradient(180deg, #1D2C4B 0%, #192149 100%); */
+  /* background: linear-gradient(180deg, #12203a 0%, #0a1423 100%); */
   min-height: 100vh;
   color: white;
   padding-bottom: 100px;

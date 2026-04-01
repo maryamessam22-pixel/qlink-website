@@ -46,6 +46,7 @@ body {
   overflow-x: hidden;
   /* background-color: var(--bg-main); */
    background: linear-gradient(180deg, #1D2C4B 0%, #192149 100%);
+   /* background: linear-gradient(180deg, #12203a 0%, #0a1423 100%); */
   color: var(--text-primary);
 }
 
