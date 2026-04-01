@@ -7,7 +7,7 @@ import heroImage from '../assets/images/hero-caregivers.png';
 import AppPromoSection from '../components/Sections/AppPromoSection';
 
 // New images for the redesign
-import stayConnectedImg from '../assets/images/1img.png';
+import stayConnectedImg from '../assets/images/stay-pic.png';
 import elderlyParentsImg from '../assets/images/salma.png';
 import chronicConditionsImg from '../assets/images/sarah.png';
 import activeChildrenImg from '../assets/images/malak.png';
