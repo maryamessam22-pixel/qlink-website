@@ -64,6 +64,33 @@ const Reviews = () => {
           </div>
         </div>
 
+        {/* Stats Bar */}
+        <div className="reviews-stats-bar scroll-animate stag-3">
+          <div className="stat-card">
+            <h3>{t('reviews.statUsers')}</h3>
+            <div className="stat-sub">
+              <Users size={16} color="#3b82f6" />
+              <span>{t('reviews.statUsersLabel')}</span>
+            </div>
+          </div>
+          <div className="stat-card">
+            <h3>{t('reviews.statTrust')}</h3>
+            <div className="stat-stars">
+              {[...Array(5)].map((_, i) => <Star key={i} size={14} fill="#ffb800" color="#ffb800" />)}
+            </div>
+            <div className="stat-sub">
+              <span>{t('reviews.statTrustLabel')}</span>
+            </div>
+          </div>
+          <div className="stat-card">
+            <h3>{t('reviews.statRecommend')}</h3>
+            <div className="stat-sub">
+              <Share2 size={16} color="#10b981" />
+              <span>{t('reviews.statRecommendLabel')}</span>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   );
