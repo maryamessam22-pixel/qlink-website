@@ -117,24 +117,31 @@ function ForCaregivers() {
           </div>
         </section>
 
-        <section className="fc-steps scroll-animate">
-          <h2>Simple Setup. Easy Management.</h2>
-          <p>You don't need to be tech-savvy to use Qlink. We've designed the entire experience to be intuitive for caregivers of all ages.</p>
-          <div className="fc-step-grid">
-            <div className="fc-step-item">
-              <div className="step-circle">01</div>
-              <h4>Create Profile</h4>
-              <p>Enter medical details on our secure portal.</p>
+        <section className="fc-steps-modern scroll-animate">
+          <h2>{t("reviews.caregivers.setupTitle")}</h2>
+          <p>{t("reviews.caregivers.setupDesc")}</p>
+          
+          <div className="fc-timeline">
+            <div className="fc-timeline-step">
+              <div className="fc-circle-wrap">
+                <div className="fc-step-circle">01</div>
+              </div>
+              <h4>{t("reviews.caregivers.step1Title")}</h4>
+              <p>{t("reviews.caregivers.step1Desc")}</p>
             </div>
-            <div className="fc-step-item">
-              <div className="step-circle">02</div>
-              <h4>Link Device</h4>
-              <p>Scan the band to link it to the profile.</p>
+            <div className="fc-timeline-step">
+              <div className="fc-circle-wrap">
+                <div className="fc-step-circle">02</div>
+              </div>
+              <h4>{t("reviews.caregivers.step2Title")}</h4>
+              <p>{t("reviews.caregivers.step2Desc")}</p>
             </div>
-            <div className="fc-step-item">
-              <div className="step-circle">03</div>
-              <h4>Stay Updated</h4>
-              <p>Update info anytime from your phone.</p>
+            <div className="fc-timeline-step">
+              <div className="fc-circle-wrap">
+                <div className="fc-step-circle">03</div>
+              </div>
+              <h4>{t("reviews.caregivers.step3Title")}</h4>
+              <p>{t("reviews.caregivers.step3Desc")}</p>
             </div>
           </div>
         </section>
