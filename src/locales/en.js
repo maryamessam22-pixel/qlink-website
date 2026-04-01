@@ -402,6 +402,21 @@ const translations = {
       promoTitle: "Get Protected ",
       promoFocus: "Today!",
       promoDesc: "Download the Qlink app and experience the future of personal safety."
+    },
+    ourStory: {
+      heroTitle: "Our Story",
+      heroSubtitle: "Empowering individuals with safety and peace of mind through innovative technology.",
+      missionTitle: "Our Mission",
+      missionText: "At Qlink, we believe that everyone deserves to feel safe and protected, no matter where they are. Our mission is to bridge the gap between emergencies and effective treatment by Providing instant access to vital information when it's needed most.",
+      valuesTitle: "Our Core Values",
+      values: [
+        { title: "Innovation", desc: "We constantly push the boundaries of technology to create better safety solutions." },
+        { title: "Privacy", desc: "Your data is yours. We prioritize security and user control in everything we do." },
+        { title: "Reliability", desc: "In an emergency, every second counts. Our systems are built for 100% uptime and accessibility." },
+        { title: "Accessibility", desc: "Safety shouldn't be complicated. We design products that are easy for everyone to use." }
+      ],
+      ctaTitle: "Join the Qlink Community",
+      ctaBtn: "Explore Our Products"
     }
   }
 };
