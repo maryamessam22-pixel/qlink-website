@@ -107,12 +107,12 @@ const PulseDetails = () => {
               </div>
               
               <div className="floating-side-actions">
-                <button className="action-circle">
+                {/* <button className="action-circle">
                   <Sparkles size={20} color="#ff3b30" />
                 </button>
                 <button className="action-circle">
                   <Upload size={20} />
-                </button>
+                </button> */}
               </div>
             </div>
             

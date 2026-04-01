@@ -7,8 +7,19 @@ import mobilesImg from '../../assets/images/2mobiles.png';
 import './Reviews.css';
 
 // Featured Images
-import userHero from '../../assets/images/1img.png'; 
-import productShot from '../../assets/images/watch.png';
+import heroImg from '../../assets/images/hero.png'; 
+
+import salmaImg from '../../assets/images/salma.png';
+import sarahImg from '../../assets/images/sarah.png';
+import malakImg from '../../assets/images/malak.png';
+import annImg from '../../assets/images/ann.png';
+
+const testimonialImages = {
+  1: salmaImg,
+  2: sarahImg,
+  3: malakImg,
+  4: annImg
+};
 
 const Reviews = () => {
   const { t, lang } = useContext(LanguageContext);
@@ -46,7 +57,7 @@ const Reviews = () => {
         {/* Featured Story Section */}
         <div className="featured-story-banner scroll-animate stag-2">
           <div className="featured-image-side">
-            <img src={userHero} alt="User Hero" />
+            <img src={heroImg} alt="User Hero" />
             <div className="quote-overlay">
               <div className="star-row">
                 {[...Array(5)].map((_, i) => <Star key={i} size={20} fill="#ffb800" color="#ffb800" />)}
@@ -59,9 +70,7 @@ const Reviews = () => {
               </div>
             </div>
           </div>
-          <div className="secondary-image-side">
-            <img src={productShot} alt="Product Close-up" />
-          </div>
+         
         </div>
 
         {/* Stats Bar */}
@@ -97,7 +106,9 @@ const Reviews = () => {
             <div key={item.id} className="testimonial-card">
               <div className="card-header">
                 <div className="user-info">
-                  <div className="user-avatar">{item.author[0]}</div>
+                  <div className="user-avatar">
+                    <img src={testimonialImages[item.id]} alt={item.author} style={{width:'100%', height:'100%', borderRadius:'50%'}} />
+                  </div>
                   <div>
                     <h4>{item.author}</h4>
                     <span>{item.role}</span>
@@ -160,7 +171,12 @@ const Reviews = () => {
 
         {/* App Promo */}
         <div className="scroll-animate stag-1" style={{ marginTop: '120px', marginBottom: '80px' }}>
-          <AppPromoSection imageSrc={mobilesImg} />
+          <AppPromoSection 
+            imageSrc={mobilesImg} 
+            customTitle={t('reviews.promoTitle')} 
+            customFocus={t('reviews.promoFocus')} 
+            customDesc={t('reviews.promoDesc')} 
+          />
         </div>
 
       </div>

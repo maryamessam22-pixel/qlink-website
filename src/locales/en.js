@@ -320,6 +320,9 @@ const translations = {
     shareBtn: "Send review + Message now",
     joinTitle: "Join The Community",
     joinDesc: "Experience the peace of mind that thousands of others are already enjoying.",
+    promoTitle: "Install the App ",
+    promoFocus: "Now!",
+    promoDesc: "Take full control of your safety. Manage profiles, get real-time data, and more.",
     testimonials: [
       {
         id: 1,
@@ -347,7 +350,7 @@ const translations = {
       },
       {
         id: 4,
-        author: "Jane Moore",
+        author: "Ann Moore",
         role: "Athletic Trainer",
         stars: 4,
         quote: "The tactical design is great. I recommended this to all my athletes who train out in the sun and outdoors.",

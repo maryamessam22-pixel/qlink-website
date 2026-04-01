@@ -3,7 +3,7 @@ import { Apple, Play } from 'lucide-react';
 import { LanguageContext } from '../../context/LanguageContext';
 import './AppPromoSection.css';
 
-const AppPromoSection = ({ imageSrc, imgClassName }) => {
+const AppPromoSection = ({ imageSrc, imgClassName, customTitle, customFocus, customDesc }) => {
   const { t, lang } = useContext(LanguageContext);
 
   useEffect(() => {
@@ -26,8 +26,8 @@ const AppPromoSection = ({ imageSrc, imgClassName }) => {
   return (
     <section className={`app-promo-section scroll-animate ${lang === 'ar' ? 'rtl-text' : ''}`}>
       <div className="promo-content">
-        <h2>{t('emergency.promoTitle')}<span className="red-text">{t('emergency.promoFocus')}</span></h2>
-        <p>{t('emergency.promoDesc')}</p>
+        <h2>{customTitle || t('emergency.promoTitle')}<span className="red-text">{customFocus || t('emergency.promoFocus')}</span></h2>
+        <p>{customDesc || t('emergency.promoDesc')}</p>
         <div className={`promo-app-buttons ${lang === 'ar' ? 'rtl-buttons' : ''}`}>
           <button className="promo-app-btn">
              <Apple size={24} />
