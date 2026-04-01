@@ -9,8 +9,8 @@ import AppPromoSection from '../components/Sections/AppPromoSection';
 // New images for the redesign
 import stayConnectedImg from '../assets/images/stay-pic.png';
 import elderlyParentsImg from '../assets/images/one.png';
-import chronicConditionsImg from '../assets/images/sarah.png';
-import activeChildrenImg from '../assets/images/malak.png';
+import chronicConditionsImg from '../assets/images/two.png';
+import activeChildrenImg from '../assets/images/three.png';
 
 function ForCaregivers() {
   const { t, lang } = useContext(LanguageContext);
