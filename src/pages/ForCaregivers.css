@@ -272,94 +272,112 @@
   margin: 0;
 }
 
-.fc-steps {
-  margin-top: 50px;
-  padding: 40px 20px;
-  background: rgba(5, 13, 29, 0.8);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 16px;
+.fc-steps-modern {
+  margin: 100px 0;
+  text-align: center;
 }
 
-.fc-steps h2 {
-  margin: 0;
-  font-size: 30px;
-  line-height: 36px;
+.fc-steps-modern h2 {
+  font-size: 32px;
   font-weight: 700;
-  text-align: center;
+  margin-bottom: 16px;
 }
 
-.fc-steps p {
-  margin-top: 10px;
+.fc-steps-modern p {
   color: var(--text-muted);
-  font-size: 16px;
-  text-align: center;
+  max-width: 600px;
+  margin: 0 auto 60px;
 }
 
-.fc-step-grid {
-  margin-top: 28px;
+.fc-timeline {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 14px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  position: relative;
 }
 
-.fc-step-item {
-  background: rgba(13, 24, 43, 0.9);
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  border-radius: 15px;
-  padding: 18px;
-  text-align: center;
+.fc-timeline::before {
+  content: '';
+  position: absolute;
+  top: 25px;
+  left: 10%;
+  right: 10%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.1) 50%, transparent 100%);
+  z-index: 1;
 }
 
-.step-circle {
-  width: 44px;
-  height: 44px;
-  margin: 0 auto 12px;
+.fc-timeline-step {
+  position: relative;
+  z-index: 2;
+}
+
+.fc-circle-wrap {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+.fc-step-circle {
+  width: 50px;
+  height: 50px;
+  background: #0f172a;
+  border: 2px solid rgba(255, 255, 255, 0.1);
   border-radius: 50%;
-  background: linear-gradient(180deg, #fe4f4f 0%, #e04831 100%);
-  color: #ffffff;
   display: grid;
   place-items: center;
   font-weight: 700;
-}
-
-.fc-step-item h4 {
-  margin: 0;
-  font-size: 16px;
-  font-weight: 600;
-}
-
-.fc-step-item p {
-  margin: 6px 0 0;
-  color: var(--text-muted);
+  color: #fff;
   font-size: 14px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
 }
 
-.fc-cta {
-  margin-top: 42px;
-  text-align: center;
-  background: rgba(18, 32, 56, 0.86);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 16px;
-  padding: 30px 20px;
+.fc-timeline-step h4 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 8px;
 }
 
-.fc-cta h3 {
+.fc-timeline-step p {
+  font-size: 14px;
+  line-height: 1.6;
   margin: 0;
-  font-size: 28px;
-  font-weight: 700;
 }
 
-.fc-cta p {
-  margin: 10px 0 20px;
+.fc-gift-cta {
+  margin: 100px 0;
+}
+
+.fc-gift-card {
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.8) 0%, rgba(10, 15, 30, 0.9) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  padding: 60px 40px;
+  text-align: center;
+  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.4);
+}
+
+.fc-gift-icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 30px;
+  background: rgba(0, 102, 255, 0.1);
+  color: #0084ff;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+}
+
+.fc-gift-card h3 {
+  font-size: 32px;
+  margin-bottom: 16px;
+}
+
+.fc-gift-card p {
+  font-size: 18px;
   color: var(--text-muted);
-  font-size: 15px;
-  line-height: 21px;
-}
-
-.fc-cta .btn {
-  width: 220px;
-  font-size: 15px;
-  padding: 12px 18px;
+  max-width: 600px;
+  margin: 0 auto 32px;
 }
 
 .scroll-animate {
