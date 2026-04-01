@@ -1,0 +1,198 @@
+import React, { useState, useEffect, useContext } from 'react';
+import { Link, useParams } from 'react-router-dom';
+import { 
+  ArrowLeft, Droplets, Zap, Shield, HeartPulse, 
+  ShoppingCart, Truck, ShieldCheck, Undo2, WifiOff
+} from 'lucide-react';
+import { LanguageContext } from '../../context/LanguageContext';
+import DynamicBackground from '../../components/common/DynamicBackground';
+import './PulseDetails.css';
+
+// Using available images from assets
+import mainImg from '../../assets/images/w4.png';
+import thumb1 from '../../assets/images/watch.png'; // Mock thumbnails
+import thumb2 from '../../assets/images/1img.png';
+import thumb3 from '../../assets/images/2img.png';
+import thumb4 from '../../assets/images/3img.png';
+
+const PulseDetails = () => {
+  const { productId } = useParams();
+  const { t, lang } = useContext(LanguageContext);
+  const [qty, setQty] = useState(1);
+  const [activeColor, setActiveColor] = useState('gray');
+  
+  const colors = [
+    { id: 'gray', name: t('pulseDetails.colorGray'), hex: '#4B5563' },
+    { id: 'dark', name: t('pulseDetails.colorDark'), hex: '#111827' },
+    { id: 'ruby', name: t('pulseDetails.colorRuby'), hex: '#991B1B' },
+    { id: 'blue', name: t('pulseDetails.colorBlue'), hex: '#1E40AF' }
+  ];
+
+  useEffect(() => {
+    // IntersectionObserver to animate content
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '-50px' });
+
+    const animatedElements = document.querySelectorAll('.scroll-animate');
+    animatedElements.forEach(el => observer.observe(el));
+    
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div className={`pulse-details-container ${lang === 'ar' ? 'rtl-text' : ''}`}>
+      <DynamicBackground />
+      
+      <div className="pulse-content-wrapper">
+        
+        {/* Back navigation */}
+        <Link to="/shop/bracelet" className="back-btn scroll-animate">
+          <ArrowLeft size={20} style={lang === 'ar' ? {transform: 'rotate(180deg)'} : {}} />
+          {t('pulseDetails.back')}
+        </Link>
+        
+        {/* Top Product Section */}
+        <div className="pulse-product-top">
+          
+          {/* Left Side: Images & Perks */}
+          <div className="pulse-gallery-side scroll-animate stag-1">
+            <div className="pulse-gallery">
+              <div className="main-image-wrapper">
+                <img src={mainImg} alt="QLINK-PULSE Main" />
+              </div>
+              <div className="thumbnail-group">
+                <div className="thumb"><img src={thumb1} alt="Thumb 1" /></div>
+                <div className="thumb"><img src={thumb2} alt="Thumb 2" /></div>
+                <div className="thumb"><img src={thumb3} alt="Thumb 3" /></div>
+                <div className="thumb"><img src={thumb4} alt="Thumb 4" /></div>
+              </div>
+            </div>
+            
+            <div className="perks-row">
+              <div className="perk-box">
+                <Droplets size={24} color="#3b82f6" />
+                <span className="perk-text">{t('pulseDetails.perk1')}</span>
+              </div>
+              <div className="perk-box">
+                <HeartPulse size={24} color="#10b981" />
+                <span className="perk-text">{t('pulseDetails.perk2')}</span>
+              </div>
+              <div className="perk-box">
+                <Shield size={24} color="#ef4444" />
+                <span className="perk-text">{t('pulseDetails.perk3')}</span>
+              </div>
+            </div>
+          </div>
+          
+          {/* Right Side: Product Info */}
+          <div className="pulse-info scroll-animate stag-2">
+            <h1 className="pulse-title">{t('pulseDetails.title')}</h1>
+            <div className="pulse-subtitle">{t('pulseDetails.subtitle')}</div>
+            <p className="pulse-desc">{t('pulseDetails.desc')}</p>
+            
+            <div className="price-row">
+              <div className="price">{t('pulseDetails.price')}</div>
+              <div className="reviews">
+                <span>★★★★★</span>
+                {t('pulseDetails.reviews')}
+              </div>
+            </div>
+            
+            <div className="finish-selector">
+              <span className="finish-label">
+                {t('pulseDetails.finish')}: <strong>{colors.find(c => c.id === activeColor)?.name}</strong>
+              </span>
+              <div className="finish-options">
+                {colors.map(color => (
+                  <div 
+                    key={color.id}
+                    className={`color-circle ${activeColor === color.id ? 'active' : ''}`}
+                    style={{ backgroundColor: color.hex }}
+                    onClick={() => setActiveColor(color.id)}
+                  ></div>
+                ))}
+              </div>
+            </div>
+            
+            <div className="quantity-selector">
+              <span className="finish-label">{t('pulseDetails.quantity')}</span>
+              <div className="qty-controls">
+                <button className="qty-btn" onClick={() => setQty(Math.max(1, qty - 1))}>-</button>
+                <div className="qty-val">{qty}</div>
+                <button className="qty-btn" onClick={() => setQty(qty + 1)}>+</button>
+              </div>
+            </div>
+            
+            <div className="sizing-info">
+              {t('pulseDetails.sizing')}
+            </div>
+            
+            <div className="action-buttons">
+              <button className="btn-buy">
+                <Zap fill="white" size={20} />
+                {t('pulseDetails.buyNow')}
+              </button>
+              <button className="btn-cart">
+                <ShoppingCart size={20} />
+                {t('pulseDetails.addCart')}
+              </button>
+            </div>
+            
+            <div className="guarantees">
+              <div className="guarantee-item">
+                <Truck size={16} /> {t('pulseDetails.ships')}
+              </div>
+              <div className="guarantee-item">
+                <ShieldCheck size={16} /> {t('pulseDetails.warranty')}
+              </div>
+              <div className="guarantee-item">
+                <Undo2 size={16} /> {t('pulseDetails.returns')}
+              </div>
+            </div>
+            
+          </div>
+        </div>
+        
+        {/* Bottom Tabs Section */}
+        <div className="pulse-tabs scroll-animate stag-3">
+          <div className="tab-headers">
+            <button className="tab-btn active">{t('pulseDetails.tabDetail')}</button>
+            <button className="tab-btn">{t('pulseDetails.tabPrivacy')}</button>
+            <button className="tab-btn">{t('pulseDetails.tabInbox')}</button>
+          </div>
+          
+          <div className="bridge-content">
+            <h3>{t('pulseDetails.bridgeTitle')}</h3>
+            <p>{t('pulseDetails.bridgeDesc1')}</p>
+            
+            <div className="bridge-features">
+              <div className="feat-box">
+                <WifiOff size={32} color="#ef4444" />
+                <h4>{t('pulseDetails.feature1Title')}</h4>
+                <p>{t('pulseDetails.feature1Desc')}</p>
+              </div>
+              <div className="feat-box">
+                <Droplets size={32} color="#3b82f6" />
+                <h4>{t('pulseDetails.feature2Title')}</h4>
+                <p>{t('pulseDetails.feature2Desc')}</p>
+              </div>
+              <div className="feat-box">
+                <Zap size={32} color="#10b981" />
+                <h4>{t('pulseDetails.feature3Title')}</h4>
+                <p>{t('pulseDetails.feature3Desc')}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  );
+};
+
+export default PulseDetails;

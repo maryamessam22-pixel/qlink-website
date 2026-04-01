@@ -89,7 +89,7 @@ const TheBracelet = () => {
           </ul>
           
           <div className="bracelet-card-price">{t('bracelet.pricePulse')}</div>
-          <button className="bracelet-card-btn">{t('bracelet.btnView')}</button>
+          <Link to="/shop/pulse" className="bracelet-card-btn" style={{display: 'flex', justifyContent: 'center', alignItems: 'center', textDecoration: 'none'}}>{t('bracelet.btnView')}</Link>
         </div>
       </div>
 
