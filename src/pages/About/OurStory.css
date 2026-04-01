@@ -56,7 +56,7 @@
   width: 80px;
   height: 80px;
   background: rgba(59, 130, 246, 0.1);
-  color: #3b82f6;
+  color: var(--color-primary-blue);
   border-radius: 20px;
   display: flex;
   align-items: center;
@@ -67,6 +67,7 @@
 .mission-content h2 {
   font-size: 32px;
   margin-bottom: 20px;
+  color: var(--text-primary);
 }
 
 .mission-content p {
@@ -84,6 +85,7 @@
   font-size: 36px;
   text-align: center;
   margin-bottom: 60px;
+  color: var(--text-primary);
 }
 
 .values-grid {
@@ -94,7 +96,7 @@
 
 .value-card {
   background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border-light);
   border-radius: 20px;
   padding: 40px;
   transition: transform 0.3s ease, background 0.3s ease;
@@ -103,17 +105,18 @@
 .value-card:hover {
   transform: translateY(-8px);
   background: rgba(255, 255, 255, 0.04);
-  border-color: rgba(59, 130, 246, 0.3);
+  border-color: var(--color-primary-blue);
 }
 
 .value-icon {
-  color: #3b82f6;
+  color: var(--color-primary-blue);
   margin-bottom: 24px;
 }
 
 .value-card h3 {
   font-size: 22px;
   margin-bottom: 12px;
+  color: var(--text-primary);
 }
 
 .value-card p {
@@ -124,7 +127,7 @@
 
 /* CTA Section */
 .story-cta .cta-box {
-  background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
+  background: linear-gradient(135deg, var(--color-primary-navy) 0%, #1e40af 100%);
   border-radius: 24px;
   padding: 80px 40px;
   text-align: center;
@@ -134,12 +137,12 @@
 .story-cta h2 {
   font-size: 36px;
   margin-bottom: 32px;
-  color: #ffffff;
+  color: var(--text-primary);
 }
 
 .btn-primary {
-  background: #ffffff;
-  color: #1e3a8a;
+  background: var(--text-primary);
+  color: var(--color-primary-navy);
   border: none;
   padding: 16px 40px;
   border-radius: 12px;
