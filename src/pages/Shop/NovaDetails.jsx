@@ -9,10 +9,11 @@ import DynamicBackground from '../../components/common/DynamicBackground';
 import './NovaDetails.css';
 
 // Using available images from assets
+// import mainImg from '../../assets/images/QLINK-NOVA.png';
 import mainImg from '../../assets/images/watch.png';
-import thumb1 from '../../assets/images/1img.png';
-import thumb2 from '../../assets/images/2img.png';
-import thumb3 from '../../assets/images/3img.png';
+import thumb1 from '../../assets/images/w4.png';
+import thumb2 from '../../assets/images/w3.png';
+import thumb3 from '../../assets/images/w1.png';
 import thumb4 from '../../assets/images/w2.png';
 
 const NovaDetails = () => {
@@ -172,17 +173,17 @@ const NovaDetails = () => {
             
             <div className="bridge-features">
               <div className="feat-box">
-                <WifiOff size={32} />
+                <WifiOff size={32} color="#ef4444" />
                 <h4>{t('novaDetails.feature1Title')}</h4>
                 <p>{t('novaDetails.feature1Desc')}</p>
               </div>
               <div className="feat-box">
-                <Droplets size={32} />
+                <Droplets size={32} color="#3b82f6" />
                 <h4>{t('novaDetails.feature2Title')}</h4>
                 <p>{t('novaDetails.feature2Desc')}</p>
               </div>
               <div className="feat-box">
-                <Zap size={32} />
+                <Zap size={32} color="#10b981" />
                 <h4>{t('novaDetails.feature3Title')}</h4>
                 <p>{t('novaDetails.feature3Desc')}</p>
               </div>

@@ -1,6 +1,6 @@
 .nova-details-container {
   min-height: 100vh;
-  padding-top: 100px;
+  padding-top: 150px;
   background-color: transparent;
   position: relative;
   z-index: 1;
@@ -17,11 +17,11 @@
 .back-btn {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 8px;
   color: white;
   text-decoration: none;
   font-weight: 500;
-  margin-bottom: 2rem;
+  margin-bottom: 32px;
   transition: opacity 0.2s ease;
 }
 .back-btn:hover {
@@ -32,27 +32,27 @@
 .nova-product-top {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 4rem;
-  margin-bottom: 4rem;
+  gap: 64px;
+  margin-bottom: 64px;
 }
 
 @media (max-width: 900px) {
   .nova-product-top {
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 32px;
   }
 }
 
 .nova-gallery {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 16px;
 }
 
 .main-image-wrapper {
   background: var(--card-bg, rgba(30, 30, 45, 0.6));
   border-radius: 16px;
-  padding: 2rem;
+  padding: 32px;
   aspect-ratio: 1;
   display: flex;
   justify-content: center;
@@ -68,7 +68,7 @@
 
 .thumbnail-group {
   display: flex;
-  gap: 1rem;
+  gap: 16px;
 }
 
 .thumb {
@@ -95,14 +95,14 @@
 .perks-row {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
-  margin-top: 1rem;
+  gap: 16px;
+  margin-top: 16px;
 }
 
 .perk-box {
   background: var(--card-bg, rgba(30, 30, 45, 0.4));
   border-radius: 8px;
-  padding: 1rem;
+  padding: 16px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -113,11 +113,11 @@
 
 .perk-box svg {
   color: #ff3b30;
-  margin-bottom: 0.5rem;
+  margin-bottom: 8px;
 }
 
 .perk-text {
-  font-size: 0.8rem;
+  font-size: 13px;
   font-weight: 500;
 }
 
@@ -127,19 +127,19 @@
   flex-direction: column;
 }
 
-.nova-title {font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem;}
-.nova-subtitle {font-size: 1.2rem; color: #ff3b30; font-weight: 600; margin-bottom: 1rem;}
-.nova-desc {font-size: 1rem; color: rgba(255,255,255,0.7); line-height: 1.6; margin-bottom: 2rem;}
+.nova-title {font-size: 40px; font-weight: 700; margin-bottom: 8px;}
+.nova-subtitle {font-size: 19px; color: #ff3b30; font-weight: 600; margin-bottom: 16px;}
+.nova-desc {font-size: 16px; color: rgba(255,255,255,0.7); line-height: 1.6; margin-bottom: 32px;}
 
 .price-row {
   display: flex;
   align-items: center;
-  gap: 1.5rem;
-  margin-bottom: 2rem;
+  gap: 24px;
+  margin-bottom: 32px;
 }
 
 .price {
-  font-size: 2rem;
+  font-size: 32px;
   font-weight: 700;
   color: #ff3b30;
 }
@@ -147,24 +147,24 @@
 .reviews {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  font-size: 0.9rem;
+  gap: 8px;
+  font-size: 14px;
 }
 
-.reviews span { color: gold; font-size: 1.2rem;}
+.reviews span { color: gold; font-size: 19px;}
 
 .finish-selector {
-  margin-bottom: 2rem;
+  margin-bottom: 32px;
 }
 .finish-label {
   display: block;
-  font-size: 0.9rem;
+  font-size: 14px;
   color: rgba(255,255,255,0.7);
-  margin-bottom: 0.8rem;
+  margin-bottom: 13px;
 }
 .finish-options {
   display: flex;
-  gap: 1rem;
+  gap: 16px;
 }
 .color-circle {
   width: 32px;
@@ -179,7 +179,7 @@
 }
 
 .quantity-selector {
-  margin-bottom: 1.5rem;
+  margin-bottom: 24px;
 }
 
 .qty-controls {
@@ -196,7 +196,7 @@
   color: white;
   width: 40px;
   height: 40px;
-  font-size: 1.2rem;
+  font-size: 19px;
   cursor: pointer;
 }
 
@@ -211,16 +211,16 @@
 }
 
 .sizing-info {
-  font-size: 0.9rem;
+  font-size: 14px;
   color: rgba(255,255,255,0.6);
-  margin-bottom: 2rem;
+  margin-bottom: 32px;
 }
 
 .action-buttons {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  margin-bottom: 2rem;
+  gap: 16px;
+  margin-bottom: 32px;
 }
 
 .btn-buy {
@@ -228,14 +228,14 @@
   color: white;
   border: none;
   border-radius: 8px;
-  padding: 1rem;
-  font-size: 1.1rem;
+  padding: 16px;
+  font-size: 18px;
   font-weight: 600;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
+  gap: 8px;
 }
 
 .btn-buy:hover { background: #ff453a; }
@@ -245,14 +245,14 @@
   color: white;
   border: 1px solid rgba(255,255,255,0.1);
   border-radius: 8px;
-  padding: 1rem;
-  font-size: 1.1rem;
+  padding: 16px;
+  font-size: 18px;
   font-weight: 600;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
+  gap: 8px;
 }
 .btn-cart:hover { background: rgba(255,255,255,0.1); }
 
@@ -260,37 +260,37 @@
   display: flex;
   justify-content: space-between;
   border-top: 1px solid rgba(255,255,255,0.1);
-  padding-top: 1.5rem;
+  padding-top: 24px;
 }
 
 .guarantee-item {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  font-size: 0.85rem;
+  gap: 8px;
+  font-size: 14px;
   color: rgba(255,255,255,0.6);
 }
 
 /* Tabs Section */
 .nova-tabs {
-  margin-top: 4rem;
-  margin-bottom: 4rem;
+  margin-top: 64px;
+  margin-bottom: 64px;
 }
 
 .tab-headers {
   display: flex;
   justify-content: center;
-  gap: 2rem;
+  gap: 32px;
   border-bottom: 1px solid rgba(255,255,255,0.1);
-  margin-bottom: 3rem;
+  margin-bottom: 48px;
 }
 
 .tab-btn {
   background: transparent;
   border: none;
   color: rgba(255,255,255,0.6);
-  font-size: 1rem;
-  padding: 1rem 0;
+  font-size: 16px;
+  padding: 16px 0;
   cursor: pointer;
   position: relative;
 }
@@ -317,27 +317,27 @@
 }
 
 .bridge-content h3 {
-  font-size: 2rem;
-  margin-bottom: 1.5rem;
+  font-size: 32px;
+  margin-bottom: 24px;
 }
 
 .bridge-content p {
   color: rgba(255,255,255,0.7);
   line-height: 1.6;
-  margin-bottom: 1.5rem;
+  margin-bottom: 24px;
 }
 
 .bridge-features {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
-  margin-top: 3rem;
+  gap: 32px;
+  margin-top: 48px;
 }
 
 @media (max-width: 768px) {
   .bridge-features {
     grid-template-columns: 1fr;
-    gap: 1rem;
+    gap: 16px;
   }
 }
 
@@ -345,12 +345,12 @@
   background: var(--card-bg, rgba(30, 30, 45, 0.4));
   border: 1px solid rgba(255,255,255,0.05);
   border-radius: 12px;
-  padding: 2rem 1.5rem;
+  padding: 32px 24px;
 }
 
-.feat-box svg { color: #00d2ff; margin-bottom: 1rem; }
-.feat-box h4 { margin-bottom: 0.5rem; font-size: 1.1rem;}
-.feat-box p { font-size: 0.9rem; color: rgba(255,255,255,0.6); }
+.feat-box svg { margin-bottom: 16px; }
+.feat-box h4 { margin-bottom: 8px; font-size: 18px;}
+.feat-box p { font-size: 14px; color: rgba(255,255,255,0.6); }
 
 /* Animation Utility */
 .scroll-animate {

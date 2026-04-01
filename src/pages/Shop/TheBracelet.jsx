@@ -39,7 +39,17 @@ const TheBracelet = () => {
       <DynamicBackground />
       
       <div className="bracelet-header-section scroll-animate stag-1">
-        <h1 className="bracelet-title">{t('bracelet.title')}</h1>
+        <h1 className="bracelet-title">
+          {t('bracelet.title').includes('Your') ? (
+            <>
+              {t('bracelet.title').split('Your')[0]}
+              <span style={{ color: '#ff3b30' }}>Your</span>
+              {t('bracelet.title').split('Your')[1]}
+            </>
+          ) : (
+            t('bracelet.title')
+          )}
+        </h1>
         <p className="bracelet-subtitle">
           {t('bracelet.subtitle').split('\n').map((line, i) => <React.Fragment key={i}>{line}<br/></React.Fragment>)}
         </p>
@@ -61,7 +71,7 @@ const TheBracelet = () => {
           </ul>
           
           <div className="bracelet-card-price">{t('bracelet.priceNova')}</div>
-          <Link to="/shop/nova" className="bracelet-card-btn" style={{textAlign: 'center', display: 'block', textDecoration: 'none'}}>{t('bracelet.btnView')}</Link>
+          <Link to="/shop/nova" className="bracelet-card-btn" style={{display: 'flex', justifyContent: 'center', alignItems: 'center', textDecoration: 'none'}}>{t('bracelet.btnView')}</Link>
         </div>
 
         {/* Pulse Tactical Card */}
