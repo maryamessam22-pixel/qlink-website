@@ -362,6 +362,8 @@ const translations = {
       heroHighlight: "There Every Second.",
       heroDesc: "Qlink gives caregivers the ultimate peace of mind. Know that your loved ones are protected, identified, and connected to help even when you're apart.",
       heroBtn: "Start Protecting Today",
+      heroTag: "Trusted by 50,000+ Families",
+      heroAlt: "Caregivers supporting loved ones",
       
       connectTitle: "Stay Connected to What Matters Most",
       connectDesc: "Caring for a loved one is a full-time responsibility, but you can't be everywhere at once. Qlink fills the gap, ensuring that no matter what happens, vital medical information and your contact details are always available.",
