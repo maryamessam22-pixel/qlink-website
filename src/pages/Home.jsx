@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { LanguageContext } from '../context/LanguageContext';
+import { supabase } from "../lib/Supabase";
 import {
   WifiOff,
   QrCode,
@@ -38,9 +39,33 @@ import appScreenImg from '../assets/images/appscreen.png';
 
 function Home() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [heroTitleEn, setHeroTitleEn] = useState('');
   const { t, lang } = useContext(LanguageContext);
 
   useEffect(() => {
+    const fetchHeroTitle = async () => {
+      try {
+        const { data, error } = await supabase
+          .from('cms_content')
+          .select('title_en')
+          .eq('id', 7) // row 7
+          .single();
+
+        if (error) {
+          console.error('Supabase hero title fetch error:', error);
+          return;
+        }
+
+        if (data?.title_en) {
+          setHeroTitleEn(data.title_en);
+        }
+      } catch (err) {
+        console.error('Unexpected error fetching hero title:', err);
+      }
+    };
+
+    fetchHeroTitle();
+
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 300);
     };
@@ -78,8 +103,14 @@ function Home() {
         <section className={`hero-section scroll-animate ${lang === 'ar' ? 'rtl-text' : ''}`}>
           <div className="hero-text">
             <h1 className={`hero-title scroll-animate stag-1 ${lang === 'ar' ? '' : 'hero-title-eng'}`}>
-              {t('hero.titleTop')}<span className="red-text">{t('hero.titleHighlight')}</span><br />
-              {t('hero.titleBottom')}
+              {heroTitleEn ? (
+                heroTitleEn
+              ) : (
+                <>
+                  {t('hero.titleTop')}<span className="red-text">{t('hero.titleHighlight')}</span><br />
+                  {t('hero.titleBottom')}
+                </>
+              )}
             </h1>
             <p className="hero-desc scroll-animate stag-2">
               {t('hero.desc')}
