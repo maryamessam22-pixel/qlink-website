@@ -319,7 +319,41 @@ const translations = {
     shareDesc: "Your feedback helps us improve. Tell us what you think of our products and share your safety story.",
     shareBtn: "Send review + Message now",
     joinTitle: "Join The Community",
-    joinDesc: "Experience the peace of mind that thousands of others are already enjoying."
+    joinDesc: "Experience the peace of mind that thousands of others are already enjoying.",
+    testimonials: [
+      {
+        id: 1,
+        author: "Selma Ahmed",
+        role: "Caregiver/Daughter",
+        stars: 5,
+        quote: "The peace of mind this device has given my family is priceless. I can finally let him go out alone with confidence.",
+        readMore: "Read Full Story"
+      },
+      {
+        id: 2,
+        author: "Sarah Mary",
+        role: "Mother of Two",
+        stars: 5,
+        quote: "I bought these for my children during summer camp. The safety and security it provided during the trip was well worth the investment.",
+        readMore: "Read Full Story"
+      },
+      {
+        id: 3,
+        author: "Malak Ahmed",
+        role: "Wife of Diabetic",
+        stars: 5,
+        quote: "This device literally saved my life last year. The paramedics knew exactly how to treat me within seconds of arriving.",
+        readMore: "Read Full Story"
+      },
+      {
+        id: 4,
+        author: "Jane Moore",
+        role: "Athletic Trainer",
+        stars: 4,
+        quote: "The tactical design is great. I recommended this to all my athletes who train out in the sun and outdoors.",
+        readMore: "Read Full Story"
+      }
+    ]
   }
 };
 

@@ -91,6 +91,36 @@ const Reviews = () => {
           </div>
         </div>
 
+        {/* Testimonials Grid */}
+        <div className="testimonials-grid scroll-animate stag-1">
+          {t('reviews.testimonials', { returnObjects: true }).map((item) => (
+            <div key={item.id} className="testimonial-card">
+              <div className="card-header">
+                <div className="user-info">
+                  <div className="user-avatar">{item.author[0]}</div>
+                  <div>
+                    <h4>{item.author}</h4>
+                    <span>{item.role}</span>
+                  </div>
+                </div>
+                <Quote size={24} className="quote-icon" />
+              </div>
+              <div className="star-row-small">
+                {[...Array(5)].map((_, i) => (
+                  <Star 
+                    key={i} 
+                    size={14} 
+                    fill={i < item.stars ? "#ffb800" : "transparent"} 
+                    color={i < item.stars ? "#ffb800" : "rgba(255,255,255,0.2)"} 
+                  />
+                ))}
+              </div>
+              <p className="card-quote">{item.quote}</p>
+              <button className="read-more-link">{item.readMore} &gt;</button>
+            </div>
+          ))}
+        </div>
+
       </div>
     </div>
   );
