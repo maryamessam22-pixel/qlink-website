@@ -146,11 +146,16 @@ function ForCaregivers() {
           </div>
         </section>
 
-        <section className="fc-cta scroll-animate">
-          <h3>Give the Gift of Safety</h3>
-          <p>Join thousands of caregivers who sleep better at night knowing their loved ones are protected.</p>
-          <button className="btn btn-primary">Shop for your family now!</button>
+        <section className="fc-gift-cta scroll-animate">
+          <div className="fc-gift-card">
+            <div className="fc-gift-icon"><HeartPulse size={40} /></div>
+            <h3>{t("reviews.caregivers.giftTitle")}</h3>
+            <p>{t("reviews.caregivers.giftDesc")}</p>
+            <button className="btn btn-primary">{t("reviews.caregivers.giftBtn")}</button>
+          </div>
         </section>
+        
+        <AppPromoSection />
       </main>
     </div>
   );
