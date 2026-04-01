@@ -1,14 +1,50 @@
-import React from 'react';
-// import './OurStory.css';
+import React, { useEffect, useContext } from 'react';
+import { LanguageContext } from '../../context/LanguageContext';
+import DynamicBackground from '../../components/common/DynamicBackground';
+import { Target, Heart, ShieldCheck, Zap } from 'lucide-react';
+import './OurStory.css';
 
 function OurStory() {
+  const { t, lang } = useContext(LanguageContext);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+
+    const animatedElements = document.querySelectorAll('.scroll-animate');
+    animatedElements.forEach(el => observer.observe(el));
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <div style={{ padding: '2rem' }}>
-      <h1>Our Story</h1>
-      <p>The story behind Qlink.</p>
+    <div className={`our-story-page ${lang === 'ar' ? 'rtl-text' : ''}`}>
+      <DynamicBackground />
+      <div className="story-container">
+        {/* Hero Section */}
+        <header className="story-hero scroll-animate stag-1">
+          <h1 className="story-title">{t('ourStory.heroTitle')}</h1>
+          <p className="story-subtitle">{t('ourStory.heroSubtitle')}</p>
+        </header>
+
+        {/* Mission Section */}
+        <section className="story-mission scroll-animate stag-2">
+          <div className="mission-content">
+            <div className="mission-icon">
+              <Target size={40} />
+            </div>
+            <h2>{t('ourStory.missionTitle')}</h2>
+            <p>{t('ourStory.missionText')}</p>
+          </div>
+        </section>
+      </div>
     </div>
   );
 }
-
 
 export default OurStory;
