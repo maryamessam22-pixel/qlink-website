@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { 
   ArrowLeft, Droplets, Zap, Shield, HeartPulse, 
-  ShoppingCart, Truck, ShieldCheck, Undo2, WifiOff
+  ShoppingCart, Truck, ShieldCheck, Undo2, WifiOff, Sparkles, Upload
 } from 'lucide-react';
 import { LanguageContext } from '../../context/LanguageContext';
 import DynamicBackground from '../../components/common/DynamicBackground';
@@ -22,10 +22,10 @@ const PulseDetails = () => {
   const [activeColor, setActiveColor] = useState('gray');
   
   const colors = [
-    { id: 'gray', name: t('pulseDetails.colorGray'), hex: '#4B5563' },
-    { id: 'dark', name: t('pulseDetails.colorDark'), hex: '#111827' },
-    { id: 'ruby', name: t('pulseDetails.colorRuby'), hex: '#991B1B' },
-    { id: 'blue', name: t('pulseDetails.colorBlue'), hex: '#1E40AF' }
+    { id: 'gray', name: t('pulseDetails.colorGray'), hex: '#5C5C5C' },
+    { id: 'dark', name: t('pulseDetails.colorDark'), hex: '#1C1C24' },
+    { id: 'ruby', name: t('pulseDetails.colorRuby'), hex: '#9B1B30' },
+    { id: 'blue', name: t('pulseDetails.colorBlue'), hex: '#2B6CB0' }
   ];
 
   useEffect(() => {
@@ -79,7 +79,7 @@ const PulseDetails = () => {
                 <span className="perk-text">{t('pulseDetails.perk1')}</span>
               </div>
               <div className="perk-box">
-                <HeartPulse size={24} color="#10b981" />
+                <Zap size={24} color="#10b981" />
                 <span className="perk-text">{t('pulseDetails.perk2')}</span>
               </div>
               <div className="perk-box">
@@ -91,15 +91,28 @@ const PulseDetails = () => {
           
           {/* Right Side: Product Info */}
           <div className="pulse-info scroll-animate stag-2">
-            <h1 className="pulse-title">{t('pulseDetails.title')}</h1>
-            <div className="pulse-subtitle">{t('pulseDetails.subtitle')}</div>
-            <p className="pulse-desc">{t('pulseDetails.desc')}</p>
-            
-            <div className="price-row">
-              <div className="price">{t('pulseDetails.price')}</div>
-              <div className="reviews">
-                <span>★★★★★</span>
-                {t('pulseDetails.reviews')}
+            <div className="info-top-flex">
+              <div>
+                <h1 className="pulse-title">{t('pulseDetails.title')}</h1>
+                <div className="pulse-subtitle">{t('pulseDetails.subtitle')}</div>
+                <p className="pulse-desc">{t('pulseDetails.desc')}</p>
+                
+                <div className="price-row">
+                  <div className="price">{t('pulseDetails.price')}</div>
+                  <div className="reviews">
+                    <span>★★★★★</span>
+                    {t('pulseDetails.reviews')}
+                  </div>
+                </div>
+              </div>
+              
+              <div className="floating-side-actions">
+                <button className="action-circle">
+                  <Sparkles size={20} color="#ff3b30" />
+                </button>
+                <button className="action-circle">
+                  <Upload size={20} />
+                </button>
               </div>
             </div>
             

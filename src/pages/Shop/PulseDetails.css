@@ -100,15 +100,16 @@
 }
 
 .perk-box {
-  background: var(--card-bg, rgba(30, 30, 45, 0.4));
-  border-radius: 8px;
+  background: rgba(30, 30, 45, 0.4);
+  border-radius: 12px;
   padding: 16px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
 }
 
 .perk-box svg {
@@ -184,10 +185,11 @@
 
 .qty-controls {
   display: inline-flex;
-  background: rgba(255,255,255,0.05);
-  border-radius: 8px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 20px;
   align-items: center;
   overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.15);
 }
 
 .qty-btn {
@@ -241,9 +243,9 @@
 .btn-buy:hover { background: #ff453a; }
 
 .btn-cart {
-  background: rgba(255,255,255,0.05);
+  background: transparent;
   color: white;
-  border: 1px solid rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.4);
   border-radius: 8px;
   padding: 16px;
   font-size: 18px;
@@ -253,8 +255,12 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
+  transition: all 0.3s ease;
 }
-.btn-cart:hover { background: rgba(255,255,255,0.1); }
+.btn-cart:hover { 
+  background: rgba(255,255,255,0.05);
+  border-color: white;
+}
 
 .guarantees {
   display: flex;
@@ -317,8 +323,13 @@
 }
 
 .bridge-content h3 {
-  font-size: 32px;
+  font-size: 36px;
+  font-weight: 700;
   margin-bottom: 24px;
+  background: linear-gradient(180deg, #FFFFFF 0%, #B0B0B0 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .bridge-content p {
@@ -367,3 +378,40 @@
 .stag-1 { transition-delay: 0.1s; }
 .stag-2 { transition-delay: 0.2s; }
 .stag-3 { transition-delay: 0.3s; }
+
+/* Floating Actions */
+.info-top-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.floating-side-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.action-circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  color: white;
+  transition: all 0.2s ease;
+}
+
+.action-circle:hover {
+  background: rgba(255,255,255,0.2);
+  transform: scale(1.05);
+}
+
+.pulse-info {
+  position: relative;
+}
+

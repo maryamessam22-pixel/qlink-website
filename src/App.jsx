@@ -24,6 +24,7 @@ import Faqs from './pages/Support/Faqs';
 import Contact from './pages/Support/Contact';
 import AppDownload from './pages/Support/AppDownload';
 import NovaDetails from './pages/Shop/NovaDetails';
+import PulseDetails from './pages/Shop/PulseDetails';
 
 // Auth Pages
 import AuthPage from './pages/Auth/AuthPage';
@@ -49,7 +50,8 @@ function App() {
                 <Route path="/how-it-works/qlink" element={<HowQlinkWorks />} />
                 <Route path="/how-it-works/emergency" element={<EmergencyScenario />} />
                 <Route path="/shop/bracelet" element={<TheBracelet />} />
-                <Route path="/shop/:productId" element={<NovaDetails />} />
+                {/* <Route path="/shop/:productId" element={<NovaDetails />} /> */}
+                <Route path="/shop/:productId" element={<TheBracelet />} />
                 <Route path="/shop/compare" element={<Compare />} />
                 <Route path="/shop/reviews" element={<Reviews />} />
                 <Route path="/for-caregivers" element={<ForCaregivers />} />
