@@ -156,18 +156,21 @@ function OurStory() {
            </div>
         </section>
 
-        {/* Stats Section */}
-        <section className="story-stats-section scroll-animate stag-2">
-           <div className="stats-grid-story">
-              {t('ourStory.stats', { returnObjects: true }).map((s, i) => (
-                <div key={i} className="stat-item-story">
-                   <h3>{s.value}</h3>
-                   <p>{s.label}</p>
-                </div>
-              ))}
-           </div>
-        </section>
+      </div>
 
+      {/* Stats Section - Moved Outside to span full width */}
+      <section className="story-stats-section scroll-animate stag-2">
+         <div className="stats-grid-story">
+            {t('ourStory.stats', { returnObjects: true }).map((s, i) => (
+              <div key={i} className="stat-item-story">
+                 <h3>{s.value}</h3>
+                 <p>{s.label}</p>
+              </div>
+            ))}
+         </div>
+      </section>
+
+      <div className="story-content-container">
         {/* Final CTA */}
         <section className="story-final-cta scroll-animate stag-3">
            <h2>{t('ourStory.ctaTitle')}</h2>
