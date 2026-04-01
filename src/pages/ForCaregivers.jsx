@@ -8,7 +8,7 @@ import AppPromoSection from '../components/Sections/AppPromoSection';
 
 // New images for the redesign
 import stayConnectedImg from '../assets/images/stay-pic.png';
-import elderlyParentsImg from '../assets/images/salma.png';
+import elderlyParentsImg from '../assets/images/one.png';
 import chronicConditionsImg from '../assets/images/sarah.png';
 import activeChildrenImg from '../assets/images/malak.png';
 
