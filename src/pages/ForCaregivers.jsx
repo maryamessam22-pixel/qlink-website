@@ -155,9 +155,8 @@ function ForCaregivers() {
             <button className="btn btn-primary">{t("reviews.caregivers.giftBtn")}</button>
           </div>
         </section>
-        
-        <AppPromoSection imageSrc={promoMobiles} imgClassName="promo-phones-img" />
       </main>
+      <AppPromoSection imageSrc={promoMobiles} imgClassName="promo-phones-img" />
     </div>
   );
 }
