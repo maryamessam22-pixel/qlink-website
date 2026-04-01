@@ -403,21 +403,34 @@ const translations = {
       promoFocus: "Today!",
       promoDesc: "Download the Qlink app and experience the future of personal safety."
     },
-    ourStory: {
-      heroTitle: "Our Story",
-      heroSubtitle: "Empowering individuals with safety and peace of mind through innovative technology.",
-      missionTitle: "Our Mission",
-      missionText: "At Qlink, we believe that everyone deserves to feel safe and protected, no matter where they are. Our mission is to bridge the gap between emergencies and effective treatment by Providing instant access to vital information when it's needed most.",
-      valuesTitle: "Our Core Values",
-      values: [
-        { title: "Innovation", desc: "We constantly push the boundaries of technology to create better safety solutions." },
-        { title: "Privacy", desc: "Your data is yours. We prioritize security and user control in everything we do." },
-        { title: "Reliability", desc: "In an emergency, every second counts. Our systems are built for 100% uptime and accessibility." },
-        { title: "Accessibility", desc: "Safety shouldn't be complicated. We design products that are easy for everyone to use." }
-      ],
-      ctaTitle: "Join the Qlink Community",
-      ctaBtn: "Explore Our Products"
-    }
+  },
+  ourStory: {
+    heroTitle: "Born to Save Lives.",
+    heroSubtitle: "Our story began with a simple observation: every second matters in an emergency, yet vital information remains locked behind locked phones and missing wallets.",
+    
+    originTitle: "The Critical Gap in Care",
+    originDesc: "Back in 2023, we saw first-hand how first responders struggled to identify patients who couldn't communicate. We knew there had to be a way to bridge the gap between an incident and life-saving treatment using tech that just works.",
+    
+    visionTitle: "A Vision for Global Safety",
+    visionDesc: "We didn't just want an app. We wanted a standard. A global identifier that requires no internet, no battery, and no specialized hardware. Qlink was born from the desire to give everyone a voice when they cannot speak.",
+    
+    valuesTitle: "The Principles That Lead Us",
+    values: [
+      { id: 1, title: "Privacy First", desc: "You decide what to share. Your medical history stays secure behind the scanner's door." },
+      { id: 2, title: "Universal Access", desc: "Works on any smartphone, anywhere, with or without a data connection." },
+      { id: 3, title: "Reliable Innovation", desc: "Zero batteries, zero charging, 100% ready for the moment it's scanned." }
+    ],
+    
+    journeyTitle: "Our Journey",
+    journey: [
+      { id: 1, date: "2023", title: "The Concept", desc: "Developing the hybrid QR technology that works offline." },
+      { id: 2, date: "2024", title: "Refining the Band", desc: "Perfecting the waterproof, skin-safe, and secure locking design." },
+      { id: 3, date: "2025", title: "Qlink Global", desc: "Helping thousands across 10+ countries secure their families' futures." }
+    ],
+    
+    ctaTitle: "Be Part of the Story.",
+    ctaDesc: "Join thousands who trust Qlink Every day.",
+    ctaBtn: "Start Your Journey"
   }
 };
 
