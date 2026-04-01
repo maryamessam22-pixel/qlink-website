@@ -11,7 +11,7 @@
 .reviews-content-wrapper {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 5%;
+  /* padding: 0 5%; */
 }
 
 .reviews-header {
@@ -89,6 +89,7 @@
   color: rgba(255,255,255,0.8);
   margin-bottom: 24px;
   line-height: 1.6;
+  width: 725px;
 }
 
 .author-tag {
