@@ -167,7 +167,9 @@ const EmergencyScenario = () => {
       </section>
 
       {/* GET PROTECTED FOOTER CALL */}
-      <AppPromoSection imageSrc={mobiles} />
+      <div className="aPPP">
+        <AppPromoSection imageSrc={mobiles} />
+      </div>
 
     </div>
   );
