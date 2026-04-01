@@ -3,7 +3,7 @@ import { Quote, Star, MessageSquare, Share2, Users, CheckCircle2 } from 'lucide-
 import { LanguageContext } from '../../context/LanguageContext';
 import DynamicBackground from '../../components/common/DynamicBackground';
 import AppPromoSection from '../../components/Sections/AppPromoSection';
-import mobilesImg from '../../assets/images/2mobiles.png';
+import mobilesImg from '../../assets/images/mobile3rd.png';
 import './Reviews.css';
 
 // Featured Images
