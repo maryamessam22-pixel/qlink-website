@@ -58,10 +58,10 @@ function HelpCenter() {
         {/* HEADER SECTION */}
         <section className="support-header-section scroll-animate stag-1">
           <h1 className="support-title">
-            Support <span className="red-text">Center</span>
+            {t('supportCenter.heroTitle')} <span className="red-text">{t('supportCenter.heroHighlight')}</span>
           </h1>
           <p className="support-subtitle">
-            We're here to help. Find answers, contact our team, or check system status
+            {t('supportCenter.heroDesc')}
           </p>
         </section>
 
@@ -72,24 +72,24 @@ function HelpCenter() {
               <div className="icon-wrap icon-wrap-glass" style={{ color: '#b0b8c8' }}>
                 <Book size={24} />
               </div>
-              <h3>Getting Started</h3>
-              <p>Setup guides and tutorials</p>
+              <h3>{t('supportCenter.card1Title')}</h3>
+              <p>{t('supportCenter.card1Desc')}</p>
             </div>
             
             <div className="support-card glass-panel card-active-glow">
               <div className="icon-wrap icon-wrap-red" style={{ color: '#E03232' }}>
                 <Wrench size={24} />
               </div>
-              <h3>Troubleshooting</h3>
-              <p>Fix common technical issues</p>
+              <h3>{t('supportCenter.card2Title')}</h3>
+              <p>{t('supportCenter.card2Desc')}</p>
             </div>
 
             <div className="support-card glass-panel">
               <div className="icon-wrap icon-wrap-glass" style={{ color: '#0d6efd' }}>
                 <CreditCard size={24} />
               </div>
-              <h3>Account & Billing</h3>
-              <p>Manage your subscription</p>
+              <h3>{t('supportCenter.card3Title')}</h3>
+              <p>{t('supportCenter.card3Desc')}</p>
             </div>
           </div>
         </section>
@@ -97,8 +97,8 @@ function HelpCenter() {
         {/* FAQ SECTION */}
         <section className="faq-section scroll-animate stag-3">
           <div className="faq-header">
-            <h2>Frequently Asked Questions</h2>
-            <span className="faq-badge red-text">FAQ</span>
+            <h2>{t('supportCenter.faqTitle')}</h2>
+            <span className="faq-badge red-text">{t('supportCenter.faqBadge')}</span>
           </div>
           
           <div className="faq-list">
@@ -123,7 +123,7 @@ function HelpCenter() {
           </div>
           
           <div className="faq-more">
-            <button className="btn btn-primary">More questions?</button>
+            <button className="btn btn-primary">{t('supportCenter.faqMoreBtn')}</button>
           </div>
         </section>
 
@@ -132,18 +132,18 @@ function HelpCenter() {
           <div className="community-icon icon-wrap icon-wrap-glass" style={{ color: 'var(--color-success)' }}>
             <Users size={32} />
           </div>
-          <h2>Join The Community</h2>
+          <h2>{t('supportCenter.communityTitle')}</h2>
           <p>
-            Connect with other Qlink users, share stories, and get tips on how to maximize your safety setup.
+            {t('supportCenter.communityDesc')}
           </p>
         </section>
 
         {/* CONTACT US SECTION */}
         <section className="contact-section scroll-animate stag-2 glass-panel">
           <div className="contact-info">
-            <h2>Contact Us</h2>
+            <h2>{t('supportCenter.contactTitle')}</h2>
             <p className="contact-desc">
-              Have questions not covered in our FAQs? Drop us a line. We typically respond within 2 hours.
+              {t('supportCenter.contactDesc')}
             </p>
             <div className="contact-methods">
               <div className="contact-method">
@@ -171,29 +171,29 @@ function HelpCenter() {
             <form onSubmit={(e) => e.preventDefault()}>
               <div className="form-row">
                 <div className="form-group">
-                  <label>Name</label>
+                  <label>{t('supportCenter.formName')}</label>
                   <input type="text" className="form-control" />
                 </div>
                 <div className="form-group">
-                  <label>Phone</label>
+                  <label>{t('supportCenter.formPhone')}</label>
                   <input type="text" className="form-control" />
                 </div>
               </div>
               <div className="form-group">
-                <label>Subject</label>
+                <label>{t('supportCenter.formSubject')}</label>
                 <select className="form-control">
-                  <option>Account & Billing</option>
-                  <option>Technical Support</option>
-                  <option>General Inquiry</option>
+                  <option>{t('supportCenter.formOptions')[0]}</option>
+                  <option>{t('supportCenter.formOptions')[1]}</option>
+                  <option>{t('supportCenter.formOptions')[2]}</option>
                 </select>
               </div>
               <div className="form-group">
-                <label>Message</label>
+                <label>{t('supportCenter.formMessage')}</label>
                 <textarea className="form-control" rows="4"></textarea>
               </div>
               <button type="submit" className="btn btn-primary submit-btn">
                 <Send size={18} style={{ marginRight: '8px' }} />
-                Send Message
+                {t('supportCenter.formSubmit')}
               </button>
             </form>
           </div>
@@ -238,8 +238,8 @@ function HelpCenter() {
         {/* INSTALL APP TIMELINE SECTION */}
         <section className="install-timeline-section scroll-animate stag-3">
           <div className="install-timeline-header">
-            <h2>Install the App <span className="red-text">Now!</span></h2>
-            <p className="install-subtitle">Take full control of your safety. Manage profiles, get real-time alerts, and more.</p>
+            <h2>{t('supportCenter.installTitle')}<span className="red-text">{t('supportCenter.installHighlight')}</span></h2>
+            <p className="install-subtitle">{t('supportCenter.installDesc')}</p>
           </div>
 
           <div className="timeline-container">
@@ -247,20 +247,20 @@ function HelpCenter() {
             
             <div className="timeline-step">
               <div className="step-circle">01</div>
-              <h4>Download App</h4>
-              <p>Get Qlink from App Store or Google Play</p>
+              <h4>{t('supportCenter.step1Title')}</h4>
+              <p>{t('supportCenter.step1Desc')}</p>
             </div>
             
             <div className="timeline-step">
               <div className="step-circle">02</div>
-              <h4>Create Profile</h4>
-              <p>Enter your medical details and emergency contacts.</p>
+              <h4>{t('supportCenter.step2Title')}</h4>
+              <p>{t('supportCenter.step2Desc')}</p>
             </div>
             
             <div className="timeline-step">
               <div className="step-circle">03</div>
-              <h4>Link Device</h4>
-              <p>Add and set connection mode to bracelet/tag.</p>
+              <h4>{t('supportCenter.step3Title')}</h4>
+              <p>{t('supportCenter.step3Desc')}</p>
             </div>
           </div>
         </section>
