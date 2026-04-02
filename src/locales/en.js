@@ -601,11 +601,11 @@ const translations = {
     installHighlight: "Now!",
     installDesc: "Take full control of your safety. Manage profiles, get real-time alerts, and more.",
     step1Title: "Download App",
-    step1Desc: "Get Qlink from App Store or Google Play",
+    step1Desc: "Get Qlink from App store or Google play",
     step2Title: "Create Profile",
-    step2Desc: "Enter your medical details and emergency contacts.",
+    step2Desc: "Enter your medical details and emergency contacts",
     step3Title: "Link Device",
-    step3Desc: "Add and set connection mode to bracelet/tag."
+    step3Desc: "Add activation code inside the bracelet box"
   }
 };
 
