@@ -2,7 +2,7 @@ import React, { useEffect, useContext } from 'react';
 import { LanguageContext } from '../../context/LanguageContext';
 import DynamicBackground from '../../components/common/DynamicBackground';
 import AppPromoSection from '../../components/Sections/AppPromoSection';
-import { ShieldCheck, Lock, EyeOff, Activity, AlertCircle, Download, CheckCircle2 } from 'lucide-react';
+import { ShieldCheck, Lock, EyeOff, Activity, AlertCircle, CheckCircle2, Apple, Play } from 'lucide-react';
 import './PrivacySecurity.css';
 
 import promoMobiles from '../../assets/images/appscreen.png';
@@ -54,41 +54,45 @@ const PrivacySecurity = () => {
           </div>
         </section>
 
-        {/* Shared vs Not Shared */}
+        {/* Shared vs Not Shared — full-bleed dark band */}
         <section className="ps-grid-section">
-          <div className="ps-grid-container">
-            <div className="ps-shared-card scroll-animate stag-1">
-              <div className="ps-grid-header">
-                <div className="ps-small-icon green">
-                  <Lock size={20} />
+          <div className="ps-grid-band">
+            <div className="ps-grid-band-inner">
+              <div className="ps-grid-container">
+                <div className="ps-shared-card scroll-animate stag-1">
+                  <div className="ps-grid-header">
+                    <div className="ps-small-icon green">
+                      <Lock size={20} />
+                    </div>
+                    <h3>{t('privacy.sharedTitle')}</h3>
+                  </div>
+                  <ul className="ps-list green">
+                    {t('privacy.sharedItems').map((item, idx) => (
+                      <li key={idx}>
+                        <span className="dot"></span>
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-                <h3>{t('privacy.sharedTitle')}</h3>
-              </div>
-              <ul className="ps-list green">
-                {t('privacy.sharedItems').map((item, idx) => (
-                  <li key={idx}>
-                    <span className="dot"></span>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
 
-            <div className="ps-shared-card scroll-animate stag-2">
-              <div className="ps-grid-header">
-                <div className="ps-small-icon red">
-                  <EyeOff size={20} />
+                <div className="ps-shared-card scroll-animate stag-2">
+                  <div className="ps-grid-header">
+                    <div className="ps-small-icon red">
+                      <EyeOff size={20} />
+                    </div>
+                    <h3>{t('privacy.notSharedTitle')}</h3>
+                  </div>
+                  <ul className="ps-list red">
+                    {t('privacy.notSharedItems').map((item, idx) => (
+                      <li key={idx}>
+                        <span className="dot"></span>
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-                <h3>{t('privacy.notSharedTitle')}</h3>
               </div>
-              <ul className="ps-list red">
-                {t('privacy.notSharedItems').map((item, idx) => (
-                  <li key={idx}>
-                    <span className="dot"></span>
-                    {item}
-                  </li>
-                ))}
-              </ul>
             </div>
           </div>
         </section>
@@ -105,19 +109,23 @@ const PrivacySecurity = () => {
           </div>
         </section>
 
-        {/* Offline Fallback & Disclaimer */}
-        <section className="ps-fallback-section scroll-animate">
-          <div className="ps-fallback-content">
-             <h2>{t('privacy.protocolTitle')}</h2>
-             <p>{t('privacy.protocolDesc')}</p>
-          </div>
+        {/* Offline Fallback & Disclaimer — full-bleed subtle band */}
+        <section className="ps-fallback-section">
+          <div className="ps-fallback-band">
+            <div className="ps-fallback-band-inner">
+              <div className="ps-fallback-content scroll-animate">
+                <h2>{t('privacy.protocolTitle')}</h2>
+                <p>{t('privacy.protocolDesc')}</p>
+              </div>
 
-          <div className="ps-disclaimer-card scroll-animate stag-1">
-             <div className="ps-disclaimer-header">
-                <AlertCircle size={24} color="var(--color-primary-red)" />
-                <h4>{t('privacy.disclaimerTitle')}</h4>
-             </div>
-             <p>{t('privacy.disclaimerDesc')}</p>
+              <div className="ps-disclaimer-card scroll-animate stag-1">
+                <div className="ps-disclaimer-header">
+                  <AlertCircle size={24} color="var(--color-primary-red)" />
+                  <h4>{t('privacy.disclaimerTitle')}</h4>
+                </div>
+                <p>{t('privacy.disclaimerDesc')}</p>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -129,21 +137,37 @@ const PrivacySecurity = () => {
            </header>
            
            <div className="ps-promo-inner">
-             <div className="ps-promo-text">
-                <h2>{t('privacy.promoTitle')}</h2>
-                <p>{t('privacy.promoDesc')}</p>
-                <div className="ps-promo-features">
-                   <div className="p-feat"><CheckCircle2 size={18} className="green-check" /> {t('privacy.promoF1')}</div>
-                   <div className="p-feat"><CheckCircle2 size={18} className="green-check" /> {t('privacy.promoF2')}</div>
-                   <div className="p-feat"><CheckCircle2 size={18} className="green-check" /> {t('privacy.promoF3')}</div>
-                </div>
-                <div className="ps-store-row">
-                   <button className="ps-store-btn light"><Download size={18} /> Download on the App Store</button>
-                   <button className="ps-store-btn dark"><Activity size={18} /> Get it on Google Play</button>
-                </div>
-             </div>
-             <div className="ps-promo-img-side">
-                <img src={promoMobiles} alt="Qlink App" />
+             <div className="ps-promo-row">
+               <div className="app-text">
+                 <h2 className="split-title">{t('appSection.title')}</h2>
+                 <p className="split-desc">
+                   {t('appSection.desc')}
+                 </p>
+                 <ul className="app-list">
+                   <li className="app-list-item"><CheckCircle2 size={18} className="check" /> {t('appSection.l1')}</li>
+                   <li className="app-list-item"><CheckCircle2 size={18} className="check" /> {t('appSection.l2')}</li>
+                   <li className="app-list-item"><CheckCircle2 size={18} className="check" /> {t('appSection.l3')}</li>
+                 </ul>
+                 <div className={`store-buttons ${lang === 'ar' ? 'rtl-buttons' : ''}`}>
+                   <a href="#" className="store-btn">
+                     <Apple size={28} />
+                     <div className="store-btn-text">
+                       <span className="store-btn-sub">{t('appSection.appStore')}</span>
+                       <span className="store-btn-title">{t('appSection.appStoreTitle')}</span>
+                     </div>
+                   </a>
+                   <a href="#" className="store-btn store-btn-google">
+                     <Play size={28} />
+                     <div className="store-btn-text">
+                       <span className="store-btn-sub">{t('appSection.googlePlay')}</span>
+                       <span className="store-btn-title">{t('appSection.googlePlayTitle')}</span>
+                     </div>
+                   </a>
+                 </div>
+               </div>
+               <div className="app-image">
+                 <img src={promoMobiles} alt="Qlink App" className="floating-app-screen img-shadow-dark" />
+               </div>
              </div>
            </div>
         </section>
