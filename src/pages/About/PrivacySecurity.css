@@ -365,7 +365,7 @@
   padding: 80px 0;
   border-top: 1px solid rgba(255, 255, 255, 0.03);
   border-bottom: 1px solid rgba(255, 255, 255, 0.03);
-box-shadow: 0 20px 60px rgb(0 0 0 / 13%) inset;
+  box-shadow: 0 20px 60px rgb(0 0 0 / 13%) inset;
   border-radius: 0;
 }
 
