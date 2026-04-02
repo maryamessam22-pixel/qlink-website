@@ -127,6 +127,78 @@ function HelpCenter() {
           </div>
         </section>
 
+        {/* JOIN THE COMMUNITY */}
+        <section className="community-section scroll-animate stag-1">
+          <div className="community-icon icon-wrap icon-wrap-glass" style={{ color: 'var(--color-success)' }}>
+            <Users size={32} />
+          </div>
+          <h2>Join The Community</h2>
+          <p>
+            Connect with other Qlink users, share stories, and get tips on how to maximize your safety setup.
+          </p>
+        </section>
+
+        {/* CONTACT US SECTION */}
+        <section className="contact-section scroll-animate stag-2 glass-panel">
+          <div className="contact-info">
+            <h2>Contact Us</h2>
+            <p className="contact-desc">
+              Have questions not covered in our FAQs? Drop us a line. We typically respond within 2 hours.
+            </p>
+            <div className="contact-methods">
+              <div className="contact-method">
+                <div className="cm-icon">
+                  <Send size={18} />
+                </div>
+                <span>support@qlink.com</span>
+              </div>
+              <div className="contact-method">
+                <div className="cm-icon">
+                  <Wrench size={18} />
+                </div>
+                <span>+20 123 456 7890</span>
+              </div>
+              <div className="contact-method">
+                <div className="cm-icon">
+                  <Book size={18} />
+                </div>
+                <span>Cairo, Egypt</span>
+              </div>
+            </div>
+          </div>
+          
+          <div className="contact-form">
+            <form onSubmit={(e) => e.preventDefault()}>
+              <div className="form-row">
+                <div className="form-group">
+                  <label>Name</label>
+                  <input type="text" className="form-control" />
+                </div>
+                <div className="form-group">
+                  <label>Phone</label>
+                  <input type="text" className="form-control" />
+                </div>
+              </div>
+              <div className="form-group">
+                <label>Subject</label>
+                <select className="form-control">
+                  <option>Account & Billing</option>
+                  <option>Technical Support</option>
+                  <option>General Inquiry</option>
+                </select>
+              </div>
+              <div className="form-group">
+                <label>Message</label>
+                <textarea className="form-control" rows="4"></textarea>
+              </div>
+              <button type="submit" className="btn btn-primary submit-btn">
+                <Send size={18} style={{ marginRight: '8px' }} />
+                Send Message
+              </button>
+            </form>
+          </div>
+        </section>
+
       </div>
     </div>
   );
