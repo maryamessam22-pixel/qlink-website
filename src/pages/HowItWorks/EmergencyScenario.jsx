@@ -78,7 +78,7 @@ const EmergencyScenario = () => {
       </section>
 
       {/* THREE FEATURE ROWS */}
-      <section className={`es-features scroll-animate ${lang === 'ar' ? 'rtl-text' : ''}`}>
+      <section className={`es-features ${lang === 'ar' ? 'rtl-text' : ''}`}>
         <EmergencyFeatureCard
           subtitle={t('emergency.f1Sub')}
           title={t('emergency.f1Title')}

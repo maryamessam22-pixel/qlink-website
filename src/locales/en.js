@@ -116,6 +116,7 @@ const translations = {
     f3Sub: "PARAMEDICS READ VITAL DATA",
     f3Title: "Life-Saving Information",
     f3Desc: "A single glance reveals your critical profile: Blood type, allergies, medications, and emergency contacts. The treatment protocol changes quickly in line with medical protocol.",
+    fBtn: "Learn More",
     marquee: "Qlink. Always Connected. Always Protected.",
     s1Title: "1. Scan",
     s1Desc: "First responders scan the QR code on your Qlink bracelet in any mobile or phone camera.",
