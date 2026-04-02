@@ -1,28 +1,31 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { ShoppingCart, User } from 'lucide-react';
+import { ShoppingCart, User, Menu, X } from 'lucide-react';
 import { LanguageContext } from '../../context/LanguageContext';
 import Dropdown from './Dropdown';
 import Logo from './Logo';
 import './Navbar.css';
 
 function Navbar() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
   const { pathname } = location;
   const { lang, toggleLanguage, t } = useContext(LanguageContext);
 
+  const closeMobileMenu = () => setIsMobileMenuOpen(false);
+
   return (
     <nav className="navbar-wrapper">
       <div className="navbar-brand">
-        <Link to="/">
+        <Link to="/" onClick={closeMobileMenu}>
           <Logo style={{ height: '35px', display: 'block' }} />
         </Link>
       </div>
 
-      <div className="navbar-pill">
+      <div className={`navbar-pill ${isMobileMenuOpen ? 'mobile-open' : ''}`}>
         <ul className="navbar-links">
           <li>
-            <Link to="/" className={`nav-link ${pathname === '/' ? 'active' : ''}`}>{t('nav.home')}</Link>
+            <Link to="/" onClick={closeMobileMenu} className={`nav-link ${pathname === '/' ? 'active' : ''}`}>{t('nav.home')}</Link>
           </li>
           <li>
             <Dropdown
@@ -32,6 +35,7 @@ function Navbar() {
                 { name: t('nav.drop.howQlink'), href: '/how-it-works/qlink' },
                 { name: t('nav.drop.emergency'), href: '/how-it-works/emergency' },
               ]}
+              onItemClick={closeMobileMenu}
             />
           </li>
           <li>
@@ -43,10 +47,11 @@ function Navbar() {
                 { name: t('nav.drop.compare'), href: '/shop/compare' },
                 { name: t('nav.drop.reviews'), href: '/shop/reviews' },
               ]}
+              onItemClick={closeMobileMenu}
             />
           </li>
           <li>
-            <Link to="/for-caregivers" className={`nav-link ${pathname.startsWith('/for-caregivers') ? 'active' : ''}`}>{t('nav.forCaregivers')}</Link>
+            <Link to="/for-caregivers" onClick={closeMobileMenu} className={`nav-link ${pathname.startsWith('/for-caregivers') ? 'active' : ''}`}>{t('nav.forCaregivers')}</Link>
           </li>
           <li>
             <Dropdown
@@ -56,6 +61,7 @@ function Navbar() {
                 { name: t('nav.drop.story'), href: '/about/our-story' },
                 { name: t('nav.drop.privacy'), href: '/about/privacy' },
               ]}
+              onItemClick={closeMobileMenu}
             />
           </li>
           <li>
@@ -68,6 +74,7 @@ function Navbar() {
                 { name: t('nav.drop.contact'), href: '/support/contact' },
                 { name: t('nav.drop.download'), href: '/support/download' },
               ]}
+              onItemClick={closeMobileMenu}
             />
           </li>
         </ul>
@@ -76,7 +83,10 @@ function Navbar() {
       <div className="navbar-actions">
         <button className="lang-btn" onClick={toggleLanguage}>{lang === 'en' ? 'AR' : 'EN'}</button>
         <button className="icon-btn"><ShoppingCart size={22} color="var(--text-primary)" /></button>
-        <Link to="/auth" className="icon-btn"><User size={22} color="var(--text-primary)" /></Link>
+        <Link to="/auth" className="icon-btn" onClick={closeMobileMenu}><User size={22} color="var(--text-primary)" /></Link>
+        <button className="mobile-menu-btn" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+          {isMobileMenuOpen ? <X size={28} color="var(--text-primary)" /> : <Menu size={28} color="var(--text-primary)" />}
+        </button>
       </div>
     </nav>
   );

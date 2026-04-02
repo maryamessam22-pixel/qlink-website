@@ -2,7 +2,7 @@ import React from 'react';
 import { ChevronDown } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 
-function Dropdown({ label, items, isActive }) {
+function Dropdown({ label, items, isActive, onItemClick }) {
   const location = useLocation();
   const { pathname } = location;
 
@@ -17,6 +17,7 @@ function Dropdown({ label, items, isActive }) {
             key={index} 
             to={item.href}
             className={pathname === item.href ? 'submenu-active' : ''}
+            onClick={onItemClick}
           >
             {item.name}
           </Link>
