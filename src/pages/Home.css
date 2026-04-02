@@ -282,7 +282,7 @@
 .split-desc {
   font-size: 15px;
   color: var(--text-muted);
-  line-height: 1.6;
+  /* line-height: 1.6; */
   margin-bottom: 24px;
 }
 

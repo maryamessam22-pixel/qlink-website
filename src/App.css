@@ -55,6 +55,7 @@ body {
 
 .App {
   font-family: var(--font-family-primary);
+  line-height: 1.9;
 }
 
 /* RTL Support */
