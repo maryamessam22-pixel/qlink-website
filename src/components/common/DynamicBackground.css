@@ -14,7 +14,7 @@
   border-radius: 50%;
   background: radial-gradient(circle, rgba(16, 107, 253, 0.25) 0%, rgba(17, 107, 253, 0) 75%);
   filter: blur(120px);
-  animation: floatOrb 20s infinite alternate ease-in-out;
+  animation: floatOrb 15s infinite alternate ease-in-out;
 }
 
 .bg-glow-1 {
