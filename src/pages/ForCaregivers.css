@@ -20,7 +20,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 40px;
-  padding: 80px 24px;
+  padding: 150px 24px;
   min-height: 500px;
 }
 
@@ -35,7 +35,7 @@
 }
 
 .fc-hero.rtl-text .fc-hero-content {
-  text-align: right;
+  text-align: center;
 }
 
 .fc-hero-tag {
@@ -77,7 +77,11 @@
   line-height: 1.6;
   color: rgba(255, 255, 255, 0.7);
   max-width: 600px;
-  margin: 0 0 40px;
+  margin: 0 auto 40px;
+}
+
+.fc-hero.rtl-text .fc-hero-subtitle {
+  margin: 0 auto 40px;
 }
 
 .fc-hero-action {
@@ -122,7 +126,7 @@
 }
 
 .fc-connect {
-  margin: 100px 0;
+  margin: 150px 0;
 }
 
 .fc-connect-grid {
@@ -156,7 +160,7 @@
   color: var(--text-muted);
   font-size: 16px;
   line-height: 1.6;
-  margin-bottom: 32px;
+  margin-bottom: 40px;
 }
 
 .fc-feature-list {
@@ -203,7 +207,7 @@
 
 .fc-family {
   text-align: center;
-  margin: 100px 0;
+  margin: 150px 0;
 }
 
 .fc-family-badge {
@@ -228,14 +232,14 @@
 .fc-family-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+  gap: 32px;
 }
 
 .fc-family-card {
   background: #ffffff;
   border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s ease;
 }
 
@@ -244,7 +248,7 @@
 }
 
 .card-image {
-  height: 220px;
+  height: 240px;
   width: 100%;
 }
 
@@ -273,7 +277,7 @@
 }
 
 .fc-steps-modern {
-  margin: 100px 0;
+  margin: 150px 0;
   text-align: center;
 }
 
@@ -345,14 +349,14 @@
 }
 
 .fc-gift-cta {
-  margin: 100px 0;
+  margin: 150px 0;
 }
 
 .fc-gift-card {
   background: linear-gradient(135deg, rgba(15, 23, 42, 0.8) 0%, rgba(10, 15, 30, 0.9) 100%);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 24px;
-  padding: 60px 40px;
+  padding: 100px 40px;
   text-align: center;
   box-shadow: 0 40px 100px rgba(0, 0, 0, 0.4);
 }
