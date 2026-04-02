@@ -61,6 +61,7 @@ body {
 body.rtl-active, 
 body.rtl-active * {
   font-family: 'Noto Kufi Arabic', sans-serif !important;
+  line-height: 2.3;
 }
 
 body.rtl-active {
