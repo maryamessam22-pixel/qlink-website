@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { 
   ArrowLeft, Star, Droplets, Zap, Shield, HeartPulse, 
-  ShoppingCart, Truck, ShieldCheck, Undo2, WifiOff
+  ShoppingCart, Truck, ShieldCheck, Undo2, WifiOff, Sparkles, Waves
 } from 'lucide-react';
 import { LanguageContext } from '../../context/LanguageContext';
 import DynamicBackground from '../../components/common/DynamicBackground';
