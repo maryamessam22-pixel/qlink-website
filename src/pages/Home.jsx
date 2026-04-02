@@ -39,39 +39,46 @@ import appScreenImg from '../assets/images/appscreen.png';
 
 function Home() {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [heroTitleEn, setHeroTitleEn] = useState('');
+  const [cms, setCms] = useState({});
   const { t, lang } = useContext(LanguageContext);
 
+  // helper: pick EN or AR field
+  const pick = (row, field) => {
+    if (!row) return null;
+    return lang === 'ar' ? row[`${field}_ar`] : row[`${field}_en`];
+  };
+
   useEffect(() => {
-    const fetchHeroTitle = async () => {
+    const fetchCmsContent = async () => {
       try {
         const { data, error } = await supabase
           .from('cms_content')
-          .select('title_en')
-          .eq('id', 7) // row 7
-          .single();
+          .select('*')
+          .in('section_key', ['home_hero', 'home_features', 'home_simple_secure']);
 
         if (error) {
-          console.error('Supabase hero title fetch error:', error);
+          console.error('Supabase CMS fetch error:', error);
           return;
         }
 
-        if (data?.title_en) {
-          setHeroTitleEn(data.title_en);
+        if (data) {
+          const map = {};
+          data.forEach(item => { map[item.section_key] = item; });
+          setCms(map);
         }
       } catch (err) {
-        console.error('Unexpected error fetching hero title:', err);
+        console.error('Unexpected CMS fetch error:', err);
       }
     };
 
-    fetchHeroTitle();
+    fetchCmsContent();
 
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 300);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [lang]);
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
@@ -99,25 +106,24 @@ function Home() {
       </div>
 
       <div className="home-content">
-        {/* HERO SECTION */}
+        {/* HERO SECTION — section_key: home_hero */}
         <section className={`hero-section scroll-animate ${lang === 'ar' ? 'rtl-text' : ''}`}>
           <div className="hero-text">
             <h1 className={`hero-title scroll-animate stag-1 ${lang === 'ar' ? '' : 'hero-title-eng'}`}>
-              {heroTitleEn ? (
-                heroTitleEn
-              ) : (
-                <>
-                  {t('hero.titleTop')}<span className="red-text">{t('hero.titleHighlight')}</span><br />
-                  {t('hero.titleBottom')}
-                </>
-              )}
+              {cms['home_hero']
+                ? pick(cms['home_hero'], 'title')
+                : <>{t('hero.titleTop')}<span className="red-text">{t('hero.titleHighlight')}</span><br />{t('hero.titleBottom')}</>}
             </h1>
             <p className="hero-desc scroll-animate stag-2">
-              {t('hero.desc')}
+              {cms['home_hero'] ? pick(cms['home_hero'], 'subtitle') : t('hero.desc')}
             </p>
             <div className={`hero-buttons scroll-animate stag-3 ${lang === 'ar' ? 'rtl-buttons' : ''}`}>
-              <button className="btn btn-secondary">{t('hero.btnHow')}</button>
-              <button className="btn btn-primary">{t('hero.btnExplore')}</button>
+              <button className="btn btn-secondary">
+                {cms['home_hero'] ? cms['home_hero'][`first-btn-${lang}`] || t('hero.btnHow') : t('hero.btnHow')}
+              </button>
+              <button className="btn btn-primary">
+                {cms['home_hero'] ? cms['home_hero'][`sec-btn-${lang}`] || t('hero.btnExplore') : t('hero.btnExplore')}
+              </button>
             </div>
           </div>
           <div className="hero-image">
@@ -125,27 +131,30 @@ function Home() {
           </div>
         </section>
 
-        {/* WHAT IS QLINK */}
+        {/* WHAT IS QLINK — section_key: home_features */}
         <section className={`what-section scroll-animate ${lang === 'ar' ? 'rtl-text' : ''}`}>
-          <h2 className="section-title">{t('whatIs.title')}</h2>
+          <h2 className="section-title">
+            {cms['home_features'] ? pick(cms['home_features'], 'title') : t('whatIs.title')}
+          </h2>
           <p className="section-subtitle">
-            {t('whatIs.subtitle')}
+            {cms['home_features'] ? pick(cms['home_features'], 'subtitle') : t('whatIs.subtitle')}
           </p>
 
           <div className="card-grid-3">
+            {/* card-one fetched from home_features */}
             <InfoCard
               className="bg-success-light"
               icon={Zap}
               iconColor="var(--color-success)"
-              title={t('whatIs.c1Title')}
-              description={t('whatIs.c1Desc')}
+              title={cms['home_features'] ? cms['home_features'][`card-one-title-${lang}`] || t('whatIs.c1Title') : t('whatIs.c1Title')}
+              description={cms['home_features'] ? cms['home_features'][`card-one-desc-${lang}`] || t('whatIs.c1Desc') : t('whatIs.c1Desc')}
             />
             <InfoCard
               className="bg-blue-light"
               icon={QrCode}
               iconColor="var(--color-primary-blue)"
-              title={t('whatIs.c2Title')}
-              description={t('whatIs.c2Desc')}
+              title={cms['home_features'] ? cms['home_features'][`card-two-title-${lang}`] || t('whatIs.c2Title') : t('whatIs.c2Title')}
+              description={cms['home_features'] ? cms['home_features'][`card-two-desc-${lang}`] || t('whatIs.c2Desc') : t('whatIs.c2Desc')}
             />
             <InfoCard
               className="bg-error-light"
@@ -188,15 +197,14 @@ function Home() {
           </div>
         </section>
 
-        {/* SPLIT FEATURE 1 */}
+        {/* SPLIT FEATURE 1 — section_key: home_simple_secure */}
         <section className={`split-feature scroll-animate ${lang === 'ar' ? 'rtl-text' : ''}`}>
           <div className="split-text">
-            <h2 className="split-title">{t('splitFeature.title')}</h2>
+            <h2 className="split-title">
+              {cms['home_simple_secure'] ? pick(cms['home_simple_secure'], 'title') : t('splitFeature.title')}
+            </h2>
             <p className="split-desc">
-              {t('splitFeature.desc1')}
-            </p>
-            <p className="split-desc">
-              {t('splitFeature.desc2')}
+              {cms['home_simple_secure'] ? pick(cms['home_simple_secure'], 'content') : t('splitFeature.desc1')}
             </p>
             <Link to="/about" className="btn btn-primary link-btn-inline">{t('splitFeature.btn')}</Link>
           </div>
