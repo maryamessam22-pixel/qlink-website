@@ -199,6 +199,72 @@ function HelpCenter() {
           </div>
         </section>
 
+        {/* APP MOCKUP SECTION (Reused from Home) */}
+        <div className={`app-section-wrapper scroll-animate ${lang === 'ar' ? 'rtl-text' : ''}`}>
+          <section className="app-section">
+            <div className="app-text">
+              <h2 className="split-title">{t('appSection.title')}</h2>
+              <p className="split-desc">
+                {t('appSection.desc')}
+              </p>
+              <ul className="app-list">
+                <li className="app-list-item"><CheckCircle2 size={18} className="check" /> {t('appSection.l1')}</li>
+                <li className="app-list-item"><CheckCircle2 size={18} className="check" /> {t('appSection.l2')}</li>
+                <li className="app-list-item"><CheckCircle2 size={18} className="check" /> {t('appSection.l3')}</li>
+              </ul>
+              <div className={`store-buttons ${lang === 'ar' ? 'rtl-buttons' : ''}`}>
+                <a href="#" className="store-btn">
+                  <Apple size={28} />
+                  <div className="store-btn-text">
+                    <span className="store-btn-sub">{t('appSection.appStore')}</span>
+                    <span className="store-btn-title">{t('appSection.appStoreTitle')}</span>
+                  </div>
+                </a>
+                <a href="#" className="store-btn store-btn-google">
+                  <Play size={28} />
+                  <div className="store-btn-text">
+                    <span className="store-btn-sub">{t('appSection.googlePlay')}</span>
+                    <span className="store-btn-title">{t('appSection.googlePlayTitle')}</span>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <div className="app-image">
+              <img src={appScreenImg} alt="Qlink App" className="floating-app-screen img-shadow-dark" />
+            </div>
+          </section>
+        </div>
+
+        {/* INSTALL APP TIMELINE SECTION */}
+        <section className="install-timeline-section scroll-animate stag-3">
+          <div className="install-timeline-header">
+            <h2>Install the App <span className="red-text">Now!</span></h2>
+            <p className="install-subtitle">Take full control of your safety. Manage profiles, get real-time alerts, and more.</p>
+          </div>
+
+          <div className="timeline-container">
+            <div className="timeline-line"></div>
+            
+            <div className="timeline-step">
+              <div className="step-circle">01</div>
+              <h4>Download App</h4>
+              <p>Get Qlink from App Store or Google Play</p>
+            </div>
+            
+            <div className="timeline-step">
+              <div className="step-circle">02</div>
+              <h4>Create Profile</h4>
+              <p>Enter your medical details and emergency contacts.</p>
+            </div>
+            
+            <div className="timeline-step">
+              <div className="step-circle">03</div>
+              <h4>Link Device</h4>
+              <p>Add and set connection mode to bracelet/tag.</p>
+            </div>
+          </div>
+        </section>
+
       </div>
     </div>
   );
