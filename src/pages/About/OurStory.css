@@ -14,6 +14,9 @@
   padding: 120px 24px 0;
 }
 
+.story-page-header.scroll-animate.stag-1.is-visible {
+  margin-top: 48px;
+}
 .story-stats-section.scroll-animate.stag-2.is-visible {
   padding: 60px 0;
   margin: 0 ;
