@@ -180,30 +180,25 @@ function HelpCenter() {
 
         {/* INSTALL APP TIMELINE SECTION */}
         <section className="install-timeline-section scroll-animate stag-3">
-          <div className="install-timeline-header">
-            <h2>{t('supportCenter.installTitle')}<span className="red-text">{t('supportCenter.installHighlight')}</span></h2>
-            <p className="install-subtitle">{t('supportCenter.installDesc')}</p>
-          </div>
-
           <div className="timeline-container">
             <div className="timeline-line"></div>
             
             <div className="timeline-step">
               <div className="step-circle">01</div>
-              <h4>{t('supportCenter.step1Title')}</h4>
-              <p>{t('supportCenter.step1Desc')}</p>
+              <h4>Create Profile</h4>
+              <p>Enter medical details on our secure portal.</p>
             </div>
             
             <div className="timeline-step">
               <div className="step-circle">02</div>
-              <h4>{t('supportCenter.step2Title')}</h4>
-              <p>{t('supportCenter.step2Desc')}</p>
+              <h4>Link Device</h4>
+              <p>Scan the band to link it to the profile.</p>
             </div>
             
             <div className="timeline-step">
               <div className="step-circle">03</div>
-              <h4>{t('supportCenter.step3Title')}</h4>
-              <p>{t('supportCenter.step3Desc')}</p>
+              <h4>Stay Updated</h4>
+              <p>Update info anytime from your phone.</p>
             </div>
           </div>
         </section>
