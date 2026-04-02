@@ -36,7 +36,7 @@
 .main-title {
   font-size: 48px;
   font-weight: 800;
-  margin-bottom: 60px;
+  margin-bottom: 80px;
   text-align: center;
 }
 
@@ -48,7 +48,7 @@
 .story-step-section {
   display: flex;
   gap: 32px;
-  margin-bottom: 80px;
+  margin-bottom: 110px;
 }
 
 .step-number {
@@ -93,7 +93,7 @@
 
 /* Case Study Section */
 .case-study-section {
-  margin-bottom: 80px;
+  margin-bottom: 110px;
 }
 
 .case-card-main {
@@ -198,7 +198,7 @@
 
 /* Founder Mission */
 .founder-mission-section {
-  margin-bottom: 80px;
+  margin-bottom: 110px;
 }
 
 .mission-glass-box {
@@ -255,7 +255,7 @@
 
 /* Core Values */
 .core-values-section {
-  margin-bottom: 80px;
+  margin-bottom: 110px;
 }
 
 .values-main-title {
@@ -308,10 +308,14 @@
 
 /* Team Section */
 .team-section {
-  margin-bottom: 80px;
+  margin-bottom: 110px;
 }
 
 .team-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
   margin-bottom: 48px;
 }
 
