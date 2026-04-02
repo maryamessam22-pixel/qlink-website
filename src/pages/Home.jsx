@@ -108,28 +108,50 @@ function Home() {
       <div className="home-content">
         {/* HERO SECTION — section_key: home_hero */}
         <section className={`hero-section scroll-animate ${lang === 'ar' ? 'rtl-text' : ''}`}>
-          <div className="hero-text">
-            <h1 className={`hero-title scroll-animate stag-1 ${lang === 'ar' ? '' : 'hero-title-eng'}`}>
-              {cms['home_hero']
-                ? pick(cms['home_hero'], 'title')
-                : <>{t('hero.titleTop')}<span className="red-text">{t('hero.titleHighlight')}</span><br />{t('hero.titleBottom')}</>}
-            </h1>
-            <p className="hero-desc scroll-animate stag-2">
-              {cms['home_hero'] ? pick(cms['home_hero'], 'subtitle') : t('hero.desc')}
-            </p>
-            <div className={`hero-buttons scroll-animate stag-3 ${lang === 'ar' ? 'rtl-buttons' : ''}`}>
-              <button className="btn btn-secondary">
-                {cms['home_hero'] ? cms['home_hero'][`first-btn-${lang}`] || t('hero.btnHow') : t('hero.btnHow')}
-              </button>
-              <button className="btn btn-primary">
-                {cms['home_hero'] ? cms['home_hero'][`sec-btn-${lang}`] || t('hero.btnExplore') : t('hero.btnExplore')}
-              </button>
-            </div>
-          </div>
-          <div className="hero-image">
-            <img src={watchImg} alt="Qlink Bracelets" className="hero-img-element" />
-          </div>
-        </section>
+  <div className="hero-text">
+    <h1 className={`hero-title scroll-animate stag-1 ${lang === 'ar' ? '' : 'hero-title-eng'}`}>
+      {cms['home_hero'] ? (
+        <span
+          dangerouslySetInnerHTML={{
+            __html: (() => {
+              const title = pick(cms['home_hero'], 'title') || '';
+              // Wrap the word "SCAN" in red for EN, "مسح" for AR
+              if (lang === 'en') {
+                return title.replace(/Scan/gi, '<span class="red-text">Scan</span>');
+              } else {
+                return title.replace(/مسح/g, '<span class="red-text">مسح</span>');
+              }
+            })()
+          }}
+        />
+      ) : (
+        <>
+          {t('hero.titleTop')}
+          <span className="red-text">Scan</span>
+          <br />
+          {t('hero.titleBottom')}
+        </>
+      )}
+    </h1>
+
+    <p className="hero-desc scroll-animate stag-2">
+      {cms['home_hero'] ? pick(cms['home_hero'], 'subtitle') : t('hero.desc')}
+    </p>
+
+    <div className={`hero-buttons scroll-animate stag-3 ${lang === 'ar' ? 'rtl-buttons' : ''}`}>
+      <button className="btn btn-secondary">
+        {cms['home_hero'] ? cms['home_hero'][`first-btn-${lang}`] || t('hero.btnHow') : t('hero.btnHow')}
+      </button>
+      <button className="btn btn-primary">
+        {cms['home_hero'] ? cms['home_hero'][`sec-btn-${lang}`] || t('hero.btnExplore') : t('hero.btnExplore')}
+      </button>
+    </div>
+  </div>
+
+  <div className="hero-image">
+    <img src={watchImg} alt="Qlink Bracelets" className="hero-img-element" />
+  </div>
+</section>
 
         {/* WHAT IS QLINK — section_key: home_features */}
         <section className={`what-section scroll-animate ${lang === 'ar' ? 'rtl-text' : ''}`}>
