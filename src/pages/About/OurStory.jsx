@@ -22,7 +22,7 @@ function OurStory() {
           entry.target.classList.add('is-visible');
         }
       });
-    }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+    }, { threshold: 0.15, rootMargin: '-50px' });
 
     const animatedElements = document.querySelectorAll('.scroll-animate');
     animatedElements.forEach(el => observer.observe(el));
