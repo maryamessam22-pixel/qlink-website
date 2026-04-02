@@ -14,6 +14,15 @@
   padding: 150px 24px 0;
 }
 
+.story-stats-section.scroll-animate.stag-2.is-visible {
+  padding: 0;
+  margin: 0 ;
+}
+
+.story-final-cta.scroll-animate.stag-3.is-visible {
+  padding: 0;
+  margin: 0 ;
+}
 /* Typography & Badges */
 .badge-red {
   color: var(--color-primary-red);
