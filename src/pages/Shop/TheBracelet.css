@@ -126,7 +126,7 @@
 }
 
 .bracelet-card-btn {
-  background: #ff3b30;
+  background: var(--color-primary-red);
   color: #fff;
   border: none;
   display: flex;

@@ -25,7 +25,7 @@ const NovaDetails = () => {
   const colors = [
     { id: 'black', name: t('novaDetails.colorBlack'), hex: '#111' },
     { id: 'grey', name: t('novaDetails.colorGrey'), hex: '#9ca3af' },
-    { id: 'red', name: t('novaDetails.colorRed'), hex: '#ef4444' },
+    { id: 'red', name: t('novaDetails.colorRed'), hex: '#E03232' },
     { id: 'blue', name: t('novaDetails.colorBlue'), hex: '#3b82f6' }
   ];
 
@@ -84,7 +84,7 @@ const NovaDetails = () => {
                 <span className="perk-text">{t('novaDetails.perk2')}</span>
               </div>
               <div className="perk-box">
-                <Shield size={24} color="#ef4444" />
+                <Sparkles size={20} color="#E03232" />
                 <span className="perk-text">{t('novaDetails.perk3')}</span>
               </div>
             </div>
@@ -174,12 +174,12 @@ const NovaDetails = () => {
             
             <div className="bridge-features">
               <div className="feat-box">
-                <WifiOff size={32} color="#ef4444" />
+                <WifiOff size={32} color="#E03232" />
                 <h4>{t('novaDetails.feature1Title')}</h4>
                 <p>{t('novaDetails.feature1Desc')}</p>
               </div>
               <div className="feat-box">
-                <Droplets size={32} color="#3b82f6" />
+                <Waves size={32} color="#E03232" />
                 <h4>{t('novaDetails.feature2Title')}</h4>
                 <p>{t('novaDetails.feature2Desc')}</p>
               </div>

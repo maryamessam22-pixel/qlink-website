@@ -83,7 +83,7 @@ const PulseDetails = () => {
                 <span className="perk-text">{t('pulseDetails.perk2')}</span>
               </div>
               <div className="perk-box">
-                <Shield size={24} color="#ef4444" />
+                <Shield size={24} color="#E03232" />
                 <span className="perk-text">{t('pulseDetails.perk3')}</span>
               </div>
             </div>
@@ -108,7 +108,7 @@ const PulseDetails = () => {
               
               <div className="floating-side-actions">
                 {/* <button className="action-circle">
-                  <Sparkles size={20} color="#ff3b30" />
+                  <Sparkles size={20} color="#E03232" />
                 </button>
                 <button className="action-circle">
                   <Upload size={20} />
@@ -185,7 +185,7 @@ const PulseDetails = () => {
             
             <div className="bridge-features">
               <div className="feat-box">
-                <WifiOff size={32} color="#ef4444" />
+                <WifiOff size={32} color="#E03232" />
                 <h4>{t('pulseDetails.feature1Title')}</h4>
                 <p>{t('pulseDetails.feature1Desc')}</p>
               </div>

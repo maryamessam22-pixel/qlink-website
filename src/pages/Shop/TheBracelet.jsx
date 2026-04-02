@@ -48,7 +48,7 @@ const TheBracelet = () => {
           {t('bracelet.title').includes('Your') ? (
             <>
               {t('bracelet.title').split('Your')[0]}
-              <span style={{ color: '#ff3b30' }}>Your</span>
+              <span style={{ color: '#E03232' }}>Your</span>
               {t('bracelet.title').split('Your')[1]}
             </>
           ) : (

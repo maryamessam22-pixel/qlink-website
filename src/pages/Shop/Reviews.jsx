@@ -49,7 +49,7 @@ const Reviews = () => {
         <div className="reviews-header scroll-animate stag-1">
           <h1 className="reviews-title">
             {t('reviews.heroTitleTop')}
-            <span style={{ color: '#ff3b30' }}>{t('reviews.heroTitleHighlight')}</span>
+            <span style={{ color: '#E03232' }}>{t('reviews.heroTitleHighlight')}</span>
           </h1>
           <p className="reviews-subtitle">{t('reviews.heroSubtitle')}</p>
         </div>
