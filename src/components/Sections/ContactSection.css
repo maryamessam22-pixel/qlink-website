@@ -1,173 +1,237 @@
-.contact-section {
+/* ================================================
+   ContactSection – Standalone premium component
+   ================================================ */
+
+.cs-wrapper {
   display: flex;
-  gap: 80px;
+  gap: 0;
   max-width: 1100px;
   margin: 0 auto 100px;
-  padding: 60px;
   border-radius: 24px;
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  background: linear-gradient(145deg, rgba(20, 25, 35, 0.7) 0%, rgba(10, 15, 25, 0.8) 100%);
-  backdrop-filter: blur(20px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-  align-items: center;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4);
 }
 
-.contact-info {
-  flex: 1;
-}
-
-.contact-info h2 {
-  font-size: 36px;
-  font-weight: 700;
-  color: var(--text-light);
-  margin-bottom: 16px;
-  background: linear-gradient(90deg, #fff 0%, #a1a1aa 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.contact-desc {
-  font-size: 16px;
-  color: var(--text-muted);
-  margin-bottom: 40px;
-  line-height: 1.8;
-  max-width: 400px;
-}
-
-.contact-methods {
+/* ── LEFT ── */
+.cs-left {
+  flex: 0 0 380px;
+  background: linear-gradient(160deg, #1a1f2e 0%, #0d1120 100%);
+  padding: 52px 44px;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  justify-content: flex-start;
+  position: relative;
+  overflow: hidden;
 }
 
-.contact-method {
+/* subtle decorative glow blob */
+.cs-left::before {
+  content: '';
+  position: absolute;
+  top: -60px;
+  left: -60px;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(224, 50, 50, 0.18) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.cs-badge {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  color: var(--color-error);
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.cs-title {
+  font-size: 32px;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.2;
+  margin-bottom: 14px;
+}
+
+.cs-sub {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.45);
+  line-height: 1.7;
+  margin-bottom: 40px;
+}
+
+/* Contact info cards */
+.cs-cards {
   display: flex;
-  align-items: center;
+  flex-direction: column;
   gap: 20px;
 }
 
-/* Specific LTR override to prevent phone numbers from flipping */
-.contact-method span[dir="ltr"] {
-  unicode-bidi: embed;
-}
-
-.cm-icon {
-  width: 48px;
-  height: 48px;
-  border-radius: 12px;
+.cs-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 20px;
+  border-radius: 14px;
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: background 0.25s ease;
+}
+
+.cs-card:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.cs-card-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: rgba(224, 50, 50, 0.12);
   color: var(--color-error);
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.3s ease;
+  flex-shrink: 0;
 }
 
-.contact-method:hover .cm-icon {
-  background: rgba(224, 50, 50, 0.1);
-  transform: translateY(-2px);
+.cs-card > div:last-child {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
 }
 
-.contact-method span {
-  font-size: 16px;
-  color: var(--text-light);
+.cs-card-label {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.35);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.cs-card-val {
+  font-size: 14px;
+  color: #fff;
   font-weight: 500;
 }
 
-.contact-form {
-  flex: 1.2;
+/* ── RIGHT ── */
+.cs-right {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.015);
+  padding: 52px 52px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-.form-row {
+/* ── FORM ── */
+.cs-form-row {
   display: flex;
   gap: 20px;
 }
 
-.form-group {
-  margin-bottom: 20px;
+.cs-fg {
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
 }
 
-.form-group label {
-  display: block;
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--text-light);
-  margin-bottom: 10px;
-  letter-spacing: 0.5px;
+.cs-fg label {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 8px;
 }
 
-.form-control {
+.cs-input {
   width: 100%;
-  padding: 16px 20px;
-  background: rgba(255, 255, 255, 0.02); 
-  border: 1px solid rgba(255, 255, 255, 0.08); 
-  border-radius: 12px; 
-  color: var(--text-light);
+  padding: 14px 18px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  color: #fff;
   font-family: inherit;
   font-size: 15px;
-  transition: all 0.3s ease;
-}
-
-.form-control:focus {
+  transition: border-color 0.25s, box-shadow 0.25s, background 0.25s;
   outline: none;
-  border-color: var(--color-error);
-  background: rgba(255, 255, 255, 0.04);
-  box-shadow: 0 0 0 4px rgba(224, 50, 50, 0.1);
 }
 
-.form-control::placeholder {
+.cs-input::placeholder {
   color: rgba(255, 255, 255, 0.2);
 }
 
-select.form-control {
+.cs-input:focus {
+  border-color: var(--color-error);
+  background: rgba(224, 50, 50, 0.04);
+  box-shadow: 0 0 0 4px rgba(224, 50, 50, 0.08);
+}
+
+.cs-select {
   appearance: none;
   cursor: pointer;
   background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23a1a1aa' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
   background-repeat: no-repeat;
-  background-position: right 14px center;
-  background-size: 16px;
-  padding-right: 40px;
+  background-position: right 16px center;
+  background-size: 15px;
+  padding-right: 44px;
 }
 
-/* Standard RTL Support for Dropdown Arrow */
-.rtl-text select.form-control {
-  background-position: left 14px center;
-  padding-right: 16px;
-  padding-left: 40px;
+.rtl-text .cs-select {
+  background-position: left 16px center;
+  padding-right: 18px;
+  padding-left: 44px;
 }
 
-textarea.form-control {
+.cs-textarea {
   resize: vertical;
+  min-height: 120px;
 }
 
-.submit-btn {
-  width: 100%;
-  display: flex;
+.cs-submit-btn {
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 18px;
-  font-size: 16px;
+  gap: 10px;
+  width: 100%;
+  padding: 16px 32px;
+  background: var(--color-error);
+  color: #fff;
+  font-size: 15px;
   font-weight: 600;
-  border-radius: 12px;
   letter-spacing: 0.5px;
-  transition: transform 0.3s ease, background 0.3s ease;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
+  margin-top: 6px;
 }
 
-.submit-btn:hover {
+.cs-submit-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(224, 50, 50, 0.3);
+  filter: brightness(1.1);
+  box-shadow: 0 10px 28px rgba(224, 50, 50, 0.35);
 }
 
-@media (max-width: 768px) {
-  .contact-section {
+/* ── RESPONSIVE ── */
+@media (max-width: 860px) {
+  .cs-wrapper {
     flex-direction: column;
-    padding: 30px 20px;
   }
-  
-  .form-row {
+
+  .cs-left {
+    flex: none;
+    padding: 40px 28px;
+  }
+
+  .cs-right {
+    padding: 38px 28px;
+  }
+
+  .cs-form-row {
     flex-direction: column;
     gap: 0;
   }
