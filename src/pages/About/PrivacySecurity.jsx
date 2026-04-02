@@ -109,7 +109,7 @@ const PrivacySecurity = () => {
           </div>
         </section>
 
-        {/* Offline Fallback & Disclaimer — full-bleed subtle band */}
+        {/* Offline Fallback & Disclaimer */}
         <section className="ps-fallback-section">
           <div className="ps-fallback-band">
             <div className="ps-fallback-band-inner">
@@ -120,7 +120,9 @@ const PrivacySecurity = () => {
 
               <div className="ps-disclaimer-card scroll-animate stag-1">
                 <div className="ps-disclaimer-header">
-                  <AlertCircle size={24} color="var(--color-primary-red)" />
+                  <div className="ps-disclaimer-icon-box">
+                    <AlertCircle size={22} />
+                  </div>
                   <h4>{t('privacy.disclaimerTitle')}</h4>
                 </div>
                 <p>{t('privacy.disclaimerDesc')}</p>
