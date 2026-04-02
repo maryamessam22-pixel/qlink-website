@@ -141,29 +141,57 @@ function Home() {
           </p>
 
           <div className="card-grid-3">
-            {/* card-one fetched from home_features */}
-            <InfoCard
-              className="bg-success-light"
-              icon={Zap}
-              iconColor="var(--color-success)"
-              title={cms['home_features'] ? cms['home_features'][`card-one-title-${lang}`] || t('whatIs.c1Title') : t('whatIs.c1Title')}
-              description={cms['home_features'] ? cms['home_features'][`card-one-desc-${lang}`] || t('whatIs.c1Desc') : t('whatIs.c1Desc')}
-            />
-            <InfoCard
-              className="bg-blue-light"
-              icon={QrCode}
-              iconColor="var(--color-primary-blue)"
-              title={cms['home_features'] ? cms['home_features'][`card-two-title-${lang}`] || t('whatIs.c2Title') : t('whatIs.c2Title')}
-              description={cms['home_features'] ? cms['home_features'][`card-two-desc-${lang}`] || t('whatIs.c2Desc') : t('whatIs.c2Desc')}
-            />
-            <InfoCard
-              className="bg-error-light"
-              icon={Lock}
-              iconColor="var(--color-error)"
-              title={t('whatIs.c3Title')}
-              description={t('whatIs.c3Desc')}
-            />
-          </div>
+  {/* Card One */}
+  <InfoCard
+    className="bg-success-light"
+    icon={Zap}
+    iconColor="var(--color-success)"
+    title={
+      cms['home_features']
+        ? cms['home_features'][`card-one-title-${lang}`] || t('whatIs.c1Title')
+        : t('whatIs.c1Title')
+    }
+    description={
+      cms['home_features']
+        ? cms['home_features'][`card-one-desc-${lang}`] || t('whatIs.c1Desc')
+        : t('whatIs.c1Desc')
+    }
+  />
+
+  {/* Card Two */}
+  <InfoCard
+    className="bg-blue-light"
+    icon={QrCode}
+    iconColor="var(--color-primary-blue)"
+    title={
+      cms['home_features']
+        ? cms['home_features'][`card-two-title-${lang}`] || t('whatIs.c2Title')
+        : t('whatIs.c2Title')
+    }
+    description={
+      cms['home_features']
+        ? cms['home_features'][`card-two-desc-${lang}`] || t('whatIs.c2Desc')
+        : t('whatIs.c2Desc')
+    }
+  />
+
+  {/* Card Three */}
+  <InfoCard
+    className="bg-error-light"
+    icon={Lock}
+    iconColor="var(--color-error)"
+    title={
+      cms['home_features']
+        ? cms['home_features'][`card-three-title-${lang}`] || t('whatIs.c3Title')
+        : t('whatIs.c3Title')
+    }
+    description={
+      cms['home_features']
+        ? cms['home_features'][`card-three-desc-${lang}`] || t('whatIs.c3Desc')
+        : t('whatIs.c3Desc')
+    }
+  />
+</div>
         </section>
 
         {/* WHY CHOOSE QLINK */}

@@ -284,6 +284,7 @@
   color: var(--text-muted);
   /* line-height: 1.6; */
   margin-bottom: 24px;
+  width: 573px;
 }
 
 .split-image {
