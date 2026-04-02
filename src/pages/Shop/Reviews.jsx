@@ -1,4 +1,5 @@
 import React, { useEffect, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Quote, Star, MessageSquare, Share2, Users, CheckCircle2 } from 'lucide-react';
 import { LanguageContext } from '../../context/LanguageContext';
 import DynamicBackground from '../../components/common/DynamicBackground';
@@ -23,6 +24,7 @@ const testimonialImages = {
 
 const Reviews = () => {
   const { t, lang } = useContext(LanguageContext);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
@@ -127,7 +129,12 @@ const Reviews = () => {
                 ))}
               </div>
               <p className="card-quote">{item.quote}</p>
-              <button className="read-more-link">{item.readMore} &gt;</button>
+              <button
+                className="read-more-link"
+                onClick={() => navigate(`/shop/reviews/${item.id}`)}
+              >
+                {item.readMore} &gt;
+              </button>
             </div>
           ))}
         </div>
