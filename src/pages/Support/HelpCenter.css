@@ -1,0 +1,16 @@
+.help-center-wrapper {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  padding-top: 120px;
+  padding-bottom: 80px;
+  overflow: hidden;
+}
+
+.help-center-content {
+  position: relative;
+  z-index: 2;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}

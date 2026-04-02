@@ -115,7 +115,6 @@ function Home() {
           dangerouslySetInnerHTML={{
             __html: (() => {
               const title = pick(cms['home_hero'], 'title') || '';
-              // Wrap the word "SCAN" in red for EN, "مسح" for AR
               if (lang === 'en') {
                 return title.replace(/Scan/gi, '<span class="red-text">Scan</span>');
               } else {
