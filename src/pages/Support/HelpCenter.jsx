@@ -68,15 +68,15 @@ function HelpCenter() {
         {/* SUPPORT CARDS */}
         <section className="support-cards-section scroll-animate stag-2">
           <div className="card-grid-3">
-            <div className="support-card glass-panel">
-              <div className="icon-wrap icon-wrap-glass" style={{ color: '#b0b8c8' }}>
+            <div className="support-card card-purple">
+              <div className="icon-wrap icon-wrap-glass" style={{ color: '#8a2be2' }}>
                 <Book size={24} />
               </div>
               <h3>{t('supportCenter.card1Title')}</h3>
               <p>{t('supportCenter.card1Desc')}</p>
             </div>
             
-            <div className="support-card glass-panel card-active-glow">
+            <div className="support-card card-red">
               <div className="icon-wrap icon-wrap-red" style={{ color: '#E03232' }}>
                 <Wrench size={24} />
               </div>
@@ -84,7 +84,7 @@ function HelpCenter() {
               <p>{t('supportCenter.card2Desc')}</p>
             </div>
 
-            <div className="support-card glass-panel">
+            <div className="support-card card-blue">
               <div className="icon-wrap icon-wrap-glass" style={{ color: '#0d6efd' }}>
                 <CreditCard size={24} />
               </div>
@@ -129,7 +129,7 @@ function HelpCenter() {
 
         {/* JOIN THE COMMUNITY */}
         <section className="community-section scroll-animate stag-1">
-          <div className="community-icon icon-wrap icon-wrap-glass" style={{ color: 'var(--color-success)' }}>
+          <div className="community-icon">
             <Users size={32} />
           </div>
           <h2>{t('supportCenter.communityTitle')}</h2>
