@@ -11,11 +11,11 @@
 .story-content-container {
   max-width: 1100px;
   margin: 0 auto;
-  padding: 150px 24px 0;
+  padding: 120px 24px 0;
 }
 
 .story-stats-section.scroll-animate.stag-2.is-visible {
-  padding: 0;
+  padding: 60px 0;
   margin: 0 ;
 }
 
