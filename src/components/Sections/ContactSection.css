@@ -5,16 +5,23 @@
 }
 
 .contact-panel {
-  /* Replace absolute hexs with matching app variables whenever possible */
-  background: linear-gradient(135deg, var(--bg-surface-navy) 0%, rgba(15, 22, 37, 0.95) 100%);
-  border: 1px solid var(--border-subtle);
-  border-radius: 16px;
-  padding: 40px;
-  display: grid;
-  grid-template-columns: 1fr 1.4fr;
-  gap: 48px;
-  max-width: 900px;
-  margin: 0px auto;
+    background: linear-gradient(135deg, #151d3421 0%, rgba(15, 22, 37, 0.95) 100%);
+    border: 1px solid var(--border-subtle);
+    border-radius: 16px;
+    padding: 40px;
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 48px; 
+    max-width: 955px;
+    width: 100%;
+    margin: 0px auto;
+    align-items: start;
+    box-sizing: border-box;
+}
+
+.contact-wrapper.scroll-animate.stag-2.is-visible{
+ padding-left: 0px;
+ padding-right: 0px;
 }
 
 .contact-info-col h2 {
@@ -42,7 +49,8 @@
   width: 36px;
   height: 36px;
   border-radius: 8px;
-  background: rgba(224, 50, 50, 0.12); /* Based on user's rgb(232, 69, 60), roughly --color-primary-red */
+  background: rgba(224, 50, 50, 0.12);
+  /* Based on user's rgb(232, 69, 60), roughly --color-primary-red */
   border: 1px solid rgba(224, 50, 50, 0.25);
   display: flex;
   align-items: center;
@@ -82,8 +90,9 @@
 .cf-input {
   width: 100%;
   padding: 10px 14px;
-  background: var(--border-light); 
-  border: 1px solid rgba(59, 130, 246, 0.18); /* Kept explicit to keep blue glow hint from design */
+  background: var(--border-light);
+  border: 1px solid rgba(59, 130, 246, 0.18);
+  /* Kept explicit to keep blue glow hint from design */
   border-radius: 8px;
   color: var(--text-primary);
   font-family: inherit;
@@ -137,11 +146,13 @@
   .contact-wrapper {
     padding: 40px 20px;
   }
+
   .contact-panel {
     grid-template-columns: 1fr;
     gap: 32px;
     padding: 30px;
   }
+
   .cf-row {
     grid-template-columns: 1fr;
   }

@@ -146,11 +146,13 @@ function HelpCenter() {
           </p>
         </section>
 
-        {/* CONTACT US SECTION */}
-        <ContactSection />
+      </div> {/* Close help-center-content */}
 
-        {/* APP MOCKUP SECTION (Reused from Home) */}
-        <div className={`app-section-wrapper scroll-animate ${lang === 'ar' ? 'rtl-text' : ''}`}>
+      {/* CONTACT US SECTION - Moved outside for full-width background and centering */}
+      <ContactSection />
+
+      {/* APP MOCKUP SECTION (Reused from Home) - Re-wrapped in its own container if needed, or keep as is if it has its own logic */}
+      <div className={`app-section-wrapper scroll-animate ${lang === 'ar' ? 'rtl-text' : ''}`}>
           <section className="app-section">
             <div className="app-text">
               <h2 className="split-title">{t('appSection.title')}</h2>
@@ -184,7 +186,6 @@ function HelpCenter() {
             </div>
           </section>
         </div>
-      </div> {/* Close help-center-content */}
 
       {/* INSTALL APP TIMELINE SECTION */}
       <section className="timeline-section-fw scroll-animate stag-3">
