@@ -13,7 +13,7 @@ import salmaImg from '../../assets/images/salma.png';
 import malakImg from '../../assets/images/malak.png';
 import sarahImg from '../../assets/images/sarah.png';
 import annImg   from '../../assets/images/ann.png';
-import heroImg  from '../../assets/images/hero.png';
+import heroImg  from '../../assets/images/safaa-rev.png';
 
 const avatarImages = { 1: salmaImg, 2: malakImg, 3: sarahImg, 4: annImg };
 
