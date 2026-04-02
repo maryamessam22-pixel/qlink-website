@@ -1,5 +1,5 @@
 import React, { useEffect, useContext } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 import {
   ChevronLeft, Star, CheckCircle2,
   Activity, Heart, Clock, MapPin, Users, Settings, Shield, Zap
@@ -65,9 +65,9 @@ const ReviewDetail = () => {
       <DynamicBackground />
 
       {/* ── BACK LINK ── */}
-      <button className="rd-back-btn" onClick={() => navigate('/shop/reviews')}>
+      <Link to="/shop/reviews" className="rd-back-btn">
         <ChevronLeft size={16} /> Back to Reviews
-      </button>
+      </Link>
 
       {/* ── HERO ── */}
       {isImageHero ? (
