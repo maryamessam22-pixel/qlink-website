@@ -30,7 +30,8 @@
   font-weight: 700;
   font-size: 13px;
   display: block;
-  margin-bottom: 8px;
+  margin: 0 auto 8px;
+  text-align: center;
 }
 
 .main-title {
@@ -253,14 +254,16 @@
   margin-top: 4px;
 }
 
-/* Core Values */
+/* Core Values Section */
 .core-values-section {
   margin-bottom: 110px;
+  text-align: center;
 }
 
 .values-main-title {
   font-size: 36px;
   margin-bottom: 48px;
+  text-align: center;
 }
 
 .values-grid-new {
