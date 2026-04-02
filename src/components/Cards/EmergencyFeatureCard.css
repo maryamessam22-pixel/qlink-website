@@ -2,9 +2,9 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 120px;
-  padding: 100px 5%;
-  max-width: 1300px;
+  gap: 80px;
+  padding: 80px 0;
+  max-width: 1100px;
   margin: 0 auto;
 }
 
@@ -12,19 +12,18 @@
   flex-direction: row-reverse;
 }
 
-/* Text Container entry */
+/* Animations */
 .es-feature-text {
   flex: 1;
   opacity: 0;
   transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Standard: Slide from left. Reverse: Slide from right */
 .es-feature-text.scroll-animate {
-   transform: translateX(-40px);
+  transform: translateX(-40px);
 }
 .es-feature-row.reverse .es-feature-text.scroll-animate {
-   transform: translateX(40px);
+  transform: translateX(40px);
 }
 
 .es-feature-text.is-visible {
@@ -33,50 +32,64 @@
 }
 
 .es-f-subtitle {
-  color: var(--color-primary-red);
+  color: var(--color-primary-blue);
+  font-size: 12px;
   font-weight: 700;
-  font-size: 14px;
   letter-spacing: 1.5px;
   margin-bottom: 12px;
   text-transform: uppercase;
 }
 
+.es-feature-row:nth-child(2) .es-f-subtitle {
+  color: var(--color-success);
+}
+
+.es-feature-row:nth-child(3) .es-f-subtitle {
+  color: var(--color-brand-blue-glow);
+}
+
 .es-f-title {
-  font-size: 40px;
-  font-weight: 800;
-  margin-bottom: 24px;
-  line-height: 1.2;
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: var(--text-primary);
 }
 
 .es-f-desc {
   font-size: 16px;
-  color: var(--text-secondary);
+  color: rgba(255,255,255,0.7);
   line-height: 1.6;
 }
 
-
-
 .es-feature-img {
-  flex: 1;
-  border-radius: 20px;
-  overflow: hidden;
-  /* box-shadow: 0 20px 40px rgba(0,0,0,0.3); */
-  position: relative;
-  max-width: 500px;
+  flex: 1.2;
+  opacity: 0;
+  transition: all 1.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
+
+.es-feature-img.scroll-animate {
+   transform: translateX(80px);
+}
+.es-feature-row.reverse .es-feature-img.scroll-animate {
+   transform: translateX(-80px);
+}
+
+.es-feature-img.is-visible {
+  opacity: 1;
+  transform: translateX(0) !important;
+}
+
 .es-feature-img img {
   width: 100%;
-  height: auto;
-  display: block;
+  border-radius: 20px;
 }
 
-@media (max-width: 900px) {
-  .es-feature-row, .es-feature-row.reverse {
-    flex-direction: column;
-    text-align: center;
+/* Responsive */
+@media (max-width: 768px) {
+  .es-feature-row {
+    flex-direction: column !important;
     gap: 40px;
-  }
-  .es-feature-text {
-    max-width: 100%;
+    text-align: center;
+    padding: 60px 24px;
   }
 }
