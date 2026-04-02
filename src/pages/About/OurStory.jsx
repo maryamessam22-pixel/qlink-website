@@ -4,10 +4,10 @@ import DynamicBackground from '../../components/common/DynamicBackground';
 import { Quote, AlertCircle, CheckCircle, Target, Shield, Globe, Zap, Users } from 'lucide-react';
 
 // Assets
-import mariamImg from '../../assets/images/salma.png';
-import olaImg from '../../assets/images/sarah.png';
-import amiraImg from '../../assets/images/malak.png';
-import youseffImg from '../../assets/images/ann.png';
+import mariamImg from '../../assets/images/mariam.png';
+import olaImg from '../../assets/images/ola.png';
+import amiraImg from '../../assets/images/zeina.png';
+import youseffImg from '../../assets/images/youssef.png';
 import karmaPic from '../../assets/images/stay-pic.png';
 
 import './OurStory.css';

@@ -359,35 +359,119 @@ const translations = {
     testimonials: [
       {
         id: 1,
-        author: "Selma Ahmed",
-        role: "Caregiver/Daughter",
+        author: "Safaa Ahmed",
+        role: "Runner / Type 1 Diabetic",
         stars: 5,
-        quote: "The peace of mind this device has given my family is priceless. I can finally let him go out alone with confidence.",
-        readMore: "Read Full Story"
+        quote: "Qlink gives me the confidence to go for my morning runs alone.",
+        readMore: "Read Full Story",
+        heroType: "image",
+        storyTitle: "The Full Story",
+        storyParagraphs: [
+          "As someone living with Type 1 diabetes, running has always been my passion and my therapy. But there was always that underlying fear - what if my blood sugar drops while I'm alone on a trail? What if I can't communicate my condition to someone who finds me?",
+          "When I discovered Qlink, it felt like the solution I'd been searching for. The QR code on my band contains all my critical medical information - my diabetes diagnosis, my insulin regimen, my emergency contacts, and even my allergies.",
+          "Now, I run with confidence. Whether I'm on a familiar route or exploring new trails, I know that if anything happens, the person who helps me will have all the information they need with a simple scan. It's not just a piece of technology - it's peace of mind in wearable form.",
+          "The band is comfortable, waterproof, and stylish enough that I never want to take it off. My family loves knowing I'm protected, and I love the freedom it gives me to pursue my passion without fear."
+        ],
+        features: [
+          { icon: "Activity", label: "Instant Access", sub: "Medical info available with one simple scan" },
+          { icon: "Heart",    label: "Peace of Mind", sub: "Exercise freely knowing you're protected" },
+          { icon: "Clock",   label: "Always On",     sub: "Waterproof & comfortable for 24/7 wear" }
+        ],
+        ctaTitle: "Get Your Own Peace of Mind",
+        ctaDesc: "Join thousands of people who trust Qlink to keep them safe during their daily activities.",
+        ctaBtn: "Shop Qlink Bands"
       },
       {
         id: 2,
-        author: "Sarah Mary",
-        role: "Mother of Two",
+        author: "Malak Ahmed",
+        role: "Retired Firefighter",
         stars: 5,
-        quote: "I bought these for my children during summer camp. The safety and security it provided during the trip was well worth the investment.",
-        readMore: "Read Full Story"
+        quote: "As a former first responder, I can tell you that having this info instantly is a game changer. It saves precious minutes.",
+        readMore: "Read Full Story",
+        heroType: "avatar",
+        storyTitle: "A First Responder's Perspective",
+        storyParagraphs: [
+          "After 28 years as a firefighter and paramedic, I've responded to thousands of emergency calls. I've seen firsthand how critical those first few minutes are, and how much time we lose trying to gather basic medical information from someone who can't communicate.",
+          "I've had too many calls where we found medications in a house but didn't know what condition the patient had. I've arrived at scenes where bystanders knew the person was diabetic but couldn't tell us what medications they were on. I've had to make treatment decisions with incomplete information because we couldn't reach emergency contacts.",
+          "When I retired last year, one of my friends showed me their Qlink band. As soon as I understood what it was, I knew I had to have one. I immediately thought of all the times this technology could have saved us precious minutes - or even saved a life.",
+          "I've recommended Qlink to every person I know, especially those with medical conditions. From a first responder's perspective, this isn't just a nice-to-have - it's a potential lifesaver. The minutes you save could be the difference between a good outcome and a tragedy."
+        ],
+        listTitle: "Why Medical Info Matters in Emergencies",
+        listItems: [
+          { title: "Medication Allergies Can Be Fatal", desc: "Giving the wrong medication to someone with allergies can cause anaphylaxis and worsen the emergency." },
+          { title: "Current Medications Matter", desc: "Knowing what medications you're on helps us avoid dangerous drug interactions during treatment." },
+          { title: "Medical Conditions Guide Treatment", desc: "Diabetes, heart conditions, and other diagnoses change how we approach emergency care." }
+        ],
+        features: [
+          { icon: "Activity", label: "Instant Access", sub: "Medical info available with one simple scan" },
+          { icon: "Heart",    label: "Peace of Mind", sub: "Exercise freely knowing you're protected" },
+          { icon: "Clock",   label: "Always On",     sub: "Waterproof & comfortable for 24/7 wear" }
+        ],
+        bigQuote: "\"The minutes you save could be the difference between a good outcome and a tragedy.\"",
+        bigQuoteAuthor: "- Malak Ahmed, 28-year Firefighting Veteran",
+        ctaTitle: "Order Your Qlink Band",
+        ctaDesc: "Join Malak and thousands of others who trust Qlink to provide critical medical information when it matters most.",
+        ctaBtn: "Order Your Qlink Band"
       },
       {
         id: 3,
-        author: "Malak Ahmed",
-        role: "Wife of Diabetic",
+        author: "Sarah Hany",
+        role: "Mother of Two",
         stars: 5,
-        quote: "This device literally saved my life last year. The paramedics knew exactly how to treat me within seconds of arriving.",
-        readMore: "Read Full Story"
+        quote: "I bought these for my kids for our Disney trip. The peace of mind knowing my contact info is on their wrist is priceless.",
+        readMore: "Read Full Story",
+        heroType: "avatar",
+        storyTitle: "The Full Story",
+        storyParagraphs: [
+          "Planning our family trip to Disney World was exciting, but I couldn't shake the worry of keeping track of my two energetic kids in those massive crowds. I'd heard too many stories of children getting separated from their parents in theme parks.",
+          "That's when I found Qlink. I ordered matching bands for both my kids - a blue one for my 6-year-old son and a pink one for my 8-year-old daughter. I programmed each one with their names, my phone number, my husband's number, and our hotel information.",
+          "The best part? My kids actually thought the bands were cool! They loved choosing their colors and thought it made them look like they had 'special powers'. For me, it meant I could relax and enjoy our vacation, knowing that if they wandered off, any staff member or helpful person could scan the QR code and contact us immediately.",
+          "We didn't have any incidents during our trip, but just knowing we were prepared gave me the freedom to actually enjoy the magic of Disney with my family instead of being in constant panic mode. Now they wear their bands every day - to school, to the playground, everywhere. It's become part of their daily routine."
+        ],
+        features: [
+          { icon: "MapPin",   label: "Perfect for Travel", sub: "Essential protection in crowded places" },
+          { icon: "Users",   label: "Kid-Friendly",       sub: "Fun designs children love to wear" },
+          { icon: "Settings", label: "Easy Setup",         sub: "Update info anytime through the app" }
+        ],
+        bigQuote: "\"My kids actually thought the bands were cool! They loved choosing their colors and thought it made them look like they had 'special powers'.\"",
+        bigQuoteAuthor: "- Sarah Hany",
+        ctaTitle: "Protect Your Family Today",
+        ctaDesc: "Give yourself the peace of mind that Sarah experienced. Perfect for families, travel, and everyday adventures.",
+        ctaBtn: "Get Qlink for Your Family"
       },
       {
         id: 4,
-        author: "Ann Moore",
-        role: "Athletic Trainer",
+        author: "Ann Mazen",
+        role: "Allergy Sufferer",
         stars: 4,
-        quote: "The tactical design is great. I recommended this to all my athletes who train out in the sun and outdoors.",
-        readMore: "Read Full Story"
+        quote: "The waterproof design is great. I never take it off. It's stylish and functional.",
+        readMore: "Read Full Story",
+        heroType: "avatar",
+        storyTitle: "Style Meets Safety",
+        storyParagraphs: [
+          "Living with severe food allergies means I have to be constantly vigilant about what I eat and where I go. I've had a few scary reactions in the past, including one that landed me in the ER after accidentally eating something with peanuts.",
+          "I've tried medical alert bracelets before, but honestly, they were all pretty ugly. They looked clinical and screamed 'medical device', which made me self-conscious. I'd often take them off before going out, which defeated the entire purpose.",
+          "When I discovered Qlink, I was immediately drawn to the sleek design. It doesn't look like a medical alert device - it looks like a stylish accessory. I chose the rose gold finish, and I genuinely get compliments on it regularly.",
+          "The waterproof feature is a game-changer. I wear it swimming, in the shower, at the gym - literally everywhere. I don't have to worry about taking it off and forgetting to put it back on. It's become as much a part of my daily routine as putting on my watch.",
+          "My only minor complaint is that I wish there were more color options, which is why I gave it 4 stars instead of 5. But honestly, that's a small thing compared to the peace of mind and style it provides."
+        ],
+        listTitle: "Design Features That Matter",
+        listItems: [
+          { title: "Fully Waterproof", desc: "Wear it 24/7 - swimming, showering, exercising. The IP68 rating means it can handle anything your active lifestyle throws at it." },
+          { title: "Stylish Design", desc: "Available in multiple finishes including rose gold, silver, and black. Looks like jewelry, functions like a lifesaver." },
+          { title: "Comfortable Fit", desc: "Lightweight and ergonomic design means you'll forget you're even wearing it. No irritation, no discomfort." }
+        ],
+        features: [
+          { icon: "Shield",  label: "IP68 Rated",       sub: "Fully submersible and waterproof" },
+          { icon: "Star",    label: "Premium Finishes",  sub: "Rose gold, silver, black options" },
+          { icon: "Clock",   label: "24/7 Wear",         sub: "So comfortable you'll forget it's there" }
+        ],
+        bigQuote: "\"It doesn't look like a medical alert device - it looks like a stylish accessory. I genuinely get compliments on it regularly.\"",
+        bigQuoteAuthor: "- Ann Mazen",
+        ctaTitle: "Protection That Looks as Good as It Works",
+        ctaDesc: "Stop compromising between style and safety. Get a Qlink band that you'll actually want to wear every day.",
+        ctaBtn2: "View All Colors",
+        ctaBtn: "Shop Now"
       }
     ],
     caregivers: {
@@ -474,8 +558,8 @@ const translations = {
     teamSubtitle: "Meet the minds",
     team: [
       { id: 1, name: "Mariam Essam", role: "CEO / Founder" },
-      { id: 2, name: "Ola Abdelaal", role: "Manager" },
-      { id: 3, name: "Amira Hassan", role: "Product Designer" },
+      { id: 2, name: "Ola AboSeif", role: "Manager" },
+      { id: 3, name: "Zeina Essam", role: "Product Designer" },
       { id: 4, name: "Youseff Wahba", role: "Team Leader" }
     ],
     
