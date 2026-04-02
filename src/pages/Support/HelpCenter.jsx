@@ -185,20 +185,20 @@ function HelpCenter() {
             
             <div className="timeline-step">
               <div className="step-circle">01</div>
-              <h4>Create Profile</h4>
-              <p>Enter medical details on our secure portal.</p>
+              <h4>Download App</h4>
+              <p>Get Qlink from App store or Google play</p>
             </div>
             
             <div className="timeline-step">
               <div className="step-circle">02</div>
-              <h4>Link Device</h4>
-              <p>Scan the band to link it to the profile.</p>
+              <h4>Create Profile</h4>
+              <p>Enter your medical details and emergency contacts</p>
             </div>
             
             <div className="timeline-step">
               <div className="step-circle">03</div>
-              <h4>Stay Updated</h4>
-              <p>Update info anytime from your phone.</p>
+              <h4>Link Device</h4>
+              <p>Add activation code inside the bracelet box</p>
             </div>
           </div>
         </section>

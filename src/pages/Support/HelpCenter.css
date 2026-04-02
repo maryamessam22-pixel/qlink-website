@@ -240,11 +240,12 @@
 .timeline-line {
   position: absolute;
   top: 30px; /* Aligned vertically with circle center */
-  left: 15%;
-  right: 15%;
-  height: 1px;
-  background: rgba(255, 255, 255, 0.1); /* Very subtle gray/blue line */
+  left: 10%;
+  right: 10%;
+  height: 2px;
+  background: linear-gradient(90deg, #ff4c4c 0%, rgba(255, 255, 255, 0.8) 10%, rgba(255, 255, 255, 0.3) 100%);
   z-index: 0;
+  border-radius: 2px;
 }
 
 .timeline-step {
@@ -261,8 +262,8 @@
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  background: rgba(15, 20, 31, 0.9); /* Deep dark blue */
-  border: 1.5px solid rgba(255, 255, 255, 0.05); /* Subtle dark border */
+  background: var(--bg-body, #0a0e17); /* Matches deep dark body background to mask the line */
+  border: 1px solid rgba(255, 255, 255, 0.8); /* Distinct white border */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -274,16 +275,7 @@
   z-index: 2;
 }
 
-/* Clear gap behind circles over the line */
-.timeline-step::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  width: 80px; 
-  height: 60px;
-  background: transparent; /* Changed as deep dark background matches */
-  z-index: 0;
-}
+/* We don't need a before element to mask since the circle itself has a solid background */
 
 .timeline-step h4 {
   font-size: 18px;
