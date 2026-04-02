@@ -134,8 +134,10 @@ const PrivacySecurity = () => {
         {/* App Promo */}
         <section className="ps-app-promo-wrap scroll-animate">
            <header className="ps-app-header">
-              <h2>{t('privacy.installTitle')} <span className="red-text">{t('privacy.installTitleRed')}</span></h2>
-              <p>{t('privacy.installSubtitle')}</p>
+             <div className="ps-app-header-inner">
+               <h2>{t('privacy.installTitle')} <span className="red-text">{t('privacy.installTitleRed')}</span></h2>
+               <p>{t('privacy.installSubtitle')}</p>
+             </div>
            </header>
            
            <div className="ps-promo-inner">

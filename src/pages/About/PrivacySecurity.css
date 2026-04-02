@@ -2,7 +2,7 @@
   min-height: 100vh;
   position: relative;
   color: var(--text-primary);
-  padding-bottom: 120px;
+  /* padding-bottom: 120px; */
   overflow-x: hidden;
   /* background: linear-gradient(180deg, var(--color-primary-navy, #0d1629) 0%, #080f1e 100%); */
 }
@@ -11,6 +11,7 @@
   max-width: 1100px;
   margin: 0 auto;
   padding: 150px 24px 0;
+  overflow: visible;
 }
 
 /* Header Section */
@@ -265,7 +266,7 @@
 }
 
 .ps-fallback-band {
-  padding: 80px 0 100px;
+  padding: 80px 0 0px;
   margin-bottom: 150px;
 }
 
@@ -340,14 +341,33 @@
   margin: 150px 0 100px;
 }
 
+/* App Promo Header — full-bleed dark navy band */
 .ps-app-header {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  background: radial-gradient(ellipse at center, rgba(17, 50, 120, 0.75) 0%, rgba(10, 18, 40, 1) 70%);
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  padding: 80px 24px;
+  margin-bottom: 0;
   text-align: center;
-  margin-bottom: 80px;
+  box-sizing: border-box;
+}
+
+.ps-app-header-inner {
+  max-width: 1100px;
+  margin: 0 auto;
 }
 
 .ps-app-header h2 {
   font-size: 48px;
   font-weight: 800;
+  margin-bottom: 20px;
+  margin-top: 0;
 }
 
 .ps-app-header h2 .red-text { color: var(--color-primary-red); }
@@ -355,6 +375,7 @@
 .ps-app-header p {
   font-size: 18px;
   color: var(--text-secondary);
+  margin: 0;
 }
 
 /* ps-promo-inner — mirrors app-section-wrapper from Home.css (full-bleed band) */
