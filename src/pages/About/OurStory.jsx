@@ -149,8 +149,8 @@ function OurStory() {
                    <div className="member-photo-wrapper">
                       <img src={teamImages[idx]} alt={m.name} />
                    </div>
-                   <h4>{m.name}</h4>
-                   <p>{m.role}</p>
+                   <h4 className="member-name">{m.name}</h4>
+                   <p className="member-role">{m.role}</p>
                 </div>
               ))}
            </div>
