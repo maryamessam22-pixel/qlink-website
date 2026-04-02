@@ -1,237 +1,147 @@
-/* ================================================
-   ContactSection – Standalone premium component
-   ================================================ */
-
-.cs-wrapper {
+.contact-section {
   display: flex;
-  gap: 0;
-  max-width: 1100px;
-  margin: 0 auto 100px;
-  border-radius: 24px;
-  overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4);
+  gap: 60px;
+  max-width: 1000px;
+  margin: 0 auto 80px;
+  padding: 40px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: var(--bg-card); /* Dark panel */
 }
 
-/* ── LEFT ── */
-.cs-left {
-  flex: 0 0 380px;
-  background: linear-gradient(160deg, #1a1f2e 0%, #0d1120 100%);
-  padding: 52px 44px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  position: relative;
-  overflow: hidden;
+.contact-info {
+  flex: 1;
 }
 
-/* subtle decorative glow blob */
-.cs-left::before {
-  content: '';
-  position: absolute;
-  top: -60px;
-  left: -60px;
-  width: 220px;
-  height: 220px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(224, 50, 50, 0.18) 0%, transparent 70%);
-  pointer-events: none;
+.contact-info h2 {
+  font-size: 24px;
+  color: var(--text-light);
+  margin-bottom: 12px;
+  font-weight: 600;
 }
 
-.cs-badge {
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 2.5px;
-  color: var(--color-error);
-  text-transform: uppercase;
-  margin-bottom: 16px;
-}
-
-.cs-title {
-  font-size: 32px;
-  font-weight: 700;
-  color: #fff;
-  line-height: 1.2;
-  margin-bottom: 14px;
-}
-
-.cs-sub {
+.contact-desc {
   font-size: 14px;
-  color: rgba(255, 255, 255, 0.45);
-  line-height: 1.7;
-  margin-bottom: 40px;
+  color: var(--text-muted);
+  margin-bottom: 32px;
+  line-height: 1.6;
 }
 
-/* Contact info cards */
-.cs-cards {
+.contact-methods {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
-.cs-card {
+.contact-method {
   display: flex;
   align-items: center;
   gap: 16px;
-  padding: 16px 20px;
-  border-radius: 14px;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  transition: background 0.25s ease;
 }
 
-.cs-card:hover {
-  background: rgba(255, 255, 255, 0.06);
+/* Specific LTR override to prevent phone numbers from flipping */
+.contact-method span[dir="ltr"] {
+  unicode-bidi: embed;
 }
 
-.cs-card-icon {
-  width: 44px;
-  height: 44px;
-  border-radius: 12px;
-  background: rgba(224, 50, 50, 0.12);
+.cm-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(224, 50, 50, 0.1);
   color: var(--color-error);
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;
 }
 
-.cs-card > div:last-child {
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-}
-
-.cs-card-label {
-  font-size: 11px;
-  color: rgba(255, 255, 255, 0.35);
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.cs-card-val {
+.contact-method span {
   font-size: 14px;
-  color: #fff;
-  font-weight: 500;
+  color: var(--text-light);
 }
 
-/* ── RIGHT ── */
-.cs-right {
-  flex: 1;
-  background: rgba(255, 255, 255, 0.015);
-  padding: 52px 52px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+.contact-form {
+  flex: 1.2;
 }
 
-/* ── FORM ── */
-.cs-form-row {
+.form-row {
   display: flex;
   gap: 20px;
 }
 
-.cs-fg {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
+.form-group {
   margin-bottom: 20px;
+  flex: 1;
 }
 
-.cs-fg label {
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.8px;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.5);
+.form-group label {
+  display: block;
+  font-size: 13px;
+  color: var(--text-light);
   margin-bottom: 8px;
 }
 
-.cs-input {
+.form-control {
   width: 100%;
-  padding: 14px 18px;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 12px;
-  color: #fff;
+  padding: 14px 16px;
+  background: rgba(255, 255, 255, 0.05); /* very dark input */
+  border: 1px solid transparent; 
+  border-radius: 8px; 
+  color: var(--text-light);
   font-family: inherit;
-  font-size: 15px;
-  transition: border-color 0.25s, box-shadow 0.25s, background 0.25s;
-  outline: none;
+  font-size: 14px;
+  transition: all 0.3s ease;
 }
 
-.cs-input::placeholder {
+.form-control:focus {
+  outline: none;
+  border-color: rgba(224, 50, 50, 0.5);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.form-control::placeholder {
   color: rgba(255, 255, 255, 0.2);
 }
 
-.cs-input:focus {
-  border-color: var(--color-error);
-  background: rgba(224, 50, 50, 0.04);
-  box-shadow: 0 0 0 4px rgba(224, 50, 50, 0.08);
-}
-
-.cs-select {
+select.form-control {
   appearance: none;
   cursor: pointer;
   background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23a1a1aa' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
   background-repeat: no-repeat;
-  background-position: right 16px center;
-  background-size: 15px;
-  padding-right: 44px;
+  background-position: right 14px center;
+  background-size: 16px;
+  padding-right: 40px;
 }
 
-.rtl-text .cs-select {
-  background-position: left 16px center;
-  padding-right: 18px;
-  padding-left: 44px;
+/* Standard RTL Support for Dropdown Arrow */
+.rtl-text select.form-control {
+  background-position: left 14px center;
+  padding-right: 16px;
+  padding-left: 40px;
 }
 
-.cs-textarea {
+textarea.form-control {
   resize: vertical;
-  min-height: 120px;
 }
 
-.cs-submit-btn {
-  display: inline-flex;
+.submit-btn {
+  width: 100%;
+  display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  width: 100%;
-  padding: 16px 32px;
-  background: var(--color-error);
-  color: #fff;
+  padding: 14px;
   font-size: 15px;
   font-weight: 600;
-  letter-spacing: 0.5px;
-  border: none;
-  border-radius: 12px;
-  cursor: pointer;
-  transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
-  margin-top: 6px;
+  border-radius: 8px;
 }
 
-.cs-submit-btn:hover {
-  transform: translateY(-2px);
-  filter: brightness(1.1);
-  box-shadow: 0 10px 28px rgba(224, 50, 50, 0.35);
-}
-
-/* ── RESPONSIVE ── */
-@media (max-width: 860px) {
-  .cs-wrapper {
+@media (max-width: 768px) {
+  .contact-section {
     flex-direction: column;
+    padding: 30px 20px;
   }
 
-  .cs-left {
-    flex: none;
-    padding: 40px 28px;
-  }
-
-  .cs-right {
-    padding: 38px 28px;
-  }
-
-  .cs-form-row {
+  .form-row {
     flex-direction: column;
     gap: 0;
   }

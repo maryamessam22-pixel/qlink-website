@@ -1,9 +1,9 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { LanguageContext } from '../../context/LanguageContext';
 import { Link } from 'react-router-dom';
-import { 
-  Book, 
-  Wrench, 
+import {
+  Book,
+  Wrench,
   CreditCard,
   ChevronDown,
   Users,
@@ -53,9 +53,9 @@ function HelpCenter() {
   return (
     <div className="help-center-wrapper">
       <DynamicBackground />
-      
+
       <div className={`help-center-content ${lang === 'ar' ? 'rtl-text' : ''}`}>
-        
+
         {/* HEADER SECTION */}
         <section className="support-header-section scroll-animate stag-1">
           <h1 className="support-title">
@@ -76,7 +76,7 @@ function HelpCenter() {
               <h3>{t('supportCenter.card1Title')}</h3>
               <p>{t('supportCenter.card1Desc')}</p>
             </div>
-            
+
             <div className="support-card card-red">
               <div className="icon-wrap icon-wrap-red" style={{ color: '#E03232' }}>
                 <Wrench size={24} />
@@ -101,19 +101,19 @@ function HelpCenter() {
             <h2>{t('supportCenter.faqTitle')}</h2>
             <span className="faq-badge red-text">{t('supportCenter.faqBadge')}</span>
           </div>
-          
+
           <div className="faq-list">
             {faqs.map((faq, idx) => (
-              <div 
-                key={idx} 
+              <div
+                key={idx}
                 className={`faq-item glass-panel ${activeFaq === idx ? 'active' : ''}`}
                 onClick={() => toggleFaq(idx)}
               >
                 <div className="faq-question">
                   <h4>{faq.question}</h4>
-                  <ChevronDown 
-                    size={20} 
-                    className={`faq-icon ${activeFaq === idx ? 'rotate' : ''}`} 
+                  <ChevronDown
+                    size={20}
+                    className={`faq-icon ${activeFaq === idx ? 'rotate' : ''}`}
                   />
                 </div>
                 <div className={`faq-answer ${activeFaq === idx ? 'open' : ''}`}>
@@ -122,7 +122,7 @@ function HelpCenter() {
               </div>
             ))}
           </div>
-          
+
           <div className="faq-more">
             <button className="btn btn-primary">{t('supportCenter.faqMoreBtn')}</button>
           </div>
@@ -180,25 +180,30 @@ function HelpCenter() {
 
         {/* INSTALL APP TIMELINE SECTION */}
         <section className="install-timeline-section scroll-animate stag-3">
+          <div className="install-timeline-header">
+            <h2>{t('supportCenter.installTitle')}<span className="red-text">{t('supportCenter.installHighlight')}</span></h2>
+            <p className="install-subtitle">{t('supportCenter.installDesc')}</p>
+          </div>
+
           <div className="timeline-container">
             <div className="timeline-line"></div>
-            
+
             <div className="timeline-step">
               <div className="step-circle">01</div>
-              <h4>Download App</h4>
-              <p>Get Qlink from App store or Google play</p>
+              <h4>{t('supportCenter.step1Title')}</h4>
+              <p>{t('supportCenter.step1Desc')}</p>
             </div>
-            
+
             <div className="timeline-step">
               <div className="step-circle">02</div>
-              <h4>Create Profile</h4>
-              <p>Enter your medical details and emergency contacts</p>
+              <h4>{t('supportCenter.step2Title')}</h4>
+              <p>{t('supportCenter.step2Desc')}</p>
             </div>
-            
+
             <div className="timeline-step">
               <div className="step-circle">03</div>
-              <h4>Link Device</h4>
-              <p>Add activation code inside the bracelet box</p>
+              <h4>{t('supportCenter.step3Title')}</h4>
+              <p>{t('supportCenter.step3Desc')}</p>
             </div>
           </div>
         </section>
