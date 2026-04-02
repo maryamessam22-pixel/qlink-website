@@ -65,9 +65,11 @@ const ReviewDetail = () => {
       <DynamicBackground />
 
       {/* ── BACK LINK ── */}
-      <Link to="/shop/reviews" className="rd-back-btn">
-        <ChevronLeft size={16} /> Back to Reviews
-      </Link>
+      <div className="rd-back-container">
+        <Link to="/shop/reviews" className="rd-back-btn">
+          <ChevronLeft size={16} /> Back to Reviews
+        </Link>
+      </div>
 
       {/* ── HERO ── */}
       {isImageHero ? (
