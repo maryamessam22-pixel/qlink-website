@@ -1,181 +1,148 @@
-/* ================================================
-   ContactSection - Professional Two-Column Layout
-   ================================================ */
-
-.contact-section {
-  display: flex;
-  gap: 60px;
-  max-width: 1100px;
-  margin: 0 auto 100px;
-  padding: 60px;
-  border-radius: 24px;
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  background: rgba(13, 17, 26, 0.8); /* Dark panel background */
-  backdrop-filter: blur(10px);
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
-  align-items: flex-start;
+/* CONTACT SECTION REFACTOR - CLEAN CSS USING ROOT VARIABLES */
+.contact-wrapper {
+  padding: 64px 48px;
+  width: 100%;
 }
 
-.contact-info {
-  flex: 1;
+.contact-panel {
+  /* Replace absolute hexs with matching app variables whenever possible */
+  background: linear-gradient(135deg, var(--bg-surface-navy) 0%, rgba(15, 22, 37, 0.95) 100%);
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+  padding: 40px;
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 48px;
+  max-width: 900px;
+  margin: 0px auto;
 }
 
-.contact-info h2 {
-  font-size: 32px;
-  font-weight: 700;
-  color: var(--text-light);
-  margin-bottom: 24px;
+.contact-info-col h2 {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 12px;
 }
 
-.contact-desc {
-  font-size: 15px;
-  color: var(--text-muted);
-  margin-bottom: 40px;
-  line-height: 1.8;
-  max-width: 400px;
+.contact-info-col p {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: 28px;
 }
 
-.contact-methods {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-}
-
-.contact-method {
+.contact-method-row {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 12px;
+  margin-bottom: 14px;
 }
 
-/* LTR override for phones */
-.contact-method span[dir="ltr"] {
-  unicode-bidi: embed;
-}
-
-.cm-icon {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: var(--color-error); /* Solid red like screenshot */
-  color: #fff;
+.contact-method-row .cm-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: rgba(224, 50, 50, 0.12); /* Based on user's rgb(232, 69, 60), roughly --color-primary-red */
+  border: 1px solid rgba(224, 50, 50, 0.25);
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 0.9rem;
   flex-shrink: 0;
+}
+
+.contact-method-row .cm-text {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+/* FORM SIDE */
+.cf-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.cf-group {
+  margin-bottom: 12px;
+}
+
+.cf-textarea-group {
+  margin-bottom: 20px;
+}
+
+.cf-group label {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  display: block;
+  margin-bottom: 6px;
+}
+
+.cf-input {
+  width: 100%;
+  padding: 10px 14px;
+  background: var(--border-light); 
+  border: 1px solid rgba(59, 130, 246, 0.18); /* Kept explicit to keep blue glow hint from design */
+  border-radius: 8px;
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: 0.85rem;
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+}
+
+.cf-input:focus {
+  border-color: var(--color-primary-blue);
+}
+
+.cf-select {
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23a1a1aa' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  background-size: 16px;
+}
+
+.rtl-text .cf-select {
+  background-position: left 14px center;
+}
+
+.cf-textarea {
+  height: 100px;
+  resize: vertical;
+}
+
+.cf-submit {
+  width: 100%;
+  padding: 13px;
+  border: none;
+  border-radius: 10px;
+  background: var(--color-primary-red);
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.cf-submit:hover {
+  filter: brightness(1.1);
+  transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(224, 50, 50, 0.3);
 }
 
-.contact-method span {
-  font-size: 15px;
-  color: var(--text-light);
-  font-weight: 500;
-}
-
-/* FORM STYLING */
-.contact-form {
-  flex: 1.3;
-}
-
-.form-row {
-  display: flex;
-  gap: 20px;
-}
-
-.form-group {
-  margin-bottom: 24px;
-  flex: 1;
-}
-
-.form-group label {
-  display: block;
-  font-size: 14px;
-  color: var(--text-muted);
-  margin-bottom: 10px;
-  font-weight: 500;
-}
-
-.form-control {
-  width: 100%;
-  padding: 16px 20px;
-  background: rgba(255, 255, 255, 0.03); /* Dark but clean like screenshot */
-  border: 1px solid rgba(255, 255, 255, 0.08); 
-  border-radius: 12px;
-  color: var(--text-light);
-  font-family: inherit;
-  font-size: 15px;
-  transition: all 0.3s ease;
-}
-
-.form-control:focus {
-  outline: none;
-  border-color: var(--color-error);
-  background: rgba(224, 50, 50, 0.03);
-  box-shadow: 0 0 0 4px rgba(224, 50, 50, 0.1);
-}
-
-.form-control::placeholder {
-  color: rgba(255, 255, 255, 0.2);
-}
-
-select.form-control {
-  appearance: none;
-  cursor: pointer;
-  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23a1a1aa' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
-  background-repeat: no-repeat;
-  background-position: right 20px center;
-  background-size: 16px;
-  padding-right: 48px;
-}
-
-/* RTL Support for Select Arrow */
-.rtl-text select.form-control {
-  background-position: left 20px center;
-  padding-right: 20px;
-  padding-left: 48px;
-}
-
-textarea.form-control {
-  resize: vertical;
-  min-height: 140px;
-}
-
-.submit-btn {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  padding: 18px;
-  background: var(--color-error) !important; /* Force red */
-  color: #fff !important;
-  font-size: 16px;
-  font-weight: 700;
-  border-radius: 12px;
-  transition: all 0.3s ease;
-  border: none;
-  cursor: pointer;
-  box-shadow: 0 8px 20px rgba(224, 50, 50, 0.3);
-}
-
-.submit-btn:hover {
-  transform: translateY(-2px);
-  filter: brightness(1.1);
-  box-shadow: 0 12px 24px rgba(224, 50, 50, 0.4);
-}
-
-@media (max-width: 992px) {
-  .contact-section {
-    flex-direction: column;
-    padding: 40px 30px;
-    gap: 40px;
+@media (max-width: 860px) {
+  .contact-wrapper {
+    padding: 40px 20px;
   }
-  
-  .contact-info, .contact-form {
-    width: 100%;
+  .contact-panel {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    padding: 30px;
   }
-  
-  .form-row {
-    flex-direction: column;
-    gap: 0;
+  .cf-row {
+    grid-template-columns: 1fr;
   }
 }

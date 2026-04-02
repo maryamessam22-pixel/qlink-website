@@ -232,131 +232,115 @@
 
 
 
-.install-timeline-section {
+/* NEW FULL-WIDTH TIMELINE SECTION */
+.timeline-section-fw {
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
+  padding: 80px 24px;
   text-align: center;
-  max-width: 1000px;
+  background: var(--bg-surface-dark); /* based on #0f1625 which is super dark */
+  position: relative;
+}
+
+.timeline-content-fw {
+  max-width: 1200px;
   margin: 0 auto;
 }
 
-.install-timeline-header {
-  margin-bottom: 60px;
+.timeline-title-fw {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 6px;
 }
 
-.install-timeline-header h2 {
-  font-size: 28px;
-  color: var(--text-light);
-  margin-bottom: 12px;
+.highlight-red {
+  color: var(--color-primary-red);
 }
 
-.install-subtitle {
-  font-size: 16px;
-  color: var(--text-muted);
+.timeline-desc-fw {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-bottom: 44px;
 }
 
-.timeline-container {
-  display: flex;
-  justify-content: space-between;
+.timeline-steps-fw {
   position: relative;
-  flex-direction: row;
-  padding: 0 40px;
+  display: flex;
+  justify-content: center;
+  max-width: 700px;
+  margin: 0 auto;
+  gap: 24px;
 }
 
-.timeline-line {
+.timeline-line-fw {
   position: absolute;
-  top: 30px;
-  left: 10%;
-  right: 10%;
+  top: 28px;
+  left: 15%;
+  right: 15%;
   height: 2px;
-  background: linear-gradient(90deg, #ff4c4c 0%, rgba(255, 255, 255, 0.4) 15%, rgba(255, 255, 255, 0.1) 100%);
+  background: linear-gradient(90deg, var(--color-primary-red), rgba(59,130,246,0.4));
   z-index: 0;
 }
 
-.timeline-step {
+.timeline-step-fw {
+  flex: 1;
+  text-align: center;
   position: relative;
   z-index: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  max-width: 250px;
-  background: transparent;
-  padding: 0 10px;
+  padding: 0 12px;
 }
 
-.step-circle {
-  width: 60px;
-  height: 60px;
+.step-circle-fw {
+  width: 56px;
+  height: 56px;
   border-radius: 50%;
-  background: var(--bg-card);
-  /* Assuming this is dark */
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: linear-gradient(135deg, var(--bg-surface-navy), #0f1c3a);
+  border: 2px solid rgba(59,130,246,0.3);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 18px;
+  margin: 0 auto 16px;
+  font-size: 0.9rem;
   font-weight: 700;
-  color: var(--text-light);
-  margin-bottom: 24px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-  position: relative;
-  z-index: 2;
+  color: var(--color-primary-blue);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
 }
 
-/* Ensure backgrounds mask the line */
-.timeline-step::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 60px;
-  background: var(--bg-primary, #0c111a);
-  /* Needs to match body dark color */
-  z-index: 0;
-  border-radius: 30px;
+.step-circle-fw.active-step {
+  border-color: var(--color-primary-red);
+  color: var(--color-primary-red);
+  box-shadow: 0 4px 15px rgba(224, 50, 50, 0.2);
 }
 
-.step-circle {
-  z-index: 2;
+.step-title-fw {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 6px;
 }
 
-.timeline-step h4,
-.timeline-step p {
-  position: relative;
-  z-index: 2;
-}
-
-.timeline-step:nth-child(2) .step-circle,
-.timeline-step:nth-child(3) .step-circle {
-  border-color: rgba(255, 255, 255, 0.1);
-}
-
-.timeline-step:first-of-type .step-circle {
-  border-color: rgba(255, 255, 255, 0.1);
-  /* Left it generic for the others */
-}
-
-/* Actually, the image shows a red gradient on the left of the line. So the first circle might have red styling or the line goes through. Let's make the second one have red glow as in Home? No, it looks like a clean white border in the image except for the line. */
-
-.timeline-step h4 {
-  font-size: 18px;
-  color: var(--text-light);
-  margin-bottom: 12px;
-}
-
-.timeline-step p {
-  font-size: 14px;
-  color: var(--text-muted);
-  line-height: 1.6;
+.step-desc-fw {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
 }
 
 @media (max-width: 768px) {
-  .timeline-container {
+  .timeline-steps-fw {
     flex-direction: column;
-    align-items: center;
     gap: 40px;
   }
-
-  .timeline-line {
-    display: none;
+  .timeline-line-fw {
+    /* Vertical line for mobile */
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    right: auto;
+    width: 2px;
+    height: 100%;
+    transform: translateX(-50%);
+    background: linear-gradient(180deg, var(--color-primary-red), rgba(59,130,246,0.4));
   }
 }

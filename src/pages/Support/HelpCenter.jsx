@@ -184,37 +184,33 @@ function HelpCenter() {
             </div>
           </section>
         </div>
+      </div> {/* Close help-center-content */}
 
-        {/* INSTALL APP TIMELINE SECTION */}
-        <section className="scroll-animate stag-3" style={{padding:"60px 48px",textAlign:"center",background:"#0f1625"}}>
-          <h2 style={{fontFamily:F,fontSize:"1.8rem",fontWeight:800,color:"#ddeeff",marginBottom:"6px"}}>
-            {t('supportCenter.installTitle')} <span style={{color:"#e8453c"}}>{t('supportCenter.installHighlight')}</span>
+      {/* INSTALL APP TIMELINE SECTION */}
+      <section className="timeline-section-fw scroll-animate stag-3">
+        <div className="timeline-content-fw">
+          <h2 className="timeline-title-fw">
+            {t('supportCenter.installTitle')} <span className="highlight-red">{t('supportCenter.installHighlight')}</span>
           </h2>
-          <p style={{fontFamily:F,fontSize:"0.85rem",color:"#6b82aa",marginBottom:"44px"}}>
+          <p className="timeline-desc-fw">
             {t('supportCenter.installDesc')}
           </p>
-          <div style={{position:"relative",display:"flex",justifyContent:"center",maxWidth:"700px",margin:"0 auto"}}>
-            <div style={{position:"absolute",top:"28px",left:"15%",right:"15%",height:"2px",background:"linear-gradient(90deg,#e8453c,rgba(59,130,246,0.4))",zIndex:0}}/>
+          <div className="timeline-steps-fw">
+            <div className="timeline-line-fw" />
             {steps.map(({num,title,desc})=>(
-              <div key={num} style={{flex:1,textAlign:"center",position:"relative",zIndex:1,padding:"0 12px"}}>
-                <div style={{
-                  width:"56px",height:"56px",borderRadius:"50%",
-                  background:"linear-gradient(135deg,#161f35,#0f1c3a)",
-                  border:`2px solid ${num==="01"?"#e8453c":"rgba(59,130,246,0.3)"}`,
-                  display:"flex",alignItems:"center",justifyContent:"center",
-                  margin:"0 auto 16px",
-                  fontFamily:F,fontSize:"0.9rem",fontWeight:700,
-                  color:num==="01"?"#e8453c":"#3b82f6",
-                }}>{num}</div>
-                <div style={{fontFamily:F,fontSize:"0.9rem",fontWeight:700,color:"#ddeeff",marginBottom:"6px"}}>{title}</div>
-                <div style={{fontFamily:F,fontSize:"0.78rem",color:"#6b82aa",lineHeight:1.5}}>{desc}</div>
+              <div key={num} className="timeline-step-fw">
+                <div className={`step-circle-fw ${num==="01"?"active-step":""}`}>
+                  {num}
+                </div>
+                <div className="step-title-fw">{title}</div>
+                <div className="step-desc-fw" dir={lang === 'ar' ? 'rtl' : 'ltr'}>{desc}</div>
               </div>
             ))}
           </div>
-        </section>
+        </div>
+      </section>
 
-      </div>
-    </div>
+    </div> /* Close help-center-wrapper */
   );
 }
 
