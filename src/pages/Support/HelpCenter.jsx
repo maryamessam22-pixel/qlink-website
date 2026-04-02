@@ -14,6 +14,7 @@ import {
 } from 'lucide-react';
 import './HelpCenter.css';
 import DynamicBackground from '../../components/common/DynamicBackground';
+import ContactSection from '../../components/Sections/ContactSection';
 import appScreenImg from '../../assets/images/appscreen.png';
 
 function HelpCenter() {
@@ -139,65 +140,7 @@ function HelpCenter() {
         </section>
 
         {/* CONTACT US SECTION */}
-        <section className="contact-section scroll-animate stag-2 glass-panel">
-          <div className="contact-info">
-            <h2>{t('supportCenter.contactTitle')}</h2>
-            <p className="contact-desc">
-              {t('supportCenter.contactDesc')}
-            </p>
-            <div className="contact-methods">
-              <div className="contact-method">
-                <div className="cm-icon">
-                  <Send size={18} />
-                </div>
-                <span>support@qlink.com</span>
-              </div>
-              <div className="contact-method">
-                <div className="cm-icon">
-                  <Wrench size={18} />
-                </div>
-                <span>+20 123 456 7890</span>
-              </div>
-              <div className="contact-method">
-                <div className="cm-icon">
-                  <Book size={18} />
-                </div>
-                <span>Cairo, Egypt</span>
-              </div>
-            </div>
-          </div>
-          
-          <div className="contact-form">
-            <form onSubmit={(e) => e.preventDefault()}>
-              <div className="form-row">
-                <div className="form-group">
-                  <label>{t('supportCenter.formName')}</label>
-                  <input type="text" className="form-control" />
-                </div>
-                <div className="form-group">
-                  <label>{t('supportCenter.formPhone')}</label>
-                  <input type="text" className="form-control" />
-                </div>
-              </div>
-              <div className="form-group">
-                <label>{t('supportCenter.formSubject')}</label>
-                <select className="form-control">
-                  <option>{t('supportCenter.formOptions')[0]}</option>
-                  <option>{t('supportCenter.formOptions')[1]}</option>
-                  <option>{t('supportCenter.formOptions')[2]}</option>
-                </select>
-              </div>
-              <div className="form-group">
-                <label>{t('supportCenter.formMessage')}</label>
-                <textarea className="form-control" rows="4"></textarea>
-              </div>
-              <button type="submit" className="btn btn-primary submit-btn">
-                <Send size={18} style={{ marginRight: '8px' }} />
-                {t('supportCenter.formSubmit')}
-              </button>
-            </form>
-          </div>
-        </section>
+        <ContactSection />
 
         {/* APP MOCKUP SECTION (Reused from Home) */}
         <div className={`app-section-wrapper scroll-animate ${lang === 'ar' ? 'rtl-text' : ''}`}>
