@@ -266,8 +266,8 @@
 }
 
 .ps-fallback-band {
-  padding: 80px 0 0px;
-  margin-bottom: 150px;
+  padding: 80px 0px 0px;
+  margin-bottom: 10px;
 }
 
 .ps-fallback-band-inner {
@@ -296,8 +296,8 @@
 }
 
 .ps-disclaimer-card {
-  border: 1px solid rgba(224, 50, 50, 0.35);
-  background: rgba(224, 50, 50, 0.06);
+border: 1px solid rgb(224 50 50 / 65%);
+    background: rgb(224 50 50 / 11%);
   border-radius: 16px;
   padding: 32px 40px;
   box-shadow: 0 4px 30px rgba(224, 50, 50, 0.08);
@@ -349,11 +349,11 @@
   right: 50%;
   margin-left: -50vw;
   margin-right: -50vw;
-  background: radial-gradient(ellipse at center, rgba(17, 50, 120, 0.75) 0%, rgba(10, 18, 40, 1) 70%);
+  background: radial-gradient(ellipse at center, rgb(17 50 120 / 22%) 0%, rgb(10 18 40 / 49%) 70%);
   border-top: 1px solid rgba(255, 255, 255, 0.04);
   border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-  padding: 80px 24px;
-  margin-bottom: 0;
+  padding:130px 24px;
+  margin-bottom: 120px;
   text-align: center;
   box-sizing: border-box;
 }
