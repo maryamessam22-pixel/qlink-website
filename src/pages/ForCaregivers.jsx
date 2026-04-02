@@ -37,47 +37,47 @@ function ForCaregivers() {
     <div className="for-caregivers-page">
       <DynamicBackground />
       <main className="fc-container">
-        <section className={`fc-hero scroll-animate ${lang === 'ar' ? 'rtl-text' : ''}`}>
+        <section className={`fc-hero ${lang === 'ar' ? 'rtl-text' : ''}`}>
           <div className="fc-hero-content">
-            <div className="fc-hero-tag">{t("reviews.caregivers.heroTag")}</div>
-            <h1 className="fc-hero-title">
+            <div className="fc-hero-tag scroll-animate">{t("reviews.caregivers.heroTag")}</div>
+            <h1 className="fc-hero-title scroll-animate stag-1">
               {t("reviews.caregivers.heroTitle")}
               <br />
               <span className="highlight-text">{t("reviews.caregivers.heroHighlight")}</span>
             </h1>
-            <p className="fc-hero-subtitle">{t("reviews.caregivers.heroDesc")}</p>
-            <button className="btn btn-primary fc-hero-action">{t("reviews.caregivers.heroBtn")}</button>
+            <p className="fc-hero-subtitle scroll-animate stag-2">{t("reviews.caregivers.heroDesc")}</p>
+            <button className="btn btn-primary fc-hero-action scroll-animate stag-3">{t("reviews.caregivers.heroBtn")}</button>
           </div>
-          <div className="fc-hero-image">
+          <div className="fc-hero-image scroll-animate stag-2">
             <img src={heroImage} alt={t("reviews.caregivers.heroAlt")} />
           </div>
         </section>
 
-        <section className="fc-connect scroll-animate">
+        <section className="fc-connect">
           <div className="fc-connect-grid">
-            <div className="fc-connect-image">
+            <div className="fc-connect-image scroll-animate">
               <img src={stayConnectedImg} alt={t("reviews.caregivers.connectTitle")} />
             </div>
             <div className="fc-connect-info">
-              <h2>{t("reviews.caregivers.connectTitle")}</h2>
-              <p>{t("reviews.caregivers.connectDesc")}</p>
+              <h2 className="scroll-animate">{t("reviews.caregivers.connectTitle")}</h2>
+              <p className="scroll-animate stag-1">{t("reviews.caregivers.connectDesc")}</p>
               
               <div className="fc-feature-list">
-                <div className="fc-feature-item">
+                <div className="fc-feature-item scroll-animate stag-1">
                   <div className="fc-feature-icon"><ShieldCheck size={24} /></div>
                   <div className="fc-feature-text">
                     <h4>{t("reviews.caregivers.f1Title")}</h4>
                     <p>{t("reviews.caregivers.f1Desc")}</p>
                   </div>
                 </div>
-                <div className="fc-feature-item">
+                <div className="fc-feature-item scroll-animate stag-2">
                   <div className="fc-feature-icon"><MapPin size={24} /></div>
                   <div className="fc-feature-text">
                     <h4>{t("reviews.caregivers.f2Title")}</h4>
                     <p>{t("reviews.caregivers.f2Desc")}</p>
                   </div>
                 </div>
-                <div className="fc-feature-item">
+                <div className="fc-feature-item scroll-animate stag-3">
                   <div className="fc-feature-icon"><BellRing size={24} /></div>
                   <div className="fc-feature-text">
                     <h4>{t("reviews.caregivers.f3Title")}</h4>
@@ -89,26 +89,26 @@ function ForCaregivers() {
           </div>
         </section>
         
-        <section className="fc-family scroll-animate">
-          <div className="fc-family-badge">{t("reviews.caregivers.familySubtitle")}</div>
-          <h2 className="fc-family-title">{t("reviews.caregivers.familyTitle")}</h2>
+        <section className="fc-family">
+          <div className="fc-family-badge scroll-animate">{t("reviews.caregivers.familySubtitle")}</div>
+          <h2 className="fc-family-title scroll-animate stag-1">{t("reviews.caregivers.familyTitle")}</h2>
           
           <div className="fc-family-grid">
-            <div className="fc-family-card">
+            <div className="fc-family-card scroll-animate stag-1">
               <div className="card-image"><img src={elderlyParentsImg} alt={t("reviews.caregivers.card1Title")} /></div>
               <div className="card-body">
                 <h3>{t("reviews.caregivers.card1Title")}</h3>
                 <p>{t("reviews.caregivers.card1Desc")}</p>
               </div>
             </div>
-            <div className="fc-family-card">
+            <div className="fc-family-card scroll-animate stag-2">
               <div className="card-image"><img src={chronicConditionsImg} alt={t("reviews.caregivers.card2Title")} /></div>
               <div className="card-body">
                 <h3>{t("reviews.caregivers.card2Title")}</h3>
                 <p>{t("reviews.caregivers.card2Desc")}</p>
               </div>
             </div>
-            <div className="fc-family-card">
+            <div className="fc-family-card scroll-animate stag-3">
               <div className="card-image"><img src={activeChildrenImg} alt={t("reviews.caregivers.card3Title")} /></div>
               <div className="card-body">
                 <h3>{t("reviews.caregivers.card3Title")}</h3>
@@ -118,26 +118,26 @@ function ForCaregivers() {
           </div>
         </section>
 
-        <section className="fc-steps-modern scroll-animate">
-          <h2>{t("reviews.caregivers.setupTitle")}</h2>
-          <p>{t("reviews.caregivers.setupDesc")}</p>
+        <section className="fc-steps-modern">
+          <h2 className="scroll-animate">{t("reviews.caregivers.setupTitle")}</h2>
+          <p className="scroll-animate stag-1">{t("reviews.caregivers.setupDesc")}</p>
           
           <div className="fc-timeline">
-            <div className="fc-timeline-step">
+            <div className="fc-timeline-step scroll-animate stag-1">
               <div className="fc-circle-wrap">
                 <div className="fc-step-circle">01</div>
               </div>
               <h4>{t("reviews.caregivers.step1Title")}</h4>
               <p>{t("reviews.caregivers.step1Desc")}</p>
             </div>
-            <div className="fc-timeline-step">
+            <div className="fc-timeline-step scroll-animate stag-2">
               <div className="fc-circle-wrap">
                 <div className="fc-step-circle">02</div>
               </div>
               <h4>{t("reviews.caregivers.step2Title")}</h4>
               <p>{t("reviews.caregivers.step2Desc")}</p>
             </div>
-            <div className="fc-timeline-step">
+            <div className="fc-timeline-step scroll-animate stag-3">
               <div className="fc-circle-wrap">
                 <div className="fc-step-circle">03</div>
               </div>
