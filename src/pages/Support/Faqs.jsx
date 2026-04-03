@@ -15,7 +15,6 @@ function Faqs() {
   const [loading, setLoading]     = useState(true);
   const [activeIdx, setActiveIdx] = useState(null);
   const [searchQuery, setSearch]  = useState('');
-  const [activeCategory, setActiveCategory] = useState('all');
 
   // ── Supabase fetch ─────────────────────────────────────────────────────────
   useEffect(() => {
@@ -24,7 +23,7 @@ function Faqs() {
       try {
         const { data, error } = await supabase
           .from('faqs')
-          .select('id, question_en, question_ar, answer_en, answer_ar, category, display_order')
+          .select('id, question_en, question_ar, answer_en, answer_ar, display_order')
           .order('display_order', { ascending: true });
 
         if (error) {
@@ -40,9 +39,9 @@ function Faqs() {
     };
 
     fetchFaqs();
-  }, []); // fetch once on mount — data is language-agnostic
+  }, []);
 
-  // ── IntersectionObserver (same pattern as Home / HelpCenter) ───────────────
+  // ── IntersectionObserver ───────────────────────────────────────────────────
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -57,29 +56,25 @@ function Faqs() {
     const els = document.querySelectorAll('.scroll-animate');
     els.forEach(el => observer.observe(el));
     return () => observer.disconnect();
-  }, [loading]); // re-run after content loads to pick up new DOM elements
+  }, [loading]);
 
   // ── Helpers ────────────────────────────────────────────────────────────────
-  const question = (faq) => (lang === 'ar' ? faq.question_ar : faq.question_en) || '';
-  const answer   = (faq) => (lang === 'ar' ? faq.answer_ar   : faq.answer_en)   || '';
+  // Han-catch ay form lel Arabic (ar, AR, ar-EG) w net2aked en el variable msh undefined
+  const isArabic = typeof lang === 'string' && lang.toLowerCase().includes('ar');
 
+  // Law Arabic hat el ar, law msh Arabic hat el en, w law el Arabic fady (null) e3red el English ka-fallback
+  const question = (faq) => (isArabic ? faq.question_ar : faq.question_en) || faq.question_en || '';
+  const answer   = (faq) => (isArabic ? faq.answer_ar   : faq.answer_en)   || faq.answer_en || '';
   const toggleItem = useCallback((idx) => {
     setActiveIdx(prev => (prev === idx ? null : idx));
   }, []);
-
-  // ── Derived: unique categories ─────────────────────────────────────────────
-  const categories = ['all', ...Array.from(
-    new Set(faqs.map(f => f.category).filter(Boolean))
-  )];
 
   // ── Filtered list ──────────────────────────────────────────────────────────
   const filtered = faqs.filter(faq => {
     const q   = question(faq).toLowerCase();
     const a   = answer(faq).toLowerCase();
     const qry = searchQuery.toLowerCase();
-    const matchesSearch   = !qry || q.includes(qry) || a.includes(qry);
-    const matchesCategory = activeCategory === 'all' || faq.category === activeCategory;
-    return matchesSearch && matchesCategory;
+    return !qry || q.includes(qry) || a.includes(qry);
   });
 
   // ── Render ─────────────────────────────────────────────────────────────────
@@ -87,7 +82,7 @@ function Faqs() {
     <div className="faqs-wrapper">
       <SEO 
         title={lang === 'ar' ? 'الأسئلة الشائعة' : 'Frequently Asked Questions'}
-        description={lang === 'ar' ? 'اعثر على إجابات للأسئلة المتكررة حول كيو لينك وكيفية استخدامه.' : 'Find answers to frequently asked questions about Qlink.'}
+        description={lang === 'ar' ? 'اعثر على إجابات للأسئلة المتكررة.' : 'Find answers to frequently asked questions.'}
         slug="support/faqs"
       />
       <DynamicBackground />
@@ -116,26 +111,8 @@ function Faqs() {
           </div>
         </section>
 
-        {/* CATEGORY CHIPS */}
-        {categories.length > 1 && (
-          <div className="faqs-categories scroll-animate stag-2">
-            {categories.map(cat => (
-              <button
-                key={cat}
-                id={`faqs-cat-${cat}`}
-                className={`faqs-cat-chip ${activeCategory === cat ? 'faqs-cat-active' : ''}`}
-                onClick={() => { setActiveCategory(cat); setActiveIdx(null); }}
-              >
-                {cat === 'all'
-                  ? (lang === 'ar' ? 'الكل' : 'All')
-                  : cat}
-              </button>
-            ))}
-          </div>
-        )}
-
         {/* ACCORDION */}
-        <div className="scroll-animate stag-3">
+        <div className="scroll-animate stag-3" style={{ marginTop: '48px' }}>
           {loading ? (
             <div className="faqs-loading">
               <span className="faqs-loading-dot" />
