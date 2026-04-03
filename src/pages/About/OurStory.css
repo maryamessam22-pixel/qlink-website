@@ -373,7 +373,9 @@
 
 .member-role {
   color: var(--color-primary-red);
-  font-size: 14px;
+      font-size: 18px;
+    font-weight: 500;
+
 }
 
 /* Stats Section - Updated to span full width */
