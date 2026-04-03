@@ -29,17 +29,17 @@ const AppPromoSection = ({ imageSrc, imgClassName, customTitle, customFocus, cus
         <div className="promo-content scroll-animate stag-1">
           <h2>{customTitle || t('emergency.promoTitle')}<span className="red-text">{customFocus || t('emergency.promoFocus')}</span></h2>
           <p>{customDesc || t('emergency.promoDesc')}</p>
-          <div className={`promo-app-buttons ${lang === 'ar' ? 'rtl-buttons' : ''}`}>
+          <div className="promo-app-buttons">
             <button className="promo-app-btn">
               <Apple size={24} />
-              <div className="btn-text" style={lang === 'ar' ? { textAlign: 'right' } : {}}>
+              <div className="btn-text">
                 <span>{t('appSection.appStore')}</span>
                 <strong>{t('appSection.appStoreTitle')}</strong>
               </div>
             </button>
-            <button className="promo-app-btn" style={{ background: 'rgba(255,255,255,0.05)', color: 'white', border: '1px solid rgba(255,255,255,0.1)' }}>
+            <button className="promo-app-btn secondary">
               <Play size={24} />
-              <div className="btn-text" style={lang === 'ar' ? { textAlign: 'right' } : {}}>
+              <div className="btn-text">
                 <span>{t('appSection.googlePlay')}</span>
                 <strong>{t('appSection.googlePlayTitle')}</strong>
               </div>

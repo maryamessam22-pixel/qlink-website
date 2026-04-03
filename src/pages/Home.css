@@ -469,13 +469,13 @@
   animation: appFloatDelay 6s ease-in-out infinite;
   animation-delay: 0.5s;
   will-change: transform;
+  filter: drop-shadow(0 20px 40px rgba(0,0,0,0.4));
 }
 
 @keyframes appFloatDelay {
-  0% { transform: translateX(0) translateY(0) rotate(0); }
-  33% { transform: translateX(25px) translateY(-15px) rotate(3deg); }
-  66% { transform: translateX(-20px) translateY(10px) rotate(-2deg); }
-  100% { transform: translateX(0) translateY(0) rotate(0); }
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+  100% { transform: translateY(0); }
 }
 
 /* CTA */
@@ -547,7 +547,6 @@
 }
 
 @media (max-width: 900px) {
-
   .hero-section,
   .hero-section.rtl-text,
   .split-feature,
@@ -555,6 +554,27 @@
   .app-section {
     flex-direction: column;
     text-align: center;
+  }
+
+  .app-section-wrapper {
+    padding: 60px 0;
+    margin-bottom: 60px;
+  }
+
+  .app-section {
+    gap: 40px;
+    padding: 0 24px;
+  }
+
+  .app-text {
+    width: 100%;
+  }
+
+  .app-text ul {
+    display: inline-block;
+    text-align: left;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .card-grid-3,
@@ -574,10 +594,23 @@
 
   .store-buttons {
     justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .store-btn {
+    width: 100%;
+    max-width: 280px;
+    justify-content: center;
   }
 
   .split-image img {
     margin-top: 40px;
+  }
+
+  .floating-app-screen {
+    max-width: 260px !important;
   }
 }
 
