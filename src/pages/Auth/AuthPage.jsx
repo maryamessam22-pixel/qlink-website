@@ -16,14 +16,14 @@ function AuthPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Use the hardcoded password from AuthContext for demo
+  
     login('mariam123', 'user@example.com');
     setIsLoading(true);
   };
 
   useEffect(() => {
     if (isLoading) {
-      // Show loading screen briefly, then trigger Splash
+     
       const timer = setTimeout(() => {
         setIsLoading(false);
         setShowSplash(true);
@@ -34,7 +34,7 @@ function AuthPage() {
 
   useEffect(() => {
     if (showSplash) {
-      // Let splash screen animation play before redirecting
+    
       const timer = setTimeout(() => {
         navigate('/');
       }, 3500);

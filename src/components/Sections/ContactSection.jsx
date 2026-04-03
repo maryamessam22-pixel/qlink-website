@@ -4,16 +4,12 @@ import { LanguageContext } from '../../context/LanguageContext';
 import { supabase } from '../../lib/Supabase';
 import './ContactSection.css';
 
-/**
- * Functional, dynamic Contact Section.
- * Fetches contact information from Supabase cms_content table (section_key: 'contact_info').
- * Maintains 100% design fidelity with the side-by-side layout.
- */
+
 const ContactSection = () => {
   const { lang, t } = useContext(LanguageContext);
   const [cmsData, setCmsData] = useState(null);
 
-  // Helper to pick translated fields from Supabase row
+
   const pick = (field) => {
     if (!cmsData) return null;
     return lang === 'ar' ? cmsData[`${field}_ar`] : cmsData[`${field}_en`];
@@ -73,7 +69,7 @@ const ContactSection = () => {
         .from('support_messages')
         .insert([
           {
-            id: crypto.randomUUID(), // Manually generate ID in case the table doesn't have a default
+            id: crypto.randomUUID(), 
             sender_name: formData.name,
             subject: formData.subject,
             message_body: formData.message,

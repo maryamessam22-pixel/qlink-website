@@ -9,7 +9,7 @@ import { LanguageContext } from '../../context/LanguageContext';
 import DynamicBackground from '../../components/common/DynamicBackground';
 import './ReviewDetail.css';
 
-// Avatar images mapped by review id
+
 import salmaImg from '../../assets/images/salma.png';
 import malakImg from '../../assets/images/malak.png';
 import sarahImg from '../../assets/images/sarah.png';
@@ -18,7 +18,7 @@ import heroImg  from '../../assets/images/safaa-rev.png';
 
 const avatarImages = { 1: heroImg, 2: malakImg, 3: sarahImg, 4: annImg };
 
-// Map icon string → Lucide component
+
 const ICON_MAP = { Activity, Heart, Clock, MapPin, Users, Settings, Shield, Star, Zap };
 
 const ReviewDetail = () => {
@@ -26,7 +26,7 @@ const ReviewDetail = () => {
   const navigate = useNavigate();
   const { t, lang } = useContext(LanguageContext);
 
-  // Reuse existing IntersectionObserver pattern
+  
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -69,14 +69,14 @@ const ReviewDetail = () => {
       />
       <DynamicBackground />
 
-      {/* ── BACK LINK ── */}
+      
       <div className="rd-back-container">
         <Link to="/shop/reviews" className="rd-back-btn">
           <ChevronLeft size={16} /> {t('reviews.backToReviews')}
         </Link>
       </div>
 
-      {/* ── HERO ── */}
+      
       <div className="rd-hero-avatar-wrap scroll-animate">
         <div className="rd-hero-avatar-row">
           <div className="rd-avatar-img-wrap">
@@ -103,10 +103,10 @@ const ReviewDetail = () => {
         </p>
       </div>
 
-      {/* ── MAIN CONTENT CONTAINER ── */}
+      
       <div className="rd-content">
 
-        {/* Full Story */}
+        
         <section className="rd-story-section scroll-animate">
           <div className="rd-story-card">
             <h2 className="rd-section-title">{review.storyTitle}</h2>
@@ -116,7 +116,7 @@ const ReviewDetail = () => {
           </div>
         </section>
 
-        {/* Numbered List (if any) */}
+        
         {review.listItems && (
           <section className="rd-list-section scroll-animate">
             <div className="rd-list-card">
@@ -136,7 +136,7 @@ const ReviewDetail = () => {
           </section>
         )}
 
-        {/* Feature Icons */}
+        
         {review.features && (
           <section className="rd-features-row scroll-animate">
             {review.features.map((feat, i) => {
@@ -154,7 +154,7 @@ const ReviewDetail = () => {
           </section>
         )}
 
-        {/* Big Quote Block */}
+        
         {review.bigQuote && (
           <section className="rd-big-quote-wrap scroll-animate">
             <div className="rd-big-quote-card">
@@ -164,7 +164,7 @@ const ReviewDetail = () => {
           </section>
         )}
 
-        {/* CTA Section */}
+        
         <section className="rd-cta-section scroll-animate">
           <div className="rd-cta-card">
             <h2 className="rd-cta-title">{review.ctaTitle}</h2>

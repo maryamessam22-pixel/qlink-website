@@ -12,7 +12,7 @@ const CompareCard = ({
 }) => {
   return (
     <div className="compare-card">
-      {/* الجزء العلوي: التفاصيل */}
+    
       <div className="card-top-section">
         {icon && <img src={icon} alt={title} className="card-custom-icon" />}
         

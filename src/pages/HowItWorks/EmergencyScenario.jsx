@@ -3,7 +3,7 @@ import SEO from '../../components/common/SEO';
 import './EmergencyScenario.css';
 import { LanguageContext } from '../../context/LanguageContext';
 
-// Importing images
+
 import heroImg from '../../assets/images/hero-emergency.png';
 import img1 from '../../assets/images/1img.png';
 import img2 from '../../assets/images/2img.png';
@@ -16,13 +16,12 @@ import w5 from '../../assets/images/w5.png';
 import mobiles from '../../assets/images/2mobiles.png';
 
 
-// Components
 import EmergencyFeatureCard from '../../components/Cards/EmergencyFeatureCard';
 import EmergencyStepCard from '../../components/Cards/EmergencyStepCard';
 import AppPromoSection from '../../components/Sections/AppPromoSection';
 import DynamicBackground from '../../components/common/DynamicBackground';
 
-// Icons 
+
 import { ArrowLeft, ArrowRight, ShieldAlert, ScanLine, FileText, BellRing, Apple, Play } from 'lucide-react';
 
 const watchImages = [w1, w2, w3, w4, w5];
@@ -83,7 +82,7 @@ const EmergencyScenario = () => {
         </div>
       </section>
 
-      {/* THREE FEATURE ROWS */}
+   
       <section className={`es-features ${lang === 'ar' ? 'rtl-text' : ''}`}>
         <EmergencyFeatureCard
           subtitle={t('emergency.f1Sub')}
@@ -106,7 +105,7 @@ const EmergencyScenario = () => {
         />
       </section>
 
-      {/* MARQUEE */}
+  
       <div className="es-marquee-container">
         <div className="es-marquee">
           <span>{t('emergency.marquee')}</span>
@@ -119,7 +118,6 @@ const EmergencyScenario = () => {
         </div>
       </div>
 
-      {/* 3 STEPS CARDS */}
       
       <section className={`es-steps-section scroll-animate ${lang === 'ar' ? 'rtl-text' : ''}`}>
         <EmergencyStepCard
@@ -145,7 +143,7 @@ const EmergencyScenario = () => {
         />
       </section>
 
-      {/* WATCH CAROUSEL */}
+   
       <section className="es-carousel-section scroll-animate">
         <div className="es-carousel-inner">
           <button className="es-arrow-btn" onClick={handlePrevWatch} aria-label="Previous Watch">
@@ -160,7 +158,7 @@ const EmergencyScenario = () => {
         </div>
       </section>
 
-      {/* CTA PREPARED */}
+    
       <section className={`es-cta-box-section scroll-animate ${lang === 'ar' ? 'rtl-text' : ''}`}>
         <div className="es-cta-box">
           <div className="es-cta-icon">
@@ -177,7 +175,7 @@ const EmergencyScenario = () => {
         </div>
       </section>
 
-      {/* GET PROTECTED FOOTER CALL */}
+    
       <div className="aPPP">
         <AppPromoSection imageSrc={mobiles} />
       </div>

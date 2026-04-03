@@ -9,9 +9,9 @@ import { LanguageContext } from '../../context/LanguageContext';
 import DynamicBackground from '../../components/common/DynamicBackground';
 import './PulseDetails.css';
 
-// Using available images from assets
+
 import mainImg from '../../assets/images/w4.png';
-import thumb1 from '../../assets/images/watch.png'; // Mock thumbnails
+import thumb1 from '../../assets/images/watch.png'; 
 import thumb2 from '../../assets/images/1img.png';
 import thumb3 from '../../assets/images/2img.png';
 import thumb4 from '../../assets/images/3img.png';
@@ -64,16 +64,16 @@ const PulseDetails = () => {
       
       <div className="pulse-content-wrapper">
         
-        {/* Back navigation */}
+        
         <Link to="/shop/bracelet" className="back-btn scroll-animate">
           <ArrowLeft size={20} style={lang === 'ar' ? {transform: 'rotate(180deg)'} : {}} />
           {t('pulseDetails.back')}
         </Link>
         
-        {/* Top Product Section */}
+        
         <div className="pulse-product-top">
           
-          {/* Left Side: Images & Perks */}
+          
           <div className="pulse-gallery-side scroll-animate stag-1">
             <div className="pulse-gallery">
               <div className="main-image-wrapper">
@@ -114,7 +114,7 @@ const PulseDetails = () => {
             </div>
           </div>
           
-          {/* Right Side: Product Info */}
+          
           <div className="pulse-info scroll-animate stag-2">
             <div className="info-top-flex">
               <div>
@@ -196,7 +196,7 @@ const PulseDetails = () => {
           </div>
         </div>
         
-        {/* Bottom Tabs Section */}
+        
         <div className="pulse-tabs scroll-animate stag-3">
           <div className="tab-headers">
             <button className="tab-btn active">{t('pulseDetails.tabDetail')}</button>

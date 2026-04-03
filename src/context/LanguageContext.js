@@ -9,12 +9,11 @@ export const LanguageContext = createContext();
 export const LanguageProvider = ({ children }) => {
   const [lang, setLang] = useState('en');
 
-  // Set the direction and font based on language
+  
   useEffect(() => {
     document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
     document.documentElement.lang = lang;
     
-    // Add a class for global CSS overrides if needed
     if (lang === 'ar') {
       document.body.classList.add('rtl-active');
     } else {
@@ -32,7 +31,7 @@ export const LanguageProvider = ({ children }) => {
     
     let result = dictionary;
     for (let k of keys) {
-      if (result[k] === undefined) return key; // fallback to key
+      if (result[k] === undefined) return key; 
       result = result[k];
     }
     return result;

@@ -1,7 +1,7 @@
 .setup-section-wrapper {
   position: relative;
   padding: 100px 20px;
-  background-color: var(--bg-main); /* base background */
+  background-color: var(--bg-main); 
   overflow: hidden;
   margin-top: 120px;
   margin-bottom: 120px;
@@ -11,7 +11,7 @@
   justify-content: center;
 }
 
-/* Animated Background Balls */
+
 .setup-bg-ball {
   position: absolute;
   border-radius: 50%;
@@ -92,7 +92,7 @@
   margin: 0;
 }
 
-/* Cards Layout */
+
 .setup-cards-row {
   display: flex;
   justify-content: space-between;
@@ -132,21 +132,21 @@
   font-size: 24px;
 }
 
-/* Icon Colors */
+
 .icon-blue {
-  background: rgba(59, 130, 246, 0.15); /* matching --color-primary-blue with opacity */
+  background: rgba(59, 130, 246, 0.15); 
   color: var(--color-primary-blue);
   box-shadow: 0 0 20px rgba(59, 130, 246, 0.2);
 }
 
 .icon-green {
-  background: rgba(16, 185, 129, 0.15); /* matching --color-success */
+  background: rgba(16, 185, 129, 0.15); 
   color: var(--color-success);
   box-shadow: 0 0 20px rgba(16, 185, 129, 0.2);
 }
 
 .icon-red {
-  background: rgba(224, 50, 50, 0.15); /* matching --color-primary-red */
+  background: rgba(224, 50, 50, 0.15); 
   color: var(--color-primary-red);
   box-shadow: 0 0 20px rgba(224, 50, 50, 0.2);
 }

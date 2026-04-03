@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect, useContext, useState } from 'react';
 import SEO from '../../components/common/SEO';
 import { Link, useParams } from 'react-router-dom';
 import { LanguageContext } from '../../context/LanguageContext';
@@ -7,18 +7,50 @@ import AppPromoSection from '../../components/Sections/AppPromoSection';
 import DynamicBackground from '../../components/common/DynamicBackground';
 import NovaDetails from './NovaDetails';
 import PulseDetails from './PulseDetails';
+import { supabase } from '../../lib/Supabase';
 import './TheBracelet.css';
 
-// Images
-import watchImg from '../../assets/images/w1.png';
-import tacticalImg from '../../assets/images/w4.png';
+// Images (lsa hane7taghom lel Promo w Setup section)
 import mobilesImg from '../../assets/images/2mobiles.png';
 
 const TheBracelet = () => {
   const { t, lang } = useContext(LanguageContext);
   const { productId } = useParams();
+  
+  // 1. Defina el state bta3t el SEO wel Products
+  const [seoData, setSeoData] = useState(null);
+  const [products, setProducts] = useState([]);
 
-  // ✅ Hook لازم يبقى فوق
+  const isAr = lang === 'ar';
+
+  // 2. Fetch Data (Byeshtaghal mara wa7da lamma el page t-load)
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        // Fetch SEO
+        const { data: seo } = await supabase
+          .from('seo')
+          .select('*')
+          .eq('slug', 'shop/bracelet')
+          .single();
+        if (seo) setSeoData(seo);
+
+        // Fetch Products
+        const { data: prods } = await supabase
+          .from('products')
+          .select('*')
+          .order('created_at', { ascending: true }); // Bygeebhom btarteeb zohorhom
+        if (prods) setProducts(prods);
+
+      } catch (err) {
+        console.error("Error fetching data:", err);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  // 3. Animation Observer (Da el Ser! Byeshtaghal lamma el 'products' tetghayar w tenzel fel page)
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -32,18 +64,17 @@ const TheBracelet = () => {
     animatedElements.forEach(el => observer.observe(el));
 
     return () => observer.disconnect();
-  }, []);
+  }, [products]); // <-- El [products] hena hya elly bt7el moshkelet en el cards tekh-tefy
 
-  // ✅ Routing logic بعد الـ hooks
+  // Routing logic
   if (productId === 'nova') return <NovaDetails />;
   if (productId === 'pulse') return <PulseDetails />;
 
-  // ✅ Main screen (listing)
   return (
-    <div className={`bracelet-page-container ${lang === 'ar' ? 'rtl-text' : ''}`}>
+    <div className={`bracelet-page-container ${isAr ? 'rtl-text' : ''}`}>
       <SEO 
-        title={lang === 'ar' ? 'السوار الذكي' : 'The Smart Bracelet'}
-        description={lang === 'ar' ? 'اكتشف مجموعة أساور كيو لينك الذكية. الأمان يلتقي بالأناقة.' : 'Explore the Qlink smart bracelet collection. Safety meets style.'}
+        title={seoData ? (isAr ? seoData.title_ar : seoData.title_en) : (isAr ? 'السوار الذكي' : 'The Smart Bracelet')}
+        description={seoData ? (isAr ? seoData.description_ar : seoData.description_en) : ''}
         slug="shop/bracelet"
       />
       <DynamicBackground />
@@ -74,75 +105,48 @@ const TheBracelet = () => {
         </p>
       </div>
 
-      {/* Products */}
+      {/* Dynamic Products Grid */}
       <div className="bracelet-products-grid">
-        
-        {/* Nova */}
-        <div className="bracelet-product-card scroll-animate stag-2">
-          <div
-            className="bracelet-card-img-wrapper"
-            style={{
-              background:
-                'linear-gradient(135deg, rgba(80,80,100,0.8), rgba(40,40,50,0.9))'
-            }}
-          >
-            <img
-              src={watchImg}
-              alt="Qlink Nova"
-              style={{ filter: 'drop-shadow(0 10px 15px rgba(0,0,0,0.5))' }}
-            />
-          </div>
+        {products.map((product, idx) => {
+          // Bn-check law el product da Nova wla Pulse 3ashan el alwan
+          const isNova = product.slug.includes('nova');
 
-          <h2 className="bracelet-card-title">{t('bracelet.novaTitle')}</h2>
-          <p className="bracelet-card-subtitle">{t('bracelet.novaSub')}</p>
+          return (
+            <div key={product.id} className={`bracelet-product-card scroll-animate stag-${idx + 2}`}>
+              <div
+                className="bracelet-card-img-wrapper"
+                style={{
+                  background: isNova 
+                    ? 'linear-gradient(135deg, rgba(80,80,100,0.8), rgba(40,40,50,0.9))' 
+                    : 'linear-gradient(135deg, rgba(230,230,230,0.9), rgba(180,180,180,0.8))'
+                }}
+              >
+                <img 
+                  src={product.image_url} 
+                  alt={isAr ? product.name_ar : product.name_en} 
+                  style={{ filter: 'drop-shadow(0 10px 15px rgba(0,0,0,0.5))' }} 
+                />
+              </div>
 
-          <ul className="bracelet-card-features">
-            {t('bracelet.novaFeatures').map((feature, idx) => (
-              <li key={idx}>{feature}</li>
-            ))}
-          </ul>
+              <h2 className="bracelet-card-title">{isAr ? product.name_ar : product.name_en}</h2>
+              <p className="bracelet-card-subtitle">{isAr ? product.subtitle_ar : product.subtitle_en}</p>
 
-          <div className="bracelet-card-price">{t('bracelet.priceNova')}</div>
+              <ul className="bracelet-card-features">
+                {(isAr ? product.features_ar : product.features_en)?.map((feature, fIdx) => (
+                  <li key={fIdx}>{feature}</li>
+                ))}
+              </ul>
 
-          <Link to="/shop/nova" className="bracelet-card-btn">
-            {t('bracelet.btnView')}
-          </Link>
-        </div>
+              <div className="bracelet-card-price">{product.price} EGP</div>
 
-        {/* Pulse */}
-        <div className="bracelet-product-card scroll-animate stag-3">
-          <div
-            className="bracelet-card-img-wrapper"
-            style={{
-              background:
-                'linear-gradient(135deg, rgba(230,230,230,0.9), rgba(180,180,180,0.8))'
-            }}
-          >
-            <img
-              src={tacticalImg}
-              alt="Qlink Pulse"
-              style={{ filter: 'drop-shadow(0 10px 15px rgba(0,0,0,0.3))' }}
-            />
-          </div>
-
-          <h2 className="bracelet-card-title">{t('bracelet.pulseTitle')}</h2>
-          <p className="bracelet-card-subtitle">{t('bracelet.pulseSub')}</p>
-
-          <ul className="bracelet-card-features">
-            {t('bracelet.pulseFeatures').map((feature, idx) => (
-              <li key={idx}>{feature}</li>
-            ))}
-          </ul>
-
-          <div className="bracelet-card-price">{t('bracelet.pricePulse')}</div>
-
-          <Link to="/shop/pulse" className="bracelet-card-btn">
-            {t('bracelet.btnView')}
-          </Link>
-        </div>
+              <Link to={isNova ? "/shop/nova" : "/shop/pulse"} className="bracelet-card-btn">
+                {t('bracelet.btnView')}
+              </Link>
+            </div>
+          );
+        })}
       </div>
 
-      {/* Sections */}
       <div className="scroll-animate stag-1">
         <SetupSection />
       </div>

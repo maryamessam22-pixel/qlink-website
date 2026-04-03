@@ -71,7 +71,7 @@ const InTheBoxNova = () => {
         </Link>
 
         <div className="subpage-product-top">
-          {/* Gallery */}
+
           <div className="subpage-gallery scroll-animate stag-1">
             <div className="main-image-wrapper">
               <img src={selectedImg} alt={t('novaDetails.title')} />
@@ -90,7 +90,7 @@ const InTheBoxNova = () => {
             </div>
           </div>
 
-          {/* Info */}
+      
           <div className="subpage-info scroll-animate stag-2">
             <h1 className="subpage-title">{t('novaDetails.title')}</h1>
             <div className="subpage-subtitle">{t('novaDetails.subtitle')}</div>
@@ -129,7 +129,7 @@ const InTheBoxNova = () => {
           </div>
         </div>
 
-        {/* Tabs */}
+   
         <div className="subpage-tabs scroll-animate stag-3">
           <div className="tab-headers">
             <button className="tab-btn" onClick={() => goTab('/shop/nova')}>{t('novaDetails.tabDetail')}</button>

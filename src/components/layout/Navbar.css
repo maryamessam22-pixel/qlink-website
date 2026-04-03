@@ -1,5 +1,3 @@
-/* NEW NAVBAR REDESIGN - DARK FLOATING PILL WITH ICONS */
-
 .navbar-wrapper {
   position: fixed;
   top: 24px;
@@ -13,16 +11,16 @@
   box-sizing: border-box;
 }
 
-/* BRAND LOGO on the far left */
+
 .navbar-brand {
   flex-shrink: 0;
 }
 
-/* THE CENTER GLASS PILL */
+
 .navbar-pill {
   display: flex;
   align-items: center;
-  background: rgba(255, 255, 255, 0.08); /* Dark glass effect */
+  background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
@@ -40,10 +38,10 @@
   padding: 0;
 }
 
-/* Base Link Style inside Pill */
+
 .navbar-links li a.nav-link {
   text-decoration: none;
-  color: var(--text-muted); /* Light gray/white */
+  color: var(--text-muted);
   font-weight: 500;
   font-size: 14px;
   padding: 0 30px;
@@ -51,7 +49,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border-radius: 10px; /* Red active button matches this */
+  border-radius: 10px; 
   transition: all 0.2s ease;
   white-space: nowrap;
   box-sizing: border-box;
@@ -62,7 +60,7 @@
   color: var(--text-primary);
 }
 
-/* RED ACTIVE LINK ('Home') */
+
 .navbar-links li a.active,
 .dropbtn.active {
   background-color: var(--color-primary-red);
@@ -74,7 +72,7 @@
   background-color: var(--color-primary-red-hover);
 }
 
-/* RIGHT ACTIONS (AR, Cart, User) */
+
 .navbar-actions {
   display: flex;
   align-items: center;
@@ -112,7 +110,7 @@
   align-items: center;
   justify-content: center;
   transition: opacity 0.2s ease, transform 0.2s ease;
-  text-decoration: none; /* for the Link wrapped User icon */
+  text-decoration: none; 
 }
 
 .icon-btn:hover {
@@ -121,7 +119,7 @@
 }
 
 
-/* DROPDOWN STYLING inside the dark pill */
+
 .dropdown {
   position: relative;
   display: inline-flex;
@@ -143,19 +141,19 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 6px; /* Space between text and chevron */
+  gap: 6px;
   white-space: nowrap;
   box-sizing: border-box;
 }
 
-/* Invisible bridge to prevent dropdown gap disappearance */
+
 .dropbtn::after {
   content: '';
   position: absolute;
   top: 100%;
   left: 0;
   width: 100%;
-  height: 25px; /* Corresponds to the margin-top of the dropdown content */
+  height: 25px; 
 }
 
 .dropdown-chevron {
@@ -216,7 +214,7 @@
   transform: translateX(-50%) translateY(0);
 }
 
-/* Mobile responsive fixes */
+/* Mobile responsive*/
 .mobile-menu-btn {
   display: none;
   background: transparent;

@@ -16,10 +16,10 @@ export default function SEO({ title, description, slug, imageAlt }) {
     <Helmet>
       <title>{fullTitle}</title>
       <meta name="description" content={description || defaultDesc} />
-      {/* Canonical URL */}
+     
       <link rel="canonical" href={url} />
 
-      {/* Open Graph / Facebook */}
+  
       <meta property="og:type" content="website" />
       <meta property="og:url" content={url} />
       <meta property="og:title" content={fullTitle} />
@@ -27,7 +27,7 @@ export default function SEO({ title, description, slug, imageAlt }) {
       <meta property="og:site_name" content={siteName} />
       {imageAlt && <meta property="og:image:alt" content={imageAlt} />}
 
-      {/* Twitter */}
+
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:url" content={url} />
       <meta name="twitter:title" content={fullTitle} />

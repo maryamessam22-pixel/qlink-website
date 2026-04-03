@@ -3,7 +3,7 @@
 .auth-container {
   min-height: 100vh;
   width: 100%;
-  background-color: var(--bg-surface-dark); /* Specific background requested */
+  background-color: var(--bg-surface-dark); 
   display: flex;
   align-items: center;
   justify-content: center;
@@ -14,7 +14,7 @@
 }
 
 
-/* Emulating the background abstract shapes */
+
 .auth-bg-graphic {
   position: absolute;
   left: 0;
@@ -39,7 +39,7 @@
   z-index: 0;
   pointer-events: none;
   animation: floatLight 12s infinite alternate ease-in-out;
-  filter: blur(40px); /* Creates the soft, diffuse light effect */
+  filter: blur(40px); 
 }
 
 @keyframes floatLight {
@@ -167,7 +167,7 @@
 }
 
 .tab-btn.active {
-  background-color: var(--bg-surface-highlight); /* subtle highlight */
+  background-color: var(--bg-surface-highlight);
   color: white;
   border-radius: 6px;
   margin: 4px;
@@ -321,7 +321,7 @@ form {
   text-decoration: none;
 }
 
-/* Loader Screen Styles */
+
 .loader-screen {
   display: flex;
   flex-direction: column;
@@ -346,7 +346,7 @@ form {
   }
 }
 
-/* Splash Screen Styles */
+
 .splash-screen {
   z-index: 2;
   position: relative;

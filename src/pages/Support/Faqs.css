@@ -1,7 +1,4 @@
-/* =============================================
-   FAQS PAGE — Follows project design system exactly
-   All units in px. No rem. No em. No new classes.
-   ============================================= */
+
 
 .faqs-wrapper {
   position: relative;
@@ -20,7 +17,7 @@
   padding: 0 24px;
 }
 
-/* ---- HERO ---- */
+
 .faqs-hero-section {
   text-align: center;
   margin-bottom: 48px;
@@ -40,7 +37,7 @@
   margin: 0 auto 32px auto;
 }
 
-/* ---- SEARCH ---- */
+
 .faqs-search-wrap {
   display: flex;
   justify-content: center;
@@ -69,7 +66,7 @@
   border-color: var(--color-primary-blue);
 }
 
-/* ---- CATEGORY CHIPS ---- */
+
 .faqs-categories {
   display: flex;
   justify-content: center;
@@ -102,7 +99,7 @@
   color: #fff;
 }
 
-/* ---- ACCORDION ---- */
+
 .faqs-accordion {
   max-width: 860px;
   margin: 0 auto;
@@ -174,7 +171,7 @@
   padding: 0 24px 20px 24px;
 }
 
-/* ---- NO RESULTS ---- */
+
 .faqs-no-results {
   text-align: center;
   padding: 60px 24px;
@@ -182,7 +179,7 @@
   font-size: 16px;
 }
 
-/* ---- LOADING ---- */
+
 .faqs-loading {
   text-align: center;
   padding: 80px 24px;
@@ -223,7 +220,7 @@
   }
 }
 
-/* ---- CTA SECTION ---- */
+
 .faqs-cta-section {
   text-align: center;
   margin-top: 80px;
@@ -249,7 +246,7 @@
   margin-bottom: 28px;
 }
 
-/* ---- RTL SUPPORT ---- */
+
 .rtl-text .faqs-chevron {
   margin-left: 0;
   margin-right: 16px;
@@ -259,7 +256,7 @@
   flex-direction: row-reverse;
 }
 
-/* ---- RESPONSIVE ---- */
+/* RESPONSIVE    */
 @media (max-width: 768px) {
   .faqs-wrapper {
     padding-top: 100px;

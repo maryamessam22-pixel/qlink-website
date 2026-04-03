@@ -32,7 +32,7 @@ function HowQlinkWorks() {
   const lensRef = useRef(null);
   const { t, lang } = useContext(LanguageContext);
 
-  // Intersection Observer for scroll animations
+
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -50,7 +50,7 @@ function HowQlinkWorks() {
     return () => observer.disconnect();
   }, []);
 
-  // Placeholder images/videos
+
   const centerVideoSrc = watchVidSrc;
 
   useEffect(() => {
@@ -96,14 +96,14 @@ function HowQlinkWorks() {
         slug="how-it-works"
       />
       <DynamicBackground/>
-      {/* Liquid background effect */}
+ 
       <div className="hw-liquid-bg">
         <div className="hw-glow hw-glow-1"></div>
         <div className="hw-glow hw-glow-2"></div>
         <div className="hw-glow hw-glow-3"></div>
       </div>
 
-      {/* HERO SECTION */}
+  
       <section className={`hw-hero scroll-animate ${lang === 'ar' ? 'rtl-text' : ''}`}>
         <video className="hw-hero-video" src={qlinkVideoSrc} autoPlay loop muted playsInline />
         <div className="hw-hero-overlay"></div>
@@ -113,7 +113,7 @@ function HowQlinkWorks() {
         </div>
       </section>
 
-      {/* TIMELINE SECTION */}
+
       <section className={`hw-timeline-section scroll-animate ${lang === 'ar' ? 'rtl-text' : ''}`}>
         <div className="timeline-container">
           <TimelineRow
@@ -143,7 +143,6 @@ function HowQlinkWorks() {
         </div>
       </section>
 
-      {/* SPLIT FEATURES VIDEO SECTION */}
       <section className={`hw-features-section scroll-animate ${lang === 'ar' ? 'rtl-text' : ''}`}>
         <div className="features-col">
           <FeatureBlock
@@ -158,21 +157,21 @@ function HowQlinkWorks() {
 
 
         <div className="features-video-wrapper scroll-animate" ref={lensRef}>
-          {/* Layer 1: Blurred Background Pill */}
+     
           <div className="hw-layer hw-blurred-layer">
             <video className="features-center-video" autoPlay loop muted playsInline>
               <source src={centerVideoSrc} type="video/mp4" />
             </video>
           </div>
 
-          {/* Layer 2: Clear Lens Circle */}
+    
           <div className="hw-layer hw-clear-layer">
             <video className="features-center-video" autoPlay loop muted playsInline>
               <source src={centerVideoSrc} type="video/mp4" />
             </video>
           </div>
 
-          {/* Glass Lens Ring Overlay */}
+
           <div className="lens-ring-overlay"></div>
         </div>
 
@@ -188,7 +187,7 @@ function HowQlinkWorks() {
         </div>
       </section>
 
-      {/* COMPARISON CARDS */}
+
       <section className={`hw-compare-section ${lang === 'ar' ? 'rtl-text' : ''}`}>
         <PricingCard
           headerIcon={WifiOff}
@@ -212,7 +211,7 @@ function HowQlinkWorks() {
         />
       </section>
 
-      {/* SETUP IN SECONDS */}
+  
       <section className={`hw-setup-section scroll-animate ${lang === 'ar' ? 'rtl-text' : ''}`}>
         <div className="hw-section-sub">{t('howWorks.setupSub')}</div>
         <h2 className="hw-section-title">{t('howWorks.setupTitle')}</h2>
@@ -242,7 +241,6 @@ function HowQlinkWorks() {
         </div>
       </section>
 
-      {/* HELP CENTER TILES */}
       <section className={`hw-help-grid scroll-animate ${lang === 'ar' ? 'rtl-text' : ''}`}>
         <HelpCard
           icon={HelpCircle}
@@ -258,7 +256,7 @@ function HowQlinkWorks() {
         />
       </section>
 
-      {/* CTA SECTION */}
+ 
       <section className={`hw-cta-section scroll-animate ${lang === 'ar' ? 'rtl-text' : ''}`}>
         <h2 style={{ fontSize: '32px', fontWeight: '800' }}>{t('howWorks.ctaTitle')}</h2>
         <div className={`hw-cta-buttons ${lang === 'ar' ? 'rtl-buttons' : ''}`}>

@@ -14,7 +14,7 @@
   overflow: visible;
 }
 
-/* Header Section */
+
 .ps-header {
   text-align: center;
   margin-bottom: 80px;
@@ -38,7 +38,6 @@
   margin: 0 auto;
 }
 
-/* Data Promise Card */
 .ps-promise-section {
   margin-bottom: 80px;
   position: relative;
@@ -85,13 +84,13 @@
   margin: 0;
 }
 
-/* Shared vs Not Shared Grid */
+
 .ps-grid-section {
   margin-bottom: 0;
   position: relative;
 }
 
-/* Full-bleed dark band for the grid section */
+
 .ps-grid-band {
   width: 100vw;
   position: relative;
@@ -184,13 +183,12 @@
 .ps-list.green li .dot { background: #10b981; }
 .ps-list.red li .dot { background: var(--color-primary-red); }
 
-/* Control Box */
+
 .ps-control-section {
   margin-bottom: 150px;
   position: relative;
 }
 
-/* Blue radial spotlight glow behind the control section */
 .ps-control-section::before {
   content: '';
   position: absolute;
@@ -259,7 +257,7 @@
   background: var(--color-primary-red-hover);
 }
 
-/* Fallback & Disclaimer */
+
 .ps-fallback-section {
   margin-bottom: 0;
   position: relative;
@@ -336,12 +334,12 @@ border: 1px solid rgb(224 50 50 / 65%);
   margin: 0;
 }
 
-/* App Promo Branding */
+
 .ps-app-promo-wrap {
   margin: 150px 0 100px;
 }
 
-/* App Promo Header — full-bleed dark navy band */
+
 .ps-app-header {
   width: 100vw;
   position: relative;
@@ -378,7 +376,7 @@ border: 1px solid rgb(224 50 50 / 65%);
   margin: 0;
 }
 
-/* ps-promo-inner — mirrors app-section-wrapper from Home.css (full-bleed band) */
+
 .ps-promo-inner {
   background: radial-gradient(circle at right, rgba(17, 107, 253, 0.15) 0%, rgba(19, 28, 47, 1) 70%), #0D1629;
   width: 100vw;
@@ -395,7 +393,7 @@ border: 1px solid rgb(224 50 50 / 65%);
   border-radius: 0;
 }
 
-/* ps-promo-row — mirrors app-section from Home.css (centred flex row) */
+
 .ps-promo-row {
   display: flex;
   align-items: center;
@@ -458,7 +456,7 @@ border: 1px solid rgb(224 50 50 / 65%);
   flex-direction: row-reverse;
 }
 
-/* Base Scroll Animation */
+
 .scroll-animate {
   opacity: 0;
   transform: translateY(30px);

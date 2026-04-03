@@ -8,7 +8,7 @@ import AppPromoSection from '../../components/Sections/AppPromoSection';
 import mobilesImg from '../../assets/images/mobile3rd.png';
 import './Reviews.css';
 
-// Featured Images
+
 import heroImg from '../../assets/images/hero.png'; 
 
 import salmaImg from '../../assets/images/salma.png';
@@ -62,7 +62,7 @@ const Reviews = () => {
           <p className="reviews-subtitle">{t('reviews.heroSubtitle')}</p>
         </div>
 
-        {/* Featured Story Section */}
+        
         <div className="featured-story-banner scroll-animate stag-2">
           <div className="featured-image-side">
             <img src={heroImg} alt="User Hero" />
@@ -81,7 +81,7 @@ const Reviews = () => {
          
         </div>
 
-        {/* Stats Bar */}
+  
         <div className="reviews-stats-bar scroll-animate stag-3">
           <div className="stat-card">
             <h3>{t('reviews.statUsers')}</h3>
@@ -108,7 +108,7 @@ const Reviews = () => {
           </div>
         </div>
 
-        {/* Testimonials Grid */}
+        {/* Testimonials */}
         <div className="testimonials-grid scroll-animate stag-1">
           {t('reviews.testimonials', { returnObjects: true }).map((item) => (
             <div key={item.id} className="testimonial-card">
@@ -145,7 +145,8 @@ const Reviews = () => {
           ))}
         </div>
 
-        {/* Detailed Rating Histogram */}
+
+
         <div className="rating-breakdown-section scroll-animate stag-2">
           <div className="overall-score-card">
             <h1>{t('reviews.score')}</h1>
@@ -167,7 +168,7 @@ const Reviews = () => {
           </div>
         </div>
 
-        {/* CTA Sections */}
+
         <div className="reviews-cta-grid scroll-animate stag-3">
           <div className="cta-box share-box">
              <MessageSquare size={32} className="cta-icon" />

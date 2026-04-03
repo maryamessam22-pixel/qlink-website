@@ -9,8 +9,7 @@ import { LanguageContext } from '../../context/LanguageContext';
 import DynamicBackground from '../../components/common/DynamicBackground';
 import './NovaDetails.css';
 
-// Using available images from assets
-// import mainImg from '../../assets/images/QLINK-NOVA.png';
+
 import mainImg from '../../assets/images/watch.png';
 import thumb1 from '../../assets/images/w4.png';
 import thumb2 from '../../assets/images/w3.png';
@@ -34,7 +33,7 @@ const NovaDetails = () => {
   ];
 
   useEffect(() => {
-    // IntersectionObserver to animate content just like in TheBracelet
+    
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if(entry.isIntersecting) {
@@ -65,16 +64,15 @@ const NovaDetails = () => {
       
       <div className="nova-content-wrapper">
         
-        {/* Back navigation */}
+      
         <Link to="/shop/bracelet" className="back-btn scroll-animate">
           <ArrowLeft size={20} style={lang === 'ar' ? {transform: 'rotate(180deg)'} : {}} />
           {t('novaDetails.back')}
         </Link>
-        
-        {/* Top Product Section */}
+   
         <div className="nova-product-top">
           
-          {/* Left Side: Images & Perks */}
+        
           <div className="nova-gallery-side scroll-animate stag-1">
             <div className="nova-gallery">
               <div className="main-image-wrapper">
@@ -115,7 +113,7 @@ const NovaDetails = () => {
             </div>
           </div>
           
-          {/* Right Side: Product Info */}
+        
           <div className="nova-info scroll-animate stag-2">
             <h1 className="nova-title">{t('novaDetails.title')}</h1>
             <div className="nova-subtitle">{t('novaDetails.subtitle')}</div>
@@ -183,8 +181,7 @@ const NovaDetails = () => {
             
           </div>
         </div>
-        
-        {/* Bottom Tabs Section */}
+  
         <div className="nova-tabs scroll-animate stag-3">
           <div className="tab-headers">
             <button className="tab-btn active">{t('novaDetails.tabDetail')}</button>

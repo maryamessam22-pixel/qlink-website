@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
-// Routes where we don't want auto-scroll-to-top (in-page tab navigation)
+
 const NO_SCROLL_ROUTES = [
   '/shop/nova/privacy',
   '/shop/nova/inbox',

@@ -147,7 +147,7 @@
   transform: translateY(-2px);
 }
 
-/* Animations */
+
 .scroll-animate {
   opacity: 0;
   transform: translateY(30px);
@@ -165,7 +165,7 @@
 .stag-3 { transition-delay: 0.3s; }
 .stag-4 { transition-delay: 0.4s; }
 
-/* Responsive and Professional Polish */
+
 @media (max-width: 1024px) {
   .bracelet-title {
     font-size: 2.2rem;
@@ -173,7 +173,7 @@
 }
 
 @media (max-width: 900px) {
-  /* Ensuring cards sit nicely on tablet before absolute mobile stack */
+  
   .bracelet-products-grid {
     gap: 1.5rem;
   }
@@ -199,7 +199,7 @@
     font-size: 0.95rem;
   }
 
-  /* Force Nova and Pulse cards into a clean column stack */
+  
   .bracelet-products-grid {
     display: flex;
     flex-direction: column;

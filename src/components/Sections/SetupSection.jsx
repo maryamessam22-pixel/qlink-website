@@ -25,7 +25,7 @@ const SetupSection = () => {
 
   return (
     <section className={`setup-section-wrapper scroll-animate ${lang === 'ar' ? 'rtl-text' : ''}`}>
-      {/* Animated Background Elements */}
+   
       <div className="setup-bg-ball ball-1"></div>
       <div className="setup-bg-ball ball-2"></div>
       <div className="setup-bg-ball ball-3"></div>
@@ -42,7 +42,7 @@ const SetupSection = () => {
 
         <div className="setup-cards-row">
           
-          {/* Card 1 */}
+        
           <div className="setup-step-card scroll-animate stag-2">
             <div className="setup-icon-wrapper icon-blue">
               <LogIn size={28} />
@@ -55,7 +55,7 @@ const SetupSection = () => {
             </p>
           </div>
 
-          {/* Card 2 */}
+    
           <div className="setup-step-card scroll-animate stag-3">
             <div className="setup-icon-wrapper icon-green">
               <CheckCircle2 size={28} />
@@ -68,7 +68,7 @@ const SetupSection = () => {
             </p>
           </div>
 
-          {/* Card 3 */}
+
           <div className="setup-step-card scroll-animate stag-4">
             <div className="setup-icon-wrapper icon-red">
               <MonitorSmartphone size={28} />

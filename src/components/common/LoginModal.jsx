@@ -38,12 +38,12 @@ function LoginModal({ isOpen }) {
     login(password, email);
   }, [login, password, email]);
 
-  // Close on overlay click (not on modal click)
+
   const handleOverlayClick = useCallback((e) => {
     if (e.target === e.currentTarget) closeModal();
   }, [closeModal]);
 
-  // Close on Escape key
+
   const handleKeyDown = useCallback((e) => {
     if (e.key === 'Escape') closeModal();
   }, [closeModal]);
@@ -61,7 +61,7 @@ function LoginModal({ isOpen }) {
     >
       <div className="auth-modal">
 
-        {/* Close */}
+      
         <button
           id="auth-modal-close-btn"
           className="auth-modal-close"
@@ -71,18 +71,17 @@ function LoginModal({ isOpen }) {
           <X size={20} />
         </button>
 
-        {/* Icon */}
         <div className="auth-modal-icon">
           <Lock size={24} />
         </div>
 
-        {/* Heading */}
+     
         <h2>Login Required</h2>
         <p className="auth-modal-notice">
           You must log in or create an account first to access this page.
         </p>
 
-        {/* Form */}
+    
         <form onSubmit={handleSubmit} autoComplete="off">
           <div className="auth-modal-group">
             <label htmlFor="auth-email-input">Email</label>

@@ -38,7 +38,7 @@ function Navbar() {
   return (
     <nav className="navbar-wrapper">
       <div className="navbar-brand">
-        {/* Logo always navigates home — no auth required */}
+      
         <Link to="/" onClick={closeMobileMenu}>
           <Logo style={{ height: '35px', display: 'block' }} />
         </Link>
@@ -46,7 +46,7 @@ function Navbar() {
 
       <div className={`navbar-pill ${isMobileMenuOpen ? 'mobile-open' : ''}`}>
         <ul className="navbar-links">
-          {/* Home — always accessible */}
+        
           <li>
             <Link
               to="/"
@@ -57,7 +57,6 @@ function Navbar() {
             </Link>
           </li>
 
-          {/* All dropdown items are guarded inside Dropdown itself */}
           <li>
             <Dropdown
               label={t('nav.howItWorks')}
@@ -82,7 +81,7 @@ function Navbar() {
             />
           </li>
 
-          {/* For Caregivers — guarded direct link */}
+      
           <li>
             <Link
               to="/for-caregivers"
@@ -126,7 +125,7 @@ function Navbar() {
         </button>
         <button className="icon-btn"><ShoppingCart size={22} color="var(--text-primary)" /></button>
 
-        {/* User icon → also triggers auth check if not logged in */}
+      
         <Link
           to="/auth"
           className="icon-btn"
@@ -135,7 +134,7 @@ function Navbar() {
           <User size={22} color="var(--text-primary)" />
         </Link>
 
-        {/* Logout button — only visible when authenticated */}
+    
         {isAuthenticated && (
           <button
             id="navbar-logout-btn"

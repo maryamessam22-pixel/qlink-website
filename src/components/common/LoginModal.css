@@ -1,5 +1,3 @@
-
-
 .auth-overlay {
   position: fixed;
   inset: 0;
@@ -35,7 +33,7 @@
   to   { transform: translateY(0);    opacity: 1; }
 }
 
-/* Close button */
+
 .auth-modal-close {
   position: absolute;
   top: 16px;
@@ -71,7 +69,7 @@
   color: var(--color-primary-red);
 }
 
-/* Heading */
+
 .auth-modal h2 {
   font-size: 22px;
   font-weight: 700;
@@ -88,7 +86,7 @@
   line-height: 1.6;
 }
 
-/* Input */
+
 .auth-modal-group {
   margin-bottom: 16px;
 }
@@ -119,7 +117,7 @@
   border-color: var(--color-primary-blue);
 }
 
-/* Error message */
+
 .auth-modal-error {
   font-size: 13px;
   color: var(--color-primary-red);
@@ -143,7 +141,7 @@
   margin-top: 4px;
 }
 
-/* Divider */
+
 .auth-modal-divider {
   display: flex;
   align-items: center;

@@ -5,12 +5,12 @@ const Preloader = ({ onFinish }) => {
   const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
-    // Show preloader for a short duration, then fade out
+  
     const timer1 = setTimeout(() => {
       setIsVisible(false);
     }, 2000); 
 
-    // completely unmount after fade transition
+  
     const timer2 = setTimeout(() => {
       if (onFinish) onFinish();
     }, 2800);
@@ -24,7 +24,7 @@ const Preloader = ({ onFinish }) => {
   return (
     <div className={`preloader-wrapper ${isVisible ? '' : 'fade-out'}`}>
       <div className="preloader-content">
-        {/* Qlink Logo Animation */}
+  
         <div className="qlink-logo-container">
           <svg className="q-icon" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
             <circle cx="50" cy="50" r="40" stroke="currentColor" strokeWidth="8" className="q-circle" />

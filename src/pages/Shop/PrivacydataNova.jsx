@@ -58,15 +58,15 @@ const PrivacydataNova = () => {
       <DynamicBackground />
 
       <div className="subpage-wrapper">
-        {/* Back */}
+        
         <Link to="/shop/bracelet" className="back-btn scroll-animate">
           <ArrowLeft size={20} style={isAr ? { transform: 'rotate(180deg)' } : {}} />
           {t('novaDetails.back')}
         </Link>
 
-        {/* Product Top */}
+        
         <div className="subpage-product-top">
-          {/* Gallery */}
+          
           <div className="subpage-gallery scroll-animate stag-1">
             <div className="main-image-wrapper">
               <img src={selectedImg} alt={t('novaDetails.title')} />
@@ -85,7 +85,7 @@ const PrivacydataNova = () => {
             </div>
           </div>
 
-          {/* Info */}
+          
           <div className="subpage-info scroll-animate stag-2">
             <h1 className="subpage-title">{t('novaDetails.title')}</h1>
             <div className="subpage-subtitle">{t('novaDetails.subtitle')}</div>
@@ -124,7 +124,7 @@ const PrivacydataNova = () => {
           </div>
         </div>
 
-        {/* Tabs */}
+        
         <div className="subpage-tabs scroll-animate stag-3">
           <div className="tab-headers">
             <button className="tab-btn" onClick={() => goTab('/shop/nova')}>{t('novaDetails.tabDetail')}</button>
@@ -132,7 +132,7 @@ const PrivacydataNova = () => {
             <button className="tab-btn" onClick={() => goTab('/shop/nova/inbox')}>{t('novaDetails.tabInbox')}</button>
           </div>
 
-          {/* Privacy Panel */}
+          
           <div className="privacy-panel">
             <div className="privacy-icon-wrap">
               <Lock size={32} color="#fff" strokeWidth={1.8} />

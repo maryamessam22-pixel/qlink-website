@@ -128,7 +128,7 @@
   font-weight: 500;
 }
 
-/* Product Info */
+
 .nova-info {
   display: flex;
   flex-direction: column;
@@ -278,7 +278,7 @@
   color: rgba(255,255,255,0.6);
 }
 
-/* Tabs Section */
+
 .nova-tabs {
   margin-top: 64px;
   margin-bottom: 64px;
@@ -359,7 +359,7 @@
 .feat-box h4 { margin-bottom: 8px; font-size: 18px;}
 .feat-box p { font-size: 14px; color: rgba(255,255,255,0.6); }
 
-/* Animation Utility */
+/* Animation */
 .scroll-animate {
   opacity: 0;
   transform: translateY(30px);

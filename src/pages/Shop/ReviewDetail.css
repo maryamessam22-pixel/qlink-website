@@ -1,4 +1,3 @@
-/* ReviewDetail.css — design system aligned, all px units */
 
 .rd-page {
   min-height: 100vh;
@@ -9,7 +8,7 @@
   overflow-x: hidden;
 }
 
-/* ── NOT FOUND ── */
+
 .rd-not-found {
   display: flex;
   flex-direction: column;
@@ -20,7 +19,7 @@
   color: var(--text-primary);
 }
 
-/* ── BACK BUTTON ── */
+
 .rd-back-btn {
   display: inline-flex;
   align-items: center;
@@ -50,7 +49,7 @@
   transform: translateX(-2px);
 }
 
-/* ── IMAGE HERO (Review 1) ── */
+
 .rd-hero-image-wrap {
   position: relative;
   width: 100%;
@@ -121,7 +120,7 @@
   font-weight: 600;
 }
 
-/* ── AVATAR HERO (Reviews 2/3/4) ── */
+
 .rd-hero-avatar-wrap {
   max-width: 1100px;
   margin: 32px auto 0;
@@ -183,7 +182,7 @@
   font-weight: 600;
 }
 
-/* ── MAIN CONTENT ── */
+
 .rd-content {
   max-width: 1100px;
   margin: 60px auto 0;
@@ -193,7 +192,7 @@
   gap: 48px;
 }
 
-/* ── STORY CARD ── */
+
 .rd-story-card {
   background: rgba(15, 23, 42, 0.5);
   border: 1px solid rgba(255, 255, 255, 0.06);
@@ -219,7 +218,7 @@
   margin-bottom: 0;
 }
 
-/* ── NUMBERED LIST ── */
+
 .rd-list-card {
   background: rgba(15, 23, 42, 0.5);
   border: 1px solid rgba(255, 255, 255, 0.06);
@@ -272,7 +271,7 @@
   margin: 0;
 }
 
-/* ── FEATURE ICONS ROW ── */
+
 .rd-features-row {
   display: flex;
   gap: 24px;
@@ -317,7 +316,7 @@
   margin: 0;
 }
 
-/* ── BIG QUOTE BLOCK ── */
+
 .rd-big-quote-card {
   background: rgba(17, 107, 253, 0.06);
   border: 1px solid rgba(17, 107, 253, 0.2);
@@ -341,7 +340,7 @@
   font-weight: 600;
 }
 
-/* ── CTA SECTION ── */
+
 .rd-cta-card {
   background: rgba(15, 23, 42, 0.6);
   border: 1px solid rgba(255, 255, 255, 0.06);
@@ -408,7 +407,7 @@
   transform: translateY(-2px);
 }
 
-/* ── SCROLL ANIMATION (reuse existing system) ── */
+
 .scroll-animate {
   opacity: 0;
   transform: translateY(30px);

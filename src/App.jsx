@@ -34,7 +34,7 @@ import InTheBoxPulse from './pages/Shop/InTheBoxPulse';
 // Auth
 import AuthPage from './pages/Auth/AuthPage';
 
-// 🔐 Protected Route
+// Protected Route
 const ProtectedRoute = () => {
   const { isAuthenticated, setPendingRoute, setShowLoginModal } = useAuth();
   const location = useLocation();
@@ -53,7 +53,7 @@ const ProtectedRoute = () => {
   return <Outlet />;
 };
 
-// 🎨 Layout
+// Layout
 const MainLayout = () => (
   <>
     <Navbar />
