@@ -296,7 +296,20 @@ const translations = {
     feature2Title: "Waterproof",
     feature2Desc: "IP67 rated for swim and shower.",
     feature3Title: "Hybrid Power",
-    feature3Desc: "Battery + Kinetic backup system"
+    feature3Desc: "Battery + Kinetic backup system",
+    privacyTitle: "You are in Control",
+    privacyItem1: "Emergency data shown via QR is limited to what you approve (e.g. Blood Type, Allergies.)",
+    privacyItem2: "Full personal details (Home address, Insurance) are hidden and only accessible inside the secure app.",
+    privacyItem3: "Data can be edited or deleted at any time instantly from your dashboard.",
+    privacyItem4: "Lost Bracelet? Disable QR access instantly with one tap.",
+    inboxItem1Name: "Qlink Nova",
+    inboxItem1Sub: "Device Unit",
+    inboxItem2Name: "Magnetic Charger",
+    inboxItem2Sub: "USB-C Fast Charging",
+    inboxItem3Name: "Activation Card",
+    inboxItem3Sub: "Unique Pairing Code",
+    inboxItem4Name: "Quick Start Guide",
+    inboxItem4Sub: "Setup Instructions"
   },
   pulseDetails: {
     back: "Back to Collection",
@@ -330,7 +343,20 @@ const translations = {
     feature2Title: "Waterproof",
     feature2Desc: "IP67 rated for swim and shower.",
     feature3Title: "Hybrid Power",
-    feature3Desc: "Battery + Kinetic backup system"
+    feature3Desc: "Battery + Kinetic backup system",
+    privacyTitle: "You are in Control",
+    privacyItem1: "Emergency data shown via QR is limited to what you approve (e.g. Blood Type, Allergies.)",
+    privacyItem2: "Full personal details (Home address, Insurance) are hidden and only accessible inside the secure app.",
+    privacyItem3: "Data can be edited or deleted at any time instantly from your dashboard.",
+    privacyItem4: "Lost Bracelet? Disable QR access instantly with one tap.",
+    inboxItem1Name: "Qlink Pulse",
+    inboxItem1Sub: "Device Unit",
+    inboxItem2Name: "Magnetic Charger",
+    inboxItem2Sub: "USB-C Fast Charging",
+    inboxItem3Name: "Activation Card",
+    inboxItem3Sub: "Unique Pairing Code",
+    inboxItem4Name: "Quick Start Guide",
+    inboxItem4Sub: "Setup Instructions"
   },
   reviews: {
     heroTitleTop: "Customer ",

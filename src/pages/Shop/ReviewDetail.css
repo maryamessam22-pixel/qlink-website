@@ -424,9 +424,91 @@
 }
 
 /* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .rd-page {
+    padding-top: 60px;
+    padding-bottom: 80px;
+  }
+
+  .rd-back-container {
+    padding: 80px 20px 0;
+  }
+
+  .rd-hero-image-wrap {
+    min-height: 400px;
+  }
+
+  .rd-hero-bg-img {
+    height: 400px;
+  }
+
+  .rd-hero-image-overlay {
+    padding: 40px 32px;
+  }
+
+  .rd-hero-image-quote {
+    font-size: 26px;
+  }
+
+  .rd-hero-body {
+    font-size: 14px;
+  }
+
+  .rd-hero-big-quote {
+    font-size: 22px;
+  }
+
+  .rd-content {
+    margin-top: 48px;
+    gap: 36px;
+  }
+
+  .rd-features-row {
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .rd-feat-card {
+    flex: 1 1 calc(50% - 8px);
+    min-width: 0;
+  }
+
+  .rd-cta-card {
+    padding: 48px 32px;
+  }
+
+  .rd-cta-title {
+    font-size: 24px;
+  }
+
+  .rd-cta-buttons {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .rd-cta-btn {
+    width: 100%;
+    max-width: 300px;
+  }
+}
+
 @media (max-width: 768px) {
+  .rd-back-container {
+    padding: 70px 16px 0;
+  }
+
   .rd-back-btn {
-    padding: 16px 16px 0;
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+
+  .rd-hero-image-wrap {
+    min-height: 340px;
+  }
+
+  .rd-hero-bg-img {
+    height: 340px;
   }
 
   .rd-hero-image-overlay {
@@ -438,7 +520,20 @@
   }
 
   .rd-hero-avatar-wrap {
-    padding: 0 20px;
+    padding: 0 16px;
+  }
+
+  .rd-hero-avatar-row {
+    gap: 16px;
+  }
+
+  .rd-avatar-img-wrap {
+    width: 56px;
+    height: 56px;
+  }
+
+  .rd-avatar-name {
+    font-size: 18px;
   }
 
   .rd-hero-big-quote {
@@ -446,7 +541,7 @@
   }
 
   .rd-content {
-    padding: 0 12px;
+    padding: 0 16px;
     gap: 32px;
     margin-top: 40px;
   }
@@ -455,13 +550,114 @@
   .rd-list-card,
   .rd-cta-card {
     padding: 32px 24px;
+    border-radius: 16px;
+  }
+
+  .rd-section-title {
+    font-size: 20px;
+    margin-bottom: 20px;
   }
 
   .rd-features-row {
     flex-direction: column;
   }
 
+  .rd-feat-card {
+    flex: 1 1 100%;
+  }
+
   .rd-big-quote-card {
     padding: 28px 24px;
   }
+
+  .rd-big-quote-text {
+    font-size: 16px;
+  }
 }
+
+@media (max-width: 480px) {
+  .rd-page {
+    padding-top: 40px;
+    padding-bottom: 60px;
+  }
+
+  .rd-back-container {
+    padding: 60px 12px 0;
+  }
+
+  .rd-hero-image-wrap {
+    min-height: 280px;
+  }
+
+  .rd-hero-bg-img {
+    height: 280px;
+  }
+
+  .rd-hero-image-overlay {
+    padding: 24px 16px;
+  }
+
+  .rd-hero-image-quote {
+    font-size: 18px;
+  }
+
+  .rd-hero-body {
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  .rd-hero-author strong {
+    font-size: 15px;
+  }
+
+  .rd-hero-big-quote {
+    font-size: 18px;
+  }
+
+  .rd-content {
+    padding: 0 12px;
+    gap: 24px;
+  }
+
+  .rd-story-card,
+  .rd-list-card,
+  .rd-cta-card {
+    padding: 24px 16px;
+    border-radius: 12px;
+  }
+
+  .rd-list-item {
+    gap: 12px;
+  }
+
+  .rd-list-num {
+    width: 28px;
+    height: 28px;
+    min-width: 28px;
+    font-size: 12px;
+  }
+
+  .rd-cta-title {
+    font-size: 20px;
+  }
+
+  .rd-cta-desc {
+    font-size: 14px;
+  }
+
+  .rd-cta-btn {
+    height: 46px;
+    padding: 0 24px;
+    font-size: 14px;
+  }
+
+  .rd-feat-card {
+    padding: 24px 16px;
+  }
+
+  .rd-feat-icon {
+    width: 44px;
+    height: 44px;
+  }
+}
+

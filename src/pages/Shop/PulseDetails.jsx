@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import SEO from '../../components/common/SEO';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { 
   ArrowLeft, Droplets, Zap, Shield, HeartPulse, 
   ShoppingCart, Truck, ShieldCheck, Undo2, WifiOff, Sparkles, Upload
@@ -19,6 +19,8 @@ import thumb4 from '../../assets/images/3img.png';
 const PulseDetails = () => {
   const { productId } = useParams();
   const { t, lang } = useContext(LanguageContext);
+  const navigate = useNavigate();
+  const isAr = lang === 'ar';
   const [qty, setQty] = useState(1);
   const [activeColor, setActiveColor] = useState('gray');
   const [selectedImg, setSelectedImg] = useState(mainImg);
@@ -46,8 +48,13 @@ const PulseDetails = () => {
     return () => observer.disconnect();
   }, []);
 
+  const goTab = (path) => {
+    sessionStorage.setItem('tabScrollY', window.scrollY);
+    navigate(path);
+  };
+
   return (
-    <div className={`pulse-details-container ${lang === 'ar' ? 'rtl-text' : ''}`}>
+    <div className={`pulse-details-container ${isAr ? 'rtl-text' : ''}`} dir={isAr ? 'rtl' : 'ltr'}>
       <SEO 
         title={lang === 'ar' ? 'بولس' : 'Pulse'}
         description={lang === 'ar' ? 'اكتشف سوار كيو لينك بولس. خفيف الوزن ومتين.' : 'Discover the Qlink Pulse bracelet. Lightweight and durable.'}
@@ -193,8 +200,8 @@ const PulseDetails = () => {
         <div className="pulse-tabs scroll-animate stag-3">
           <div className="tab-headers">
             <button className="tab-btn active">{t('pulseDetails.tabDetail')}</button>
-            <button className="tab-btn">{t('pulseDetails.tabPrivacy')}</button>
-            <button className="tab-btn">{t('pulseDetails.tabInbox')}</button>
+            <button className="tab-btn" onClick={() => navigate('/shop/pulse/privacy')}>{t('pulseDetails.tabPrivacy')}</button>
+            <button className="tab-btn" onClick={() => navigate('/shop/pulse/inbox')}>{t('pulseDetails.tabInbox')}</button>
           </div>
           
           <div className="bridge-content">

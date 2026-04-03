@@ -302,7 +302,20 @@ const arTranslations = {
     feature2Title: "مقاوم للماء",
     feature2Desc: "تصنيف IP67 للسباحة والاستحمام.",
     feature3Title: "طاقة هجينة",
-    feature3Desc: "بطارية مع نظام طاقة احتياطي حركي"
+    feature3Desc: "بطارية مع نظام طاقة احتياطي حركي",
+    privacyTitle: "أنت في كامل التحكم",
+    privacyItem1: "بيانات الطوارئ المعروضة عبر QR مقتصرة على ما توافق عليه (مثل فصيلة الدم، الحساسية).",
+    privacyItem2: "التفاصيل الشخصية الكاملة (العنوان، التأمين) مخفية ولا يمكن الوصول إليها إلا من داخل التطبيق الآمن.",
+    privacyItem3: "يمكن تعديل البيانات أو حذفها في أي وقت من لوحة التحكم الخاصة بك.",
+    privacyItem4: "فقدت السوار؟ عطّل الوصول عبر QR فوراً بنقرة واحدة.",
+    inboxItem1Name: "كيو لينك نوفا",
+    inboxItem1Sub: "وحدة الجهاز",
+    inboxItem2Name: "شاحن مغناطيسي",
+    inboxItem2Sub: "شحن سريع USB-C",
+    inboxItem3Name: "بطاقة التفعيل",
+    inboxItem3Sub: "كود اقتران فريد",
+    inboxItem4Name: "دليل البدء السريع",
+    inboxItem4Sub: "تعليمات الإعداد"
   },
   pulseDetails: {
     back: "العودة إلى التشكيلة",
@@ -336,7 +349,20 @@ const arTranslations = {
     feature2Title: "مقاوم للماء",
     feature2Desc: "تصنيف IP67 للسباحة والاستحمام.",
     feature3Title: "طاقة هجينة",
-    feature3Desc: "بطارية مع نظام طاقة احتياطي حركي"
+    feature3Desc: "بطارية مع نظام طاقة احتياطي حركي",
+    privacyTitle: "أنت في كامل التحكم",
+    privacyItem1: "بيانات الطوارئ المعروضة عبر QR مقتصرة على ما توافق عليه (مثل فصيلة الدم، الحساسية).",
+    privacyItem2: "التفاصيل الشخصية الكاملة (العنوان، التأمين) مخفية ولا يمكن الوصول إليها إلا من داخل التطبيق الآمن.",
+    privacyItem3: "يمكن تعديل البيانات أو حذفها في أي وقت من لوحة التحكم الخاصة بك.",
+    privacyItem4: "فقدت السوار؟ عطّل الوصول عبر QR فوراً بنقرة واحدة.",
+    inboxItem1Name: "كيو لينك بالس",
+    inboxItem1Sub: "وحدة الجهاز",
+    inboxItem2Name: "شاحن مغناطيسي",
+    inboxItem2Sub: "شحن سريع USB-C",
+    inboxItem3Name: "بطاقة التفعيل",
+    inboxItem3Sub: "كود اقتران فريد",
+    inboxItem4Name: "دليل البدء السريع",
+    inboxItem4Sub: "تعليمات الإعداد"
   },
   reviews: {
     heroTitleTop: "قصص ",

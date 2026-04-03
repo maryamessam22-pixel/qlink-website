@@ -405,55 +405,178 @@
 .stag-2 { transition-delay: 200ms; }
 .stag-3 { transition-delay: 400ms; }
 
+
 @media (max-width: 1180px) {
   .fc-hero {
     flex-direction: column;
     text-align: center;
-    padding: 60px 24px;
+    padding: 100px 24px 60px;
     gap: 60px;
-  }
-
-  .fc-hero.rtl-text {
-    flex-direction: column;
-    text-align: center;
   }
 
   .fc-hero-content {
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .fc-hero.rtl-text .fc-hero-content {
     text-align: center;
   }
 
+  .fc-hero-title {
+    font-size: 42px;
+  }
+
   .fc-hero-subtitle {
     margin: 0 auto 40px;
   }
 
+  .fc-connect {
+    margin: 100px 0;
+  }
+
   .fc-connect-grid {
     flex-direction: column;
-    gap: 40px;
+    gap: 60px;
+    text-align: center;
+  }
+
+  .fc-feature-list {
+    text-align: left;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .fc-hero.rtl-text .fc-feature-list {
+    text-align: right;
+  }
+
+  .fc-hero.rtl-text .fc-feature-item {
+    flex-direction: row-reverse;
+  }
+
+  .fc-family {
+    margin: 100px 0;
   }
 
   .fc-family-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
   }
 
   .fc-timeline {
     grid-template-columns: 1fr;
     gap: 60px;
+    max-width: 500px;
+    margin: 0 auto;
   }
 
   .fc-timeline::before {
     display: none;
   }
+  
+  .fc-gift-cta {
+    margin: 100px 0;
+  }
 }
 
-@media (max-width: 760px) {
-  .fc-hero-title { font-size: 32px; line-height: 40px; }
-  .fc-hero-subtitle { font-size: 15px; line-height: 24px; }
-  .fc-family-grid { grid-template-columns: 1fr; }
-  .fc-connect-info h2 { font-size: 28px; }
-  .fc-gift-card { padding: 40px 20px; }
-  .fc-gift-card h3 { font-size: 24px; }
+@media (max-width: 768px) {
+  .fc-container {
+    padding: 30px 20px 60px;
+  }
+
+  .fc-hero {
+    padding-top: 120px;
+  }
+
+  .fc-hero-title {
+    font-size: 36px;
+  }
+
+  .fc-hero-image img {
+    max-width: 100%;
+    transform: none !important;
+  }
+
+  .fc-hero-image img:hover {
+    transform: none !important;
+  }
+
+  .fc-connect {
+    margin: 60px 0;
+  }
+
+  .fc-connect-info h2 {
+    font-size: 32px;
+  }
+
+  .fc-family {
+    margin: 60px 0;
+  }
+
+  .fc-family-title {
+    font-size: 32px;
+    margin-bottom: 40px;
+  }
+
+  .fc-family-grid {
+    grid-template-columns: 1fr;
+    max-width: 450px;
+    margin: 0 auto;
+  }
+
+  .fc-steps-modern {
+    margin: 60px 0;
+  }
+
+  .fc-steps-modern h2 {
+    font-size: 28px;
+  }
+
+  .fc-gift-cta {
+    margin: 60px 0;
+  }
+
+  .fc-gift-card {
+    padding: 60px 24px;
+  }
+
+  .fc-gift-card h3 {
+    font-size: 28px;
+  }
+
+  .fc-gift-card p {
+    font-size: 16px;
+  }
 }
+
+@media (max-width: 480px) {
+  .fc-hero-title {
+    font-size: 32px;
+  }
+
+  .fc-hero-subtitle {
+    font-size: 16px;
+  }
+
+  .fc-connect-info h2 {
+    font-size: 28px;
+  }
+
+  .fc-feature-item {
+    padding: 12px;
+    gap: 12px;
+  }
+
+  .fc-feature-icon {
+    width: 36px;
+    height: 36px;
+  }
+
+  .fc-steps-modern h2 {
+    font-size: 24px;
+  }
+}
+

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import SEO from '../../components/common/SEO';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { 
   ArrowLeft, Star, Droplets, Zap, Shield, HeartPulse, 
   ShoppingCart, Truck, ShieldCheck, Undo2, WifiOff, Sparkles, Waves
@@ -20,6 +20,8 @@ import thumb4 from '../../assets/images/w2.png';
 const NovaDetails = () => {
   const { productId } = useParams();
   const { t, lang } = useContext(LanguageContext);
+  const navigate = useNavigate();
+  const isAr = lang === 'ar';
   const [qty, setQty] = useState(1);
   const [activeColor, setActiveColor] = useState('black');
   const [selectedImg, setSelectedImg] = useState(mainImg);
@@ -47,8 +49,13 @@ const NovaDetails = () => {
     return () => observer.disconnect();
   }, []);
 
+  const goTab = (path) => {
+    sessionStorage.setItem('tabScrollY', window.scrollY);
+    navigate(path);
+  };
+
   return (
-    <div className={`nova-details-container ${lang === 'ar' ? 'rtl-text' : ''}`}>
+    <div className={`nova-details-container ${isAr ? 'rtl-text' : ''}`} dir={isAr ? 'rtl' : 'ltr'}>
       <SEO 
         title={lang === 'ar' ? 'نوفا' : 'Nova'}
         description={lang === 'ar' ? 'اكتشف سوار كيو لينك نوفا. الأداء العالي والأمان المتكامل.' : 'Discover the Qlink Nova bracelet. High performance and integrated safety.'}
@@ -181,8 +188,8 @@ const NovaDetails = () => {
         <div className="nova-tabs scroll-animate stag-3">
           <div className="tab-headers">
             <button className="tab-btn active">{t('novaDetails.tabDetail')}</button>
-            <button className="tab-btn">{t('novaDetails.tabPrivacy')}</button>
-            <button className="tab-btn">{t('novaDetails.tabInbox')}</button>
+            <button className="tab-btn" onClick={() => navigate('/shop/nova/privacy')}>{t('novaDetails.tabPrivacy')}</button>
+            <button className="tab-btn" onClick={() => navigate('/shop/nova/inbox')}>{t('novaDetails.tabInbox')}</button>
           </div>
           
           <div className="bridge-content">

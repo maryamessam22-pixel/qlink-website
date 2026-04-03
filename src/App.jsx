@@ -26,6 +26,10 @@ import Faqs from './pages/Support/Faqs';
 import Contact from './pages/Support/Contact';
 import AppDownload from './pages/Support/AppDownload';
 import ReviewDetail from './pages/Shop/ReviewDetail';
+import PrivacydataNova from './pages/Shop/PrivacydataNova';
+import PrivacydataPulse from './pages/Shop/PrivacydataPulse';
+import InTheBoxNova from './pages/Shop/InTheBoxNova';
+import InTheBoxPulse from './pages/Shop/InTheBoxPulse';
 
 // Auth
 import AuthPage from './pages/Auth/AuthPage';
@@ -87,6 +91,10 @@ function App() {
               <Route path="/shop/compare" element={<Compare />} />
               <Route path="/shop/reviews" element={<Reviews />} />
               <Route path="/shop/reviews/:id" element={<ReviewDetail />} />
+              <Route path="/shop/nova/privacy" element={<PrivacydataNova />} />
+              <Route path="/shop/pulse/privacy" element={<PrivacydataPulse />} />
+              <Route path="/shop/nova/inbox" element={<InTheBoxNova />} />
+              <Route path="/shop/pulse/inbox" element={<InTheBoxPulse />} />
               <Route path="/for-caregivers" element={<ForCaregivers />} />
               <Route path="/about/our-story" element={<OurStory />} />
               <Route path="/about/privacy" element={<PrivacySecurity />} />

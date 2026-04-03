@@ -166,12 +166,32 @@
 }
 
 @media (max-width: 991px) {
+  .setup-section-wrapper {
+    padding: 60px 20px;
+    margin-top: 60px;
+    margin-bottom: 60px;
+  }
   .setup-cards-row {
     flex-direction: column;
     align-items: center;
+    gap: 20px;
   }
   .setup-step-card {
     width: 100%;
-    max-width: 400px;
+    max-width: 450px;
+    padding: 30px 20px;
   }
 }
+
+@media (max-width: 480px) {
+  .setup-title {
+    font-size: 28px;
+  }
+  .setup-step-title {
+    font-size: 18px;
+  }
+  .setup-step-desc {
+    font-size: 13px;
+  }
+}
+
