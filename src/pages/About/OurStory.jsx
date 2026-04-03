@@ -1,4 +1,5 @@
 import React, { useEffect, useContext } from 'react';
+import SEO from '../../components/common/SEO';
 import { LanguageContext } from '../../context/LanguageContext';
 import DynamicBackground from '../../components/common/DynamicBackground';
 import { Quote, AlertCircle, CheckCircle, Target, Shield, Globe, Zap, Users } from 'lucide-react';
@@ -34,6 +35,11 @@ function OurStory() {
 
   return (
     <div className={`our-story-detailed-page ${lang === 'ar' ? 'rtl-text' : ''}`}>
+      <SEO 
+        title={lang === 'ar' ? 'قصتنا' : 'Our Story'}
+        description={lang === 'ar' ? 'تعرف على قصة كيو لينك، رؤيتنا ومهمتنا في جعل العالم مكاناً أكثر أماناً للجميع.' : 'Discover the story behind Qlink.'}
+        slug="about/our-story"
+      />
       <DynamicBackground />
       
       <div className="story-content-container">

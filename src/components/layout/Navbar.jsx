@@ -13,18 +13,21 @@ function Navbar() {
   const navigate  = useNavigate();
   const { pathname } = location;
   const { lang, toggleLanguage, t } = useContext(LanguageContext);
-  const { isAuthenticated, requireAuth, logout } = useContext(AuthContext);
+  const { isAuthenticated, openModalWithRoute, logout } = useContext(AuthContext);
 
   const closeMobileMenu = () => setIsMobileMenuOpen(false);
 
-  // Guard a direct <Link> click (non-dropdown nav links)
-  const handleGuardedNav = useCallback((e, href) => {
+
+  const handleGuardedNav = (e, href) => {
     e.preventDefault();
-    if (requireAuth()) {
-      closeMobileMenu();
+    if (isAuthenticated) {
       navigate(href);
+      closeMobileMenu();
+    } else {
+      openModalWithRoute(href);
+      closeMobileMenu();
     }
-  }, [requireAuth, navigate]);
+  };
 
   const handleLogout = useCallback(() => {
     logout();
@@ -81,13 +84,13 @@ function Navbar() {
 
           {/* For Caregivers — guarded direct link */}
           <li>
-            <a
-              href="/for-caregivers"
+            <Link
+              to="/for-caregivers"
               className={`nav-link ${pathname.startsWith('/for-caregivers') ? 'active' : ''}`}
               onClick={(e) => handleGuardedNav(e, '/for-caregivers')}
             >
               {t('nav.forCaregivers')}
-            </a>
+            </Link>
           </li>
 
           <li>
@@ -124,13 +127,13 @@ function Navbar() {
         <button className="icon-btn"><ShoppingCart size={22} color="var(--text-primary)" /></button>
 
         {/* User icon → also triggers auth check if not logged in */}
-        <a
-          href="/auth"
+        <Link
+          to="/auth"
           className="icon-btn"
           onClick={(e) => handleGuardedNav(e, '/auth')}
         >
           <User size={22} color="var(--text-primary)" />
-        </a>
+        </Link>
 
         {/* Logout button — only visible when authenticated */}
         {isAuthenticated && (

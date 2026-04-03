@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
+import SEO from '../../components/common/SEO';
 import { Link, useParams } from 'react-router-dom';
 import { 
   ArrowLeft, Star, Droplets, Zap, Shield, HeartPulse, 
@@ -47,6 +48,11 @@ const NovaDetails = () => {
 
   return (
     <div className={`nova-details-container ${lang === 'ar' ? 'rtl-text' : ''}`}>
+      <SEO 
+        title={lang === 'ar' ? 'نوفا' : 'Nova'}
+        description={lang === 'ar' ? 'اكتشف سوار كيو لينك نوفا. الأداء العالي والأمان المتكامل.' : 'Discover the Qlink Nova bracelet. High performance and integrated safety.'}
+        slug="shop/nova"
+      />
       <DynamicBackground />
       
       <div className="nova-content-wrapper">

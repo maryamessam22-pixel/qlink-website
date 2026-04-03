@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react';
+import SEO from '../../components/common/SEO';
 import { LanguageContext } from '../../context/LanguageContext';
 import { Link } from 'react-router-dom';
 import {
@@ -59,6 +60,11 @@ function HelpCenter() {
 
   return (
     <div className="help-center-wrapper">
+      <SEO 
+        title={lang === 'ar' ? 'مركز المساعدة' : 'Help Center'}
+        description={lang === 'ar' ? 'هل تحتاج إلى مساعدة؟ مركز المساعدة في كيو لينك يوفر لك كل ما تحتاجه من إرشادات ودعم فني.' : 'Need help? The Qlink Help Center provides guidance.'}
+        slug="support/help-center"
+      />
       <DynamicBackground />
 
       <div className={`help-center-content ${lang === 'ar' ? 'rtl-text' : ''}`}>

@@ -136,10 +136,14 @@
 }
 
 .hw-hero-content {
-  position: relative;
-  z-index: 2;
-  max-width: 800px;
-  padding: 0 20px;
+    position: relative;
+    z-index: 2;
+    display: flex;
+    max-width: 800px;
+    padding: 0 20px;
+    align-items: center;
+    flex-direction: column;
+    text-align: center !important;
 }
 
 .hw-hero-content h1 {
@@ -431,7 +435,7 @@
 }
 
 .hw-cta-section {
-  text-align: center;
+  text-align: center !important;
   padding: 0 24px;
 }
 
@@ -444,34 +448,36 @@
 
 @media (max-width: 768px) {
   .timeline-container::before {
-    left: 24px;
+    left: calc(50% - 1px);
     top: 60px;
-    /* Adjusted smaller for mobile card scale */
     bottom: 60px;
-    transform: none;
   }
 
   .timeline-row,
   .timeline-row:nth-child(odd),
   .timeline-row:nth-child(even) {
     flex-direction: column;
-    align-items: flex-end;
-    justify-content: flex-start;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
   }
 
   .timeline-card,
   .timeline-card-left,
   .timeline-card-right {
-    width: calc(100% - 64px);
-    padding: 32px 24px;
-    text-align: left;
+    width: 90%;
+    margin-bottom: 20px;
+    padding: 24px;
+    text-align: center !important;
   }
 
   .timeline-marker {
-    left: 25px;
-    /* Centers the 48px element safely on the 24px baseline */
-    transform: translate(-50%, -50%);
-    /* Reapplies the center transform explicitly for mobile flow */
+    left: 50%;
+    position: relative;
+    transform: none;
+    margin-bottom: -15px;
+    z-index: 5;
+    top: auto;
   }
 
   .hw-features-section,
@@ -488,4 +494,7 @@
     flex-direction: column;
     align-items: center;
   }
+
+
+
 }

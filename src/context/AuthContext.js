@@ -13,9 +13,17 @@ export const AuthProvider = ({ children }) => {
 
   // ── Login modal visibility + state ───────────────────────────────────────
   const [showLoginModal, setShowLoginModal] = useState(false);
+  const [pendingRoute, setPendingRoute]     = useState(null);
   const [loginError, setLoginError]         = useState('');
   const [password, setPassword]             = useState('');
   const [email, setEmail]                   = useState('maryamessam22@gmail.com');
+
+  // New helper to open modal with a "save for later" route
+  const openModalWithRoute = (route) => {
+    setPendingRoute(route);
+    setShowLoginModal(true);
+    setLoginError('');
+  };
 
   // ── Open modal (called when unauthenticated user tries to navigate) ───────
   const requireAuth = useCallback(() => {
@@ -59,6 +67,10 @@ export const AuthProvider = ({ children }) => {
     <AuthContext.Provider value={{
       isAuthenticated,
       showLoginModal,
+      setShowLoginModal,
+      pendingRoute,
+      setPendingRoute,
+      openModalWithRoute,
       loginError,
       password,
       setPassword,

@@ -4,16 +4,18 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
 
 function Dropdown({ label, items, isActive, onItemClick }) {
-  const location = useLocation();
+  const { pathname } = useLocation();
   const navigate  = useNavigate();
-  const { pathname } = location;
-  const { isAuthenticated, requireAuth } = useContext(AuthContext);
+  const { isAuthenticated, openModalWithRoute } = useContext(AuthContext);
 
   const handleItemClick = (e, href) => {
     e.preventDefault();
-    if (requireAuth()) {
+    if (isAuthenticated) {
       onItemClick && onItemClick();
       navigate(href);
+    } else {
+      openModalWithRoute(href);
+      onItemClick && onItemClick();
     }
   };
 

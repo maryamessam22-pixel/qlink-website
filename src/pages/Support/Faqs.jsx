@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useContext, useCallback } from 'react';
+import SEO from '../../components/common/SEO';
 import { LanguageContext } from '../../context/LanguageContext';
 import { Link } from 'react-router-dom';
 import { ChevronDown } from 'lucide-react';
@@ -83,6 +84,11 @@ function Faqs() {
   // ── Render ─────────────────────────────────────────────────────────────────
   return (
     <div className="faqs-wrapper">
+      <SEO 
+        title={lang === 'ar' ? 'الأسئلة الشائعة' : 'Frequently Asked Questions'}
+        description={lang === 'ar' ? 'اعثر على إجابات للأسئلة المتكررة حول كيو لينك وكيفية استخدامه.' : 'Find answers to frequently asked questions about Qlink.'}
+        slug="support/faqs"
+      />
       <DynamicBackground />
 
       <div className={`faqs-content ${lang === 'ar' ? 'rtl-text' : ''}`}>

@@ -31,7 +31,7 @@ const Preloader = ({ onFinish }) => {
             <path d="M70 70 L90 90" stroke="var(--color-primary-red)" strokeWidth="12" strokeLinecap="round" className="q-tail" />
             
             {/* Health Cross / Link inside the Q */}
-            <path d="M35 50 H65 M50 35 V65" stroke="var(--color-primary-red)" strokeWidth="6" strokeLinecap="round" className="q-cross" />
+            {/* <path d="M35 50 H65 M50 35 V65" stroke="var(--color-primary-red)" strokeWidth="6" strokeLinecap="round" className="q-cross" /> */}
           </svg>
         </div>
         

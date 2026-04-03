@@ -1,12 +1,15 @@
 import React, { useCallback } from 'react';
 import { X, Lock } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import './LoginModal.css';
 
-function LoginModal() {
+function LoginModal({ isOpen }) {
   const {
+    isAuthenticated,
     showLoginModal,
+    pendingRoute,
+    setPendingRoute,
     loginError,
     password,
     setPassword,
@@ -15,6 +18,20 @@ function LoginModal() {
     login,
     closeModal,
   } = useAuth();
+
+  const navigate = useNavigate();
+
+  React.useEffect(() => {
+    if (isAuthenticated && showLoginModal) {
+      if (pendingRoute) {
+        navigate(pendingRoute);
+        setPendingRoute(null);
+      }
+      closeModal();
+    }
+  }, [isAuthenticated, showLoginModal, pendingRoute, navigate, closeModal, setPendingRoute]);
+
+  const isVisible = isOpen !== undefined ? isOpen : showLoginModal;
 
   const handleSubmit = useCallback((e) => {
     e.preventDefault();
@@ -31,7 +48,7 @@ function LoginModal() {
     if (e.key === 'Escape') closeModal();
   }, [closeModal]);
 
-  if (!showLoginModal) return null;
+  if (!isVisible) return null;
 
   return (
     <div

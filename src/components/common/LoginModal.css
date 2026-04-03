@@ -1,6 +1,4 @@
-/* =====================================================
-   LOGIN MODAL — matches project dark design system
-   ===================================================== */
+
 
 .auth-overlay {
   position: fixed;
@@ -59,7 +57,7 @@
   background: rgba(255, 255, 255, 0.07);
 }
 
-/* Lock icon */
+
 .auth-modal-icon {
   width: 56px;
   height: 56px;
@@ -135,7 +133,7 @@
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* Submit button — reuses .btn .btn-primary from Home.css */
+
 .auth-modal-btn {
   width: 100% !important;
   max-width: none !important;
@@ -167,7 +165,7 @@
   background: var(--border-subtle);
 }
 
-/* Register link hint */
+
 .auth-modal-hint {
   font-size: 13px;
   color: var(--text-secondary);
@@ -184,7 +182,7 @@
   text-decoration: underline;
 }
 
-/* Logout button in navbar */
+
 .logout-btn {
   background: rgba(224, 50, 50, 0.12);
   border: 1px solid rgba(224, 50, 50, 0.3);
@@ -204,6 +202,8 @@
   border-color: rgba(224, 50, 50, 0.5);
 }
 
+
+ 
 /* Responsive */
 @media (max-width: 480px) {
   .auth-modal {

@@ -1,4 +1,5 @@
 import React, { useEffect, useContext } from 'react';
+import SEO from '../../components/common/SEO';
 import { LanguageContext } from '../../context/LanguageContext';
 import DynamicBackground from '../../components/common/DynamicBackground';
 import AppPromoSection from '../../components/Sections/AppPromoSection';
@@ -29,6 +30,11 @@ const PrivacySecurity = () => {
 
   return (
     <div className={`privacy-security-page ${lang === 'ar' ? 'rtl-text' : ''}`}>
+      <SEO 
+        title={lang === 'ar' ? 'الخصوصية والأمان' : 'Privacy & Security'}
+        description={lang === 'ar' ? 'خصوصيتك هي أولويتنا. اكتشف كيف نحمي بياناتك ونضمن أمان معلوماتك الطبية.' : 'Your privacy is our priority.'}
+        slug="about/privacy"
+      />
       <DynamicBackground />
       
       <div className="ps-content-container">

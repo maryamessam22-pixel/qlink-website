@@ -1,4 +1,5 @@
 import React, { useEffect, useContext } from 'react';
+import SEO from '../../components/common/SEO';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import {
   ChevronLeft, Star, CheckCircle2,
@@ -62,6 +63,11 @@ const ReviewDetail = () => {
 
   return (
     <div className={`rd-page ${lang === 'ar' ? 'rtl-text' : ''}`}>
+      <SEO 
+        title={lang === 'ar' ? `قصة ${review.author}` : `${review.author}'s Story`}
+        description={review.quote}
+        slug={`shop/reviews/${id}`}
+      />
       <DynamicBackground />
 
       {/* ── BACK LINK ── */}

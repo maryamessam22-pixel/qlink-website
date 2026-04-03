@@ -1,14 +1,15 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate, Outlet, useLocation } from 'react-router-dom';
+
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import ArrowUp from './components/layout/ArrowUp';
 import AIAssistantBtn from './components/layout/AIAssistantBtn';
-import './App.css'; // Global font settings
+import './App.css';
 import Preloader from './components/common/Preloader';
 import ScrollToTop from './components/layout/ScrollToTop';
-import DynamicBackground from './components/common/DynamicBackground';
 import LoginModal from './components/common/LoginModal';
+import { useAuth } from './context/AuthContext';
 
 // Pages
 import Home from './pages/Home';
@@ -24,12 +25,42 @@ import HelpCenter from './pages/Support/HelpCenter';
 import Faqs from './pages/Support/Faqs';
 import Contact from './pages/Support/Contact';
 import AppDownload from './pages/Support/AppDownload';
-import NovaDetails from './pages/Shop/NovaDetails';
-import PulseDetails from './pages/Shop/PulseDetails';
 import ReviewDetail from './pages/Shop/ReviewDetail';
 
-// Auth Pages
+// Auth
 import AuthPage from './pages/Auth/AuthPage';
+
+// 🔐 Protected Route
+const ProtectedRoute = () => {
+  const { isAuthenticated, setPendingRoute, setShowLoginModal } = useAuth();
+  const location = useLocation();
+
+  React.useEffect(() => {
+    if (!isAuthenticated) {
+      setPendingRoute(location.pathname);
+      setShowLoginModal(true);
+    }
+  }, [isAuthenticated, location, setPendingRoute, setShowLoginModal]);
+
+  if (!isAuthenticated) {
+    // Redirect to home if unauthenticated
+    return <Navigate to="/" replace />;
+  }
+  return <Outlet />;
+};
+
+// 🎨 Layout
+const MainLayout = () => (
+  <>
+    <Navbar />
+    <ScrollToTop />
+    <Outlet />
+    <LoginModal />
+    <AIAssistantBtn />
+    <ArrowUp />
+    <Footer />
+  </>
+);
 
 function App() {
   const [loading, setLoading] = React.useState(true);
@@ -37,47 +68,39 @@ function App() {
   return (
     <Router>
       <div className="App">
-        {/* Global auth modal — renders on top of every screen */}
-        <LoginModal />
-        {/* <DynamicBackground /> */}
         {loading && <Preloader onFinish={() => setLoading(false)} />}
 
-        {/* We hide the Navbar on the auth page for a true full screen experience */}
         <Routes>
+
+          {/* Auth */}
           <Route path="/auth" element={<AuthPage />} />
-          <Route path="*" element={
-            <>
-              <Navbar />
-              <ScrollToTop />
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/how-it-works/qlink" element={<HowQlinkWorks />} />
-                <Route path="/how-it-works/emergency" element={<EmergencyScenario />} />
-                <Route path="/shop/bracelet" element={<TheBracelet />} />
-                {/* <Route path="/shop/:productId" element={<NovaDetails />} /> */}
-                <Route path="/shop/:productId" element={<TheBracelet />} />
-                <Route path="/shop/compare" element={<Compare />} />
-                <Route path="/shop/reviews" element={<Reviews />} />
-                <Route path="/shop/reviews/:id" element={<ReviewDetail />} />
-                <Route path="/for-caregivers" element={<ForCaregivers />} />
-                <Route path="/about/our-story" element={<OurStory />} />
-                <Route path="/about/privacy" element={<PrivacySecurity />} />
-                <Route path="/support/help-center" element={<HelpCenter />} />
-                <Route path="/support/faqs" element={<Faqs />} />
-                <Route path="/support/contact" element={<Contact />} />
-                <Route path="/support/download" element={<AppDownload />} />
-              </Routes>
-              <AIAssistantBtn />
-              <ArrowUp />
-              <Footer />
-            </>
-          } />
+
+          {/* Public Home */}
+          <Route element={<MainLayout />}>
+            <Route path="/" element={<Home />} />
+            
+            <Route element={<ProtectedRoute />}>
+              <Route path="/how-it-works/qlink" element={<HowQlinkWorks />} />
+              <Route path="/how-it-works/emergency" element={<EmergencyScenario />} />
+              <Route path="/shop/bracelet" element={<TheBracelet />} />
+              <Route path="/shop/:productId" element={<TheBracelet />} />
+              <Route path="/shop/compare" element={<Compare />} />
+              <Route path="/shop/reviews" element={<Reviews />} />
+              <Route path="/shop/reviews/:id" element={<ReviewDetail />} />
+              <Route path="/for-caregivers" element={<ForCaregivers />} />
+              <Route path="/about/our-story" element={<OurStory />} />
+              <Route path="/about/privacy" element={<PrivacySecurity />} />
+              <Route path="/support/help-center" element={<HelpCenter />} />
+              <Route path="/support/faqs" element={<Faqs />} />
+              <Route path="/support/contact" element={<Contact />} />
+              <Route path="/support/download" element={<AppDownload />} />
+            </Route>
+          </Route>
+
         </Routes>
       </div>
     </Router>
-
   );
 }
-
 
 export default App;

@@ -1,4 +1,5 @@
 import React, { useEffect, useContext } from 'react';
+import SEO from '../../components/common/SEO';
 import { Link, useParams } from 'react-router-dom';
 import { LanguageContext } from '../../context/LanguageContext';
 import SetupSection from '../../components/Sections/SetupSection';
@@ -40,6 +41,11 @@ const TheBracelet = () => {
   // ✅ Main screen (listing)
   return (
     <div className={`bracelet-page-container ${lang === 'ar' ? 'rtl-text' : ''}`}>
+      <SEO 
+        title={lang === 'ar' ? 'السوار الذكي' : 'The Smart Bracelet'}
+        description={lang === 'ar' ? 'اكتشف مجموعة أساور كيو لينك الذكية. الأمان يلتقي بالأناقة.' : 'Explore the Qlink smart bracelet collection. Safety meets style.'}
+        slug="shop/bracelet"
+      />
       <DynamicBackground />
 
       {/* Header */}

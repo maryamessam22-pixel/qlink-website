@@ -1,4 +1,5 @@
 import React, { useRef, useEffect, useContext } from 'react';
+import SEO from '../../components/common/SEO';
 import './HowQlinkWorks.css';
 import { LanguageContext } from '../../context/LanguageContext';
 import {
@@ -89,6 +90,11 @@ function HowQlinkWorks() {
 
   return (
     <div className="how-works-page">
+      <SEO 
+        title={lang === 'ar' ? 'كيف يعمل' : 'How it Works'}
+        description={lang === 'ar' ? 'اكتشف كيف يربط كيو لينك المنقذين بمعلوماتك الحيوية في ثوانٍ.' : 'Discover how Qlink connects rescuers to your vital information in seconds.'}
+        slug="how-it-works"
+      />
       <DynamicBackground/>
       {/* Liquid background effect */}
       <div className="hw-liquid-bg">

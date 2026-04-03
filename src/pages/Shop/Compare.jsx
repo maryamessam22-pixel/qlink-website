@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import SEO from '../../components/common/SEO';
 import './Compare.css';
 import CompareCard from '../../components/Cards/CompareCard';
 import { LanguageContext } from '../../context/LanguageContext';
@@ -55,7 +56,12 @@ function Compare() {
 
   return (
     <div className={`compare-page ${lang === 'ar' ? 'rtl-text' : ''}`}>
-<DynamicBackground/>
+      <SEO 
+        title={lang === 'ar' ? 'مقارنة الميزات' : 'Compare Models'}
+        description={lang === 'ar' ? 'قارن بين موديلات كيو لينك نوفا وبولس.' : 'Compare Qlink Nova and Pulse models.'}
+        slug="shop/compare"
+      />
+      <DynamicBackground/>
   
       <div className="compare-hero scroll-animate">
         <h1 className="compare-title">

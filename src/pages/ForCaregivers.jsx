@@ -1,4 +1,5 @@
 import React, { useEffect, useContext } from 'react';
+import SEO from '../components/common/SEO';
 import { LanguageContext } from '../context/LanguageContext';
 import DynamicBackground from '../components/common/DynamicBackground';
 import { Users, Activity, Baby, HeartPulse, ShieldCheck, MapPin, BellRing } from 'lucide-react';
@@ -35,6 +36,11 @@ function ForCaregivers() {
 
   return (
     <div className="for-caregivers-page">
+      <SEO 
+        title={lang === 'ar' ? 'لمقدمي الرعاية' : 'For Caregivers'}
+        description={lang === 'ar' ? 'حلول أمان متكاملة لمقدمي الرعاية. راقب أحباءك وامنحهم الأمان الذي يستحقونه مع كيو لينك.' : 'Empower caregivers with Qlink. Monitor your loved ones and ensure their safety.'}
+        slug="caregivers"
+      />
       <DynamicBackground />
       <main className="fc-container">
         <section className={`fc-hero ${lang === 'ar' ? 'rtl-text' : ''}`}>

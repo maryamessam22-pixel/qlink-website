@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
+import SEO from '../../components/common/SEO';
 import { useNavigate } from 'react-router-dom';
 import Logo from '../../components/layout/Logo';
+import { useAuth } from '../../context/AuthContext';
 import qlinkBg from '../../assets/images/qlink-bg.png';
 import watchImg from '../../assets/images/watch.png';
 import './AuthPage.css';
 
 function AuthPage() {
+  const { login } = useAuth();
   const [isLogin, setIsLogin] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
   const [showSplash, setShowSplash] = useState(false);
@@ -13,6 +16,8 @@ function AuthPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    // Use the hardcoded password from AuthContext for demo
+    login('mariam123', 'user@example.com');
     setIsLoading(true);
   };
 
@@ -74,6 +79,11 @@ function AuthPage() {
 
   return (
     <div className="auth-container">
+      <SEO 
+        title="Authorization"
+        description="Sign in or create a Qlink account to manage your smart emergency bracelet."
+        slug="auth"
+      />
       <div className="dynamic-light"></div>
       <div className="dynamic-light-2"></div>
       <div className="dynamic-light-3"></div>

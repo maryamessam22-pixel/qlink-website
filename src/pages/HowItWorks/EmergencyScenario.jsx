@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
+import SEO from '../../components/common/SEO';
 import './EmergencyScenario.css';
 import { LanguageContext } from '../../context/LanguageContext';
 
@@ -58,6 +59,11 @@ const EmergencyScenario = () => {
 
   return (
     <div className="es-page">
+      <SEO 
+        title={lang === 'ar' ? 'سيناريو الطوارئ' : 'Emergency Scenario'}
+        description={lang === 'ar' ? 'تعرف على كيفية استجابة كيو لينك في الحالات الحرجة.' : 'Learn how Qlink responds in critical situations.'}
+        slug="how-it-works/emergency"
+      />
       <DynamicBackground/>
       {/* HERO */}
       <section className={`es-hero scroll-animate ${lang === 'ar' ? 'rtl-text' : ''}`} style={{ backgroundImage: `url(${heroImg})` }}>

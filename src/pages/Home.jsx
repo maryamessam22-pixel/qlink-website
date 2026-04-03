@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useContext, useCallback } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import SEO from '../components/common/SEO';
 import { LanguageContext } from '../context/LanguageContext';
 import { useAuth } from '../context/AuthContext';
 import { supabase } from "../lib/Supabase";
@@ -40,23 +41,23 @@ import appScreenImg from '../assets/images/appscreen.png';
 
 function Home() {
   const navigate = useNavigate();
-  const { requireAuth } = useAuth();
+  const { isAuthenticated, openModalWithRoute } = useAuth();
   const [isScrolled, setIsScrolled] = useState(false);
   const [cms, setCms] = useState({});
   const { t, lang } = useContext(LanguageContext);
 
   const handleGuardedClick = useCallback((e, href) => {
     e.preventDefault();
-    if (requireAuth()) {
+    if (isAuthenticated) {
       if (href.startsWith('http')) {
         window.open(href, '_blank');
       } else if (href !== '#') {
         navigate(href);
       }
+    } else {
+      openModalWithRoute(href);
     }
-  }, [requireAuth, navigate]);
-
-  // helper: pick EN or AR field
+  }, [isAuthenticated, openModalWithRoute, navigate]);
   const pick = (row, field) => {
     if (!row) return null;
     return lang === 'ar' ? row[`${field}_ar`] : row[`${field}_en`];
@@ -112,6 +113,11 @@ function Home() {
   }, []);
   return (
     <div className="home-wrapper">
+      <SEO 
+        title={lang === 'ar' ? 'سوار طوارئ ذكي' : 'Smart Emergency QR Bracelet'}
+        description={lang === 'ar' ? 'كيو لينك هو سوار طوارئ يعتمد على رمز QR للوصول الفوري للمعلومات الطبية الحيوية في أي مكان.' : 'Qlink is a smart emergency QR bracelet that provides instant access to vital medical information.'}
+        slug=""
+      />
       {/* Liquid background effect */}
       <div className="home-liquid-bg">
         <div className="home-glow home-glow-1"></div>
@@ -275,13 +281,13 @@ function Home() {
             <p className="split-desc">
               {cms['home_simple_secure'] ? pick(cms['home_simple_secure'], 'content') : t('splitFeature.desc1')}
             </p>
-            <a
-              href="/about"
+            <Link
+              to="/about/our-story"
               className="btn btn-primary link-btn-inline"
-              onClick={(e) => handleGuardedClick(e, '/about')}
+              onClick={(e) => handleGuardedClick(e, '/about/our-story')}
             >
               {t('splitFeature.btn')}
-            </a>
+            </Link>
           </div>
           <div className="split-image">
             <img src={twoWatchesImg} alt="2 Qlink Bracelets" />

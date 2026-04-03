@@ -1,4 +1,5 @@
 import React, { useEffect, useContext } from 'react';
+import SEO from '../../components/common/SEO';
 import { useNavigate } from 'react-router-dom';
 import { Quote, Star, MessageSquare, Share2, Users, CheckCircle2 } from 'lucide-react';
 import { LanguageContext } from '../../context/LanguageContext';
@@ -43,6 +44,11 @@ const Reviews = () => {
 
   return (
     <div className={`reviews-page-container ${lang === 'ar' ? 'rtl-text' : ''}`}>
+      <SEO 
+        title={lang === 'ar' ? 'آراء العملاء' : 'Customer Reviews'}
+        description={lang === 'ar' ? 'اقرأ قصصاً حقيقية من مستخدمي كيو لينك وكيف ساعدهم السوار في حالات الطوارئ.' : 'Read real stories from Qlink users.'}
+        slug="shop/reviews"
+      />
       <DynamicBackground />
       
       <div className="reviews-content-wrapper">

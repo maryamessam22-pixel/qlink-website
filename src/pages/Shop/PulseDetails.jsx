@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
+import SEO from '../../components/common/SEO';
 import { Link, useParams } from 'react-router-dom';
 import { 
   ArrowLeft, Droplets, Zap, Shield, HeartPulse, 
@@ -46,6 +47,11 @@ const PulseDetails = () => {
 
   return (
     <div className={`pulse-details-container ${lang === 'ar' ? 'rtl-text' : ''}`}>
+      <SEO 
+        title={lang === 'ar' ? 'بولس' : 'Pulse'}
+        description={lang === 'ar' ? 'اكتشف سوار كيو لينك بولس. خفيف الوزن ومتين.' : 'Discover the Qlink Pulse bracelet. Lightweight and durable.'}
+        slug="shop/pulse"
+      />
       <DynamicBackground />
       
       <div className="pulse-content-wrapper">
