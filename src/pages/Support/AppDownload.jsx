@@ -91,7 +91,7 @@ const AppDownload = () => {
                  </div>
                </button>
                <button className="promo-app-btn" style={{ background: 'rgba(255,255,255,0.05)', color: 'white', border: '1px solid rgba(255,255,255,0.1)' }}>
-                 <Play size={24} fill="#E03232" color="#E03232" />
+                 <Play size={24}  color="#ffffffff" />
                  <div className="btn-text" style={lang === 'ar' ? { textAlign: 'right' } : {}}>
                    <span>{t('appSection.googlePlay') || 'Get it on'}</span>
                    <strong>{t('appSection.googlePlayTitle') || 'Google Play'}</strong>
