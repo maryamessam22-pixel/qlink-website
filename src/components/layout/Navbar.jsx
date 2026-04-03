@@ -123,10 +123,14 @@ function Navbar() {
         </button>
         <button className="icon-btn"><ShoppingCart size={22} color="var(--text-primary)" /></button>
 
-        {/* User icon → still links to /auth (login page), no guard needed */}
-        <Link to="/auth" className="icon-btn" onClick={closeMobileMenu}>
+        {/* User icon → also triggers auth check if not logged in */}
+        <a
+          href="/auth"
+          className="icon-btn"
+          onClick={(e) => handleGuardedNav(e, '/auth')}
+        >
           <User size={22} color="var(--text-primary)" />
-        </Link>
+        </a>
 
         {/* Logout button — only visible when authenticated */}
         {isAuthenticated && (
