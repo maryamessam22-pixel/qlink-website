@@ -606,6 +606,16 @@ const translations = {
     step2Desc: "Enter your medical details and emergency contacts",
     step3Title: "Link Device",
     step3Desc: "Add activation code inside the bracelet box"
+  },
+  faqsPage: {
+    heroTitle: "Frequently Asked ",
+    heroHighlight: "Questions",
+    heroDesc: "Find answers to common questions about Qlink features, setup, and security.",
+    searchPlaceholder: "Search questions...",
+    noResults: "No questions found matching your search.",
+    ctaTitle: "Still can't find what you're looking for?",
+    ctaDesc: "Our support team is available 24/7 to answer any questions.",
+    ctaBtn: "Contact Support"
   }
 };
 
