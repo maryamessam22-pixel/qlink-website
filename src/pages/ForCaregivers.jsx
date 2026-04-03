@@ -1,21 +1,48 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect, useContext, useState } from 'react';
 import SEO from '../components/common/SEO';
 import { LanguageContext } from '../context/LanguageContext';
 import DynamicBackground from '../components/common/DynamicBackground';
-import { Users, Activity, Baby, HeartPulse, ShieldCheck, MapPin, BellRing } from 'lucide-react';
+import { ShieldCheck, MapPin, BellRing, HeartPulse } from 'lucide-react';
+import { supabase } from '../lib/Supabase';
 import './ForCaregivers.css';
-import heroImage from '../assets/images/hero-caregivers.png';
-import AppPromoSection from '../components/Sections/AppPromoSection';
 
-// New images for the redesign
+import heroImage from '../assets/images/hero-caregivers.png';
 import stayConnectedImg from '../assets/images/stay-pic.png';
 import elderlyParentsImg from '../assets/images/one.png';
 import chronicConditionsImg from '../assets/images/two.png';
 import activeChildrenImg from '../assets/images/three.png';
 import promoMobiles from '../assets/images/2mobiles.png';
+import AppPromoSection from '../components/Sections/AppPromoSection';
 
 function ForCaregivers() {
   const { t, lang } = useContext(LanguageContext);
+  const [seoData, setSeoData] = useState(null);
+  const [cmsHero, setCmsHero] = useState(null);
+
+  const isArabic = typeof lang === 'string' && lang.toLowerCase().includes('ar');
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const { data: seo } = await supabase
+          .from('seo')
+          .select('*')
+          .eq('slug', 'caregivers')
+          .single();
+        if (seo) setSeoData(seo);
+
+        const { data: cms } = await supabase
+          .from('cms_content')
+          .select('*')
+          .eq('section_key', 'caregivers_hero')
+          .single();
+        if (cms) setCmsHero(cms);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    fetchData();
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
@@ -34,24 +61,29 @@ function ForCaregivers() {
     return () => observer.disconnect();
   }, []);
 
+  const heroMainTitle = cmsHero ? (isArabic ? cmsHero.title_ar : cmsHero.title_en) : t("reviews.caregivers.heroTitle");
+  const heroDescription = cmsHero ? (isArabic ? cmsHero.content_ar : cmsHero.content_en) : t("reviews.caregivers.heroDesc");
+
   return (
     <div className="for-caregivers-page">
       <SEO 
-        title={lang === 'ar' ? 'لمقدمي الرعاية' : 'For Caregivers'}
-        description={lang === 'ar' ? 'حلول أمان متكاملة لمقدمي الرعاية. راقب أحباءك وامنحهم الأمان الذي يستحقونه مع كيو لينك.' : 'Empower caregivers with Qlink. Monitor your loved ones and ensure their safety.'}
-        slug="caregivers"
+        title={seoData ? (isArabic ? seoData.title_ar : seoData.title_en) : (isArabic ? 'لمقدمي الرعاية' : 'For Caregivers')}
+        description={seoData ? (isArabic ? seoData.description_ar : seoData.description_en) : (isArabic ? 'حلول أمان متكاملة لمقدمي الرعاية.' : 'Empower caregivers with Qlink.')}
+        slug={seoData ? seoData.slug : "caregivers"}
       />
       <DynamicBackground />
       <main className="fc-container">
-        <section className={`fc-hero ${lang === 'ar' ? 'rtl-text' : ''}`}>
+        <section className={`fc-hero ${isArabic ? 'rtl-text' : ''}`}>
           <div className="fc-hero-content">
             <div className="fc-hero-tag scroll-animate">{t("reviews.caregivers.heroTag")}</div>
             <h1 className="fc-hero-title scroll-animate stag-1">
-              {t("reviews.caregivers.heroTitle")}
+              {heroMainTitle}
               <br />
-              <span className="highlight-text">{t("reviews.caregivers.heroHighlight")}</span>
+              <span className="highlight-text">
+                {isArabic ? 'موجودون في كل ثانية.' : 'There Every Second.'}
+              </span>
             </h1>
-            <p className="fc-hero-subtitle scroll-animate stag-2">{t("reviews.caregivers.heroDesc")}</p>
+            <p className="fc-hero-subtitle scroll-animate stag-2">{heroDescription}</p>
             <button className="btn btn-primary fc-hero-action scroll-animate stag-3">{t("reviews.caregivers.heroBtn")}</button>
           </div>
           <div className="fc-hero-image scroll-animate stag-2">

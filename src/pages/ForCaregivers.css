@@ -20,7 +20,11 @@
   align-items: center;
   justify-content: space-between;
   gap: 40px;
-  padding: 150px 24px;
+  /* padding: 150px 24px; */
+  padding-bottom: 0px;
+  padding-top: 150px;
+  padding-left: 24px;
+  padding-right: 24px;
   min-height: 500px;
 }
 

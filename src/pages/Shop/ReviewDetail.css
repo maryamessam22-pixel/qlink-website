@@ -420,6 +420,7 @@
 .scroll-animate.is-visible {
   opacity: 1;
   transform: translateY(0);
+  border-radius: 8px;
 }
 
 /* ── RESPONSIVE ── */
