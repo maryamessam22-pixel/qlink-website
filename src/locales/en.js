@@ -364,7 +364,7 @@ const translations = {
         stars: 5,
         quote: "Qlink gives me the confidence to go for my morning runs alone.",
         readMore: "Read Full Story",
-        heroType: "image",
+        heroType: "avatar",
         storyTitle: "The Full Story",
         storyParagraphs: [
           "As someone living with Type 1 diabetes, running has always been my passion and my therapy. But there was always that underlying fear - what if my blood sugar drops while I'm alone on a trail? What if I can't communicate my condition to someone who finds me?",
