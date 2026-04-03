@@ -73,6 +73,7 @@ const ContactSection = () => {
         .from('support_messages')
         .insert([
           {
+            id: crypto.randomUUID(), // Manually generate ID in case the table doesn't have a default
             sender_name: formData.name,
             subject: formData.subject,
             message_body: formData.message,
@@ -84,7 +85,7 @@ const ContactSection = () => {
 
       if (error) {
         console.error('Submission error:', error);
-        alert(lang === 'ar' ? 'فشل إرسال الرسالة. يرجى المحاولة مرة أخرى.' : 'Failed to send message. Please try again.');
+        alert(lang === 'ar' ? `فشل إرسال الرسالة: ${error.message}` : `Failed to send message: ${error.message}`);
       } else {
         setSuccess(true);
         setFormData({ name: '', email: '', subject: '', message: '' });
