@@ -162,7 +162,12 @@ const EmergencyScenario = () => {
           </div>
           <h2 style={lang === 'ar' ? {} : { whiteSpace: 'pre-wrap' }}>{t('emergency.ctaSubtitle')}</h2>
           <p>{t('emergency.ctaDesc')}</p>
-          <button className="btn btn-primary" style={lang === 'ar' ? { display: 'flex', gap: '8px', alignItems: 'center' } : {}}>{t('emergency.ctaBtn')} {lang === 'ar' ? <ArrowLeft size={16}/> : <ArrowRight size={16}/>}</button>
+          <button
+            className="btn btn-primary btn-cta-full"
+            style={lang === 'ar' ? { display: 'flex', gap: '8px', alignItems: 'center' } : {}}
+          >
+            {t('emergency.ctaBtn')} {lang === 'ar' ? <ArrowLeft size={16}/> : <ArrowRight size={16}/>}
+          </button>
         </div>
       </section>
 

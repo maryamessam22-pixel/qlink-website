@@ -34,7 +34,11 @@ body {
   cursor: pointer;
   transition: all 0.3s ease;
   border: none;
-  width: stretch;
+}
+.btn-cta-full {
+  width: 100% !important;
+  max-width: none !important;
+  justify-content: center;
 }
 .btn-primary {
   background: var(--color-primary-red);

@@ -137,7 +137,11 @@
 
 /* Submit button — reuses .btn .btn-primary from Home.css */
 .auth-modal-btn {
-  width: 100%;
+  width: 100% !important;
+  max-width: none !important;
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
   margin-top: 4px;
 }
 
