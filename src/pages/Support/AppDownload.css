@@ -1,0 +1,159 @@
+/* AppDownload.css */
+.app-download-page {
+  padding-top: 100px;
+  color: white;
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.scroll-animate {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.scroll-animate.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 1. Hero Section */
+.ad-hero-wrapper {
+  max-width: 1200px;
+  margin: 0 auto 120px auto;
+  padding: 0 24px;
+}
+
+.ad-hero-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  background: rgba(15, 23, 42, 0.35);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  padding: 60px;
+}
+
+.ad-hero-content {
+  flex: 1;
+  max-width: 550px;
+}
+
+.ad-hero-content h1 {
+  font-size: 52px;
+  font-weight: 800;
+  margin-bottom: 20px;
+}
+
+.ad-hero-content h1 span {
+  color: #3b82f6;
+}
+
+.ad-hero-content p {
+  font-size: 16px;
+  color: #94A3B8;
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+.ad-hero-list {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 40px;
+}
+
+.ad-hero-list li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  color: white;
+  margin-bottom: 12px;
+}
+
+.red-icon {
+  color: #10b981; /* Success green from design? actually it's green-ish in design image list checkmarks */
+}
+
+.ad-hero-buttons {
+  display: flex;
+  gap: 16px;
+}
+
+.ia-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: 0.3s;
+  min-width: 170px;
+}
+
+.ia-btn.white {
+  background: white;
+  color: black;
+}
+
+.ia-btn.bg-blur {
+  background: rgba(15, 23, 42, 0.4);
+  color: white;
+}
+
+.ia-btn:hover {
+  transform: translateY(-2px);
+  border-color: #E03232;
+}
+
+.btn-text {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.btn-text span {
+  font-size: 10px;
+  line-height: 1;
+}
+
+.btn-text strong {
+  font-size: 16px;
+  line-height: 1.2;
+}
+
+.ad-hero-visual {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.hero-floating-img {
+  max-width: 100%;
+  height: auto;
+  filter: drop-shadow(0 20px 50px rgba(0,0,0,0.5));
+}
+
+@media (max-width: 991px) {
+  .ad-hero-container {
+    flex-direction: column;
+    text-align: center;
+    padding: 40px 24px;
+  }
+  
+  .ad-hero-list li {
+    justify-content: center;
+  }
+  
+  .ad-hero-buttons {
+    justify-content: center;
+  }
+  
+  .ad-hero-visual {
+    justify-content: center;
+  }
+}
