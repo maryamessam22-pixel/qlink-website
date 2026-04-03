@@ -64,6 +64,13 @@
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.thumb.active {
+  border-color: #E03232;
+  background: rgba(224, 50, 50, 0.1);
+  box-shadow: 0 0 15px rgba(224, 50, 50, 0.2);
 }
 
 .thumbnail-group {

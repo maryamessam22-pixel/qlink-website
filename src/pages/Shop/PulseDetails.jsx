@@ -21,6 +21,7 @@ const PulseDetails = () => {
   const { t, lang } = useContext(LanguageContext);
   const [qty, setQty] = useState(1);
   const [activeColor, setActiveColor] = useState('gray');
+  const [selectedImg, setSelectedImg] = useState(mainImg);
   
   const colors = [
     { id: 'gray', name: t('pulseDetails.colorGray'), hex: '#5C5C5C' },
@@ -69,13 +70,24 @@ const PulseDetails = () => {
           <div className="pulse-gallery-side scroll-animate stag-1">
             <div className="pulse-gallery">
               <div className="main-image-wrapper">
-                <img src={mainImg} alt="QLINK-PULSE Main" />
+                <img src={selectedImg} alt="QLINK-PULSE Main" className="main-featured-img" />
               </div>
               <div className="thumbnail-group">
-                <div className="thumb"><img src={thumb1} alt="Thumb 1" /></div>
-                <div className="thumb"><img src={thumb2} alt="Thumb 2" /></div>
-                <div className="thumb"><img src={thumb3} alt="Thumb 3" /></div>
-                <div className="thumb"><img src={thumb4} alt="Thumb 4" /></div>
+                <div className={`thumb ${selectedImg === mainImg ? 'active' : ''}`} onClick={() => setSelectedImg(mainImg)}>
+                  <img src={mainImg} alt="Main Thumb" />
+                </div>
+                <div className={`thumb ${selectedImg === thumb1 ? 'active' : ''}`} onClick={() => setSelectedImg(thumb1)}>
+                  <img src={thumb1} alt="Thumb 1" />
+                </div>
+                <div className={`thumb ${selectedImg === thumb2 ? 'active' : ''}`} onClick={() => setSelectedImg(thumb2)}>
+                  <img src={thumb2} alt="Thumb 2" />
+                </div>
+                <div className={`thumb ${selectedImg === thumb3 ? 'active' : ''}`} onClick={() => setSelectedImg(thumb3)}>
+                  <img src={thumb3} alt="Thumb 3" />
+                </div>
+                <div className={`thumb ${selectedImg === thumb4 ? 'active' : ''}`} onClick={() => setSelectedImg(thumb4)}>
+                  <img src={thumb4} alt="Thumb 4" />
+                </div>
               </div>
             </div>
             
