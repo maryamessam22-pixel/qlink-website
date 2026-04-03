@@ -17,6 +17,7 @@ import {
 import './AppDownload.css';
 
 import AppPromoSection from '../../components/Sections/AppPromoSection';
+import '../../components/Sections/AppPromoSection.css';
 
 // Assets
 import heroPhones from '../../assets/images/mobile2.png';

@@ -100,49 +100,6 @@
   gap: 16px;
 }
 
-.ia-btn {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 12px 24px;
-  border-radius: 8px;
-  cursor: pointer;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  transition: 0.3s;
-  min-width: 170px;
-}
-
-.ia-btn.white {
-  background: white;
-  color: black;
-}
-
-.ia-btn.bg-blur {
-  background: rgba(15, 23, 42, 0.4);
-  color: white;
-}
-
-.ia-btn:hover {
-  transform: translateY(-2px);
-  border-color: #E03232;
-}
-
-.btn-text {
-  display: flex;
-  flex-direction: column;
-  text-align: left;
-}
-
-.btn-text span {
-  font-size: 10px;
-  line-height: 1;
-}
-
-.btn-text strong {
-  font-size: 16px;
-  line-height: 1.2;
-}
-
 .ad-hero-visual {
   flex: 1;
   display: flex;
