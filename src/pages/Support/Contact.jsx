@@ -1,10 +1,11 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import SEO from '../../components/common/SEO';
 import { LanguageContext } from '../../context/LanguageContext';
 import DynamicBackground from '../../components/common/DynamicBackground';
 import ContactSection from '../../components/Sections/ContactSection';
 import AppPromoSection from '../../components/Sections/AppPromoSection';
 import { HelpCircle } from 'lucide-react';
+import { supabase } from '../../lib/Supabase';
 import './Contact.css';
 
 // Assets
@@ -12,7 +13,38 @@ import mobileVisuals from '../../assets/images/mobile3rd.png';
 
 function Contact() {
   const { lang, t } = useContext(LanguageContext);
+  
+  // ── State bta3 el SEO ─────────────────────────────────────────────────────
+  const [seoData, setSeoData] = useState(null);
 
+  // ── Helper 3ashan el language tkoon mo-w7ada ──────────────────────────────
+  const isArabic = typeof lang === 'string' && lang.toLowerCase().includes('ar');
+
+  // ── Fetch SEO ─────────────────────────────────────────────────────────────
+  useEffect(() => {
+    const fetchSeo = async () => {
+      try {
+        const { data, error } = await supabase
+          .from('seo')
+          .select('*')
+          .eq('slug', 'support/contact')
+          .single();
+
+        if (error && error.code !== 'PGRST116') {
+          console.error('Supabase Contact SEO fetch error:', error);
+        } else if (data) {
+          console.log("SEO DATA GAT YAAAAY (Contact): ", data);
+          setSeoData(data);
+        }
+      } catch (err) {
+        console.error('Unexpected error fetching Contact SEO:', err);
+      }
+    };
+
+    fetchSeo();
+  }, []);
+
+  // ── Animations Observer ───────────────────────────────────────────────────
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -29,18 +61,27 @@ function Contact() {
   }, []);
 
   return (
-    <div className={`contact-page ${lang === 'ar' ? 'rtl-text' : ''}`}>
+    <div className={`contact-page ${isArabic ? 'rtl-text' : ''}`}>
+      {/* ── SEO Component Met-zabat ── */}
       <SEO 
-        title={lang === 'ar' ? 'اتصل بنا' : 'Contact Us'}
-        description={lang === 'ar' ? 'تواصل مع فريق كيو لينك لأي استفسارات أو دعم.' : 'Get in touch with the Qlink team for any inquiries or support.'}
-        slug="support/contact"
+        title={
+          seoData 
+            ? (isArabic ? seoData.title_ar : seoData.title_en) 
+            : (isArabic ? 'اتصل بنا' : 'Contact Us')
+        }
+        description={
+          seoData 
+            ? (isArabic ? seoData.description_ar : seoData.description_en) 
+            : (isArabic ? 'تواصل مع فريق كيو لينك لأي استفسارات أو دعم.' : 'Get in touch with the Qlink team for any inquiries or support.')
+        }
+        slug={seoData ? seoData.slug : "support/contact"}
       />
       <DynamicBackground />
       
       {/* 1. Hero */}
       <section className="contact-hero scroll-animate stag-1">
-        <h1>{lang === 'ar' ? 'تواصل ' : 'Get in '}<span>{lang === 'ar' ? 'معنا' : 'Touch'}</span></h1>
-        <p>{lang === 'ar' ? 'هل لديك أسئلة حول كيو لينك؟ فريقنا هنا لمساعدتك في تأمين راحة بالك.' : 'Have questions about Qlink? Our team is here to help you secure your peace of mind.'}</p>
+        <h1>{isArabic ? 'تواصل ' : 'Get in '}<span>{isArabic ? 'معنا' : 'Touch'}</span></h1>
+        <p>{isArabic ? 'هل لديك أسئلة حول كيو لينك؟ فريقنا هنا لمساعدتك في تأمين راحة بالك.' : 'Have questions about Qlink? Our team is here to help you secure your peace of mind.'}</p>
       </section>
 
       {/* 2. Contact Main (Form + Info) */}
@@ -53,29 +94,29 @@ function Contact() {
         <div className="q-icon">
           <HelpCircle size={32} />
         </div>
-        <h2>{lang === 'ar' ? 'لا تزال لديك أسئلة؟' : 'Still have questions?'}</h2>
-        <p>{lang === 'ar' ? 'لا تجد الإجابة التي تبحث عنها؟ تحقق من قسم الأسئلة الشائعة الشامل للحصول على معلومات مفصلة عن كيو لينك.' : 'Can\'t find the answer you\'re looking for? Check out our comprehensive FAQ section for detailed information about Qlink.'}</p>
+        <h2>{isArabic ? 'لا تزال لديك أسئلة؟' : 'Still have questions?'}</h2>
+        <p>{isArabic ? 'لا تجد الإجابة التي تبحث عنها؟ تحقق من قسم الأسئلة الشائعة الشامل للحصول على معلومات مفصلة عن كيو لينك.' : 'Can\'t find the answer you\'re looking for? Check out our comprehensive FAQ section for detailed information about Qlink.'}</p>
         <button className="btn-cta" onClick={() => window.location.href = '/support/faqs'}>
-          {lang === 'ar' ? 'عرض الأسئلة الشائعة' : 'View FAQs'}
+          {isArabic ? 'عرض الأسئلة الشائعة' : 'View FAQs'}
         </button>
       </section>
 
       {/* 4. Stay Updated (Newsletter) */}
       <section className="newsletter-section scroll-animate stag-3">
-        <h2>{lang === 'ar' ? 'ابق على اطلاع' : 'Stay Updated'}</h2>
-        <p>{lang === 'ar' ? 'اشترك في نشرتنا الإخبارية للحصول على أحدث نصائح الأمان وتحديثات المنتجات والعروض الحصرية.' : 'Subscribe to our newsletter for the latest safety tips, product updates, and exclusive offers.'}</p>
+        <h2>{isArabic ? 'ابق على اطلاع' : 'Stay Updated'}</h2>
+        <p>{isArabic ? 'اشترك في نشرتنا الإخبارية للحصول على أحدث نصائح الأمان وتحديثات المنتجات والعروض الحصرية.' : 'Subscribe to our newsletter for the latest safety tips, product updates, and exclusive offers.'}</p>
         <div className="newsletter-form">
-          <input type="email" placeholder={lang === 'ar' ? 'أدخل بريدك الإلكتروني' : 'Enter your email'} />
-          <button className="btn-sub">{lang === 'ar' ? 'اشترك' : 'Subscribe'}</button>
+          <input type="email" placeholder={isArabic ? 'أدخل بريدك الإلكتروني' : 'Enter your email'} />
+          <button className="btn-sub">{isArabic ? 'اشترك' : 'Subscribe'}</button>
         </div>
       </section>
 
-      {/* 5. Install App (Now using AppPromoSection with mobile3rd) */}
+      {/* 5. Install App */}
       <AppPromoSection 
         imageSrc={mobileVisuals}
-        customTitle={lang === 'ar' ? 'ثبت التطبيق ' : 'Install the App '}
-        customFocus={lang === 'ar' ? 'الآن!' : 'Now!'}
-        customDesc={lang === 'ar' ? 'تحكم بشكل كامل في سلامتك. أدر الملفات الشخصية، واحصل على تنبيهات فورية، والمزيد.' : 'Take full control of your safety. Manage profiles, get real-time alerts, and more.'}
+        customTitle={isArabic ? 'ثبت التطبيق ' : 'Install the App '}
+        customFocus={isArabic ? 'الآن!' : 'Now!'}
+        customDesc={isArabic ? 'تحكم بشكل كامل في سلامتك. أدر الملفات الشخصية، واحصل على تنبيهات فورية، والمزيد.' : 'Take full control of your safety. Manage profiles, get real-time alerts, and more.'}
       />
 
     </div>
