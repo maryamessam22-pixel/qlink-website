@@ -145,9 +145,9 @@
 
 .fc-connect-image img {
   width: 100%;
-  border-radius: 20px;
+  /* border-radius: 20px;
   box-shadow: 0 40px 100px rgba(0, 0, 0, 0.6);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1); */
 }
 
 .fc-connect-info {
