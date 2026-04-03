@@ -51,7 +51,7 @@ const ContactSection = () => {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
 
-  // Dynamic Content + Fallbacks
+  
   const title    = pick('title')    || t('supportCenter.contactTitle');
   const subtitle = pick('subtitle') || t('supportCenter.contactDesc');
   const extra    = cmsData?.extra_data || {};
