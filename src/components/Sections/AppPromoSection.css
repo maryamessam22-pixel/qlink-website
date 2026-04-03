@@ -102,6 +102,21 @@
   margin-bottom: -150px;
 }
 
+/* Animations */
+.scroll-animate {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.scroll-animate.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.stag-1 { transition-delay: 0.1s; }
+.stag-large-delay { transition-delay: 0.5s; }
+
 @media (max-width: 900px) {
   .promo-container {
     flex-direction: column;

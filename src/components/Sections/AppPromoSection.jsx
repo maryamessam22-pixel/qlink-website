@@ -24,9 +24,9 @@ const AppPromoSection = ({ imageSrc, imgClassName, customTitle, customFocus, cus
   }, []);
 
   return (
-    <section className={`app-promo-section scroll-animate ${lang === 'ar' ? 'rtl-text' : ''}`}>
+    <section className={`app-promo-section ${lang === 'ar' ? 'rtl-text' : ''}`}>
       <div className="promo-container">
-        <div className="promo-content">
+        <div className="promo-content scroll-animate stag-1">
           <h2>{customTitle || t('emergency.promoTitle')}<span className="red-text">{customFocus || t('emergency.promoFocus')}</span></h2>
           <p>{customDesc || t('emergency.promoDesc')}</p>
           <div className={`promo-app-buttons ${lang === 'ar' ? 'rtl-buttons' : ''}`}>
@@ -46,7 +46,7 @@ const AppPromoSection = ({ imageSrc, imgClassName, customTitle, customFocus, cus
             </button>
           </div>
         </div>
-        <div className="promo-img">
+        <div className="promo-img scroll-animate stag-large-delay">
           <img src={imageSrc} alt="Qlink App Access" className={imgClassName} />
         </div>
       </div>
