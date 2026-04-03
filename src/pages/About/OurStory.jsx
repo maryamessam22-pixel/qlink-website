@@ -1,20 +1,51 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import SEO from '../../components/common/SEO';
 import { LanguageContext } from '../../context/LanguageContext';
 import DynamicBackground from '../../components/common/DynamicBackground';
 import { Quote, AlertCircle, CheckCircle, Target, Shield, Globe, Zap, Users } from 'lucide-react';
+import { supabase } from '../../lib/Supabase';
 
-// Assets
 import mariamImg from '../../assets/images/mariam.png';
 import olaImg from '../../assets/images/ola.png';
 import amiraImg from '../../assets/images/zeina.png';
 import youseffImg from '../../assets/images/youssef.png';
-import karmaPic from '../../assets/images/stay-pic.png';
 
 import './OurStory.css';
 
 function OurStory() {
   const { t, lang } = useContext(LanguageContext);
+  const [seoData, setSeoData] = useState(null);
+  const [cmsData, setCmsData] = useState({ founder: null, vision: null });
+
+  const isArabic = typeof lang === 'string' && lang.toLowerCase().includes('ar');
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const { data: seo } = await supabase
+          .from('seo')
+          .select('*')
+          .eq('slug', 'about/our-story')
+          .single();
+
+        if (seo) setSeoData(seo);
+
+        const { data: cms } = await supabase
+          .from('cms_content')
+          .select('*')
+          .in('section_key', ['about_founder', 'about_vision']);
+
+        if (cms) {
+          const founder = cms.find(c => c.section_key === 'about_founder');
+          const vision = cms.find(c => c.section_key === 'about_vision');
+          setCmsData({ founder, vision });
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    fetchData();
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
@@ -33,23 +64,29 @@ function OurStory() {
 
   const teamImages = [mariamImg, olaImg, amiraImg, youseffImg];
 
+  const { founder, vision } = cmsData;
+
+  const missionTitle = vision ? (isArabic ? vision.title_ar : vision.title_en) : t('ourStory.missionTitle');
+  const missionQuote = vision ? (isArabic ? vision.content_ar : vision.content_en) : t('ourStory.missionQuote');
+  
+  const founderName = founder ? (isArabic ? founder.title_ar : founder.title_en) : t('ourStory.founderName');
+  const founderRole = founder ? (isArabic ? founder.subtitle_ar : founder.subtitle_en) : t('ourStory.founderRole');
+
   return (
-    <div className={`our-story-detailed-page ${lang === 'ar' ? 'rtl-text' : ''}`}>
+    <div className={`our-story-detailed-page ${isArabic ? 'rtl-text' : ''}`}>
       <SEO 
-        title={lang === 'ar' ? 'قصتنا' : 'Our Story'}
-        description={lang === 'ar' ? 'تعرف على قصة كيو لينك، رؤيتنا ومهمتنا في جعل العالم مكاناً أكثر أماناً للجميع.' : 'Discover the story behind Qlink.'}
-        slug="about/our-story"
+        title={seoData ? (isArabic ? seoData.title_ar : seoData.title_en) : (isArabic ? 'قصتنا' : 'Our Story')}
+        description={seoData ? (isArabic ? seoData.description_ar : seoData.description_en) : (isArabic ? 'تعرف على قصة كيو لينك.' : 'Discover the story behind Qlink.')}
+        slug={seoData ? seoData.slug : "about/our-story"}
       />
       <DynamicBackground />
       
       <div className="story-content-container">
-        {/* Header */}
         <header className="story-page-header scroll-animate stag-1">
           <span className="badge-red">{t('ourStory.heroBadge')}</span>
           <h1 className="main-title">{t('ourStory.heroTitle').split('QLink')[0]}<span>QLink</span>{t('ourStory.heroTitle').split('QLink')[1]}</h1>
         </header>
 
-        {/* Step 1: The Spark */}
         <section className="story-step-section scroll-animate stag-2">
           <div className="step-number">1</div>
           <div className="step-content">
@@ -61,7 +98,6 @@ function OurStory() {
           </div>
         </section>
 
-        {/* Case Study Section */}
         <section className="case-study-section scroll-animate stag-3">
           <div className="case-card-main">
             <div className="case-grid">
@@ -98,7 +134,6 @@ function OurStory() {
           </div>
         </section>
 
-        {/* Step 2: The innovation */}
         <section className="story-step-section scroll-animate stag-1">
           <div className="step-number">2</div>
           <div className="step-content">
@@ -110,40 +145,37 @@ function OurStory() {
           </div>
         </section>
 
-        {/* Founder Mission Box */}
         <section className="founder-mission-section scroll-animate stag-2">
           <div className="mission-glass-box">
             <Quote size={40} className="mission-quote-icon" />
-            <h2 className="mission-title">{t('ourStory.missionTitle')}</h2>
-            <p className="mission-text">{t('ourStory.missionQuote')}</p>
+            <h2 className="mission-title">{missionTitle}</h2>
+            <p className="mission-text" style={{ fontStyle: 'italic' }}>"{missionQuote}"</p>
             <div className="founder-footer">
                <div className="founder-line"></div>
-               <h4 className="founder-name">{t('ourStory.founderName')}</h4>
-               <p className="founder-role">{t('ourStory.founderRole')}</p>
+               <h4 className="founder-name">{founderName}</h4>
+               <p className="founder-role">{founderRole}</p>
             </div>
           </div>
         </section>
 
-        {/* Core Values */}
         <section className="core-values-section scroll-animate stag-3">
           <span className="badge-red-small">{t('ourStory.valuesTitle')}</span>
           <h2 className="values-main-title">{t('ourStory.valuesSubtitle')}</h2>
           <div className="values-grid-new">
              {t('ourStory.values', { returnObjects: true }).map((val, idx) => (
                <div key={val.id} className="value-card-dark">
-                  <div className="value-icon-circle">
-                    {idx === 0 && <Shield size={24} />}
-                    {idx === 1 && <Globe size={24} />}
-                    {idx === 2 && <Zap size={24} />}
-                  </div>
-                  <h3>{val.title}</h3>
-                  <p>{val.desc}</p>
+                 <div className="value-icon-circle">
+                   {idx === 0 && <Shield size={24} />}
+                   {idx === 1 && <Globe size={24} />}
+                   {idx === 2 && <Zap size={24} />}
+                 </div>
+                 <h3>{val.title}</h3>
+                 <p>{val.desc}</p>
                </div>
              ))}
           </div>
         </section>
 
-        {/* Team Section */}
         <section className="team-section scroll-animate stag-1">
            <div className="team-header">
               <span className="badge-red-small">{t('ourStory.teamTitle')}</span>
@@ -164,7 +196,6 @@ function OurStory() {
 
       </div>
 
-      {/* Stats Section - Moved Outside to span full width */}
       <section className="story-stats-section scroll-animate stag-2">
          <div className="stats-grid-story">
             {t('ourStory.stats', { returnObjects: true }).map((s, i) => (
@@ -177,13 +208,11 @@ function OurStory() {
       </section>
 
       <div className="story-content-container">
-        {/* Final CTA */}
         <section className="story-final-cta scroll-animate stag-3">
            <h2>{t('ourStory.ctaTitle')}</h2>
            <p>{t('ourStory.ctaSubtitle')}</p>
            <button className="contact-btn-red">{t('ourStory.ctaBtn')}</button>
         </section>
-
       </div>
     </div>
   );
