@@ -13,6 +13,7 @@ import {
   Apple,
   Play
 } from 'lucide-react';
+import { supabase } from '../../lib/Supabase';
 import './HelpCenter.css';
 import DynamicBackground from '../../components/common/DynamicBackground';
 import ContactSection from '../../components/Sections/ContactSection';
@@ -21,6 +22,9 @@ import appScreenImg from '../../assets/images/appscreen.png';
 function HelpCenter() {
   const { lang, t } = useContext(LanguageContext);
   const [activeFaq, setActiveFaq] = useState(null);
+  const [seoData, setSeoData] = useState(null);
+
+  const isArabic = typeof lang === 'string' && lang.toLowerCase().includes('ar');
 
   const toggleFaq = (index) => {
     setActiveFaq(activeFaq === index ? null : index);
@@ -34,7 +38,29 @@ function HelpCenter() {
   ];
 
   useEffect(() => {
-    // Reusing the same IntersectionObserver logic from Home
+    const fetchSeo = async () => {
+      try {
+        const { data, error } = await supabase
+          .from('seo')
+          .select('*')
+          .eq('slug', 'support/help-center')
+          .single();
+
+        if (error && error.code !== 'PGRST116') {
+          console.error('Supabase HelpCenter SEO fetch error:', error);
+        } else if (data) {
+          console.log("SEO DATA GAT YAAAAY (HelpCenter): ", data);
+          setSeoData(data);
+        }
+      } catch (err) {
+        console.error('Unexpected error fetching HelpCenter SEO:', err);
+      }
+    };
+
+    fetchSeo();
+  }, []);
+
+  useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -51,7 +77,6 @@ function HelpCenter() {
     return () => observer.disconnect();
   }, []);
 
-  const F = '"Roboto", sans-serif';
   const steps = [
     { num: '01', title: t('supportCenter.step1Title'), desc: t('supportCenter.step1Desc') },
     { num: '02', title: t('supportCenter.step2Title'), desc: t('supportCenter.step2Desc') },
@@ -61,15 +86,22 @@ function HelpCenter() {
   return (
     <div className="help-center-wrapper">
       <SEO 
-        title={lang === 'ar' ? 'مركز المساعدة' : 'Help Center'}
-        description={lang === 'ar' ? 'هل تحتاج إلى مساعدة؟ مركز المساعدة في كيو لينك يوفر لك كل ما تحتاجه من إرشادات ودعم فني.' : 'Need help? The Qlink Help Center provides guidance.'}
-        slug="support/help-center"
+        title={
+          seoData 
+            ? (isArabic ? seoData.title_ar : seoData.title_en) 
+            : (isArabic ? 'مركز المساعدة' : 'Help Center')
+        }
+        description={
+          seoData 
+            ? (isArabic ? seoData.description_ar : seoData.description_en) 
+            : (isArabic ? 'هل تحتاج إلى مساعدة؟ مركز المساعدة في كيو لينك يوفر لك كل ما تحتاجه من إرشادات ودعم فني.' : 'Need help? The Qlink Help Center provides guidance.')
+        }
+        slug={seoData ? seoData.slug : "support/help-center"}
       />
       <DynamicBackground />
 
-      <div className={`help-center-content ${lang === 'ar' ? 'rtl-text' : ''}`}>
+      <div className={`help-center-content ${isArabic ? 'rtl-text' : ''}`}>
 
-        {/* HEADER SECTION */}
         <section className="support-header-section scroll-animate stag-1">
           <h1 className="support-title">
             {t('supportCenter.heroTitle')} <span className="red-text">{t('supportCenter.heroHighlight')}</span>
@@ -79,7 +111,6 @@ function HelpCenter() {
           </p>
         </section>
 
-        {/* SUPPORT CARDS */}
         <section className="support-cards-section scroll-animate stag-2">
           <div className="card-grid-3">
             <div className="support-card card-purple">
@@ -108,7 +139,6 @@ function HelpCenter() {
           </div>
         </section>
 
-        {/* FAQ SECTION */}
         <section className="faq-section scroll-animate stag-3">
           <div className="faq-header">
             <h2>{t('supportCenter.faqTitle')}</h2>
@@ -143,7 +173,6 @@ function HelpCenter() {
           </div>
         </section>
 
-        {/* JOIN THE COMMUNITY */}
         <section className="community-section scroll-animate stag-1">
           <div className="community-icon">
             <Users size={32} />
@@ -154,13 +183,11 @@ function HelpCenter() {
           </p>
         </section>
 
-      </div> {/* Close help-center-content */}
+      </div> 
 
-      {/* CONTACT US SECTION - Moved outside for full-width background and centering */}
       <ContactSection />
 
-      {/* APP MOCKUP SECTION (Reused from Home) - Re-wrapped in its own container if needed, or keep as is if it has its own logic */}
-      <div className={`app-section-wrapper scroll-animate ${lang === 'ar' ? 'rtl-text' : ''}`}>
+      <div className={`app-section-wrapper scroll-animate ${isArabic ? 'rtl-text' : ''}`}>
           <section className="app-section">
             <div className="app-text">
               <h2 className="split-title">{t('appSection.title')}</h2>
@@ -172,7 +199,7 @@ function HelpCenter() {
                 <li className="app-list-item"><CheckCircle2 size={18} className="check" /> {t('appSection.l2')}</li>
                 <li className="app-list-item"><CheckCircle2 size={18} className="check" /> {t('appSection.l3')}</li>
               </ul>
-              <div className={`store-buttons ${lang === 'ar' ? 'rtl-buttons' : ''}`}>
+              <div className={`store-buttons ${isArabic ? 'rtl-buttons' : ''}`}>
                 <a href="#" className="store-btn">
                   <Apple size={28} />
                   <div className="store-btn-text">
@@ -195,7 +222,6 @@ function HelpCenter() {
           </section>
         </div>
 
-      {/* INSTALL APP TIMELINE SECTION */}
       <section className="timeline-section-fw scroll-animate stag-3">
         <div className="timeline-content-fw">
           <h2 className="timeline-title-fw">
@@ -212,14 +238,14 @@ function HelpCenter() {
                   {num}
                 </div>
                 <div className="step-title-fw">{title}</div>
-                <div className="step-desc-fw" dir={lang === 'ar' ? 'rtl' : 'ltr'}>{desc}</div>
+                <div className="step-desc-fw" dir={isArabic ? 'rtl' : 'ltr'}>{desc}</div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-    </div> /* Close help-center-wrapper */
+    </div>
   );
 }
 
