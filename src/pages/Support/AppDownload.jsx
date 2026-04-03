@@ -146,13 +146,19 @@ const AppDownload = () => {
         </div>
       </section>
 
-      {/* 4. GALLERY PREVIEW (Hover reveal animation) */}
+      {/* 4. GALLERY PREVIEW (Expanding Cards) */}
       <section className="ad-gallery-section scroll-animate">
         <div className="ad-gallery-grid">
-          {[no1, no2, no3, no4].map((img, i) => (
+          {[
+            { img: no1, title: lang === 'ar' ? 'نمط حياة' : 'Lifestyle' },
+            { img: no2, title: lang === 'ar' ? 'تحكم كامل' : 'Total Control' },
+            { img: no3, title: lang === 'ar' ? 'أمانك أولاً' : 'Safety First' },
+            { img: no4, title: lang === 'ar' ? 'بيانات دقيقة' : 'Deep Insight' }
+          ].map((item, i) => (
             <div key={i} className="ad-gallery-item">
-              <img src={img} alt={`Gallery ${i+1}`} />
+              <img src={item.img} alt={`Gallery ${i+1}`} />
               <div className="ad-gallery-overlay">
+                <h3>{item.title}</h3>
                 <span>{lang === 'ar' ? 'عرض الواجهة' : 'View Interface'}</span>
               </div>
             </div>
