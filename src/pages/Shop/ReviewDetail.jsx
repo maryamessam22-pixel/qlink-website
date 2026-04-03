@@ -52,13 +52,12 @@ const ReviewDetail = () => {
     return (
       <div className="rd-not-found">
         <DynamicBackground />
-        <p>Review not found.</p>
-        <button onClick={() => navigate('/shop/reviews')}>← Back to Reviews</button>
+        <p>{t('reviews.notFound')}</p>
+        <button onClick={() => navigate('/shop/reviews')}>← {t('reviews.backToReviews')}</button>
       </div>
     );
   }
 
-  const isImageHero = review.heroType === 'image';
   const avatarSrc   = avatarImages[review.id];
 
   return (
@@ -73,7 +72,7 @@ const ReviewDetail = () => {
       {/* ── BACK LINK ── */}
       <div className="rd-back-container">
         <Link to="/shop/reviews" className="rd-back-btn">
-          <ChevronLeft size={16} /> Back to Reviews
+          <ChevronLeft size={16} /> {t('reviews.backToReviews')}
         </Link>
       </div>
 
@@ -100,7 +99,7 @@ const ReviewDetail = () => {
         </div>
         <blockquote className="rd-hero-big-quote">"{review.quote}"</blockquote>
         <p className="rd-verified-tag">
-          <CheckCircle2 size={14} /> Verified Purchase
+          <CheckCircle2 size={14} /> {t('reviews.verified')}
         </p>
       </div>
 

@@ -340,6 +340,8 @@ const translations = {
     featuredStory: "My father collapsed while gardening. The paramedics scanned his Qlink and immediately knew about his type 2 diabetes and medical allergies. That information stay critical for his treatment on the way to the hospital.",
     featuredAuthor: "Mona Hassan",
     verified: "Verified Purchase",
+    backToReviews: "Back to Reviews",
+    notFound: "Review not found.",
     statUsers: "10k+",
     statUsersLabel: "Verified Users",
     statTrust: "4.9/5",
