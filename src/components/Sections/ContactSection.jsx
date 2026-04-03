@@ -57,15 +57,15 @@ const ContactSection = () => {
           <h2>{title}</h2>
           <p>{subtitle}</p>
           <div className="contact-method-row">
-            <span className="cm-icon">📧</span>
+            <span className="cm-icon"><Mail size={16} /></span>
             <span className="cm-text">{email}</span>
           </div>
           <div className="contact-method-row">
-            <span className="cm-icon">📞</span>
+            <span className="cm-icon"><Phone size={16} /></span>
             <span className="cm-text" dir="ltr">{phone}</span>
           </div>
           <div className="contact-method-row">
-            <span className="cm-icon">📍</span>
+            <span className="cm-icon"><MapPin size={16} /></span>
             <span className="cm-text">{address}</span>
           </div>
         </div>
