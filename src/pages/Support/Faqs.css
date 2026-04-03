@@ -104,56 +104,56 @@
 
 /* ---- ACCORDION ---- */
 .faqs-accordion {
-  max-width: 860px;
+  max-width: 900px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 16px;
 }
 
 .faqs-accordion-item {
-  background: var(--bg-card);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  border-radius: 12px;
+  background: #141D35; /* Dark background as shown */
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 16px; 
   cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   overflow: hidden;
 }
 
 .faqs-accordion-item:hover {
-  background: rgba(255, 255, 255, 0.03);
+  background: #1A2440;
+  border-color: rgba(255, 255, 255, 0.08);
 }
 
 .faqs-accordion-item.faqs-item-active {
-  border-color: rgba(224, 50, 50, 0.3);
+  background: #1A2440;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
 .faqs-accordion-question {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 24px;
+  padding: 24px 32px;
 }
 
 .faqs-accordion-question h4 {
-  font-size: 16px;
-  color: var(--text-primary);
+  font-size: 17px;
+  color: white;
   margin: 0;
-  font-weight: 500;
-  line-height: 1.4;
+  font-weight: 600;
+  line-height: 1.5;
 }
 
 .faqs-chevron {
-  color: var(--text-secondary);
-  transition: transform 0.3s ease;
+  color: rgba(255, 255, 255, 0.4);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s;
   flex-shrink: 0;
-  margin-left: 16px;
 }
 
 .faqs-chevron.faqs-chevron-open {
   transform: rotate(180deg);
-  color: var(--color-primary-red);
+  color: white;
 }
 
 .faqs-accordion-answer {
@@ -168,10 +168,10 @@
 
 .faqs-accordion-answer p {
   font-size: 15px;
-  color: var(--text-secondary);
+  color: rgba(255, 255, 255, 0.7);
   margin: 0;
   line-height: 1.7;
-  padding: 0 24px 20px 24px;
+  padding: 0 32px 24px 32px;
 }
 
 /* ---- NO RESULTS ---- */
