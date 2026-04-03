@@ -2,19 +2,15 @@ import React, { useEffect, useState, useContext } from 'react';
 import SEO from '../../components/common/SEO';
 import { LanguageContext } from '../../context/LanguageContext';
 import DynamicBackground from '../../components/common/DynamicBackground';
-import { Quote, AlertCircle, CheckCircle, Target, Shield, Globe, Zap, Users } from 'lucide-react';
+import { Quote, AlertCircle, CheckCircle, Shield, Globe, Zap, Users } from 'lucide-react';
 import { supabase } from '../../lib/Supabase';
-
-import mariamImg from '../../assets/images/mariam.png';
-import olaImg from '../../assets/images/ola.png';
-import amiraImg from '../../assets/images/zeina.png';
-import youseffImg from '../../assets/images/youssef.png';
 
 import './OurStory.css';
 
 function OurStory() {
   const { t, lang } = useContext(LanguageContext);
   const [seoData, setSeoData] = useState(null);
+  const [teamMembers, setTeamMembers] = useState([]);
   const [cmsData, setCmsData] = useState({ founder: null, vision: null });
 
   const isArabic = typeof lang === 'string' && lang.toLowerCase().includes('ar');
@@ -40,6 +36,13 @@ function OurStory() {
           const vision = cms.find(c => c.section_key === 'about_vision');
           setCmsData({ founder, vision });
         }
+
+        const { data: team } = await supabase
+          .from('team_members')
+          .select('*')
+          .order('display_order', { ascending: true });
+
+        if (team) setTeamMembers(team);
       } catch (err) {
         console.error(err);
       }
@@ -62,13 +65,9 @@ function OurStory() {
     return () => observer.disconnect();
   }, []);
 
-  const teamImages = [mariamImg, olaImg, amiraImg, youseffImg];
-
   const { founder, vision } = cmsData;
-
   const missionTitle = vision ? (isArabic ? vision.title_ar : vision.title_en) : t('ourStory.missionTitle');
   const missionQuote = vision ? (isArabic ? vision.content_ar : vision.content_en) : t('ourStory.missionQuote');
-  
   const founderName = founder ? (isArabic ? founder.title_ar : founder.title_en) : t('ourStory.founderName');
   const founderRole = founder ? (isArabic ? founder.subtitle_ar : founder.subtitle_en) : t('ourStory.founderRole');
 
@@ -182,13 +181,13 @@ function OurStory() {
               <h2>{t('ourStory.teamSubtitle')}</h2>
            </div>
            <div className="team-grid">
-              {t('ourStory.team', { returnObjects: true }).map((m, idx) => (
+              {teamMembers.map((m) => (
                 <div key={m.id} className="team-member">
                    <div className="member-photo-wrapper">
-                      <img src={teamImages[idx]} alt={m.name} />
+                      <img src={m.image_url} alt={m.name} />
                    </div>
                    <h4 className="member-name">{m.name}</h4>
-                   <p className="member-role">{m.role}</p>
+                   <p className="member-role">{isArabic ? m.role_ar : m.role_en}</p>
                 </div>
               ))}
            </div>
