@@ -16,7 +16,7 @@ import sarahImg from '../../assets/images/sarah.png';
 import annImg   from '../../assets/images/ann.png';
 import heroImg  from '../../assets/images/safaa-rev.png';
 
-const avatarImages = { 1: salmaImg, 2: malakImg, 3: sarahImg, 4: annImg };
+const avatarImages = { 1: heroImg, 2: malakImg, 3: sarahImg, 4: annImg };
 
 // Map icon string → Lucide component
 const ICON_MAP = { Activity, Heart, Clock, MapPin, Users, Settings, Shield, Star, Zap };
@@ -78,54 +78,31 @@ const ReviewDetail = () => {
       </div>
 
       {/* ── HERO ── */}
-      {isImageHero ? (
-        /* Review 1 — full-bleed photo hero */
-        <div className="rd-hero-image-wrap">
-          <img src={heroImg} alt={review.author} className="rd-hero-bg-img" />
-          <div className="rd-hero-image-overlay">
+      <div className="rd-hero-avatar-wrap scroll-animate">
+        <div className="rd-hero-avatar-row">
+          <div className="rd-avatar-img-wrap">
+            <img src={avatarSrc} alt={review.author} className="rd-avatar-img" />
+          </div>
+          <div className="rd-avatar-meta">
+            <h2 className="rd-avatar-name">{review.author}</h2>
+            <span className="rd-avatar-role">{review.role}</span>
             <div className="rd-hero-stars">
               {[...Array(5)].map((_, i) => (
-                <Star key={i} size={20} fill="#ffb800" color="#ffb800" />
+                <Star
+                  key={i}
+                  size={18}
+                  fill={i < review.stars ? '#ffb800' : 'transparent'}
+                  color={i < review.stars ? '#ffb800' : 'rgba(255,255,255,0.2)'}
+                />
               ))}
             </div>
-            <h1 className="rd-hero-image-quote">"{review.quote}"</h1>
-            <p className="rd-hero-body">{review.storyParagraphs?.[0]}</p>
-            <div className="rd-hero-author">
-              <strong>{review.author}</strong>
-              <span className="rd-verified">
-                <CheckCircle2 size={14} /> Verified Purchase
-              </span>
-            </div>
           </div>
         </div>
-      ) : (
-        /* Reviews 2/3/4 — avatar hero */
-        <div className="rd-hero-avatar-wrap scroll-animate">
-          <div className="rd-hero-avatar-row">
-            <div className="rd-avatar-img-wrap">
-              <img src={avatarSrc} alt={review.author} className="rd-avatar-img" />
-            </div>
-            <div className="rd-avatar-meta">
-              <h2 className="rd-avatar-name">{review.author}</h2>
-              <span className="rd-avatar-role">{review.role}</span>
-              <div className="rd-hero-stars">
-                {[...Array(5)].map((_, i) => (
-                  <Star
-                    key={i}
-                    size={18}
-                    fill={i < review.stars ? '#ffb800' : 'transparent'}
-                    color={i < review.stars ? '#ffb800' : 'rgba(255,255,255,0.2)'}
-                  />
-                ))}
-              </div>
-            </div>
-          </div>
-          <blockquote className="rd-hero-big-quote">"{review.quote}"</blockquote>
-          <p className="rd-verified-tag">
-            <CheckCircle2 size={14} /> Verified Purchase
-          </p>
-        </div>
-      )}
+        <blockquote className="rd-hero-big-quote">"{review.quote}"</blockquote>
+        <p className="rd-verified-tag">
+          <CheckCircle2 size={14} /> Verified Purchase
+        </p>
+      </div>
 
       {/* ── MAIN CONTENT CONTAINER ── */}
       <div className="rd-content">
