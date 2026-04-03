@@ -25,7 +25,7 @@ import no1 from '../../assets/images/no1.png';
 import no2 from '../../assets/images/no2.png';
 import no3 from '../../assets/images/no3.png';
 import no4 from '../../assets/images/no4.png';
-import footerPhones from '../../assets/images/appscreen.png';
+import footerPhones from '../../assets/images/watch-mobile.png';
 
 const AppDownload = () => {
   const { lang, t } = useContext(LanguageContext);
