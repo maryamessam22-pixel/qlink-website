@@ -16,6 +16,8 @@ import {
 } from 'lucide-react';
 import './AppDownload.css';
 
+import AppPromoSection from '../../components/Sections/AppPromoSection';
+
 // Assets
 import heroPhones from '../../assets/images/2mobiles.png';
 import no1 from '../../assets/images/no1.png';
@@ -184,34 +186,13 @@ const AppDownload = () => {
         </ul>
       </section>
 
-      {/* 7. FOOTER CTA */}
-      <section className="ad-footer-cta scroll-animate">
-        <div className="ad-cta-container">
-           <div className="ad-cta-content">
-             <h2>{lang === 'ar' ? 'احصل على الحماية ' : 'Get Protected '}<span>{lang === 'ar' ? 'اليوم!' : 'Today!'}</span></h2>
-             <p>{lang === 'ar' ? 'جرب التطبيق الآن واستكشف مستقبل الأمان الشخصي.' : 'Download the Qlink app and experience the future of personal safety.'}</p>
-             <div className="ad-hero-buttons">
-               <button className="ia-btn white">
-                 <Apple size={24} fill="black" />
-                 <div className="btn-text">
-                   <span>{lang === 'ar' ? 'حمله من' : 'Download on the'}</span>
-                   <strong>App Store</strong>
-                 </div>
-               </button>
-               <button className="ia-btn bg-blur">
-                 <Play size={24} fill="#E03232" color="#E03232" />
-                 <div className="btn-text">
-                   <span>{lang === 'ar' ? 'احصل عليه من' : 'Get it on'}</span>
-                   <strong>Google Play</strong>
-                 </div>
-               </button>
-             </div>
-           </div>
-           <div className="ad-cta-img">
-             <img src={footerPhones} alt="Apps Footer" />
-           </div>
-        </div>
-      </section>
+      {/* 7. FOOTER CTA (Reused AppPromoSection) */}
+      <AppPromoSection 
+        imageSrc={footerPhones}
+        customTitle={lang === 'ar' ? 'احصل على الحماية ' : 'Get Protected '}
+        customFocus={lang === 'ar' ? 'اليوم!' : 'Today!'}
+        customDesc={lang === 'ar' ? 'جرب التطبيق الآن واستكشف مستقبل الأمان الشخصي.' : 'Download the Qlink app and experience the future of personal safety.'}
+      />
 
     </div>
   );
