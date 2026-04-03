@@ -12,33 +12,51 @@ function Faqs() {
 
   // ── State ─────────────────────────────────────────────────────────────────
   const [faqs, setFaqs]           = useState([]);
+  const [seoData, setSeoData]     = useState(null); 
   const [loading, setLoading]     = useState(true);
   const [activeIdx, setActiveIdx] = useState(null);
   const [searchQuery, setSearch]  = useState('');
 
   // ── Supabase fetch ─────────────────────────────────────────────────────────
   useEffect(() => {
-    const fetchFaqs = async () => {
+    const fetchData = async () => {
       setLoading(true);
       try {
-        const { data, error } = await supabase
+        // 1. Fetch FAQs
+        const { data: faqsData, error: faqsError } = await supabase
           .from('faqs')
           .select('id, question_en, question_ar, answer_en, answer_ar, display_order')
           .order('display_order', { ascending: true });
 
-        if (error) {
-          console.error('Supabase FAQs fetch error:', error);
-          return;
+        if (faqsError) {
+          console.error('Supabase FAQs fetch error:', faqsError);
+        } else if (faqsData) {
+          setFaqs(faqsData);
         }
-        if (data) setFaqs(data);
+
+        // 2. Fetch SEO for this page using the 'slug' column
+        const { data: seo, error: seoError } = await supabase
+          .from('seo')
+          .select('*')
+          .eq('slug', 'support/faqs')
+          .single();
+
+        if (seoError && seoError.code !== 'PGRST116') {
+          console.error('Supabase SEO fetch error:', seoError);
+        } else if (seo) {
+          // 👇 ZAWATLEK EL CONSOLE HENA 👇
+          console.log("SEO DATA GAT YAAAAY: ", seo); 
+          setSeoData(seo);
+        }
+
       } catch (err) {
-        console.error('Unexpected error fetching FAQs:', err);
+        console.error('Unexpected error fetching data:', err);
       } finally {
         setLoading(false);
       }
     };
 
-    fetchFaqs();
+    fetchData();
   }, []);
 
   // ── IntersectionObserver ───────────────────────────────────────────────────
@@ -59,10 +77,7 @@ function Faqs() {
   }, [loading]);
 
   // ── Helpers ────────────────────────────────────────────────────────────────
-  // Han-catch ay form lel Arabic (ar, AR, ar-EG) w net2aked en el variable msh undefined
   const isArabic = typeof lang === 'string' && lang.toLowerCase().includes('ar');
-
-  // Law Arabic hat el ar, law msh Arabic hat el en, w law el Arabic fady (null) e3red el English ka-fallback
   const question = (faq) => (isArabic ? faq.question_ar : faq.question_en) || faq.question_en || '';
   const answer   = (faq) => (isArabic ? faq.answer_ar   : faq.answer_en)   || faq.answer_en || '';
   const toggleItem = useCallback((idx) => {
@@ -80,14 +95,23 @@ function Faqs() {
   // ── Render ─────────────────────────────────────────────────────────────────
   return (
     <div className="faqs-wrapper">
+      {/* ── SEO Component ── */}
       <SEO 
-        title={lang === 'ar' ? 'الأسئلة الشائعة' : 'Frequently Asked Questions'}
-        description={lang === 'ar' ? 'اعثر على إجابات للأسئلة المتكررة.' : 'Find answers to frequently asked questions.'}
-        slug="support/faqs"
+        title={
+          seoData 
+            ? (isArabic ? seoData.title_ar : seoData.title_en) 
+            : (isArabic ? 'الأسئلة الشائعة - Qlink' : 'Frequently Asked Questions - Qlink')
+        }
+        description={
+          seoData 
+            ? (isArabic ? seoData.description_ar : seoData.description_en) 
+            : (isArabic ? 'اعثر على إجابات للأسئلة المتكررة حول كيو لينك.' : 'Find answers to frequently asked questions about Qlink.')
+        }
+        slug={seoData ? seoData.slug : "support/faqs"} 
       />
       <DynamicBackground />
 
-      <div className={`faqs-content ${lang === 'ar' ? 'rtl-text' : ''}`}>
+      <div className={`faqs-content ${isArabic ? 'rtl-text' : ''}`}>
 
         {/* HERO */}
         <section className="faqs-hero-section scroll-animate stag-1">
@@ -106,7 +130,7 @@ function Faqs() {
               placeholder={t('faqsPage.searchPlaceholder')}
               value={searchQuery}
               onChange={e => { setSearch(e.target.value); setActiveIdx(null); }}
-              dir={lang === 'ar' ? 'rtl' : 'ltr'}
+              dir={isArabic ? 'rtl' : 'ltr'}
             />
           </div>
         </section>
