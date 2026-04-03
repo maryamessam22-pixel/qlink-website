@@ -1,0 +1,281 @@
+.contact-page {
+  padding-top: 120px;
+  min-height: 100vh;
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.scroll-animate {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.scroll-animate.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 1. Hero Section */
+.contact-hero {
+  max-width: 800px;
+  margin: 0 auto 60px auto;
+  text-align: center;
+  padding: 0 24px;
+}
+
+.contact-hero h1 {
+  font-size: 52px;
+  font-weight: 800;
+  margin-bottom: 20px;
+}
+
+.contact-hero h1 span {
+  color: #E03232;
+}
+
+.contact-hero p {
+  font-size: 18px;
+  color: #94A3B8;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* 2. Main Wrapper */
+.contact-main-wrapper {
+  margin-bottom: 120px;
+}
+
+/* 3. Still have questions? Section */
+.questions-cta-section {
+  text-align: center;
+  margin-bottom: 120px;
+  padding: 0 24px;
+}
+
+.questions-cta-section .q-icon {
+  width: 60px;
+  height: 60px;
+  background: rgba(224, 50, 50, 0.15);
+  border: 1px solid rgba(224, 50, 50, 0.3);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 24px;
+  color: #E03232;
+}
+
+.questions-cta-section h2 {
+  font-size: 36px;
+  font-weight: 800;
+  margin-bottom: 16px;
+}
+
+.questions-cta-section p {
+  font-size: 16px;
+  color: #94A3B8;
+  margin-bottom: 32px;
+  max-width: 650px;
+  margin: 0 auto 32px;
+}
+
+.questions-cta-section .btn-cta {
+  background: #E03232;
+  color: white;
+  padding: 14px 40px;
+  border-radius: 8px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.questions-cta-section .btn-cta:hover {
+  background: #C92C2C;
+  transform: translateY(-2px);
+}
+
+/* 4. Newsletter Section */
+.newsletter-section {
+  text-align: center;
+  margin-bottom: 150px;
+  padding: 0 24px;
+}
+
+.newsletter-section h2 {
+  font-size: 32px;
+  font-weight: 800;
+  margin-bottom: 12px;
+}
+
+.newsletter-section p {
+  color: #94A3B8;
+  font-size: 15px;
+  margin-bottom: 32px;
+  max-width: 600px;
+  margin: 0 auto 32px;
+}
+
+.newsletter-form {
+  display: flex;
+  gap: 12px;
+  max-width: 450px;
+  margin: 0 auto;
+}
+
+.newsletter-form input {
+  flex: 1;
+  background: rgba(15, 23, 42, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 12px 20px;
+  border-radius: 8px;
+  color: white;
+}
+
+.newsletter-form .btn-sub {
+  background: #E03232;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 8px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* 5. Install App Section */
+.install-app-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px 100px;
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.ia-content {
+  flex: 1;
+}
+
+.ia-content h2 {
+  font-size: 36px;
+  font-weight: 800;
+  margin-bottom: 16px;
+}
+
+.ia-content h2 span {
+  color: #E03232;
+}
+
+.ia-content p {
+  color: #94A3B8;
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 32px;
+  max-width: 500px;
+}
+
+.ia-buttons {
+  display: flex;
+  gap: 16px;
+}
+
+.ia-btn {
+  background: rgba(15, 23, 42, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 12px 20px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  transition: 0.3s;
+  min-width: 180px;
+}
+
+.ia-btn:hover {
+  border-color: #E03232;
+  background: rgba(224, 50, 50, 0.05);
+}
+
+.ia-btn.white {
+    background: white;
+    color: black;
+}
+
+.ia-btn-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.btn-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-size: 11px;
+  line-height: 1.2;
+}
+
+.btn-text strong {
+  font-size: 16px;
+  color: inherit;
+}
+
+.ia-visuals {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  position: relative;
+}
+
+.ia-mobiles {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* RTL Support */
+.rtl-text .ia-buttons,
+.rtl-text .newsletter-form {
+  direction: ltr;
+}
+
+.rtl-text .newsletter-form {
+    flex-direction: row-reverse;
+}
+
+@media (max-width: 991px) {
+  .install-app-section {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .ia-content p {
+    margin: 0 auto 32px;
+  }
+  
+  .ia-buttons {
+    justify-content: center;
+  }
+  
+  .ia-visuals {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .contact-hero h1 {
+    font-size: 36px;
+  }
+  
+  .newsletter-form {
+    flex-direction: column;
+  }
+  
+  .ia-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+}
