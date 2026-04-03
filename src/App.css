@@ -83,3 +83,45 @@ body.rtl-active .icon-btn {
   margin-left: 0;
   margin-right: 12px;
 }
+
+/* Global Button Styles */
+.btn {
+  padding: 0 28px;
+  height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+  box-sizing: border-box;
+  text-decoration: none; /* Support for Link/a tags */
+}
+
+.btn-primary {
+  background-color: var(--color-primary-red);
+  color: white;
+  box-shadow: 0 4px 20px rgba(224, 50, 50, 0.2);
+  width: 250px;
+}
+
+.btn-primary:hover {
+  background-color: var(--color-primary-red-hover);
+  transform: translateY(-2px) scale(1.03);
+  color: white;
+}
+
+.btn-secondary {
+  background: rgba(25, 33, 73, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  width: 200px;
+}
+
+.btn-secondary:hover {
+  background: rgba(35, 48, 76, 0.8);
+  color: white;
+}

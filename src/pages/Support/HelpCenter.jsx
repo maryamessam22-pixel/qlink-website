@@ -137,7 +137,9 @@ function HelpCenter() {
           </div>
 
           <div className="faq-more">
-            <button className="btn btn-primary">{t('supportCenter.faqMoreBtn')}</button>
+            <Link to="/support/faqs" className="btn btn-primary">
+              {t('supportCenter.faqMoreBtn')}
+            </Link>
           </div>
         </section>
 
