@@ -10,14 +10,14 @@ import './Faqs.css';
 function Faqs() {
   const { lang, t } = useContext(LanguageContext);
 
-  // ── State ─────────────────────────────────────────────────────────────────
+  // State 
   const [faqs, setFaqs]           = useState([]);
   const [seoData, setSeoData]     = useState(null); 
   const [loading, setLoading]     = useState(true);
   const [activeIdx, setActiveIdx] = useState(null);
   const [searchQuery, setSearch]  = useState('');
 
-  // ── Supabase fetch ─────────────────────────────────────────────────────────
+  // Supabase fetch 
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
@@ -34,7 +34,6 @@ function Faqs() {
           setFaqs(faqsData);
         }
 
-        // 2. Fetch SEO for this page using the 'slug' column
         const { data: seo, error: seoError } = await supabase
           .from('seo')
           .select('*')
@@ -44,7 +43,7 @@ function Faqs() {
         if (seoError && seoError.code !== 'PGRST116') {
           console.error('Supabase SEO fetch error:', seoError);
         } else if (seo) {
-          // 👇 ZAWATLEK EL CONSOLE HENA 👇
+
           console.log("SEO DATA GAT YAAAAY: ", seo); 
           setSeoData(seo);
         }
@@ -59,7 +58,7 @@ function Faqs() {
     fetchData();
   }, []);
 
-  // ── IntersectionObserver ───────────────────────────────────────────────────
+   
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -76,7 +75,7 @@ function Faqs() {
     return () => observer.disconnect();
   }, [loading]);
 
-  // ── Helpers ────────────────────────────────────────────────────────────────
+  
   const isArabic = typeof lang === 'string' && lang.toLowerCase().includes('ar');
   const question = (faq) => (isArabic ? faq.question_ar : faq.question_en) || faq.question_en || '';
   const answer   = (faq) => (isArabic ? faq.answer_ar   : faq.answer_en)   || faq.answer_en || '';
@@ -84,7 +83,7 @@ function Faqs() {
     setActiveIdx(prev => (prev === idx ? null : idx));
   }, []);
 
-  // ── Filtered list ──────────────────────────────────────────────────────────
+ 
   const filtered = faqs.filter(faq => {
     const q   = question(faq).toLowerCase();
     const a   = answer(faq).toLowerCase();
@@ -92,10 +91,9 @@ function Faqs() {
     return !qry || q.includes(qry) || a.includes(qry);
   });
 
-  // ── Render ─────────────────────────────────────────────────────────────────
   return (
     <div className="faqs-wrapper">
-      {/* ── SEO Component ── */}
+      {/* SEO Component */}
       <SEO 
         title={
           seoData 

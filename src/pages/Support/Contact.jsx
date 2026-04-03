@@ -14,13 +14,12 @@ import mobileVisuals from '../../assets/images/mobile3rd.png';
 function Contact() {
   const { lang, t } = useContext(LanguageContext);
   
-  // ── State bta3 el SEO ─────────────────────────────────────────────────────
+  // State  SEO
   const [seoData, setSeoData] = useState(null);
 
-  // ── Helper 3ashan el language tkoon mo-w7ada ──────────────────────────────
   const isArabic = typeof lang === 'string' && lang.toLowerCase().includes('ar');
 
-  // ── Fetch SEO ─────────────────────────────────────────────────────────────
+  // Fetch SEO
   useEffect(() => {
     const fetchSeo = async () => {
       try {
@@ -44,7 +43,7 @@ function Contact() {
     fetchSeo();
   }, []);
 
-  // ── Animations Observer ───────────────────────────────────────────────────
+  // Animations Observer
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -62,7 +61,7 @@ function Contact() {
 
   return (
     <div className={`contact-page ${isArabic ? 'rtl-text' : ''}`}>
-      {/* ── SEO Component Met-zabat ── */}
+   
       <SEO 
         title={
           seoData 
