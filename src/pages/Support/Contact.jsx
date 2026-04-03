@@ -3,11 +3,12 @@ import SEO from '../../components/common/SEO';
 import { LanguageContext } from '../../context/LanguageContext';
 import DynamicBackground from '../../components/common/DynamicBackground';
 import ContactSection from '../../components/Sections/ContactSection';
-import { HelpCircle, Apple, Play } from 'lucide-react';
+import AppPromoSection from '../../components/Sections/AppPromoSection';
+import { HelpCircle } from 'lucide-react';
 import './Contact.css';
 
 // Assets
-import mobileVisuals from '../../assets/images/2mobiles.png';
+import mobileVisuals from '../../assets/images/mobile3rd.png';
 
 function Contact() {
   const { lang, t } = useContext(LanguageContext);
@@ -69,32 +70,13 @@ function Contact() {
         </div>
       </section>
 
-      {/* 5. Install App (Visuals on right) */}
-      <section className="install-app-section scroll-animate stag-4">
-        <div className="ia-content">
-          <h2>{lang === 'ar' ? 'ثبت التطبيق ' : 'Install the App '}<span>{lang === 'ar' ? 'الآن!' : 'Now!'}</span></h2>
-          <p>{lang === 'ar' ? 'تحكم بشكل كامل في سلامتك. أدر الملفات الشخصية، واحصل على تنبيهات فورية، والمزيد.' : 'Take full control of your safety. Manage profiles, get real-time alerts, and more.'}</p>
-          <div className="ia-buttons">
-            <div className="ia-btn white">
-               <Apple size={24} fill="black" />
-               <div className="btn-text">
-                 <span>{lang === 'ar' ? 'حمله من' : 'Download on the'}</span>
-                 <strong>App Store</strong>
-               </div>
-            </div>
-            <div className="ia-btn">
-               <Play size={24} fill="#E03232" color="#E03232" />
-               <div className="btn-text">
-                 <span>{lang === 'ar' ? 'احصل عليه من' : 'Get it on'}</span>
-                 <strong>Google Play</strong>
-               </div>
-            </div>
-          </div>
-        </div>
-        <div className="ia-visuals">
-          <img src={mobileVisuals} alt="Qlink App Mockup" className="ia-mobiles" />
-        </div>
-      </section>
+      {/* 5. Install App (Now using AppPromoSection with mobile3rd) */}
+      <AppPromoSection 
+        imageSrc={mobileVisuals}
+        customTitle={lang === 'ar' ? 'ثبت التطبيق ' : 'Install the App '}
+        customFocus={lang === 'ar' ? 'الآن!' : 'Now!'}
+        customDesc={lang === 'ar' ? 'تحكم بشكل كامل في سلامتك. أدر الملفات الشخصية، واحصل على تنبيهات فورية، والمزيد.' : 'Take full control of your safety. Manage profiles, get real-time alerts, and more.'}
+      />
 
     </div>
   );
