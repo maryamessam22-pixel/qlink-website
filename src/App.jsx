@@ -8,6 +8,7 @@ import './App.css'; // Global font settings
 import Preloader from './components/common/Preloader';
 import ScrollToTop from './components/layout/ScrollToTop';
 import DynamicBackground from './components/common/DynamicBackground';
+import LoginModal from './components/common/LoginModal';
 
 // Pages
 import Home from './pages/Home';
@@ -36,6 +37,8 @@ function App() {
   return (
     <Router>
       <div className="App">
+        {/* Global auth modal — renders on top of every screen */}
+        <LoginModal />
         {/* <DynamicBackground /> */}
         {loading && <Preloader onFinish={() => setLoading(false)} />}
 

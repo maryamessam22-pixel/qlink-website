@@ -1,0 +1,209 @@
+/* =====================================================
+   LOGIN MODAL — matches project dark design system
+   ===================================================== */
+
+.auth-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(6px);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: authOverlayIn 0.25s ease;
+}
+
+@keyframes authOverlayIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.auth-modal {
+  background: linear-gradient(135deg, #151d34 0%, #0f1625 100%);
+  border: 1px solid var(--border-subtle);
+  border-radius: 20px;
+  padding: 48px 40px;
+  width: 100%;
+  max-width: 440px;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+  position: relative;
+  animation: authModalIn 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  box-sizing: border-box;
+}
+
+@keyframes authModalIn {
+  from { transform: translateY(20px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
+/* Close button */
+.auth-modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s ease, background 0.2s ease;
+}
+
+.auth-modal-close:hover {
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.07);
+}
+
+/* Lock icon */
+.auth-modal-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: rgba(224, 50, 50, 0.12);
+  border: 1px solid rgba(224, 50, 50, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px auto;
+  color: var(--color-primary-red);
+}
+
+/* Heading */
+.auth-modal h2 {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text-primary);
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.auth-modal-notice {
+  font-size: 14px;
+  color: var(--text-secondary);
+  text-align: center;
+  margin-bottom: 28px;
+  line-height: 1.6;
+}
+
+/* Input */
+.auth-modal-group {
+  margin-bottom: 16px;
+}
+
+.auth-modal-group label {
+  display: block;
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+
+.auth-modal-input {
+  width: 100%;
+  padding: 12px 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+  color: var(--text-primary);
+  font-family: var(--font-family-primary);
+  font-size: 15px;
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+}
+
+.auth-modal-input:focus {
+  border-color: var(--color-primary-blue);
+}
+
+/* Error message */
+.auth-modal-error {
+  font-size: 13px;
+  color: var(--color-primary-red);
+  margin-bottom: 14px;
+  text-align: center;
+  animation: authErrIn 0.2s ease;
+}
+
+@keyframes authErrIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Submit button — reuses .btn .btn-primary from Home.css */
+.auth-modal-btn {
+  width: 100%;
+  margin-top: 4px;
+}
+
+/* Divider */
+.auth-modal-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 20px 0;
+}
+
+.auth-modal-divider span {
+  font-size: 12px;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+.auth-modal-divider::before,
+.auth-modal-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border-subtle);
+}
+
+/* Register link hint */
+.auth-modal-hint {
+  font-size: 13px;
+  color: var(--text-secondary);
+  text-align: center;
+}
+
+.auth-modal-hint a {
+  color: var(--color-primary-red);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.auth-modal-hint a:hover {
+  text-decoration: underline;
+}
+
+/* Logout button in navbar */
+.logout-btn {
+  background: rgba(224, 50, 50, 0.12);
+  border: 1px solid rgba(224, 50, 50, 0.3);
+  color: var(--color-primary-red);
+  padding: 7px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: var(--font-family-primary);
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.logout-btn:hover {
+  background: rgba(224, 50, 50, 0.2);
+  border-color: rgba(224, 50, 50, 0.5);
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .auth-modal {
+    padding: 36px 24px;
+    margin: 0 16px;
+  }
+}

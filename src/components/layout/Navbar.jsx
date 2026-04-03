@@ -1,22 +1,41 @@
-import React, { useContext, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { ShoppingCart, User, Menu, X } from 'lucide-react';
+import React, { useContext, useState, useCallback } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { ShoppingCart, User, Menu, X, LogOut } from 'lucide-react';
 import { LanguageContext } from '../../context/LanguageContext';
+import { AuthContext } from '../../context/AuthContext';
 import Dropdown from './Dropdown';
 import Logo from './Logo';
 import './Navbar.css';
 
 function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const location = useLocation();
+  const location  = useLocation();
+  const navigate  = useNavigate();
   const { pathname } = location;
   const { lang, toggleLanguage, t } = useContext(LanguageContext);
+  const { isAuthenticated, requireAuth, logout } = useContext(AuthContext);
 
   const closeMobileMenu = () => setIsMobileMenuOpen(false);
+
+  // Guard a direct <Link> click (non-dropdown nav links)
+  const handleGuardedNav = useCallback((e, href) => {
+    e.preventDefault();
+    if (requireAuth()) {
+      closeMobileMenu();
+      navigate(href);
+    }
+  }, [requireAuth, navigate]);
+
+  const handleLogout = useCallback(() => {
+    logout();
+    closeMobileMenu();
+    navigate('/');
+  }, [logout, navigate]);
 
   return (
     <nav className="navbar-wrapper">
       <div className="navbar-brand">
+        {/* Logo always navigates home — no auth required */}
         <Link to="/" onClick={closeMobileMenu}>
           <Logo style={{ height: '35px', display: 'block' }} />
         </Link>
@@ -24,9 +43,18 @@ function Navbar() {
 
       <div className={`navbar-pill ${isMobileMenuOpen ? 'mobile-open' : ''}`}>
         <ul className="navbar-links">
+          {/* Home — always accessible */}
           <li>
-            <Link to="/" onClick={closeMobileMenu} className={`nav-link ${pathname === '/' ? 'active' : ''}`}>{t('nav.home')}</Link>
+            <Link
+              to="/"
+              onClick={closeMobileMenu}
+              className={`nav-link ${pathname === '/' ? 'active' : ''}`}
+            >
+              {t('nav.home')}
+            </Link>
           </li>
+
+          {/* All dropdown items are guarded inside Dropdown itself */}
           <li>
             <Dropdown
               label={t('nav.howItWorks')}
@@ -50,9 +78,18 @@ function Navbar() {
               onItemClick={closeMobileMenu}
             />
           </li>
+
+          {/* For Caregivers — guarded direct link */}
           <li>
-            <Link to="/for-caregivers" onClick={closeMobileMenu} className={`nav-link ${pathname.startsWith('/for-caregivers') ? 'active' : ''}`}>{t('nav.forCaregivers')}</Link>
+            <a
+              href="/for-caregivers"
+              className={`nav-link ${pathname.startsWith('/for-caregivers') ? 'active' : ''}`}
+              onClick={(e) => handleGuardedNav(e, '/for-caregivers')}
+            >
+              {t('nav.forCaregivers')}
+            </a>
           </li>
+
           <li>
             <Dropdown
               label={t('nav.about')}
@@ -81,17 +118,40 @@ function Navbar() {
       </div>
 
       <div className="navbar-actions">
-        <button className="lang-btn" onClick={toggleLanguage}>{lang === 'en' ? 'AR' : 'EN'}</button>
+        <button className="lang-btn" onClick={toggleLanguage}>
+          {lang === 'en' ? 'AR' : 'EN'}
+        </button>
         <button className="icon-btn"><ShoppingCart size={22} color="var(--text-primary)" /></button>
-        <Link to="/auth" className="icon-btn" onClick={closeMobileMenu}><User size={22} color="var(--text-primary)" /></Link>
-        <button className="mobile-menu-btn" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
-          {isMobileMenuOpen ? <X size={28} color="var(--text-primary)" /> : <Menu size={28} color="var(--text-primary)" />}
+
+        {/* User icon → still links to /auth (login page), no guard needed */}
+        <Link to="/auth" className="icon-btn" onClick={closeMobileMenu}>
+          <User size={22} color="var(--text-primary)" />
+        </Link>
+
+        {/* Logout button — only visible when authenticated */}
+        {isAuthenticated && (
+          <button
+            id="navbar-logout-btn"
+            className="logout-btn"
+            onClick={handleLogout}
+          >
+            <LogOut size={14} style={{ marginRight: 6, verticalAlign: 'middle' }} />
+            {lang === 'ar' ? 'تسجيل خروج' : 'Logout'}
+          </button>
+        )}
+
+        <button
+          className="mobile-menu-btn"
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+        >
+          {isMobileMenuOpen
+            ? <X    size={28} color="var(--text-primary)" />
+            : <Menu size={28} color="var(--text-primary)" />
+          }
         </button>
       </div>
     </nav>
   );
 }
-
-
 
 export default Navbar;

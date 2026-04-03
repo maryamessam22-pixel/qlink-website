@@ -1,10 +1,21 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { ChevronDown } from 'lucide-react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../context/AuthContext';
 
 function Dropdown({ label, items, isActive, onItemClick }) {
   const location = useLocation();
+  const navigate  = useNavigate();
   const { pathname } = location;
+  const { isAuthenticated, requireAuth } = useContext(AuthContext);
+
+  const handleItemClick = (e, href) => {
+    e.preventDefault();
+    if (requireAuth()) {
+      onItemClick && onItemClick();
+      navigate(href);
+    }
+  };
 
   return (
     <div className="dropdown">
@@ -13,11 +24,11 @@ function Dropdown({ label, items, isActive, onItemClick }) {
       </button>
       <div className="dropdown-content">
         {items.map((item, index) => (
-          <Link 
-            key={index} 
+          <Link
+            key={index}
             to={item.href}
             className={pathname === item.href ? 'submenu-active' : ''}
-            onClick={onItemClick}
+            onClick={(e) => handleItemClick(e, item.href)}
           >
             {item.name}
           </Link>
@@ -26,6 +37,5 @@ function Dropdown({ label, items, isActive, onItemClick }) {
     </div>
   );
 }
-
 
 export default Dropdown;

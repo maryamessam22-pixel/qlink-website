@@ -1,6 +1,7 @@
-import React, { useEffect, useState, useContext } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState, useContext, useCallback } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { LanguageContext } from '../context/LanguageContext';
+import { useAuth } from '../context/AuthContext';
 import { supabase } from "../lib/Supabase";
 import {
   WifiOff,
@@ -38,9 +39,22 @@ import twoWatchesImg from '../assets/images/2 watches.png';
 import appScreenImg from '../assets/images/appscreen.png';
 
 function Home() {
+  const navigate = useNavigate();
+  const { requireAuth } = useAuth();
   const [isScrolled, setIsScrolled] = useState(false);
   const [cms, setCms] = useState({});
   const { t, lang } = useContext(LanguageContext);
+
+  const handleGuardedClick = useCallback((e, href) => {
+    e.preventDefault();
+    if (requireAuth()) {
+      if (href.startsWith('http')) {
+        window.open(href, '_blank');
+      } else if (href !== '#') {
+        navigate(href);
+      }
+    }
+  }, [requireAuth, navigate]);
 
   // helper: pick EN or AR field
   const pick = (row, field) => {
@@ -138,10 +152,16 @@ function Home() {
     </p>
 
     <div className={`hero-buttons scroll-animate stag-3 ${lang === 'ar' ? 'rtl-buttons' : ''}`}>
-      <button className="btn btn-secondary">
+      <button
+        className="btn btn-secondary"
+        onClick={(e) => handleGuardedClick(e, '/how-it-works/qlink')}
+      >
         {cms['home_hero'] ? cms['home_hero'][`first-btn-${lang}`] || t('hero.btnHow') : t('hero.btnHow')}
       </button>
-      <button className="btn btn-primary">
+      <button
+        className="btn btn-primary"
+        onClick={(e) => handleGuardedClick(e, '/shop/bracelet')}
+      >
         {cms['home_hero'] ? cms['home_hero'][`sec-btn-${lang}`] || t('hero.btnExplore') : t('hero.btnExplore')}
       </button>
     </div>
@@ -255,7 +275,13 @@ function Home() {
             <p className="split-desc">
               {cms['home_simple_secure'] ? pick(cms['home_simple_secure'], 'content') : t('splitFeature.desc1')}
             </p>
-            <Link to="/about" className="btn btn-primary link-btn-inline">{t('splitFeature.btn')}</Link>
+            <a
+              href="/about"
+              className="btn btn-primary link-btn-inline"
+              onClick={(e) => handleGuardedClick(e, '/about')}
+            >
+              {t('splitFeature.btn')}
+            </a>
           </div>
           <div className="split-image">
             <img src={twoWatchesImg} alt="2 Qlink Bracelets" />
@@ -386,7 +412,12 @@ function Home() {
         {/* CTA */}
         <section className={`cta-section scroll-animate ${lang === 'ar' ? 'rtl-text' : ''}`}>
           <h2 className={`cta-title ${lang === 'ar' ? '' : 'cta-title-eng'}`}>{t('cta.title')}</h2>
-          <button className="btn btn-primary btn-large-pad">{t('cta.btn')}</button>
+          <button
+            className="btn btn-primary btn-large-pad"
+            onClick={(e) => handleGuardedClick(e, '/shop/bracelet')}
+          >
+            {t('cta.btn')}
+          </button>
 
           <div className="cta-line"></div>
 
