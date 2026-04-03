@@ -145,124 +145,13 @@
   cursor: pointer;
 }
 
-/* 5. Install App Section */
-.install-app-section {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 24px 100px;
-  display: flex;
-  align-items: center;
-  gap: 40px;
-}
-
-.ia-content {
-  flex: 1;
-}
-
-.ia-content h2 {
-  font-size: 36px;
-  font-weight: 800;
-  margin-bottom: 16px;
-}
-
-.ia-content h2 span {
-  color: #E03232;
-}
-
-.ia-content p {
-  color: #94A3B8;
-  font-size: 16px;
-  line-height: 1.6;
-  margin-bottom: 32px;
-  max-width: 500px;
-}
-
-.ia-buttons {
-  display: flex;
-  gap: 16px;
-}
-
-.ia-btn {
-  background: rgba(15, 23, 42, 0.4);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 12px 20px;
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  cursor: pointer;
-  transition: 0.3s;
-  min-width: 180px;
-}
-
-.ia-btn:hover {
-  border-color: #E03232;
-  background: rgba(224, 50, 50, 0.05);
-}
-
-.ia-btn.white {
-    background: white;
-    color: black;
-}
-
-.ia-btn-icon {
-  width: 24px;
-  height: 24px;
-}
-
-.btn-text {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  font-size: 11px;
-  line-height: 1.2;
-}
-
-.btn-text strong {
-  font-size: 16px;
-  color: inherit;
-}
-
-.ia-visuals {
-  flex: 1;
-  display: flex;
-  justify-content: flex-end;
-  position: relative;
-}
-
-.ia-mobiles {
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
-
 /* RTL Support */
-.rtl-text .ia-buttons,
 .rtl-text .newsletter-form {
   direction: ltr;
 }
 
 .rtl-text .newsletter-form {
     flex-direction: row-reverse;
-}
-
-@media (max-width: 991px) {
-  .install-app-section {
-    flex-direction: column;
-    text-align: center;
-  }
-  
-  .ia-content p {
-    margin: 0 auto 32px;
-  }
-  
-  .ia-buttons {
-    justify-content: center;
-  }
-  
-  .ia-visuals {
-    justify-content: center;
-  }
 }
 
 @media (max-width: 768px) {
@@ -272,10 +161,5 @@
   
   .newsletter-form {
     flex-direction: column;
-  }
-  
-  .ia-buttons {
-    flex-direction: column;
-    align-items: center;
   }
 }
