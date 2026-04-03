@@ -18,6 +18,23 @@
   transform: translateY(0);
 }
 
+/* Common Section Headers */
+.ad-section-badge {
+  text-align: center;
+  color: #E03232;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  margin-bottom: 12px;
+}
+
+.ad-section-title {
+  text-align: center;
+  font-size: 32px;
+  font-weight: 800;
+  margin-bottom: 60px;
+}
+
 /* 1. Hero Section */
 .ad-hero-wrapper {
   max-width: 1200px;
@@ -74,8 +91,8 @@
   margin-bottom: 12px;
 }
 
-.red-icon {
-  color: #10b981; /* Success green from design? actually it's green-ish in design image list checkmarks */
+.check-icon {
+  color: #10B981; 
 }
 
 .ad-hero-buttons {
@@ -138,6 +155,302 @@
   filter: drop-shadow(0 20px 50px rgba(0,0,0,0.5));
 }
 
+/* 2. APP FEATURES */
+.ad-features-section {
+  max-width: 1200px;
+  margin: 0 auto 120px auto;
+  padding: 0 24px;
+}
+
+.ad-features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.ad-feature-card {
+  background: rgba(15, 23, 42, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  padding: 32px;
+  transition: 0.3s;
+}
+
+.ad-feature-card:hover {
+  border-color: rgba(224, 50, 50, 0.3);
+  transform: translateY(-5px);
+  background: rgba(15, 23, 42, 0.6);
+}
+
+.ad-f-icon {
+  width: 48px;
+  height: 48px;
+  background: rgba(224, 50, 50, 0.1);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+.ad-feature-card h3 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.ad-feature-card p {
+  color: #94A3B8;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* 3. TIMELINE SETUP */
+.ad-setup-section {
+  max-width: 1000px;
+  margin: 0 auto 120px auto;
+  padding: 0 24px;
+}
+
+.ad-setup-timeline {
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+  position: relative;
+}
+
+.ad-setup-timeline::before {
+  content: '';
+  position: absolute;
+  top: 30px;
+  left: 50px;
+  right: 50px;
+  height: 2px;
+  background: linear-gradient(to right, #E03232, rgba(224,50,50,0.1));
+  z-index: 0;
+}
+
+.setup-step {
+  flex: 1;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.step-number {
+  width: 60px;
+  height: 60px;
+  background: #0f172a;
+  border: 2px solid #E03232;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 24px auto;
+  font-weight: 800;
+  font-size: 18px;
+}
+
+.setup-step h3 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.setup-step p {
+  font-size: 13px;
+  color: #94A3B8;
+}
+
+/* 4. GALLERY SECTION */
+.ad-gallery-section {
+  max-width: 1200px;
+  margin: 0 auto 120px auto;
+  padding: 0 24px;
+}
+
+.ad-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.ad-gallery-item {
+  border-radius: 20px;
+  overflow: hidden; /* Added overflow hidden as requested */
+  position: relative;
+  height: 500px;
+  cursor: pointer;
+  background: #0f172a;
+}
+
+.ad-gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1), filter 0.8s ease;
+  transform: scale(1);
+}
+
+.ad-gallery-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(15,23,42,0.9), transparent);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 30px;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.ad-gallery-overlay span {
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 12px;
+}
+
+/* HOVER ANIMATION: appear all then return back to small */
+.ad-gallery-item:hover img {
+  transform: scale(1.15); /* Appears larger/reveals all when hover */
+  filter: brightness(0.8);
+}
+
+.ad-gallery-item:hover .ad-gallery-overlay {
+  opacity: 1;
+}
+
+/* 5. ENCRYPTED BANNER */
+.ad-encrypted-banner {
+  max-width: 1200px;
+  margin: 0 auto 120px auto;
+  padding: 0 24px;
+}
+
+.ad-enc-content {
+  background: linear-gradient(135deg, rgba(16,185,129,0.1), rgba(15,23,42,0.4));
+  border: 1px solid rgba(16,185,129,0.2);
+  border-radius: 24px;
+  padding: 60px;
+  text-align: center;
+}
+
+.ad-shield-icon {
+  margin-bottom: 24px;
+  filter: drop-shadow(0 0 15px rgba(16,185,129,0.3));
+}
+
+.ad-enc-content h2 {
+  font-size: 28px;
+  font-weight: 800;
+  margin-bottom: 16px;
+}
+
+.ad-enc-content p {
+  color: #94A3B8;
+  max-width: 700px;
+  margin: 0 auto;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+/* 6. APP FAQ */
+.ad-faq-section {
+  max-width: 800px;
+  margin: 0 auto 120px auto;
+  padding: 0 24px;
+}
+
+.ad-faq-list {
+  list-style: none;
+  padding: 0;
+}
+
+.ad-faq-list li {
+  background: rgba(15, 23, 42, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  margin-bottom: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.ad-faq-list li.active {
+  border-color: rgba(59, 130, 246, 0.3);
+}
+
+.ad-faq-q {
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 600;
+}
+
+.ad-faq-list li.active .ad-faq-q {
+  color: #3b82f6;
+}
+
+.ad-faq-list li.active .ad-faq-q svg {
+  transform: rotate(180deg);
+}
+
+.ad-faq-a {
+  padding: 0 24px 20px 24px;
+  color: #94A3B8;
+  font-size: 14px;
+  line-height: 1.6;
+  display: none;
+}
+
+.ad-faq-list li.active .ad-faq-a {
+  display: block;
+}
+
+/* 7. FOOTER CTA */
+.ad-footer-cta {
+  max-width: 1200px;
+  margin: 0 auto 100px auto;
+  padding: 0 24px;
+}
+
+.ad-cta-container {
+  background: linear-gradient(to right, #0f172a, rgba(224,50,50,0.1));
+  border: 1px solid rgba(224,50,50,0.1);
+  border-radius: 24px;
+  padding: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  overflow: hidden;
+}
+
+.ad-cta-content h2 {
+  font-size: 42px;
+  font-weight: 800;
+  margin-bottom: 16px;
+}
+
+.ad-cta-content h2 span {
+  color: #E03232;
+}
+
+.ad-cta-content p {
+  font-size: 18px;
+  color: #94A3B8;
+  margin-bottom: 32px;
+}
+
+.ad-cta-img img {
+  max-width: 100%;
+  height: auto;
+  transform: rotate(15deg) translateY(30px);
+}
+
+/* RESPONSIVE */
 @media (max-width: 991px) {
   .ad-hero-container {
     flex-direction: column;
@@ -151,9 +464,66 @@
   
   .ad-hero-buttons {
     justify-content: center;
+    flex-direction: column;
+    align-items: center;
   }
   
-  .ad-hero-visual {
-    justify-content: center;
+  .ad-features-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
+  
+  .ad-setup-timeline {
+    flex-direction: column;
+    gap: 32px;
+  }
+  
+  .ad-setup-timeline::before {
+    display: none;
+  }
+  
+  .ad-gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .ad-cta-container {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .ad-cta-img {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .ad-hero-content h1 {
+    font-size: 38px;
+  }
+  
+  .ad-features-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .ad-section-title {
+    font-size: 26px;
+  }
+}
+
+/* RTL SUPPORT */
+.rtl-text .btn-text,
+.rtl-text .ad-hero-buttons {
+  direction: ltr;
+}
+
+.rtl-text .setup-step p,
+.rtl-text .setup-step h3,
+.rtl-text .ad-feature-card p,
+.rtl-text .ad-feature-card h3 {
+  text-align: right;
+}
+
+@media (max-width: 991px) {
+    .rtl-text .setup-step p, .rtl-text .setup-step h3 {
+        text-align: center;
+    }
 }
