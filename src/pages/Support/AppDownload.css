@@ -244,7 +244,7 @@
 }
 
 .ad-gallery-item:hover {
-  flex: 4;
+  flex: 2.5;
 }
 
 .ad-gallery-item img {
@@ -298,7 +298,6 @@
 }
 
 .ad-gallery-item:hover img {
-  transform: scale(1.05);
   filter: brightness(0.7) saturate(1.2);
 }
 
