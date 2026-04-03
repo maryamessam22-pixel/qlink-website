@@ -19,7 +19,7 @@ import './AppDownload.css';
 import AppPromoSection from '../../components/Sections/AppPromoSection';
 
 // Assets
-import heroPhones from '../../assets/images/2mobiles.png';
+import heroPhones from '../../assets/images/mobile2.png';
 import no1 from '../../assets/images/no1.png';
 import no2 from '../../assets/images/no2.png';
 import no3 from '../../assets/images/no3.png';
@@ -82,18 +82,18 @@ const AppDownload = () => {
             </ul>
 
             <div className="ad-hero-buttons">
-               <button className="ia-btn white">
-                 <Apple size={24} fill="black" />
-                 <div className="btn-text">
-                   <span>{lang === 'ar' ? 'حمله من' : 'Download on the'}</span>
-                   <strong>App Store</strong>
+               <button className="promo-app-btn">
+                 <Apple size={24} />
+                 <div className="btn-text" style={lang === 'ar' ? { textAlign: 'right' } : {}}>
+                   <span>{t('appSection.appStore') || 'Download on the'}</span>
+                   <strong>{t('appSection.appStoreTitle') || 'App Store'}</strong>
                  </div>
                </button>
-               <button className="ia-btn bg-blur">
+               <button className="promo-app-btn" style={{ background: 'rgba(255,255,255,0.05)', color: 'white', border: '1px solid rgba(255,255,255,0.1)' }}>
                  <Play size={24} fill="#E03232" color="#E03232" />
-                 <div className="btn-text">
-                   <span>{lang === 'ar' ? 'احصل عليه من' : 'Get it on'}</span>
-                   <strong>Google Play</strong>
+                 <div className="btn-text" style={lang === 'ar' ? { textAlign: 'right' } : {}}>
+                   <span>{t('appSection.googlePlay') || 'Get it on'}</span>
+                   <strong>{t('appSection.googlePlayTitle') || 'Google Play'}</strong>
                  </div>
                </button>
             </div>
