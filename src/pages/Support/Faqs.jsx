@@ -24,7 +24,8 @@ function Faqs() {
       try {
         const { data, error } = await supabase
           .from('faqs')
-          .select('question_en, question_ar, answer_en, answer_ar, category');
+          .select('id, question_en, question_ar, answer_en, answer_ar, category, display_order')
+          .order('display_order', { ascending: true });
 
         if (error) {
           console.error('Supabase FAQs fetch error:', error);
