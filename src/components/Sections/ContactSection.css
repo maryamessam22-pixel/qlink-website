@@ -89,15 +89,24 @@
 .cf-input {
   width: 100%;
   padding: 10px 14px;
-  background: var(--border-light);
-  border: 1px solid rgba(59, 130, 246, 0.18);
+  background: #172136; /* Solid dark background */
+  border: 1px solid rgba(59, 130, 246, 0.25);
   border-radius: 8px;
-  color: var(--text-primary);
+  color: white;
   font-family: inherit;
   font-size: 14px;
   outline: none;
   box-sizing: border-box;
-  transition: border-color 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.cf-input::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.cf-select option {
+  background-color: #172136;
+  color: white;
 }
 
 .cf-input:focus {
