@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react';
+import { Link } from 'react-router-dom';
 import SEO from '../../components/common/SEO';
 import { LanguageContext } from '../../context/LanguageContext';
 import DynamicBackground from '../../components/common/DynamicBackground';
@@ -210,7 +211,9 @@ function OurStory() {
         <section className="story-final-cta scroll-animate stag-3">
            <h2>{t('ourStory.ctaTitle')}</h2>
            <p>{t('ourStory.ctaSubtitle')}</p>
-           <button className="contact-btn-red">{t('ourStory.ctaBtn')}</button>
+           <Link to="/support/contact" className="contact-btn-red">
+             {t('ourStory.ctaBtn')}
+           </Link>
         </section>
       </div>
     </div>
