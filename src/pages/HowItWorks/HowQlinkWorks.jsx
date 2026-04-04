@@ -1,7 +1,8 @@
-import React, { useRef, useEffect, useContext } from 'react';
+import React, { useRef, useEffect, useContext, useState } from 'react';
 import SEO from '../../components/common/SEO';
 import './HowQlinkWorks.css';
 import { LanguageContext } from '../../context/LanguageContext';
+import { supabase } from '../../lib/Supabase'; 
 import {
   ShieldCheck,
   Database,
@@ -31,7 +32,27 @@ import DynamicBackground from '../../components/common/DynamicBackground';
 function HowQlinkWorks() {
   const lensRef = useRef(null);
   const { t, lang } = useContext(LanguageContext);
+  
 
+  const [seoData, setSeoData] = useState(null);
+
+
+  useEffect(() => {
+    const fetchSEO = async () => {
+      try {
+        const { data: seo } = await supabase
+          .from('seo')
+          .select('*')
+          .eq('slug', 'how-it-works')
+          .single();
+        if (seo) setSeoData(seo);
+      } catch (err) {
+        console.error("Error fetching SEO:", err);
+      }
+    };
+
+    fetchSEO();
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
@@ -50,9 +71,9 @@ function HowQlinkWorks() {
     return () => observer.disconnect();
   }, []);
 
-
   const centerVideoSrc = watchVidSrc;
 
+  // Lens Effect
   useEffect(() => {
     const wrapper = lensRef.current;
     if (!wrapper) return;
@@ -90,9 +111,10 @@ function HowQlinkWorks() {
 
   return (
     <div className="how-works-page">
+     
       <SEO 
-        title={lang === 'ar' ? 'كيف يعمل' : 'How it Works'}
-        description={lang === 'ar' ? 'اكتشف كيف يربط كيو لينك المنقذين بمعلوماتك الحيوية في ثوانٍ.' : 'Discover how Qlink connects rescuers to your vital information in seconds.'}
+        title={seoData ? (lang === 'ar' ? seoData.title_ar : seoData.title_en) : (lang === 'ar' ? 'كيف يعمل' : 'How it Works')}
+        description={seoData ? (lang === 'ar' ? seoData.description_ar : seoData.description_en) : ''}
         slug="how-it-works"
       />
       <DynamicBackground/>
@@ -112,7 +134,6 @@ function HowQlinkWorks() {
           <p>{t('howWorks.heroSubtitle')}</p>
         </div>
       </section>
-
 
       <section className={`hw-timeline-section scroll-animate ${lang === 'ar' ? 'rtl-text' : ''}`}>
         <div className="timeline-container">
@@ -155,23 +176,17 @@ function HowQlinkWorks() {
           />
         </div>
 
-
         <div className="features-video-wrapper scroll-animate" ref={lensRef}>
-     
           <div className="hw-layer hw-blurred-layer">
             <video className="features-center-video" autoPlay loop muted playsInline>
               <source src={centerVideoSrc} type="video/mp4" />
             </video>
           </div>
-
-    
           <div className="hw-layer hw-clear-layer">
             <video className="features-center-video" autoPlay loop muted playsInline>
               <source src={centerVideoSrc} type="video/mp4" />
             </video>
           </div>
-
-
           <div className="lens-ring-overlay"></div>
         </div>
 
@@ -186,7 +201,6 @@ function HowQlinkWorks() {
           />
         </div>
       </section>
-
 
       <section className={`hw-compare-section ${lang === 'ar' ? 'rtl-text' : ''}`}>
         <PricingCard
@@ -256,7 +270,6 @@ function HowQlinkWorks() {
         />
       </section>
 
- 
       <section className={`hw-cta-section scroll-animate ${lang === 'ar' ? 'rtl-text' : ''}`}>
         <h2 style={{ fontSize: '32px', fontWeight: '800' }}>{t('howWorks.ctaTitle')}</h2>
         <div className={`hw-cta-buttons ${lang === 'ar' ? 'rtl-buttons' : ''}`}>
