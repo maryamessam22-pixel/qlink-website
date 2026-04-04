@@ -17,7 +17,12 @@
   pointer-events: none;
   overflow: hidden;
 }
-
+ 
+.why-card.scroll-animate.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  padding: 30px;
+}
 
 .home-glow {
   position: absolute;
