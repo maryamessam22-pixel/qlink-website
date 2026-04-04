@@ -592,6 +592,44 @@
     justify-content: center;
   }
 
+  .hero-image {
+    position: relative;
+    right: auto;
+    top: auto;
+    transform: none;
+    margin-top: 40px;
+    width: 100%;
+    justify-content: center;
+    animation: slideInUp 1.2s ease forwards;
+  }
+
+  @keyframes slideInUp {
+    0% { transform: translateY(40px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
+  }
+
+  .hero-img-element {
+    width: 320px;
+  }
+
+  .hero-title {
+    font-size: 48px;
+  }
+
+  .hero-desc {
+    font-size: 16px;
+    margin: 0 auto 32px auto;
+  }
+
+  .split-feature {
+    gap: 40px;
+    margin-bottom: 80px;
+  }
+  
+  .split-desc {
+    width: 100%;
+  }
+
   .store-buttons {
     justify-content: center;
     flex-direction: column;
@@ -606,11 +644,39 @@
   }
 
   .split-image img {
-    margin-top: 40px;
+    margin-top: 20px;
   }
 
   .floating-app-screen {
     max-width: 260px !important;
+  }
+}
+
+@media (max-width: 580px) {
+  .hero-title {
+    font-size: 38px;
+  }
+
+  .hero-section {
+    padding: 0 20px;
+    margin-top: 120px;
+  }
+
+  .btn {
+    width: 100% !important;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .section-title {
+    font-size: 24px;
+  }
+  
+  .cta-section h2 {
+    font-size: 26px;
   }
 }
 
