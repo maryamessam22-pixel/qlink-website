@@ -582,7 +582,7 @@ const translations = {
       { id: 3, title: "Excellence", desc: "We don't compromise when lives are on the line." }
     ],
     
-    teamTitle: "Our Team",
+    teamTitle: "OUR TEAM",
     teamSubtitle: "Meet the minds",
     team: [
       { id: 1, name: "Mariam Essam", role: "CEO / Founder" },
