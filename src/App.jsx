@@ -50,13 +50,12 @@ const ProtectedRoute = () => {
   }, [isAuthenticated, location, setPendingRoute, setShowLoginModal]);
 
   if (!isAuthenticated) {
-    // Redirect to home if unauthenticated
     return <Navigate to="/" replace />;
   }
   return <Outlet />;
 };
 
-// Layout
+
 const MainLayout = () => (
   <>
     <Navbar />
@@ -79,7 +78,6 @@ function App() {
 
         <Routes>
 
-          {/* Auth */}
           <Route path="/auth" element={<AuthPage />} />
 
           {/* Public Home */}

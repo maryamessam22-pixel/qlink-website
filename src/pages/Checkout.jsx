@@ -120,7 +120,6 @@ const Checkout = () => {
             }
 
           
-            // alert(isAr ? 'تم تأكيد طلبك بنجاح!' : 'Order confirmed successfully!');
             clearCart();
             navigate('/complete-purchase', { state: { orderNum, email: form.email } }); 
             
@@ -209,7 +208,6 @@ const Checkout = () => {
                             </div>
                         </div>
 
-                      \
                         <div className="checkout-card scroll-animate stag-2">
                             <div className="checkout-card-header">
                                 <span className="checkout-step-num">2</span>

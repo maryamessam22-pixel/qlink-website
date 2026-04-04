@@ -6,7 +6,6 @@ import SEO from '../components/common/SEO';
 import DynamicBackground from '../components/common/DynamicBackground';
 import './CompletePurchase.css';
 
-// Reusing image from existing assets
 import mobileMockup from '../assets/images/mobile2.png';
 
 const CompletePurchase = () => {
@@ -42,7 +41,7 @@ const CompletePurchase = () => {
             <DynamicBackground />
 
             <div className="cp-container">
-                {/* 1. Success Message */}
+                
                 <div className="cp-success-header scroll-animate">
                     <div className="cp-check-wrapper">
                         <CheckCircle size={80} color="#10B981" fill="#10B98133" />
@@ -51,7 +50,7 @@ const CompletePurchase = () => {
                     <p>{t('completePurchase.thankYou')}</p>
                 </div>
 
-                {/* 2. Order Details Card */}
+                
                 <div className="cp-order-card scroll-animate stag-1">
                     <div className="cp-order-row">
                         <span className="cp-label">{t('completePurchase.orderNumber')}</span>
@@ -73,7 +72,7 @@ const CompletePurchase = () => {
                     </div>
                 </div>
 
-                {/* 3. Download App Quick Card */}
+                
                 <div className="cp-app-quick-card scroll-animate stag-2">
                     <div className="cp-app-icon">
                         <Smartphone size={32} color="#10B981" />
@@ -94,7 +93,7 @@ const CompletePurchase = () => {
                     </div>
                 </div>
 
-                {/* 4. Feature Section with Mockup */}
+                
                 <section className="cp-feature-section scroll-animate">
                     <div className="cp-feature-content">
                         <h2>{t('completePurchase.manageSafety')}</h2>
@@ -128,7 +127,7 @@ const CompletePurchase = () => {
                     </div>
                 </section>
 
-                {/* 5. Installation Guide */}
+                
                 <section className="cp-guide-section scroll-animate">
                     <h2 className="cp-guide-title">{t('completePurchase.installNow')}</h2>
                     <p className="cp-guide-subtitle">{t('completePurchase.installSubtitle')}</p>
@@ -158,7 +157,7 @@ const CompletePurchase = () => {
                     </div>
                 </section>
 
-                {/* 6. Action Button */}
+                
                 <div className="cp-footer-actions scroll-animate">
                     <button className="cp-home-btn" onClick={() => navigate('/')}>
                         {isAr ? 'العودة للرئيسية' : 'Back to Homepage'}
