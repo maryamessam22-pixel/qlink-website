@@ -643,6 +643,21 @@ const arTranslations = {
     ctaTitle: "لا تزال لا تجد ما تبحث عنه؟",
     ctaDesc: "فريق الدعم لدينا متاح على مدار الساعة طوال أيام الأسبوع للإجابة على أي أسئلة.",
     ctaBtn: "تواصل مع الدعم"
+  },
+  footer: {
+    brandDesc: "أمان فوري. بمسحة واحدة. نجعل المعلومات الطبية الطارئة متاحة عندما تكون في أمس الحاجة إليها.",
+    productTitle: "المنتج",
+    productLink1: "سوار الأمان",
+    productLink2: "كيف يعمل",
+    productLink3: "المميزات",
+    supportTitle: "الدعم",
+    supportLink1: "الأسئلة الشائعة",
+    supportLink2: "سياسة الخصوصية",
+    supportLink3: "شروط الخدمة",
+    subscribeTitle: "اشترك",
+    subscribePlaceholder: "عنوان بريدك الإلكتروني...",
+    subscribeBtn: "اشترك",
+    copyright: "© 2026 كيو لينك. جميع الحقوق محفوظة. متصل دائماً. محمي دائماً."
   }
 };
 

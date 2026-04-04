@@ -644,6 +644,21 @@ const translations = {
     ctaTitle: "Still can't find what you're looking for?",
     ctaDesc: "Our support team is available 24/7 to answer any questions.",
     ctaBtn: "Contact Support"
+  },
+  footer: {
+    brandDesc: "Instant Safety. One Scan Away. Making emergency medical information accessible when it matters most.",
+    productTitle: "Product",
+    productLink1: "Safety Bracelet",
+    productLink2: "How it works",
+    productLink3: "Features",
+    supportTitle: "Support",
+    supportLink1: "FAQ",
+    supportLink2: "Privacy policy",
+    supportLink3: "Terms of service",
+    subscribeTitle: "Subscribe",
+    subscribePlaceholder: "Your email address...",
+    subscribeBtn: "Subscribe",
+    copyright: "© 2026 Qlink. All rights reserved. Always connected. Always protected."
   }
 };
 

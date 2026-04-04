@@ -1,15 +1,19 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { LanguageContext } from '../../context/LanguageContext';
 import Logo from './Logo';
 import './Footer.css';
 
 const Footer = () => {
+  const { t, lang } = useContext(LanguageContext);
+  const isAr = lang === 'ar';
+
   return (
-    <footer className="footer-container">
+    <footer className="footer-container" dir={isAr ? 'rtl' : 'ltr'}>
       <div className="footer-content">
         <div className="footer-brand">
           <Logo className="footer-logo" />
           <p>
-            Instant Safety. One Scan Away. Making emergency medical information accessible when it matters most.
+            {t('footer.brandDesc')}
           </p>
           <div className="footer-socials">
          
@@ -31,35 +35,35 @@ const Footer = () => {
 
         <div className="footer-links-group">
           <div className="footer-links-col">
-            <h4>Product</h4>
+            <h4>{t('footer.productTitle')}</h4>
             <ul>
-              <li><a href="/shop/bracelet">Safety Bracelet</a></li>
-              <li><a href="/how-it-works/qlink">How it works</a></li>
-              <li><a href="/">Features</a></li>
+              <li><a href="/shop/bracelet">{t('footer.productLink1')}</a></li>
+              <li><a href="/how-it-works/qlink">{t('footer.productLink2')}</a></li>
+              <li><a href="/">{t('footer.productLink3')}</a></li>
             </ul>
           </div>
 
           <div className="footer-links-col">
-            <h4>Support</h4>
+            <h4>{t('footer.supportTitle')}</h4>
             <ul>
-              <li><a href="/support/faqs">FAQ</a></li>
-              <li><a href="/about/privacy">Privacy policy</a></li>
-              <li><a href="/support/contact">Terms of service</a></li>
+              <li><a href="/support/faqs">{t('footer.supportLink1')}</a></li>
+              <li><a href="/about/privacy">{t('footer.supportLink2')}</a></li>
+              <li><a href="/support/contact">{t('footer.supportLink3')}</a></li>
             </ul>
           </div>
         </div>
 
         <div className="footer-subscribe">
-          <h4>Subscribe</h4>
+          <h4>{t('footer.subscribeTitle')}</h4>
           <div className="subscribe-form">
-            <input type="email" placeholder="Your email address..." />
-            <button type="button">Subscribe</button>
+            <input type="email" placeholder={t('footer.subscribePlaceholder')} />
+            <button type="button">{t('footer.subscribeBtn')}</button>
           </div>
         </div>
       </div>
 
       <div className="footer-bottom">
-        &copy; 2026 Qlink. All rights reserved.Always connected. Always protected
+        {t('footer.copyright')}
       </div>
     </footer>
   );
