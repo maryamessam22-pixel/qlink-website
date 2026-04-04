@@ -672,6 +672,24 @@ const arTranslations = {
     free: "مجاني",
     total: "الإجمالي:",
     checkout: "المتابعة للدفع"
+  },
+  checkout: {
+    shippingTitle: "معلومات الشحن",
+    firstName: "الاسم الأول",
+    lastName: "الاسم الأخير",
+    email: "البريد الإلكتروني",
+    address: "العنوان",
+    city: "المدينة",
+    postalCode: "الرمز البريدي",
+    paymentTitle: "طريقة الدفع",
+    creditCard: "بطاقة ائتمان",
+    cod: "الدفع عند الاستلام",
+    cardNumber: "رقم البطاقة",
+    expiryDate: "تاريخ الانتهاء",
+    cvc: "رمز التحقق (CVC)",
+    completePurchase: "إتمام عملية الشراء",
+    promoCode: "كود الخصم",
+    apply: "تطبيق"
   }
 };
 
