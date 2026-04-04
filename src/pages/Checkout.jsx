@@ -5,15 +5,19 @@ import { LanguageContext } from '../context/LanguageContext';
 import { useCart } from '../context/CartContext';
 import DynamicBackground from '../components/common/DynamicBackground';
 import SEO from '../components/common/SEO';
+import { supabase } from '../lib/Supabase';
 import './Checkout.css';
 
 const Checkout = () => {
     const { t, lang } = useContext(LanguageContext);
     const isAr = lang === 'ar';
     const navigate = useNavigate();
-    const { cartItems, updateQty, cartTotal } = useCart();
+    
+    const { cartItems, updateQty, cartTotal, clearCart } = useCart();
 
     const [paymentMethod, setPaymentMethod] = useState('credit');
+    const [seoData, setSeoData] = useState(null);
+    
     const [form, setForm] = useState({
         firstName: '',
         lastName: '',
@@ -26,12 +30,33 @@ const Checkout = () => {
         cvc: ''
     });
 
+   
+    useEffect(() => {
+        const fetchSEO = async () => {
+            try {
+                const { data: seo } = await supabase
+                    .from('seo')
+                    .select('*')
+                    .eq('slug', 'checkout')
+                    .single();
+                
+                if (seo) setSeoData(seo);
+            } catch (err) {
+                console.error("Error fetching SEO:", err);
+            }
+        };
+
+        fetchSEO();
+    }, []);
+
+ 
     useEffect(() => {
         if (cartItems.length === 0) {
             navigate('/cart');
         }
     }, [cartItems, navigate]);
 
+  
     useEffect(() => {
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -53,11 +78,64 @@ const Checkout = () => {
 
     const formatPrice = (price) => price.toLocaleString();
 
+   
+    const handleCheckout = async () => {
+       
+        if (!form.firstName || !form.lastName || !form.address || !form.city || !form.email) {
+            alert(isAr ? 'برجاء إدخال جميع البيانات المطلوبة' : 'Please fill in all required fields');
+            return;
+        }
+
+      
+        const orderNum = 'ORD-' + Math.floor(1000 + Math.random() * 9000);
+
+      
+        const orderDetails = cartItems.map(item => `${item.name} ${item.colorName || ''} (x${item.qty})`).join(' + ');
+
+       
+        const newOrder = {
+            id: crypto.randomUUID(), 
+            order_number: orderNum,
+            customer_name: `${form.firstName} ${form.lastName}`,
+            email: form.email,
+            address: form.address,
+            city: form.city,
+            postal_code: form.postalCode,
+            payment_method: paymentMethod, 
+            variant_details: orderDetails,
+            status: 'Pending',
+            revenue: cartTotal.toString(),
+            time: 'Just now'
+        };
+
+        try {
+         
+            const { error } = await supabase
+                .from('order') 
+                .insert([newOrder]);
+
+            if (error) {
+                console.error("Supabase Error:", error);
+                throw error;
+            }
+
+          
+            alert(isAr ? 'تم تأكيد طلبك بنجاح!' : 'Order confirmed successfully!');
+            clearCart();
+            navigate('/'); 
+            
+        } catch (error) {
+
+            console.error("Error saving order:", error);
+            alert(isAr ? 'حدث خطأ أثناء إتمام الطلب' : 'Something went wrong while processing your order');
+        }
+    };
+
     return (
         <div className={`checkout-page ${isAr ? 'rtl-text' : ''}`} dir={isAr ? 'rtl' : 'ltr'}>
             <SEO
-                title={isAr ? 'إتمام الطلب' : 'Checkout'}
-                description={isAr ? 'إتمام عملية الشراء' : 'Complete your purchase'}
+                title={seoData ? (isAr ? seoData.title_ar : seoData.title_en) : (isAr ? 'إتمام الطلب' : 'Checkout')}
+                description={seoData ? (isAr ? seoData.description_ar : seoData.description_en) : ''}
                 slug="checkout"
             />
             <DynamicBackground />
@@ -67,7 +145,6 @@ const Checkout = () => {
 
                     <div className="checkout-forms-col">
 
-                        {/* Step 1: Shipping Information */}
                         <div className="checkout-card scroll-animate stag-1">
                             <div className="checkout-card-header">
                                 <span className="checkout-step-num">1</span>
@@ -132,7 +209,7 @@ const Checkout = () => {
                             </div>
                         </div>
 
-                        {/* Step 2: Payment Method */}
+                      \
                         <div className="checkout-card scroll-animate stag-2">
                             <div className="checkout-card-header">
                                 <span className="checkout-step-num">2</span>
@@ -197,13 +274,14 @@ const Checkout = () => {
                                 </div>
                             )}
 
-                            <button className="complete-purchase-btn">
+                          
+                            <button className="complete-purchase-btn" onClick={handleCheckout}>
                                 {t('checkout.completePurchase')}
                             </button>
                         </div>
                     </div>
 
-                    {/* Order Summary Sidebar */}
+              
                     <div className="chk-summary-col">
                         <div className="chk-summary-card scroll-animate stag-3">
                             <h3 className="chk-summary-title">{t('cart.orderSummary')}</h3>
