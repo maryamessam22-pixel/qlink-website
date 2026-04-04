@@ -209,3 +209,18 @@
     margin: 0 16px;
   }
 }
+
+/* RTL Styles */
+.rtl-active.auth-modal {
+  text-align: right;
+}
+
+.rtl-active .auth-modal-close {
+  right: auto;
+  left: 16px;
+}
+
+.rtl-active .auth-modal-hint {
+  text-align: center;
+}
+

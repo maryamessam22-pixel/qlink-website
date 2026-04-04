@@ -101,6 +101,29 @@
   100% { transform: translate(-50%, -50%) scale(1.2) translate(10vw, -10vh); }
 }
 
+.auth-back-btn {
+  position: absolute;
+  top: 40px;
+  left: 40px;
+  z-index: 11;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 0.2s;
+  padding: 8px;
+  font-family: inherit;
+}
+
+.auth-back-btn:hover {
+  color: white;
+}
+
 .auth-header {
   text-align: center;
 }
@@ -407,3 +430,26 @@ form {
   85% { opacity: 1; }
   100% { opacity: 0; }
 }
+
+/* RTL Styles */
+.rtl-active .input-icon {
+  left: auto;
+  right: 14px;
+}
+
+.rtl-active .input-wrap input {
+  padding: 0 40px 0 14px;
+}
+
+.rtl-active .auth-btn-primary .btn-arrow {
+  transform: scaleX(-1);
+}
+
+.rtl-active .forgot-row {
+  text-align: left;
+}
+
+.rtl-active .card-footer {
+  text-align: center;
+}
+

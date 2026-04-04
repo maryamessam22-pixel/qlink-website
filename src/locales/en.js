@@ -691,6 +691,37 @@ const translations = {
     completePurchase: "Complete Purchase",
     promoCode: "Promo Code",
     apply: "Apply"
+  },
+  auth: {
+    back: "Back",
+    title: "Authorization",
+    signIn: "Sign In",
+    signUp: "Sign Up",
+    welcome: "Welcome back to your safety network",
+    fullName: "Full Name",
+    email: "Email Address",
+    password: "Password",
+    forgot: "Forgot password?",
+    google: "Google",
+    github: "GitHub",
+    noAccount: "Don't have an account?",
+    hasAccount: "Already have an account?",
+    continue: "Or continue with",
+    invalidPass: "Invalid password. Please try again.",
+    adminError: "Invalid password for Admin! Please try again.",
+    generalError: "Something went wrong! Please try again.",
+    splashTagline: "Your Safety Always On",
+    modalTitle: "Authentication Required",
+    modalNotice: "You must log in or create an account to access this page.",
+    modalHint: "Don't have an account?",
+    modalCreate: "Create one",
+    login: "Log In",
+    fullNamePlaceholder: "Your Full Name",
+    emailPlaceholder: "name@example.com",
+    passwordPlaceholder: "••••••••",
+    btnArrow: "→",
+    btnSignIn: "Sign In",
+    btnSignUp: "Sign Up"
   }
 };
 

@@ -38,15 +38,17 @@ export const AuthProvider = ({ children }) => {
   }, [isAuthenticated]);
 
  
-  const login = useCallback((pwd, em) => {
-    if (pwd === CORRECT_PASSWORD) {
+  const login = useCallback((pwd, em, isPreValidated = false) => {
+    if (isPreValidated || pwd === CORRECT_PASSWORD) {
       localStorage.setItem(STORAGE_KEY, 'true');
       setIsAuthenticated(true);
       setShowLoginModal(false);
       setLoginError('');
       setPassword('');
+      return true;
     } else {
       setLoginError('Invalid password. Please try again.');
+      return false;
     }
   }, []);
 

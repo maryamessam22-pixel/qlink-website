@@ -136,7 +136,7 @@ function Navbar() {
         <Link
           to="/auth"
           className="icon-btn"
-          onClick={(e) => handleGuardedNav(e, '/auth')}
+          onClick={closeMobileMenu}
         >
           <User size={22} color="var(--text-primary)" />
         </Link>

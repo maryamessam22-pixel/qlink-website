@@ -690,6 +690,37 @@ const arTranslations = {
     completePurchase: "إتمام عملية الشراء",
     promoCode: "كود الخصم",
     apply: "تطبيق"
+  },
+  auth: {
+    back: "رجوع",
+    title: "التصريح",
+    signIn: "تسجيل الدخول",
+    signUp: "إنشاء حساب",
+    welcome: "مرحباً بك مرة أخرى في شبكة الأمان الخاصة بك",
+    fullName: "الاسم الكامل",
+    email: "عنوان البريد الإلكتروني",
+    password: "كلمة المرور",
+    forgot: "نسيت كلمة المرور؟",
+    google: "جوجل",
+    github: "جيت هب",
+    noAccount: "ليس لديك حساب؟",
+    hasAccount: "لديك حساب بالفعل؟",
+    continue: "أو استمر باستخدام",
+    invalidPass: "كلمة المرور غير صالحة. يرجى المحاولة مرة أخرى.",
+    adminError: "كلمة المرور غير صالحة للمشرف! يرجى المحاولة مرة أخرى.",
+    generalError: "حدث خطأ ما! يرجى المحاولة مرة أخرى.",
+    splashTagline: "أمانك دائمًا",
+    modalTitle: "مطلوب المصادقة",
+    modalNotice: "يجب عليك تسجيل الدخول أو إنشاء حساب للوصول إلى هذه الصفحة.",
+    modalHint: "ليس لديك حساب؟",
+    modalCreate: "أنشئ واحداً",
+    login: "تسجيل الدخول",
+    fullNamePlaceholder: "اسمك الكامل",
+    emailPlaceholder: "الاسم@المثال.com",
+    passwordPlaceholder: "••••••••",
+    btnArrow: "←",
+    btnSignIn: "تسجيل الدخول",
+    btnSignUp: "إنشاء حساب"
   }
 };
 

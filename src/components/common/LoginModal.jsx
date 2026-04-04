@@ -1,6 +1,7 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useContext } from 'react';
 import { X, Lock } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
+import { LanguageContext } from '../../context/LanguageContext';
 import { useAuth } from '../../context/AuthContext';
 import './LoginModal.css';
 
@@ -18,6 +19,9 @@ function LoginModal({ isOpen }) {
     login,
     closeModal,
   } = useAuth();
+
+  const { lang, t } = useContext(LanguageContext);
+  const isAr = lang === 'ar';
 
   const navigate = useNavigate();
 
@@ -59,7 +63,7 @@ function LoginModal({ isOpen }) {
       aria-modal="true"
       aria-label="Login required"
     >
-      <div className="auth-modal">
+      <div className={`auth-modal ${isAr ? 'rtl-active' : ''}`} dir={isAr ? 'rtl' : 'ltr'}>
 
       
         <button
@@ -75,33 +79,33 @@ function LoginModal({ isOpen }) {
           <Lock size={24} />
         </div>
 
-     
-        <h2>Login Required</h2>
+      
+        <h2>{t('auth.modalTitle')}</h2>
         <p className="auth-modal-notice">
-          You must log in or create an account first to access this page.
+          {t('auth.modalNotice')}
         </p>
 
     
         <form onSubmit={handleSubmit} autoComplete="off">
           <div className="auth-modal-group">
-            <label htmlFor="auth-email-input">Email</label>
+            <label htmlFor="auth-email-input">{t('auth.email')}</label>
             <input
               id="auth-email-input"
               type="email"
               className="auth-modal-input"
-              placeholder="Enter your email"
+              placeholder={t('auth.emailPlaceholder')}
               value={email}
               onChange={e => setEmail(e.target.value)}
             />
           </div>
 
           <div className="auth-modal-group">
-            <label htmlFor="auth-password-input">Password</label>
+            <label htmlFor="auth-password-input">{t('auth.password')}</label>
             <input
               id="auth-password-input"
               type="password"
               className="auth-modal-input"
-              placeholder="Enter your password"
+              placeholder={t('auth.passwordPlaceholder')}
               value={password}
               onChange={e => setPassword(e.target.value)}
               autoFocus
@@ -109,7 +113,7 @@ function LoginModal({ isOpen }) {
           </div>
 
           {loginError && (
-            <p className="auth-modal-error">{loginError}</p>
+            <p className="auth-modal-error">{t('auth.invalidPass')}</p>
           )}
 
           <button
@@ -117,18 +121,18 @@ function LoginModal({ isOpen }) {
             type="submit"
             className="btn btn-primary auth-modal-btn"
           >
-            Log In
+            {t('auth.login')}
           </button>
         </form>
 
         <div className="auth-modal-divider">
-          <span>or</span>
+          <span>{isAr ? 'أو' : 'or'}</span>
         </div>
 
         <p className="auth-modal-hint">
-          Don't have an account?{' '}
-          <Link to="/auth" onClick={closeModal}>
-            Create one
+          {t('auth.modalHint')}{' '}
+          <Link to="/auth" state={{ mode: 'signup' }} onClick={closeModal}>
+            {t('auth.modalCreate')}
           </Link>
         </p>
 

@@ -222,7 +222,19 @@ const PulseDetails = () => {
               </div>
               
               <div className="action-buttons">
-                <button className="btn-buy">
+                <button className="btn-buy" onClick={() => {
+                  const selectedColor = colors.find(c => c.id === activeColor);
+                  addToCart({
+                    slug: 'qlink-pulse',
+                    name: isAr ? product.name_ar : product.name_en,
+                    color: activeColor,
+                    colorName: selectedColor?.name || activeColor,
+                    qty,
+                    price: product.price,
+                    image: product.image_url
+                  });
+                  navigate('/checkout');
+                }}>
                   <Zap fill="white" size={20} />
                   {t('pulseDetails.buyNow')}
                 </button>
