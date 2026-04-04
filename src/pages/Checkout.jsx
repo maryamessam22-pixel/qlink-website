@@ -94,7 +94,7 @@ const Checkout = () => {
 
        
         const newOrder = {
-            // id: crypto.randomUUID(),  // Removing to let DB handle it (Standard practice)
+            id: crypto.randomUUID(), 
             order_number: orderNum,
             customer_name: `${form.firstName} ${form.lastName}`,
             email: form.email,
@@ -104,14 +104,15 @@ const Checkout = () => {
             payment_method: paymentMethod, 
             variant_details: orderDetails,
             status: 'Pending',
-            revenue: cartTotal, // Pass as number
+            revenue: cartTotal,
+            created_at: new Date().toISOString(),
             time: 'Just now'
         };
 
         try {
          
             const { error: insertError } = await supabase
-                .from('orders') 
+                .from('order') 
                 .insert([newOrder]);
 
             if (insertError) {
