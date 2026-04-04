@@ -10,12 +10,6 @@ import DynamicBackground from '../../components/common/DynamicBackground';
 import { supabase } from '../../lib/Supabase';
 import './PulseDetails.css';
 
-// Thumbnails (Static from assets)
-import thumb1 from '../../assets/images/watch.png'; 
-import thumb2 from '../../assets/images/1img.png';
-import thumb3 from '../../assets/images/2img.png';
-import thumb4 from '../../assets/images/3img.png';
-
 const PulseDetails = () => {
   const { productId } = useParams();
   const { t, lang } = useContext(LanguageContext);
@@ -96,6 +90,19 @@ const PulseDetails = () => {
   };
 
   const mainImg = product?.image_url;
+  
+  // Parse gallery_images from Supabase (JSON string or array)
+  const galleryImages = React.useMemo(() => {
+    if (!product?.['gallery-images']) return [];
+    try {
+      return typeof product['gallery-images'] === 'string'
+        ? JSON.parse(product['gallery-images'])
+        : product['gallery-images'];
+    } catch { return []; }
+  }, [product]);
+
+  // All thumbs: main first, then gallery
+  const allThumbs = [mainImg, ...galleryImages].filter(Boolean);
 
   return (
     <div className={`pulse-details-container ${isAr ? 'rtl-text' : ''}`} dir={isAr ? 'rtl' : 'ltr'}>
@@ -135,21 +142,15 @@ const PulseDetails = () => {
                   <img src={selectedImg} alt={isAr ? product.name_ar : product.name_en} className="main-featured-img" />
                 </div>
                 <div className="thumbnail-group">
-                  <div className={`thumb ${selectedImg === mainImg ? 'active' : ''}`} onClick={() => setSelectedImg(mainImg)}>
-                    <img src={mainImg} alt="Main Thumb" />
-                  </div>
-                  <div className={`thumb ${selectedImg === thumb1 ? 'active' : ''}`} onClick={() => setSelectedImg(thumb1)}>
-                    <img src={thumb1} alt="Thumb 1" />
-                  </div>
-                  <div className={`thumb ${selectedImg === thumb2 ? 'active' : ''}`} onClick={() => setSelectedImg(thumb2)}>
-                    <img src={thumb2} alt="Thumb 2" />
-                  </div>
-                  <div className={`thumb ${selectedImg === thumb3 ? 'active' : ''}`} onClick={() => setSelectedImg(thumb3)}>
-                    <img src={thumb3} alt="Thumb 3" />
-                  </div>
-                  <div className={`thumb ${selectedImg === thumb4 ? 'active' : ''}`} onClick={() => setSelectedImg(thumb4)}>
-                    <img src={thumb4} alt="Thumb 4" />
-                  </div>
+                  {allThumbs.map((imgUrl, idx) => (
+                    <div
+                      key={idx}
+                      className={`thumb ${selectedImg === imgUrl ? 'active' : ''}`}
+                      onClick={() => setSelectedImg(imgUrl)}
+                    >
+                      <img src={imgUrl} alt={`Thumb ${idx + 1}`} />
+                    </div>
+                  ))}
                 </div>
               </div>
               
