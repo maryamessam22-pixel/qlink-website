@@ -59,7 +59,7 @@ const CartScreen = () => {
           </div>
         ) : (
           <div className="cart-layout scroll-animate stag-2">
-            {/* Cart Items */}
+        
             <div className="cart-items-col">
               {cartItems.map((item, idx) => (
                 <div className="cart-item-card" key={item.id} style={{ animationDelay: `${idx * 0.08}s` }}>
@@ -105,7 +105,7 @@ const CartScreen = () => {
               ))}
             </div>
 
-            {/* Order Summary */}
+    
             <div className="cart-summary-col">
               <div className="cart-summary-card">
                 <h3 className="cart-summary-title">{t('cart.orderSummary')}</h3>

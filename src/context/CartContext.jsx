@@ -9,7 +9,7 @@ export const CartProvider = ({ children }) => {
 
   const addToCart = (item) => {
     setCartItems(prev => {
-      // Check if same product + same color already in cart
+ 
       const existingIndex = prev.findIndex(
         ci => ci.slug === item.slug && ci.color === item.color
       );

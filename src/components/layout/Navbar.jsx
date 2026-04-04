@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { ShoppingCart, User, Menu, X, LogOut } from 'lucide-react';
 import { LanguageContext } from '../../context/LanguageContext';
 import { AuthContext } from '../../context/AuthContext';
+import { useCart } from '../../context/CartContext';
 import Dropdown from './Dropdown';
 import Logo from './Logo';
 import './Navbar.css';
@@ -14,6 +15,7 @@ function Navbar() {
   const { pathname } = location;
   const { lang, toggleLanguage, t } = useContext(LanguageContext);
   const { isAuthenticated, openModalWithRoute, logout } = useContext(AuthContext);
+  const { cartCount } = useCart();
 
   const closeMobileMenu = () => setIsMobileMenuOpen(false);
 
@@ -123,7 +125,12 @@ function Navbar() {
         <button className="lang-btn" onClick={toggleLanguage}>
           {lang === 'en' ? 'AR' : 'EN'}
         </button>
-        <button className="icon-btn"><ShoppingCart size={22} color="var(--text-primary)" /></button>
+        <button className="icon-btn cart-icon-wrapper" onClick={() => navigate('/cart')}>
+          <ShoppingCart size={22} color="var(--text-primary)" />
+          {cartCount > 0 && (
+            <span className="cart-badge">{cartCount > 99 ? '99+' : cartCount}</span>
+          )}
+        </button>
 
       
         <Link

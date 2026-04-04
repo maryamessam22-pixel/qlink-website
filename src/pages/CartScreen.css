@@ -1,4 +1,4 @@
-/* ===== Cart Page ===== */
+
 .cart-page {
   min-height: 100vh;
   padding-top: 150px;
@@ -14,7 +14,6 @@
   padding: 0 5% 80px;
 }
 
-/* Back Button */
 .cart-back-btn {
   display: inline-flex;
   align-items: center;
@@ -30,7 +29,7 @@
   opacity: 0.8;
 }
 
-/* Title */
+
 .cart-page-title {
   font-size: 36px;
   font-weight: 700;
@@ -38,7 +37,7 @@
   margin-bottom: 48px;
 }
 
-/* ===== Empty State ===== */
+
 .cart-empty {
   display: flex;
   flex-direction: column;
@@ -82,7 +81,7 @@
   transform: translateY(-2px);
 }
 
-/* ===== Cart Layout ===== */
+
 .cart-layout {
   display: grid;
   grid-template-columns: 1.4fr 1fr;
@@ -90,7 +89,7 @@
   align-items: flex-start;
 }
 
-/* ===== Cart Item Card ===== */
+
 .cart-items-col {
   display: flex;
   flex-direction: column;
@@ -118,7 +117,7 @@
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* Thumbnail */
+
 .cart-item-img-box {
   width: 96px;
   height: 96px;
@@ -136,7 +135,6 @@
   object-fit: cover;
 }
 
-/* Info */
 .cart-item-info {
   flex: 1;
   display: flex;
@@ -153,7 +151,6 @@
   color: rgba(255, 255, 255, 0.5);
 }
 
-/* Qty Row */
 .cart-item-qty-row {
   display: inline-flex;
   align-items: center;
@@ -193,7 +190,6 @@
   line-height: 32px;
 }
 
-/* Right Side — Price + Delete */
 .cart-item-right {
   display: flex;
   flex-direction: column;
@@ -224,7 +220,7 @@
   background: rgba(224, 50, 50, 0.1);
 }
 
-/* ===== Order Summary Card ===== */
+
 .cart-summary-col {
   position: sticky;
   top: 140px;
@@ -288,7 +284,7 @@
   box-shadow: 0 8px 24px rgba(224, 50, 50, 0.3);
 }
 
-/* ===== Animation ===== */
+
 .cart-page .scroll-animate {
   opacity: 0;
   transform: translateY(30px);
