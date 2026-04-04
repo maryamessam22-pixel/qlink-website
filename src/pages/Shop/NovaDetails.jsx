@@ -10,7 +10,7 @@ import DynamicBackground from '../../components/common/DynamicBackground';
 import { supabase } from '../../lib/Supabase';
 import './NovaDetails.css';
 
-// دالة صغيرة عشان نعرف اللينك ده فيديو ولا صورة
+
 const checkIsVideo = (url) => {
   if (!url) return false;
   return url.toLowerCase().match(/\.(mp4|webm|ogg)$/i);
@@ -110,7 +110,7 @@ const NovaDetails = () => {
   const allThumbs = galleryImages.filter(Boolean);
   const imgAltText = product?.featured_image_alt || (isAr ? product?.name_ar : product?.name_en);
 
-  // نحدد المتغير ده فيديو ولا لأ
+
   const isSelectedVideo = checkIsVideo(selectedImg);
 
   return (
@@ -147,7 +147,7 @@ const NovaDetails = () => {
             <div className="nova-gallery-side scroll-animate stag-1">
               <div className="nova-gallery">
                 <div className="main-image-wrapper">
-                  {/* هنا الشرط: لو فيديو اعرضه في تاج فيديو، ولو صورة في تاج صورة */}
+                 
                   {isSelectedVideo ? (
                     <video 
                       src={selectedImg} 
@@ -155,8 +155,7 @@ const NovaDetails = () => {
                       autoPlay 
                       muted 
                       loop 
-                      className="main-featured-img" 
-                      style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }}
+                      className="main-featured-img"
                     />
                   ) : (
                     <img src={selectedImg} alt={imgAltText} className="main-featured-img" />
@@ -172,16 +171,16 @@ const NovaDetails = () => {
                         className={`thumb ${selectedImg === mediaUrl ? 'active' : ''}`}
                         onClick={() => setSelectedImg(mediaUrl)}
                       >
-                        {/* هنا نفس الشرط في الـ Thumbnails */}
+           
                         {isVid ? (
                           <video 
                             src={mediaUrl} 
                             muted 
                             playsInline
-                            style={{ maxWidth: '80%', maxHeight: '80%', objectFit: 'contain', pointerEvents: 'none' }}
+                            className="thumb-media"
                           />
                         ) : (
-                          <img src={mediaUrl} alt={`Thumb ${idx + 1}`} />
+                          <img src={mediaUrl} alt={`Thumb ${idx + 1}`} className="thumb-media" />
                         )}
                       </div>
                     );
