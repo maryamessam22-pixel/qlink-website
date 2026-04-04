@@ -658,6 +658,20 @@ const arTranslations = {
     subscribePlaceholder: "عنوان بريدك الإلكتروني...",
     subscribeBtn: "اشترك",
     copyright: "© 2026 كيو لينك. جميع الحقوق محفوظة. متصل دائماً. محمي دائماً."
+  },
+  cart: {
+    title: "سلة التسوق",
+    backToShop: "العودة إلى المتجر",
+    emptyTitle: "سلة التسوق فارغة",
+    emptyDesc: "يبدو أنك لم تضف أي سوار إلى سلة التسوق بعد.",
+    continueShopping: "تابع التسوق",
+    standardSize: "مقاس قياسي",
+    orderSummary: "ملخص الطلب",
+    subtotal: "المجموع الفرعي",
+    shipping: "الشحن",
+    free: "مجاني",
+    total: "الإجمالي:",
+    checkout: "المتابعة للدفع"
   }
 };
 

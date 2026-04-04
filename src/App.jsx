@@ -30,6 +30,7 @@ import PrivacydataNova from './pages/Shop/PrivacydataNova';
 import PrivacydataPulse from './pages/Shop/PrivacydataPulse';
 import InTheBoxNova from './pages/Shop/InTheBoxNova';
 import InTheBoxPulse from './pages/Shop/InTheBoxPulse';
+import CartScreen from './pages/CartScreen';
 
 // Auth
 import AuthPage from './pages/Auth/AuthPage';
@@ -102,6 +103,7 @@ function App() {
               <Route path="/support/faqs" element={<Faqs />} />
               <Route path="/support/contact" element={<Contact />} />
               <Route path="/support/download" element={<AppDownload />} />
+              <Route path="/cart" element={<CartScreen />} />
             </Route>
           </Route>
 

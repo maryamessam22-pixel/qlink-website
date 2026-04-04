@@ -6,6 +6,7 @@ import {
   ShoppingCart, Truck, ShieldCheck, Undo2, WifiOff, Sparkles, Waves
 } from 'lucide-react';
 import { LanguageContext } from '../../context/LanguageContext';
+import { useCart } from '../../context/CartContext';
 import DynamicBackground from '../../components/common/DynamicBackground';
 import { supabase } from '../../lib/Supabase';
 import './NovaDetails.css';
@@ -19,6 +20,7 @@ const checkIsVideo = (url) => {
 const NovaDetails = () => {
   const { productId } = useParams();
   const { t, lang } = useContext(LanguageContext);
+  const { addToCart } = useCart();
   const navigate = useNavigate();
   const isAr = lang === 'ar';
   
@@ -251,7 +253,19 @@ const NovaDetails = () => {
                   <Zap fill="white" size={20} />
                   {t('novaDetails.buyNow')}
                 </button>
-                <button className="btn-cart">
+                <button className="btn-cart" onClick={() => {
+                  const selectedColor = colors.find(c => c.id === activeColor);
+                  addToCart({
+                    slug: 'qlink-nova-touch',
+                    name: isAr ? product.name_ar : product.name_en,
+                    color: activeColor,
+                    colorName: selectedColor?.name || activeColor,
+                    qty,
+                    price: product.price,
+                    image: product.image_url
+                  });
+                  navigate('/cart');
+                }}>
                   <ShoppingCart size={20} />
                   {t('novaDetails.addCart')}
                 </button>

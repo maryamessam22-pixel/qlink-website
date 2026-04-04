@@ -6,6 +6,7 @@ import {
   ShoppingCart, Truck, ShieldCheck, Undo2, WifiOff, Sparkles, Upload
 } from 'lucide-react';
 import { LanguageContext } from '../../context/LanguageContext';
+import { useCart } from '../../context/CartContext';
 import DynamicBackground from '../../components/common/DynamicBackground';
 import { supabase } from '../../lib/Supabase';
 import './PulseDetails.css';
@@ -13,6 +14,7 @@ import './PulseDetails.css';
 const PulseDetails = () => {
   const { productId } = useParams();
   const { t, lang } = useContext(LanguageContext);
+  const { addToCart } = useCart();
   const navigate = useNavigate();
   const isAr = lang === 'ar';
   
@@ -224,7 +226,19 @@ const PulseDetails = () => {
                   <Zap fill="white" size={20} />
                   {t('pulseDetails.buyNow')}
                 </button>
-                <button className="btn-cart">
+                <button className="btn-cart" onClick={() => {
+                  const selectedColor = colors.find(c => c.id === activeColor);
+                  addToCart({
+                    slug: 'qlink-pulse',
+                    name: isAr ? product.name_ar : product.name_en,
+                    color: activeColor,
+                    colorName: selectedColor?.name || activeColor,
+                    qty,
+                    price: product.price,
+                    image: product.image_url
+                  });
+                  navigate('/cart');
+                }}>
                   <ShoppingCart size={20} />
                   {t('pulseDetails.addCart')}
                 </button>

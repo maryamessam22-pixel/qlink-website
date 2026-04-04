@@ -659,6 +659,20 @@ const translations = {
     subscribePlaceholder: "Your email address...",
     subscribeBtn: "Subscribe",
     copyright: "© 2026 Qlink. All rights reserved. Always connected. Always protected."
+  },
+  cart: {
+    title: "Your Cart",
+    backToShop: "Back to Shop",
+    emptyTitle: "Your cart is empty",
+    emptyDesc: "Looks like you haven't added any bracelets to your cart yet.",
+    continueShopping: "Continue Shopping",
+    standardSize: "Standard size",
+    orderSummary: "Order Summary",
+    subtotal: "Subtotal",
+    shipping: "Shipping",
+    free: "Free",
+    total: "Total:",
+    checkout: "Proceed to Checkout"
   }
 };
 
