@@ -19,7 +19,7 @@ const PulseDetails = () => {
   const [qty, setQty] = useState(1);
   const [activeColor, setActiveColor] = useState('gray');
   
-  // States for fetched data & loading
+
   const [product, setProduct] = useState(null);
   const [seoData, setSeoData] = useState(null);
   const [selectedImg, setSelectedImg] = useState('');
@@ -91,7 +91,7 @@ const PulseDetails = () => {
 
   const mainImg = product?.image_url;
   
-  // Parse gallery_images from Supabase (JSON string or array)
+  // My Images that i add at Supabase is (JSON string or array)
   const galleryImages = React.useMemo(() => {
     if (!product?.['gallery-images']) return [];
     try {
@@ -101,7 +101,7 @@ const PulseDetails = () => {
     } catch { return []; }
   }, [product]);
 
-  // All thumbs: main first, then gallery
+ 
   const allThumbs = [mainImg, ...galleryImages].filter(Boolean);
 
   return (
@@ -112,8 +112,7 @@ const PulseDetails = () => {
         slug="shop/pulse"
       />
       <DynamicBackground />
-      
-      {/* Loading State with the requested styles */}
+  
       {loading ? (
         <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: '8px', color: '#ffffff' }}>
           <h2 style={{ fontSize: '18px', fontWeight: '400', margin: 0, letterSpacing: '0.5px' }}>
@@ -126,7 +125,7 @@ const PulseDetails = () => {
           </div>
         </div>
       ) : (
-        /* Product Content */
+       
         <div className="pulse-content-wrapper">
           
           <Link to="/shop/bracelet" className="back-btn scroll-animate">
@@ -187,7 +186,7 @@ const PulseDetails = () => {
                 </div>
                 
                 <div className="floating-side-actions">
-                  {/* Actions placeholders */}
+    
                 </div>
               </div>
               

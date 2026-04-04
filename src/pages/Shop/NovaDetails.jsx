@@ -45,7 +45,15 @@ const NovaDetails = () => {
           
         if (prodData) {
           setProduct(prodData);
-          setSelectedImg(prodData.image_url);
+          
+          // نجيب مصفوفة الصور عشان نختار أول واحدة كصورة أساسية
+          let gImages = prodData['gallery-images'] || prodData.gallery_images || [];
+          if (typeof gImages === 'string') {
+            try { gImages = JSON.parse(gImages); } catch { gImages = []; }
+          }
+          
+          // لو الجاليري فيه صور، اختار أول صورة.. لو مفيش استخدم العادية
+          setSelectedImg(gImages.length > 0 ? gImages[0] : prodData.image_url);
         }
 
         // Fetch SEO Details
@@ -89,20 +97,19 @@ const NovaDetails = () => {
     navigate(path);
   };
 
-  const mainImg = product?.image_url;
-
   // Parse gallery-images from Supabase (JSON string or array)
   const galleryImages = React.useMemo(() => {
-    if (!product?.['gallery-images']) return [];
+    const images = product?.['gallery-images'] || product?.gallery_images;
+    if (!images) return [];
     try {
-      return typeof product['gallery-images'] === 'string'
-        ? JSON.parse(product['gallery-images'])
-        : product['gallery-images'];
+      return typeof images === 'string'
+        ? JSON.parse(images)
+        : images;
     } catch { return []; }
   }, [product]);
 
-  // All thumbs: main first, then gallery
-  const allThumbs = [mainImg, ...galleryImages].filter(Boolean);
+  // هنا خلينا الكود يعرض الصور اللي في الجاليري بس من غير زيادة
+  const allThumbs = galleryImages.filter(Boolean);
 
   return (
     <div className={`nova-details-container ${isAr ? 'rtl-text' : ''}`} dir={isAr ? 'rtl' : 'ltr'}>
@@ -113,7 +120,6 @@ const NovaDetails = () => {
       />
       <DynamicBackground />
       
-     
       {loading ? (
         <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: '1px', color: '#ffffff' }}>
           <h2 style={{ fontSize: '18px', fontWeight: '400', margin: 0, letterSpacing: '0.5px' }}>
@@ -127,7 +133,6 @@ const NovaDetails = () => {
         </div>
       ) : (
 
-        
         <div className="nova-content-wrapper">
           
           <Link to="/shop/bracelet" className="back-btn scroll-animate">
