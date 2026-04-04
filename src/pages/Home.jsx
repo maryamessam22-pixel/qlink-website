@@ -34,7 +34,6 @@ import WhyCard from '../components/Cards/WhyCard';
 import StepItem from '../components/Cards/StepItem';
 import HalfCard from '../components/Cards/HalfCard';
 
-
 import watchImg from '../assets/images/watch.png';
 import twoWatchesImg from '../assets/images/2 watches.png';
 import appScreenImg from '../assets/images/appscreen.png';
@@ -44,6 +43,7 @@ function Home() {
   const { isAuthenticated, openModalWithRoute } = useAuth();
   const [isScrolled, setIsScrolled] = useState(false);
   const [cms, setCms] = useState({});
+  const [seoData, setSeoData] = useState(null);
   const { t, lang } = useContext(LanguageContext);
 
   const handleGuardedClick = useCallback((e, href) => {
@@ -58,35 +58,39 @@ function Home() {
       openModalWithRoute(href);
     }
   }, [isAuthenticated, openModalWithRoute, navigate]);
+
   const pick = (row, field) => {
     if (!row) return null;
     return lang === 'ar' ? row[`${field}_ar`] : row[`${field}_en`];
   };
 
   useEffect(() => {
-    const fetchCmsContent = async () => {
+    const fetchContent = async () => {
       try {
-        const { data, error } = await supabase
+        const { data: seo } = await supabase
+          .from('seo')
+          .select('*')
+          .eq('slug', '')
+          .single();
+        if (seo) setSeoData(seo);
+
+        const { data: content, error } = await supabase
           .from('cms_content')
           .select('*')
           .in('section_key', ['home_hero', 'home_features', 'home_simple_secure']);
 
-        if (error) {
-          console.error('Supabase CMS fetch error:', error);
-          return;
-        }
-
-        if (data) {
+        if (error) return;
+        if (content) {
           const map = {};
-          data.forEach(item => { map[item.section_key] = item; });
+          content.forEach(item => { map[item.section_key] = item; });
           setCms(map);
         }
       } catch (err) {
-        console.error('Unexpected CMS fetch error:', err);
+        console.error(err);
       }
     };
 
-    fetchCmsContent();
+    fetchContent();
 
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 300);
@@ -111,14 +115,14 @@ function Home() {
 
     return () => observer.disconnect();
   }, []);
+
   return (
     <div className="home-wrapper">
       <SEO 
-        title={lang === 'ar' ? 'سوار طوارئ ذكي' : 'Smart Emergency QR Bracelet'}
-        description={lang === 'ar' ? 'كيو لينك هو سوار طوارئ يعتمد على رمز QR للوصول الفوري للمعلومات الطبية الحيوية في أي مكان.' : 'Qlink is a smart emergency QR bracelet that provides instant access to vital medical information.'}
+        title={seoData ? pick(seoData, 'title') : (lang === 'ar' ? 'سوار طوارئ ذكي' : 'Smart Emergency QR Bracelet')}
+        description={seoData ? pick(seoData, 'description') : (lang === 'ar' ? 'كيو لينك هو سوار طوارئ يعتمد على رمز QR للوصول الفوري للمعلومات الطبية الحيوية في أي مكان.' : 'Qlink is a smart emergency QR bracelet that provides instant access to vital medical information.')}
         slug=""
       />
-      {/* Liquid background effect */}
       <div className="home-liquid-bg">
         <div className="home-glow home-glow-1"></div>
         <div className="home-glow home-glow-2"></div>
@@ -126,59 +130,57 @@ function Home() {
       </div>
 
       <div className="home-content">
-        {/* HERO SECTION — section_key: home_hero */}
         <section className={`hero-section scroll-animate ${lang === 'ar' ? 'rtl-text' : ''}`}>
-  <div className="hero-text">
-    <h1 className={`hero-title scroll-animate stag-1 ${lang === 'ar' ? '' : 'hero-title-eng'}`}>
-      {cms['home_hero'] ? (
-        <span
-          dangerouslySetInnerHTML={{
-            __html: (() => {
-              const title = pick(cms['home_hero'], 'title') || '';
-              if (lang === 'en') {
-                return title.replace(/Scan/gi, '<span class="red-text">Scan</span>');
-              } else {
-                return title.replace(/مسح/g, '<span class="red-text">مسح</span>');
-              }
-            })()
-          }}
-        />
-      ) : (
-        <>
-          {t('hero.titleTop')}
-          <span className="red-text">Scan</span>
-          <br />
-          {t('hero.titleBottom')}
-        </>
-      )}
-    </h1>
+          <div className="hero-text">
+            <h1 className={`hero-title scroll-animate stag-1 ${lang === 'ar' ? '' : 'hero-title-eng'}`}>
+              {cms['home_hero'] ? (
+                <span
+                  dangerouslySetInnerHTML={{
+                    __html: (() => {
+                      const title = pick(cms['home_hero'], 'title') || '';
+                      if (lang === 'en') {
+                        return title.replace(/Scan/gi, '<span class="red-text">Scan</span>');
+                      } else {
+                        return title.replace(/مسح/g, '<span class="red-text">مسح</span>');
+                      }
+                    })()
+                  }}
+                />
+              ) : (
+                <>
+                  {t('hero.titleTop')}
+                  <span className="red-text">Scan</span>
+                  <br />
+                  {t('hero.titleBottom')}
+                </>
+              )}
+            </h1>
 
-    <p className="hero-desc scroll-animate stag-2">
-      {cms['home_hero'] ? pick(cms['home_hero'], 'subtitle') : t('hero.desc')}
-    </p>
+            <p className="hero-desc scroll-animate stag-2">
+              {cms['home_hero'] ? pick(cms['home_hero'], 'subtitle') : t('hero.desc')}
+            </p>
 
-    <div className={`hero-buttons scroll-animate stag-3 ${lang === 'ar' ? 'rtl-buttons' : ''}`}>
-      <button
-        className="btn btn-secondary"
-        onClick={(e) => handleGuardedClick(e, '/how-it-works/qlink')}
-      >
-        {cms['home_hero'] ? cms['home_hero'][`first-btn-${lang}`] || t('hero.btnHow') : t('hero.btnHow')}
-      </button>
-      <button
-        className="btn btn-primary"
-        onClick={(e) => handleGuardedClick(e, '/shop/bracelet')}
-      >
-        {cms['home_hero'] ? cms['home_hero'][`sec-btn-${lang}`] || t('hero.btnExplore') : t('hero.btnExplore')}
-      </button>
-    </div>
-  </div>
+            <div className={`hero-buttons scroll-animate stag-3 ${lang === 'ar' ? 'rtl-buttons' : ''}`}>
+              <button
+                className="btn btn-secondary"
+                onClick={(e) => handleGuardedClick(e, '/how-it-works/qlink')}
+              >
+                {cms['home_hero'] ? cms['home_hero'][`first-btn-${lang}`] || t('hero.btnHow') : t('hero.btnHow')}
+              </button>
+              <button
+                className="btn btn-primary"
+                onClick={(e) => handleGuardedClick(e, '/shop/bracelet')}
+              >
+                {cms['home_hero'] ? cms['home_hero'][`sec-btn-${lang}`] || t('hero.btnExplore') : t('hero.btnExplore')}
+              </button>
+            </div>
+          </div>
 
-  <div className="hero-image">
-    <img src={watchImg} alt="Qlink Bracelets" className="hero-img-element" />
-  </div>
-</section>
+          <div className="hero-image">
+            <img src={watchImg} alt="Qlink Bracelets" className="hero-img-element" />
+          </div>
+        </section>
 
-        {/* WHAT IS QLINK — section_key: home_features */}
         <section className={`what-section scroll-animate ${lang === 'ar' ? 'rtl-text' : ''}`}>
           <h2 className="section-title">
             {cms['home_features'] ? pick(cms['home_features'], 'title') : t('whatIs.title')}
@@ -188,60 +190,56 @@ function Home() {
           </p>
 
           <div className="card-grid-3">
-  {/* Card One */}
-  <InfoCard
-    className="bg-success-light"
-    icon={Zap}
-    iconColor="var(--color-success)"
-    title={
-      cms['home_features']
-        ? cms['home_features'][`card-one-title-${lang}`] || t('whatIs.c1Title')
-        : t('whatIs.c1Title')
-    }
-    description={
-      cms['home_features']
-        ? cms['home_features'][`card-one-desc-${lang}`] || t('whatIs.c1Desc')
-        : t('whatIs.c1Desc')
-    }
-  />
+            <InfoCard
+              className="bg-success-light"
+              icon={Zap}
+              iconColor="var(--color-success)"
+              title={
+                cms['home_features']
+                  ? cms['home_features'][`card-one-title-${lang}`] || t('whatIs.c1Title')
+                  : t('whatIs.c1Title')
+              }
+              description={
+                cms['home_features']
+                  ? cms['home_features'][`card-one-desc-${lang}`] || t('whatIs.c1Desc')
+                  : t('whatIs.c1Desc')
+              }
+            />
 
-  {/* Card Two */}
-  <InfoCard
-    className="bg-blue-light"
-    icon={QrCode}
-    iconColor="var(--color-primary-blue)"
-    title={
-      cms['home_features']
-        ? cms['home_features'][`card-two-title-${lang}`] || t('whatIs.c2Title')
-        : t('whatIs.c2Title')
-    }
-    description={
-      cms['home_features']
-        ? cms['home_features'][`card-two-desc-${lang}`] || t('whatIs.c2Desc')
-        : t('whatIs.c2Desc')
-    }
-  />
+            <InfoCard
+              className="bg-blue-light"
+              icon={QrCode}
+              iconColor="var(--color-primary-blue)"
+              title={
+                cms['home_features']
+                  ? cms['home_features'][`card-two-title-${lang}`] || t('whatIs.c2Title')
+                  : t('whatIs.c2Title')
+              }
+              description={
+                cms['home_features']
+                  ? cms['home_features'][`card-two-desc-${lang}`] || t('whatIs.c2Desc')
+                  : t('whatIs.c2Desc')
+              }
+            />
 
-  {/* Card Three */}
-  <InfoCard
-    className="bg-error-light"
-    icon={Lock}
-    iconColor="var(--color-error)"
-    title={
-      cms['home_features']
-        ? cms['home_features'][`card-three-title-${lang}`] || t('whatIs.c3Title')
-        : t('whatIs.c3Title')
-    }
-    description={
-      cms['home_features']
-        ? cms['home_features'][`card-three-desc-${lang}`] || t('whatIs.c3Desc')
-        : t('whatIs.c3Desc')
-    }
-  />
-</div>
+            <InfoCard
+              className="bg-error-light"
+              icon={Lock}
+              iconColor="var(--color-error)"
+              title={
+                cms['home_features']
+                  ? cms['home_features'][`card-three-title-${lang}`] || t('whatIs.c3Title')
+                  : t('whatIs.c3Title')
+              }
+              description={
+                cms['home_features']
+                  ? cms['home_features'][`card-three-desc-${lang}`] || t('whatIs.c3Desc')
+                  : t('whatIs.c3Desc')
+              }
+            />
+          </div>
         </section>
 
-        {/* WHY CHOOSE QLINK */}
         <section className={`why-section scroll-animate ${lang === 'ar' ? 'rtl-text' : ''}`}>
           <h2 className="section-title">{t('whyChoose.title')}</h2>
           <p className="section-subtitle">
@@ -272,7 +270,6 @@ function Home() {
           </div>
         </section>
 
-        {/* SPLIT FEATURE 1 — section_key: home_simple_secure */}
         <section className={`split-feature scroll-animate ${lang === 'ar' ? 'rtl-text' : ''}`}>
           <div className="split-text">
             <h2 className="split-title">
@@ -294,7 +291,6 @@ function Home() {
           </div>
         </section>
 
-        {/* WHO IS QLINK FOR */}
         <section className={`what-section scroll-animate ${lang === 'ar' ? 'rtl-text' : ''}`}>
           <h2 className="section-title">{t('whoIsFor.title')}</h2>
           <p className="section-subtitle">
@@ -332,7 +328,6 @@ function Home() {
           </div>
         </section>
 
-        {/* JOURNEY SECTION */}
         <section className={`journey-section scroll-animate ${lang === 'ar' ? 'rtl-text' : ''}`}>
           <h2 className="section-title">{t('journey.title')}</h2>
           <p className="section-subtitle">
@@ -367,7 +362,6 @@ function Home() {
           </div>
         </section>
 
-        {/* HALF CARDS */}
         <section className={`half-cards-section scroll-animate ${lang === 'ar' ? 'rtl-text' : ''}`}>
           <HalfCard
             title={t('halfCards.c1Title')}
@@ -379,7 +373,6 @@ function Home() {
           />
         </section>
 
-        {/* APP MOCKUP SECTION */}
         <div className={`app-section-wrapper scroll-animate ${lang === 'ar' ? 'rtl-text' : ''}`}>
           <section className="app-section">
             <div className="app-text">
@@ -415,7 +408,6 @@ function Home() {
           </section>
         </div>
 
-        {/* CTA */}
         <section className={`cta-section scroll-animate ${lang === 'ar' ? 'rtl-text' : ''}`}>
           <h2 className={`cta-title ${lang === 'ar' ? '' : 'cta-title-eng'}`}>{t('cta.title')}</h2>
           <button
