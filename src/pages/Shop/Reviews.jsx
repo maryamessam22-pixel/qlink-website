@@ -1,31 +1,69 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect, useContext, useState } from 'react';
 import SEO from '../../components/common/SEO';
 import { useNavigate } from 'react-router-dom';
 import { Quote, Star, MessageSquare, Share2, Users, CheckCircle2 } from 'lucide-react';
 import { LanguageContext } from '../../context/LanguageContext';
 import DynamicBackground from '../../components/common/DynamicBackground';
 import AppPromoSection from '../../components/Sections/AppPromoSection';
+import { supabase } from '../../lib/Supabase'; 
 import mobilesImg from '../../assets/images/mobile3rd.png';
 import './Reviews.css';
 
-
 import heroImg from '../../assets/images/hero.png'; 
-
 import salmaImg from '../../assets/images/salma.png';
 import sarahImg from '../../assets/images/sarah.png';
 import malakImg from '../../assets/images/malak.png';
 import annImg from '../../assets/images/ann.png';
 
-const testimonialImages = {
-  1: salmaImg,
-  2: sarahImg,
-  3: malakImg,
-  4: annImg
+const getAvatarForUser = (name) => {
+  if (!name) return heroImg;
+  if (name.includes('Salma') || name.includes('سلمى')) return salmaImg;
+  if (name.includes('Sarah') || name.includes('سارة')) return sarahImg;
+  if (name.includes('Malak') || name.includes('ملاك')) return malakImg;
+  if (name.includes('Ann') || name.includes('آن')) return annImg;
+  return heroImg; 
 };
 
 const Reviews = () => {
   const { t, lang } = useContext(LanguageContext);
   const navigate = useNavigate();
+
+  const [seoData, setSeoData] = useState(null);
+  const [reviewsList, setReviewsList] = useState([]);
+  const [featuredStory, setFeaturedStory] = useState(null);
+
+  useEffect(() => {
+    const fetchReviewsData = async () => {
+      try {
+ 
+        const { data: seo } = await supabase
+          .from('seo')
+          .select('*')
+          .eq('slug', 'shop/reviews')
+          .single();
+        if (seo) setSeoData(seo);
+
+    
+        const { data: reviews } = await supabase
+          .from('reviews')
+          .select('*')
+          .order('created_at', { ascending: false }); 
+        if (reviews) setReviewsList(reviews);
+
+        const { data: cms } = await supabase
+          .from('cms_content')
+          .select('*')
+          .eq('section_key', 'reviews_featured')
+          .single();
+        if (cms) setFeaturedStory(cms);
+
+      } catch (err) {
+        console.error("Error fetching reviews data:", err);
+      }
+    };
+
+    fetchReviewsData();
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
@@ -40,20 +78,20 @@ const Reviews = () => {
     animatedElements.forEach(el => observer.observe(el));
     
     return () => observer.disconnect();
-  }, []);
+  }, [reviewsList, featuredStory]); 
 
   return (
     <div className={`reviews-page-container ${lang === 'ar' ? 'rtl-text' : ''}`}>
       <SEO 
-        title={lang === 'ar' ? 'آراء العملاء' : 'Customer Reviews'}
-        description={lang === 'ar' ? 'اقرأ قصصاً حقيقية من مستخدمي كيو لينك وكيف ساعدهم السوار في حالات الطوارئ.' : 'Read real stories from Qlink users.'}
+        title={seoData ? (lang === 'ar' ? seoData.title_ar : seoData.title_en) : (lang === 'ar' ? 'آراء العملاء' : 'Customer Reviews')}
+        description={seoData ? (lang === 'ar' ? seoData.description_ar : seoData.description_en) : ''}
         slug="shop/reviews"
       />
       <DynamicBackground />
       
       <div className="reviews-content-wrapper">
-        
-        {/* Header Section */}
+ 
+
         <div className="reviews-header scroll-animate stag-1">
           <h1 className="reviews-title">
             {t('reviews.heroTitleTop')}
@@ -62,7 +100,6 @@ const Reviews = () => {
           <p className="reviews-subtitle">{t('reviews.heroSubtitle')}</p>
         </div>
 
-        
         <div className="featured-story-banner scroll-animate stag-2">
           <div className="featured-image-side">
             <img src={heroImg} alt="User Hero" />
@@ -70,17 +107,21 @@ const Reviews = () => {
               <div className="star-row">
                 {[...Array(5)].map((_, i) => <Star key={i} size={20} fill="#ffb800" color="#ffb800" />)}
               </div>
-              <h2>"{t('reviews.featuredQuote')}"</h2>
-              <p>{t('reviews.featuredStory')}</p>
+              
+     
+              <h2>"{featuredStory ? (lang === 'ar' ? featuredStory.title_ar : featuredStory.title_en) : t('reviews.featuredQuote')}"</h2>
+              
+        
+              <p>{featuredStory ? (lang === 'ar' ? featuredStory.content_ar : featuredStory.content_en) : t('reviews.featuredStory')}</p>
+              
               <div className="author-tag">
-                <strong>{t('reviews.featuredAuthor')}</strong>
+             
+                <strong>{featuredStory ? (lang === 'ar' ? featuredStory.subtitle_ar : featuredStory.subtitle_en) : t('reviews.featuredAuthor')}</strong>
                 <span className="verif"><CheckCircle2 size={14} /> {t('reviews.verified')}</span>
               </div>
             </div>
           </div>
-         
         </div>
-
   
         <div className="reviews-stats-bar scroll-animate stag-3">
           <div className="stat-card">
@@ -108,18 +149,22 @@ const Reviews = () => {
           </div>
         </div>
 
-        {/* Testimonials */}
+       
         <div className="testimonials-grid scroll-animate stag-1">
-          {t('reviews.testimonials', { returnObjects: true }).map((item) => (
+          {reviewsList.map((item) => (
             <div key={item.id} className="testimonial-card">
               <div className="card-header">
                 <div className="user-info">
                   <div className="user-avatar">
-                    <img src={testimonialImages[item.id]} alt={item.author} style={{width:'100%', height:'100%', borderRadius:'50%'}} />
+                    <img 
+                      src={getAvatarForUser(item.customer_name)} 
+                      alt={item.customer_name} 
+                      style={{width:'100%', height:'100%', borderRadius:'50%', objectFit: 'cover'}} 
+                    />
                   </div>
                   <div>
-                    <h4>{item.author}</h4>
-                    <span>{item.role}</span>
+                    <h4>{item.customer_name}</h4>
+                    <span>{item.customer_subtitle}</span>
                   </div>
                 </div>
                 <Quote size={24} className="quote-icon" />
@@ -129,23 +174,21 @@ const Reviews = () => {
                   <Star 
                     key={i} 
                     size={14} 
-                    fill={i < item.stars ? "#ffb800" : "transparent"} 
-                    color={i < item.stars ? "#ffb800" : "rgba(255,255,255,0.2)"} 
+                    fill={i < item.rating ? "#ffb800" : "transparent"} 
+                    color={i < item.rating ? "#ffb800" : "rgba(255,255,255,0.2)"} 
                   />
                 ))}
               </div>
-              <p className="card-quote">{item.quote}</p>
+              <p className="card-quote">{item.review_text}</p>
               <button
                 className="read-more-link"
                 onClick={() => navigate(`/shop/reviews/${item.id}`)}
               >
-                {item.readMore} &gt;
+                {lang === 'ar' ? 'اقرأ المزيد >' : 'Read More >'}
               </button>
             </div>
           ))}
         </div>
-
-
 
         <div className="rating-breakdown-section scroll-animate stag-2">
           <div className="overall-score-card">
@@ -168,7 +211,6 @@ const Reviews = () => {
           </div>
         </div>
 
-
         <div className="reviews-cta-grid scroll-animate stag-3">
           <div className="cta-box share-box">
              <MessageSquare size={32} className="cta-icon" />
@@ -183,7 +225,7 @@ const Reviews = () => {
           </div>
         </div>
 
-        {/* App Promo */}
+      
         <div className="scroll-animate stag-1" style={{ marginTop: '120px', marginBottom: '80px' }}>
           <AppPromoSection 
             imageSrc={mobilesImg} 

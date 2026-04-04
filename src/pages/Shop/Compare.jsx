@@ -15,16 +15,16 @@ import ShopCTA from '../../components/Sections/ShopCTA';
 function Compare() {
   const { t, lang } = useContext(LanguageContext);
   
-  // 1. تعريف الـ States اللي هتشيل الداتا
+  
   const [seoData, setSeoData] = useState(null);
   const [novaProduct, setNovaProduct] = useState(null);
   const [pulseProduct, setPulseProduct] = useState(null);
 
-  // 2. دالة الـ Fetch عشان نجيب الداتا من Supabase
+  
   useEffect(() => {
     const fetchCompareData = async () => {
       try {
-        // Fetch SEO
+    
         const { data: seo } = await supabase
           .from('seo')
           .select('*')
@@ -32,7 +32,7 @@ function Compare() {
           .single();
         if (seo) setSeoData(seo);
 
-        // Fetch Products (Nova & Pulse)
+       
         const { data: prods } = await supabase
           .from('products')
           .select('*')
@@ -53,7 +53,7 @@ function Compare() {
     fetchCompareData();
   }, []);
 
-  // 3. الأنيميشنز بتاعة الصفحة
+
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -112,26 +112,25 @@ function Compare() {
       </div>
       <div className="compare-page-container scroll-animate stag-1">
         
-        {/* Nova Card */}
+   
         <CompareCard 
           title={novaProduct ? (lang === 'ar' ? novaProduct.name_ar : novaProduct.name_en) : t('compare.novaTitle')}
           subTitle={t('compare.novaSub')}
           icon={novaIcon}
           features={novaFeatures}
-          // بناخد السعر من الداتا بيز، لو لسه بيحمل بنحط السعر الافتراضي
+          
           price={novaProduct ? novaProduct.price : "1,499"}
           buttonText={t('compare.novaBtn')}
           accentColor="#0097b2" 
           to="/shop/nova"
         />
 
-        {/* Pulse Card */}
+      
         <CompareCard 
           title={pulseProduct ? (lang === 'ar' ? pulseProduct.name_ar : pulseProduct.name_en) : t('compare.pulseTitle')}
           subTitle={t('compare.pulseSub')}
           icon={pulseIcon}
           features={pulseFeatures}
-          // نفس الكلام للسعر هنا
           price={pulseProduct ? pulseProduct.price : "1,199"}
           buttonText={t('compare.pulseBtn')}
           accentColor="#00c853" 
