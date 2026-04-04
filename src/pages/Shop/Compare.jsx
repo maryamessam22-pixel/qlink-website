@@ -122,6 +122,7 @@ function Compare() {
           price={novaProduct ? novaProduct.price : "1,499"}
           buttonText={t('compare.novaBtn')}
           accentColor="#0097b2" 
+          to="/shop/nova"
         />
 
         {/* Pulse Card */}
@@ -134,6 +135,7 @@ function Compare() {
           price={pulseProduct ? pulseProduct.price : "1,199"}
           buttonText={t('compare.pulseBtn')}
           accentColor="#00c853" 
+          to="/shop/pulse"
         />
 
       </div>

@@ -1,4 +1,4 @@
-import React from 'react';
+import { Link } from 'react-router-dom';
 import './CompareCard.css';
 
 const CompareCard = ({ 
@@ -8,7 +8,8 @@ const CompareCard = ({
   features, 
   price, 
   buttonText, 
-  accentColor 
+  accentColor,
+  to
 }) => {
   return (
     <div className="compare-card">
@@ -42,12 +43,13 @@ const CompareCard = ({
           <span className="currency-label">EGP</span>
           <span className="price-amount">{price}</span>
         </div>
-        <button 
+        <Link 
+          to={to}
           className="action-button" 
-          style={{ backgroundColor: accentColor }}
+          style={{ backgroundColor: accentColor, textDecoration: 'none', display: 'flex', justifyContent: 'center', alignItems: 'center' }}
         >
           {buttonText}
-        </button>
+        </Link>
       </div>
     </div>
   );
