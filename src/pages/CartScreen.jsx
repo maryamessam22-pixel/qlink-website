@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Trash2, Minus, Plus, ShoppingBag, ArrowLeft } from 'lucide-react';
 import { LanguageContext } from '../context/LanguageContext';
 import { useCart } from '../context/CartContext';
@@ -10,7 +10,6 @@ import './CartScreen.css';
 const CartScreen = () => {
     const { t, lang } = useContext(LanguageContext);
     const isAr = lang === 'ar';
-    const navigate = useNavigate();
     const { cartItems, removeFromCart, updateQty, cartTotal } = useCart();
 
     useEffect(() => {
@@ -128,7 +127,7 @@ const CartScreen = () => {
                                     <span>{formatPrice(cartTotal)} EGP</span>
                                 </div>
 
-                                <button className="cart-checkout-btn" onClick={() => navigate('/checkout')}>
+                                <button className="cart-checkout-btn">
                                     {t('cart.checkout')}
                                 </button>
                             </div>

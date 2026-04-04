@@ -673,6 +673,24 @@ const translations = {
     free: "Free",
     total: "Total:",
     checkout: "Proceed to Checkout"
+  },
+  checkout: {
+    shippingTitle: "Shipping Information",
+    firstName: "First Name",
+    lastName: "Last Name",
+    email: "Email",
+    address: "Address",
+    city: "City",
+    postalCode: "Postal Code",
+    paymentTitle: "Payment Method",
+    creditCard: "Credit Card",
+    cod: "Cash On Delivery",
+    cardNumber: "Card Number",
+    expiryDate: "Expiry Date",
+    cvc: "CVC",
+    completePurchase: "Complete Purchase",
+    promoCode: "Promo Code",
+    apply: "Apply"
   }
 };
 
