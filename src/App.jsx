@@ -83,6 +83,7 @@ function App() {
           {/* Public Home */}
           <Route element={<MainLayout />}>
             <Route path="/" element={<Home />} />
+            <Route path="/complete-purchase" element={<CompletePurchase />} />
             
             <Route element={<ProtectedRoute />}>
               <Route path="/how-it-works/qlink" element={<HowQlinkWorks />} />
@@ -105,7 +106,6 @@ function App() {
               <Route path="/support/download" element={<AppDownload />} />
               <Route path="/cart" element={<CartScreen />} />
               <Route path="/checkout" element={<Checkout />} />
-              <Route path="/complete-purchase" element={<CompletePurchase />} />
             </Route>
           </Route>
 
