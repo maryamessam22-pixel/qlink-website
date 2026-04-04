@@ -5,7 +5,6 @@ import { Quote, Star, MessageSquare, Share2, Users, CheckCircle2 } from 'lucide-
 import { LanguageContext } from '../../context/LanguageContext';
 import DynamicBackground from '../../components/common/DynamicBackground';
 import AppPromoSection from '../../components/Sections/AppPromoSection';
-import { supabase } from '../../lib/Supabase'; 
 import mobilesImg from '../../assets/images/mobile3rd.png';
 import './Reviews.css';
 
@@ -28,43 +27,6 @@ const Reviews = () => {
   const { t, lang } = useContext(LanguageContext);
   const navigate = useNavigate();
 
-  const [seoData, setSeoData] = useState(null);
-  const [reviewsList, setReviewsList] = useState([]);
-  const [featuredStory, setFeaturedStory] = useState(null);
-
-  useEffect(() => {
-    const fetchReviewsData = async () => {
-      try {
- 
-        const { data: seo } = await supabase
-          .from('seo')
-          .select('*')
-          .eq('slug', 'shop/reviews')
-          .single();
-        if (seo) setSeoData(seo);
-
-    
-        const { data: reviews } = await supabase
-          .from('reviews')
-          .select('*')
-          .order('created_at', { ascending: false }); 
-        if (reviews) setReviewsList(reviews);
-
-        const { data: cms } = await supabase
-          .from('cms_content')
-          .select('*')
-          .eq('section_key', 'reviews_featured')
-          .single();
-        if (cms) setFeaturedStory(cms);
-
-      } catch (err) {
-        console.error("Error fetching reviews data:", err);
-      }
-    };
-
-    fetchReviewsData();
-  }, []);
-
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -78,13 +40,13 @@ const Reviews = () => {
     animatedElements.forEach(el => observer.observe(el));
     
     return () => observer.disconnect();
-  }, [reviewsList, featuredStory]); 
+  }, []); 
 
   return (
     <div className={`reviews-page-container ${lang === 'ar' ? 'rtl-text' : ''}`}>
       <SEO 
-        title={seoData ? (lang === 'ar' ? seoData.title_ar : seoData.title_en) : (lang === 'ar' ? 'آراء العملاء' : 'Customer Reviews')}
-        description={seoData ? (lang === 'ar' ? seoData.description_ar : seoData.description_en) : ''}
+        title={lang === 'ar' ? 'آراء العملاء' : 'Customer Reviews'}
+        description={lang === 'ar' ? 'ماذا يقول عملاؤنا عن كيو لينك' : 'What our customers say about Qlink'}
         slug="shop/reviews"
       />
       <DynamicBackground />
@@ -109,14 +71,14 @@ const Reviews = () => {
               </div>
               
      
-              <h2>"{featuredStory ? (lang === 'ar' ? featuredStory.title_ar : featuredStory.title_en) : t('reviews.featuredQuote')}"</h2>
+              <h2>"{t('reviews.featuredQuote')}"</h2>
               
         
-              <p>{featuredStory ? (lang === 'ar' ? featuredStory.content_ar : featuredStory.content_en) : t('reviews.featuredStory')}</p>
+              <p>{t('reviews.featuredStory')}</p>
               
               <div className="author-tag">
              
-                <strong>{featuredStory ? (lang === 'ar' ? featuredStory.subtitle_ar : featuredStory.subtitle_en) : t('reviews.featuredAuthor')}</strong>
+                <strong>{t('reviews.featuredAuthor')}</strong>
                 <span className="verif"><CheckCircle2 size={14} /> {t('reviews.verified')}</span>
               </div>
             </div>
@@ -151,20 +113,25 @@ const Reviews = () => {
 
        
         <div className="testimonials-grid scroll-animate stag-1">
-          {reviewsList.map((item) => (
-            <div key={item.id} className="testimonial-card">
+          {Array.isArray(t('reviews.testimonials', { returnObjects: true })) && 
+           t('reviews.testimonials', { returnObjects: true }).map((item) => (
+            <div 
+              key={item.id} 
+              className="testimonial-card"
+              onClick={() => navigate(`/shop/reviews/${item.id}`)}
+            >
               <div className="card-header">
                 <div className="user-info">
                   <div className="user-avatar">
                     <img 
-                      src={getAvatarForUser(item.customer_name)} 
-                      alt={item.customer_name} 
+                      src={getAvatarForUser(item.author)} 
+                      alt={item.author} 
                       style={{width:'100%', height:'100%', borderRadius:'50%', objectFit: 'cover'}} 
                     />
                   </div>
                   <div>
-                    <h4>{item.customer_name}</h4>
-                    <span>{item.customer_subtitle}</span>
+                    <h4>{item.author}</h4>
+                    <span>{item.role}</span>
                   </div>
                 </div>
                 <Quote size={24} className="quote-icon" />
@@ -174,19 +141,16 @@ const Reviews = () => {
                   <Star 
                     key={i} 
                     size={14} 
-                    fill={i < item.rating ? "#ffb800" : "transparent"} 
-                    color={i < item.rating ? "#ffb800" : "rgba(255,255,255,0.2)"} 
+                    fill={i < item.stars ? "#ffb800" : "transparent"} 
+                    color={i < item.stars ? "#ffb800" : "rgba(255,255,255,0.2)"} 
                   />
                 ))}
               </div>
 
-              <p className="card-quote">{item.review_text}</p>
-              <button
-                className="read-more-link"
-                onClick={() => navigate(`/shop/reviews/${item.id}`)}
-              >
+              <p className="card-quote">{item.quote}</p>
+              <div className="read-more-link">
                 {lang === 'ar' ? 'اقرأ المزيد >' : 'Read More >'}
-              </button>
+              </div>
             </div>
           ))}
         </div>

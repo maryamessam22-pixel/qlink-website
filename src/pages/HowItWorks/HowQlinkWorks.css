@@ -9,6 +9,47 @@
   
 }
 
+.pricing-card.scroll-animate.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  padding: 30px;
+}
+
+
+.feature-block.scroll-animate.active.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  padding: 30px;
+}
+
+
+.hw-layer.hw-blurred-layer.scroll-animate.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  padding: 30px;
+  border-radius: 800;
+}
+
+
+.hw-layer.hw-blurred-layer.scroll-animate.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  padding: 30px;
+  border-radius: 800;
+}
+
+/* .timeline-row.scroll-animate.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  padding: 30px;
+} */
+
+.hw-layer.hw-clear-layer.scroll-animate.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  padding: 30px;
+}
+
 .how-works-page a {
   text-decoration: none !important;
 }

@@ -25,7 +25,6 @@ const ReviewDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const { t, lang } = useContext(LanguageContext);
-
   
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -46,19 +45,19 @@ const ReviewDetail = () => {
   }, [id]);
 
   const testimonials = t('reviews.testimonials', { returnObjects: true });
-  const review = testimonials.find((r) => String(r.id) === String(id));
+  const review = Array.isArray(testimonials) ? testimonials.find((r) => String(r.id) === String(id)) : null;
 
   if (!review) {
     return (
       <div className="rd-not-found">
         <DynamicBackground />
         <p>{t('reviews.notFound')}</p>
-        <button onClick={() => navigate('/shop/reviews')}>← {t('reviews.backToReviews')}</button>
+        <button className="rd-back-btn" onClick={() => navigate('/shop/reviews')}>← {t('reviews.backToReviews')}</button>
       </div>
     );
   }
 
-  const avatarSrc   = avatarImages[review.id];
+  const avatarSrc   = avatarImages[review.id] || heroImg;
 
   return (
     <div className={`rd-page ${lang === 'ar' ? 'rtl-text' : ''}`}>
