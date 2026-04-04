@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import SEO from '../../components/common/SEO';
 import './EmergencyScenario.css';
 import { LanguageContext } from '../../context/LanguageContext';
-
+import { supabase } from '../../lib/Supabase'; 
 
 import heroImg from '../../assets/images/hero-emergency.png';
 import img1 from '../../assets/images/1img.png';
@@ -15,12 +15,10 @@ import w4 from '../../assets/images/w4.png';
 import w5 from '../../assets/images/w5.png';
 import mobiles from '../../assets/images/2mobiles.png';
 
-
 import EmergencyFeatureCard from '../../components/Cards/EmergencyFeatureCard';
 import EmergencyStepCard from '../../components/Cards/EmergencyStepCard';
 import AppPromoSection from '../../components/Sections/AppPromoSection';
 import DynamicBackground from '../../components/common/DynamicBackground';
-
 
 import { ArrowLeft, ArrowRight, ShieldAlert, ScanLine, FileText, BellRing, Apple, Play } from 'lucide-react';
 
@@ -29,7 +27,29 @@ const watchImages = [w1, w2, w3, w4, w5];
 const EmergencyScenario = () => {
   const [currentWatch, setCurrentWatch] = useState(0);
   const { t, lang } = useContext(LanguageContext);
+  
+ 
+  const [seoData, setSeoData] = useState(null);
 
+  
+  useEffect(() => {
+    const fetchSEO = async () => {
+      try {
+        const { data: seo } = await supabase
+          .from('seo')
+          .select('*')
+          .eq('slug', 'how-it-works/emergency')
+          .single();
+        if (seo) setSeoData(seo);
+      } catch (err) {
+        console.error("Error fetching SEO:", err);
+      }
+    };
+
+    fetchSEO();
+  }, []);
+
+  
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -45,7 +65,6 @@ const EmergencyScenario = () => {
     animatedElements.forEach(el => observer.observe(el));
     
     return () => observer.disconnect();
-   
   }, []);
 
   const handleNextWatch = () => {
@@ -58,13 +77,15 @@ const EmergencyScenario = () => {
 
   return (
     <div className="es-page">
+ 
       <SEO 
-        title={lang === 'ar' ? 'سيناريو الطوارئ' : 'Emergency Scenario'}
-        description={lang === 'ar' ? 'تعرف على كيفية استجابة كيو لينك في الحالات الحرجة.' : 'Learn how Qlink responds in critical situations.'}
+        title={seoData ? (lang === 'ar' ? seoData.title_ar : seoData.title_en) : (lang === 'ar' ? 'سيناريو الطوارئ' : 'Emergency Scenario')}
+        description={seoData ? (lang === 'ar' ? seoData.description_ar : seoData.description_en) : ''}
         slug="how-it-works/emergency"
       />
       <DynamicBackground/>
-      {/* HERO */}
+      
+     
       <section className={`es-hero scroll-animate ${lang === 'ar' ? 'rtl-text' : ''}`} style={{ backgroundImage: `url(${heroImg})` }}>
         <div className="es-hero-overlay"></div>
         <div className="es-hero-content scroll-animate stag-1">
