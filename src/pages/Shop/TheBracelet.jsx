@@ -24,7 +24,7 @@ const TheBracelet = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Fetch SEO
+   
         const { data: seo } = await supabase
           .from('seo')
           .select('*')
@@ -32,7 +32,7 @@ const TheBracelet = () => {
           .single();
         if (seo) setSeoData(seo);
 
-        // Fetch Products
+     
         const { data: prods } = await supabase
           .from('products')
           .select('*')
@@ -47,7 +47,7 @@ const TheBracelet = () => {
     fetchData();
   }, []);
 
-  // Routing logic
+ 
   if (productId === 'nova') return <NovaDetails />;
   if (productId === 'pulse') return <PulseDetails />;
 
@@ -60,7 +60,7 @@ const TheBracelet = () => {
       />
       <DynamicBackground />
 
-      {/* Header */}
+     
       <div className="bracelet-header-section">
         <h1 className="bracelet-title">
           {t('bracelet.title').includes('Your') ? (
@@ -86,10 +86,10 @@ const TheBracelet = () => {
         </p>
       </div>
 
-      {/* Dynamic Products Grid */}
+  
       <div className="bracelet-products-grid">
         {products.map((product, idx) => {
-          // Bn-check law el product da Nova wla Pulse 3ashan el alwan
+ 
           const isNova = product.slug.includes('nova');
 
           return (
