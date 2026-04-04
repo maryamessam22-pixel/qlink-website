@@ -246,6 +246,14 @@
   margin-bottom: 28px;
 }
 
+.link-btn-inline {
+  width: 250px;
+  margin: 0 auto;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
 
 .rtl-text .faqs-chevron {
   margin-left: 0;
@@ -260,6 +268,11 @@
 @media (max-width: 768px) {
   .faqs-wrapper {
     padding-top: 100px;
+  }
+
+  .link-btn-inline {
+    width: 100%;
+    max-width: 280px;
   }
 
   .faqs-hero-section h1 {
@@ -284,7 +297,7 @@
   }
 
   .faqs-cta-section {
-    padding: 40px 20px;
+    padding: 40px 0px;
   }
 
   .faqs-cta-section h2 {
