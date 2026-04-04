@@ -120,9 +120,9 @@ const Checkout = () => {
             }
 
           
-            alert(isAr ? 'تم تأكيد طلبك بنجاح!' : 'Order confirmed successfully!');
+            // alert(isAr ? 'تم تأكيد طلبك بنجاح!' : 'Order confirmed successfully!');
             clearCart();
-            navigate('/'); 
+            navigate('/complete-purchase', { state: { orderNum, email: form.email } }); 
             
         } catch (error) {
 
