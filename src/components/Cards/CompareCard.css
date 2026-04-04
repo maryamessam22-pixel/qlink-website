@@ -80,6 +80,9 @@ body.rtl-active .compare-card {
   background-color: var(--bg-surface-input); 
   padding: 25px 30px;
   border-top: 1px solid var(--border-light);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .price-display {

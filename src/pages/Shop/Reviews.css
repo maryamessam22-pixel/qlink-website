@@ -1,17 +1,17 @@
 .reviews-page-container {
   min-height: 100vh;
   padding-top: 150px;
-  /* background-color: transparent; */
   position: relative;
   z-index: 1;
   color: white;
   width: 100%;
+  overflow-x: hidden;
 }
 
 .reviews-content-wrapper {
   max-width: 1200px;
   margin: 0 auto;
-  /* padding: 0 5%; */
+  padding: 0 24px;
 }
 
 .reviews-header {
@@ -302,9 +302,16 @@
 
 .histogram-item {
   display: grid;
-  grid-template-columns: 40px 1fr 40px;
+  grid-template-columns: 45px 1fr 45px;
   align-items: center;
-  gap: 16px;
+  gap: 12px;
+}
+
+@media (max-width: 400px) {
+  .histogram-item {
+    gap: 8px;
+    grid-template-columns: 35px 1fr 35px;
+  }
 }
 
 .star-label, .percent-label {

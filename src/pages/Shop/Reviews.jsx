@@ -179,6 +179,7 @@ const Reviews = () => {
                   />
                 ))}
               </div>
+
               <p className="card-quote">{item.review_text}</p>
               <button
                 className="read-more-link"
@@ -216,7 +217,12 @@ const Reviews = () => {
              <MessageSquare size={32} className="cta-icon" />
              <h3>{t('reviews.shareTitle')}</h3>
              <p>{t('reviews.shareDesc')}</p>
-             <button className="cta-btn-primary">{t('reviews.shareBtn')}</button>
+             <button 
+               className="cta-btn-primary" 
+               onClick={() => navigate('/support/contact')}
+             >
+               {t('reviews.shareBtn')}
+             </button>
           </div>
           <div className="cta-box join-box">
              <Users size={32} className="cta-icon" />
