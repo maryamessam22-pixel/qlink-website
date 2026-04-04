@@ -32,6 +32,7 @@ import InTheBoxNova from './pages/Shop/InTheBoxNova';
 import InTheBoxPulse from './pages/Shop/InTheBoxPulse';
 import CartScreen from './pages/CartScreen';
 import Checkout from './pages/Checkout';
+import CompletePurchase from './pages/CompletePurchase';
 
 // Auth
 import AuthPage from './pages/Auth/AuthPage';
@@ -106,6 +107,7 @@ function App() {
               <Route path="/support/download" element={<AppDownload />} />
               <Route path="/cart" element={<CartScreen />} />
               <Route path="/checkout" element={<Checkout />} />
+              <Route path="/complete-purchase" element={<CompletePurchase />} />
             </Route>
           </Route>
 

@@ -722,6 +722,30 @@ const translations = {
     btnArrow: "→",
     btnSignIn: "Sign In",
     btnSignUp: "Sign Up"
+  },
+  completePurchase: {
+    orderConfirmed: "Order Confirmed!",
+    thankYou: "Thank you for choosing Qlink. Your safety journey begins now.",
+    orderNumber: "Order Number",
+    estimatedDelivery: "Estimated Delivery",
+    deliveryDate: "Feb 28 - Mar 2",
+    checkEmail: "Check your email",
+    emailSent: "We've sent a receipt and tracking link to",
+    downloadApp: "Download App",
+    getAppDesc: "Get the Qlink app to set up your medical profile before your device arrives.",
+    manageSafety: "Manage Your Safety with the Qlink App",
+    manageDesc: "The Qlink app allows you to manage your personal and emergency information securely. Update details, control privacy, and manage multiple bracelets - all from one place.",
+    managePoint1: "Manage emergency and personal information",
+    managePoint2: "Control privacy and data sharing",
+    managePoint3: "Monitor and update profiles anytime",
+    installNow: "Install the App Now!",
+    installSubtitle: "Take full control of your safety. Manage profiles, get real-time alerts, and more.",
+    step1Title: "Download App",
+    step1Desc: "Get Qlink from App store or Google play",
+    step2Title: "Create Profile",
+    step2Desc: "Enter your medical details and emergency contacts",
+    step3Title: "Link Device",
+    step3Desc: "Add activation code inside the bracelet box"
   }
 };
 
