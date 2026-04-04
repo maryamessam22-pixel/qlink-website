@@ -94,7 +94,7 @@ const Checkout = () => {
 
        
         const newOrder = {
-            id: crypto.randomUUID(), 
+            // id: crypto.randomUUID(),  // Removing to let DB handle it (Standard practice)
             order_number: orderNum,
             customer_name: `${form.firstName} ${form.lastName}`,
             email: form.email,
@@ -104,19 +104,19 @@ const Checkout = () => {
             payment_method: paymentMethod, 
             variant_details: orderDetails,
             status: 'Pending',
-            revenue: cartTotal.toString(),
+            revenue: cartTotal, // Pass as number
             time: 'Just now'
         };
 
         try {
          
-            const { error } = await supabase
-                .from('order') 
+            const { error: insertError } = await supabase
+                .from('orders') 
                 .insert([newOrder]);
 
-            if (error) {
-                console.error("Supabase Error:", error);
-                throw error;
+            if (insertError) {
+                console.error("Supabase Error:", insertError);
+                throw insertError;
             }
 
           
@@ -126,7 +126,10 @@ const Checkout = () => {
         } catch (error) {
 
             console.error("Error saving order:", error);
-            alert(isAr ? 'حدث خطأ أثناء إتمام الطلب' : 'Something went wrong while processing your order');
+            alert(isAr 
+                ? `حدث خطأ أثناء إتمام الطلب: ${error.message || error}` 
+                : `Something went wrong while processing your order: ${error.message || error}`
+            );
         }
     };
 
