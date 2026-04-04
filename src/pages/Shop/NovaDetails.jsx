@@ -10,6 +10,12 @@ import DynamicBackground from '../../components/common/DynamicBackground';
 import { supabase } from '../../lib/Supabase';
 import './NovaDetails.css';
 
+// دالة صغيرة عشان نعرف اللينك ده فيديو ولا صورة
+const checkIsVideo = (url) => {
+  if (!url) return false;
+  return url.toLowerCase().match(/\.(mp4|webm|ogg)$/i);
+};
+
 const NovaDetails = () => {
   const { productId } = useParams();
   const { t, lang } = useContext(LanguageContext);
@@ -19,7 +25,6 @@ const NovaDetails = () => {
   const [qty, setQty] = useState(1);
   const [activeColor, setActiveColor] = useState('black');
   
-  // States for fetched data & loading
   const [product, setProduct] = useState(null);
   const [seoData, setSeoData] = useState(null);
   const [selectedImg, setSelectedImg] = useState('');
@@ -36,7 +41,6 @@ const NovaDetails = () => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        // Fetch Product Details
         const { data: prodData } = await supabase
           .from('products')
           .select('*')
@@ -46,17 +50,14 @@ const NovaDetails = () => {
         if (prodData) {
           setProduct(prodData);
           
-          // نجيب مصفوفة الصور عشان نختار أول واحدة كصورة أساسية
           let gImages = prodData['gallery-images'] || prodData.gallery_images || [];
           if (typeof gImages === 'string') {
             try { gImages = JSON.parse(gImages); } catch { gImages = []; }
           }
           
-          // لو الجاليري فيه صور، اختار أول صورة.. لو مفيش استخدم العادية
           setSelectedImg(gImages.length > 0 ? gImages[0] : prodData.image_url);
         }
 
-        // Fetch SEO Details
         const { data: seo } = await supabase
           .from('seo')
           .select('*')
@@ -74,7 +75,6 @@ const NovaDetails = () => {
     fetchData();
   }, []);
 
-  // Animation Observer
   useEffect(() => {
     if (loading || !product) return; 
 
@@ -97,7 +97,6 @@ const NovaDetails = () => {
     navigate(path);
   };
 
-  // Parse gallery-images from Supabase (JSON string or array)
   const galleryImages = React.useMemo(() => {
     const images = product?.['gallery-images'] || product?.gallery_images;
     if (!images) return [];
@@ -108,8 +107,11 @@ const NovaDetails = () => {
     } catch { return []; }
   }, [product]);
 
-  // هنا خلينا الكود يعرض الصور اللي في الجاليري بس من غير زيادة
   const allThumbs = galleryImages.filter(Boolean);
+  const imgAltText = product?.featured_image_alt || (isAr ? product?.name_ar : product?.name_en);
+
+  // نحدد المتغير ده فيديو ولا لأ
+  const isSelectedVideo = checkIsVideo(selectedImg);
 
   return (
     <div className={`nova-details-container ${isAr ? 'rtl-text' : ''}`} dir={isAr ? 'rtl' : 'ltr'}>
@@ -145,18 +147,45 @@ const NovaDetails = () => {
             <div className="nova-gallery-side scroll-animate stag-1">
               <div className="nova-gallery">
                 <div className="main-image-wrapper">
-                  <img src={selectedImg} alt={isAr ? product.name_ar : product.name_en} className="main-featured-img" />
+                  {/* هنا الشرط: لو فيديو اعرضه في تاج فيديو، ولو صورة في تاج صورة */}
+                  {isSelectedVideo ? (
+                    <video 
+                      src={selectedImg} 
+                      controls 
+                      autoPlay 
+                      muted 
+                      loop 
+                      className="main-featured-img" 
+                      style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }}
+                    />
+                  ) : (
+                    <img src={selectedImg} alt={imgAltText} className="main-featured-img" />
+                  )}
                 </div>
+                
                 <div className="thumbnail-group">
-                  {allThumbs.map((imgUrl, idx) => (
-                    <div
-                      key={idx}
-                      className={`thumb ${selectedImg === imgUrl ? 'active' : ''}`}
-                      onClick={() => setSelectedImg(imgUrl)}
-                    >
-                      <img src={imgUrl} alt={`Thumb ${idx + 1}`} />
-                    </div>
-                  ))}
+                  {allThumbs.map((mediaUrl, idx) => {
+                    const isVid = checkIsVideo(mediaUrl);
+                    return (
+                      <div
+                        key={idx}
+                        className={`thumb ${selectedImg === mediaUrl ? 'active' : ''}`}
+                        onClick={() => setSelectedImg(mediaUrl)}
+                      >
+                        {/* هنا نفس الشرط في الـ Thumbnails */}
+                        {isVid ? (
+                          <video 
+                            src={mediaUrl} 
+                            muted 
+                            playsInline
+                            style={{ maxWidth: '80%', maxHeight: '80%', objectFit: 'contain', pointerEvents: 'none' }}
+                          />
+                        ) : (
+                          <img src={mediaUrl} alt={`Thumb ${idx + 1}`} />
+                        )}
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
               
