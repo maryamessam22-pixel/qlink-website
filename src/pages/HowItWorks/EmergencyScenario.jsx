@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
+import { Link } from 'react-router-dom';
 import SEO from '../../components/common/SEO';
 import './EmergencyScenario.css';
 import { LanguageContext } from '../../context/LanguageContext';
@@ -97,8 +98,8 @@ const EmergencyScenario = () => {
             {t('emergency.heroSubtitle')}
           </p>
           <div className={`es-hero-buttons ${lang === 'ar' ? 'rtl-buttons' : ''}`}>
-            <button className="btn btn-secondary">{t('emergency.btnHow')}</button>
-            <button className="btn btn-primary">{t('emergency.btnProtect')}</button>
+            <Link to="/how-it-works/qlink" className="btn btn-secondary">{t('emergency.btnHow')}</Link>
+            <Link to="/shop/bracelet" className="btn btn-primary">{t('emergency.btnProtect')}</Link>
           </div>
         </div>
       </section>
@@ -187,12 +188,13 @@ const EmergencyScenario = () => {
           </div>
           <h2 style={lang === 'ar' ? {} : { whiteSpace: 'pre-wrap' }}>{t('emergency.ctaSubtitle')}</h2>
           <p>{t('emergency.ctaDesc')}</p>
-          <button
+          <Link
+            to="/shop/bracelet"
             className="btn btn-primary btn-cta-full"
-            style={lang === 'ar' ? { display: 'flex', gap: '8px', alignItems: 'center' } : {}}
+            style={lang === 'ar' ? { display: 'flex', gap: '8px', alignItems: 'center', justifyContent: 'center', textDecoration: 'none' } : { textDecoration: 'none', display: 'flex', gap: '8px', alignItems: 'center', justifyContent: 'center' }}
           >
             {t('emergency.ctaBtn')} {lang === 'ar' ? <ArrowLeft size={16}/> : <ArrowRight size={16}/>}
-          </button>
+          </Link>
         </div>
       </section>
 
