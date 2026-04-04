@@ -508,4 +508,5 @@
 .scroll-animate.is-visible {
   opacity: 1;
   transform: translateY(0);
+  padding-left: 0px;
 }
