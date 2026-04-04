@@ -10,20 +10,17 @@ import PulseDetails from './PulseDetails';
 import { supabase } from '../../lib/Supabase';
 import './TheBracelet.css';
 
-// Images (lsa hane7taghom lel Promo w Setup section)
 import mobilesImg from '../../assets/images/2mobiles.png';
 
 const TheBracelet = () => {
   const { t, lang } = useContext(LanguageContext);
   const { productId } = useParams();
   
-  // 1. Defina el state bta3t el SEO wel Products
   const [seoData, setSeoData] = useState(null);
   const [products, setProducts] = useState([]);
 
   const isAr = lang === 'ar';
 
-  // 2. Fetch Data (Byeshtaghal mara wa7da lamma el page t-load)
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -39,7 +36,7 @@ const TheBracelet = () => {
         const { data: prods } = await supabase
           .from('products')
           .select('*')
-          .order('created_at', { ascending: true }); // Bygeebhom btarteeb zohorhom
+          .order('created_at', { ascending: true }); 
         if (prods) setProducts(prods);
 
       } catch (err) {
@@ -49,22 +46,6 @@ const TheBracelet = () => {
 
     fetchData();
   }, []);
-
-  // 3. Animation Observer (Da el Ser! Byeshtaghal lamma el 'products' tetghayar w tenzel fel page)
-  useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-        }
-      });
-    }, { threshold: 0.15, rootMargin: '-50px' });
-
-    const animatedElements = document.querySelectorAll('.scroll-animate');
-    animatedElements.forEach(el => observer.observe(el));
-
-    return () => observer.disconnect();
-  }, [products]); // <-- El [products] hena hya elly bt7el moshkelet en el cards tekh-tefy
 
   // Routing logic
   if (productId === 'nova') return <NovaDetails />;
@@ -80,7 +61,7 @@ const TheBracelet = () => {
       <DynamicBackground />
 
       {/* Header */}
-      <div className="bracelet-header-section scroll-animate stag-1">
+      <div className="bracelet-header-section">
         <h1 className="bracelet-title">
           {t('bracelet.title').includes('Your') ? (
             <>
@@ -112,7 +93,7 @@ const TheBracelet = () => {
           const isNova = product.slug.includes('nova');
 
           return (
-            <div key={product.id} className={`bracelet-product-card scroll-animate stag-${idx + 2}`}>
+            <div key={product.id} className="bracelet-product-card">
               <div
                 className="bracelet-card-img-wrapper"
                 style={{
@@ -147,11 +128,11 @@ const TheBracelet = () => {
         })}
       </div>
 
-      <div className="scroll-animate stag-1">
+      <div>
         <SetupSection />
       </div>
 
-      <div className="scroll-animate stag-2">
+      <div>
         <AppPromoSection imageSrc={mobilesImg} imgClassName="promo-phones-img" />
       </div>
     </div>
