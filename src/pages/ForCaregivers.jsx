@@ -1,4 +1,5 @@
 import React, { useEffect, useContext, useState } from 'react';
+import { Link } from 'react-router-dom';
 import SEO from '../components/common/SEO';
 import { LanguageContext } from '../context/LanguageContext';
 import DynamicBackground from '../components/common/DynamicBackground';
@@ -84,7 +85,9 @@ function ForCaregivers() {
               </span>
             </h1>
             <p className="fc-hero-subtitle scroll-animate stag-2">{heroDescription}</p>
-            <button className="btn btn-primary fc-hero-action scroll-animate stag-3">{t("reviews.caregivers.heroBtn")}</button>
+            <Link to="/shop/bracelet" className="btn btn-primary fc-hero-action scroll-animate stag-3" style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>
+              {t("reviews.caregivers.heroBtn")}
+            </Link>
           </div>
           <div className="fc-hero-image scroll-animate stag-2">
             <img src={heroImage} alt={t("reviews.caregivers.heroAlt")} />
@@ -190,7 +193,9 @@ function ForCaregivers() {
             <div className="fc-gift-icon"><HeartPulse size={40} /></div>
             <h3>{t("reviews.caregivers.giftTitle")}</h3>
             <p>{t("reviews.caregivers.giftDesc")}</p>
-            <button className="btn btn-primary">{t("reviews.caregivers.giftBtn")}</button>
+            <Link to="/shop/bracelet" className="btn btn-primary" style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>
+              {t("reviews.caregivers.giftBtn")}
+            </Link>
           </div>
         </section>
       </main>
