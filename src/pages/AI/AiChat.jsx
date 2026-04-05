@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Sparkles, ArrowUp, X, Loader2 } from 'lucide-react';
 import './AiChat.css'; 
 
-// 🚨 المفتاح محتاج يتحط في ملف .env عشان الأمان
+
 const GEMINI_API_KEY = process.env.REACT_APP_GEMINI_API_KEY;
 
 const AiChat = ({ isOpen, onClose }) => {
