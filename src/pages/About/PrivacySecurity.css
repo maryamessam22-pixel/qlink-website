@@ -1,3 +1,15 @@
+.ps-shared-card.scroll-animate.stag-2.is-visible{
+  padding: 40px;
+}
+
+.ps-shared-card.scroll-animate.stag-1.is-visible{
+  padding: 40px;
+}
+
+.ps-disclaimer-card.scroll-animate.stag-1.is-visible{
+  padding: 40px;
+} 
+
 .privacy-security-page {
   min-height: 100vh;
   position: relative;
