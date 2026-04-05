@@ -1,21 +1,27 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
 import { Sparkles } from 'lucide-react';
-import './ArrowUp.css';
+import AiChat from '../../pages/AI/AiChat';
+import './ArrowUp.css'; 
 
 const AIAssistantBtn = () => {
-  const navigate = useNavigate();
+
+  const [isChatOpen, setIsChatOpen] = useState(false);
 
   return (
-    <div className="ai-btn-container">
-      <button 
-        className="floating-btn" 
-        aria-label="Ask AI Assistant"
-        onClick={() => navigate('/ai')}
-      >
-        <Sparkles size={24} />
-      </button>
-    </div>
+    <>
+      <div className="ai-btn-container">
+        <button 
+          className="floating-btn" 
+          aria-label="Ask AI Assistant"
+          onClick={() => setIsChatOpen(true)}
+        >
+          <Sparkles size={24} />
+        </button>
+      </div>
+
+    
+      <AiChat isOpen={isChatOpen} onClose={() => setIsChatOpen(false)} />
+    </>
   );
 };
 

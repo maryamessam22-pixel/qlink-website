@@ -1,0 +1,252 @@
+.ai-chat-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(13, 22, 41, 0.4);
+  backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.ai-chat-container {
+  width: 100%;
+  max-width: 800px;
+  height: 85vh;
+  background: #ffffff;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+}
+
+/* Header */
+.ai-chat-header {
+  background: #2a3356;
+  padding: 20px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ai-header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.ai-logo-text {
+  color: white;
+  font-size: 28px;
+  font-weight: 700;
+  margin: 0;
+  font-family: 'Century Gothic', sans-serif;
+}
+
+.ai-badge {
+  background: #E03232;
+  color: white;
+  font-size: 13px;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-weight: 500;
+}
+
+.ai-close-btn {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.2);
+  transition: background 0.3s;
+}
+
+.ai-close-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Messages Area */
+.ai-chat-messages {
+  flex: 1;
+  padding: 40px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  background: #fcfcfc;
+}
+
+.ai-message-wrapper {
+  display: flex;
+  flex-direction: column;
+  max-width: 85%;
+}
+
+.ai-message-wrapper.user {
+  align-self: flex-end;
+  align-items: flex-end;
+}
+
+.ai-message-wrapper.bot {
+  align-self: flex-start;
+  align-items: flex-start;
+}
+
+.ai-bot-identity {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.ai-bot-icon {
+  width: 32px;
+  height: 32px;
+  background: #E03232;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ai-bot-name {
+  font-weight: 700;
+  color: #2a3356;
+  font-size: 18px;
+}
+
+.ai-message-bubble {
+  padding: 20px 24px;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.ai-message-bubble.bot {
+  background: white;
+  color: #333;
+  border: 2px solid #8e95a5;
+  border-radius: 8px;
+  border-top-left-radius: 0; 
+}
+
+.ai-message-bubble.user {
+  background: #2a3356;
+  color: white;
+  border-radius: 8px;
+  border-bottom-right-radius: 0;
+}
+
+.ai-message-bubble p {
+  margin: 0;
+}
+
+.ai-message-time {
+  font-size: 12px;
+  color: #888;
+  margin-top: 8px;
+}
+
+.ai-message-time.user {
+  text-align: right;
+}
+
+.ai-message-action-btn {
+  margin-top: 15px;
+  background: #E03232;
+  color: white;
+  border: none;
+  padding: 14px 24px;
+  border-radius: 25px;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+}
+
+/* Footer / Input */
+.ai-chat-footer {
+  padding: 20px 40px 40px;
+  background: #fcfcfc;
+}
+
+.ai-suggestions {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.ai-suggestion-pill {
+  background: #e9ecef;
+  border: none;
+  color: #555;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.ai-suggestion-pill:hover {
+  background: #dee2e6;
+}
+
+.ai-input-wrapper {
+  display: flex;
+  align-items: center;
+  background: #f1f3f5;
+  border-radius: 30px;
+  padding: 8px 8px 8px 24px;
+}
+
+.ai-input-wrapper input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  font-size: 16px;
+  outline: none;
+  color: #333;
+}
+
+.ai-send-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  background: white;
+  color: #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: default;
+  transition: all 0.3s;
+}
+
+.ai-send-btn.active {
+  color: #E03232;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+/* Loading Animation */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.spin-animation {
+  animation: spin 1s linear infinite;
+}

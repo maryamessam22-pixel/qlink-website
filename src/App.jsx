@@ -55,7 +55,6 @@ const ProtectedRoute = () => {
   return <Outlet />;
 };
 
-
 const MainLayout = () => (
   <>
     <Navbar />
