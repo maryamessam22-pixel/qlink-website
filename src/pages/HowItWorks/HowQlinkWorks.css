@@ -20,6 +20,11 @@
   transform: translateY(0);
 }
 
+.pricing-card.scroll-animate.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  padding: 30px;
+}
 
 .hw-layer.hw-blurred-layer.scroll-animate.is-visible {
   opacity: 1;
