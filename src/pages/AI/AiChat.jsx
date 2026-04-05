@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Sparkles, ArrowUp, X, Loader2 } from 'lucide-react';
+import { Sparkles, ArrowUp, X, Loader2, Trash2 } from 'lucide-react';
 import './AiChat.css'; 
 
 
@@ -8,16 +8,43 @@ const GEMINI_API_KEY = process.env.REACT_APP_GEMINI_API_KEY;
 const AiChat = ({ isOpen, onClose }) => {
   const [inputValue, setInputValue] = useState('');
   const [isTyping, setIsTyping] = useState(false);
-  const [messages, setMessages] = useState([
-    {
-      id: 1,
-      sender: 'bot',
-      text: "Hello! I'm your Qlink AI Assistant. How can I help you today?",
-      time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+  const [messages, setMessages] = useState(() => {
+    const saved = localStorage.getItem('qlink_ai_chat_history');
+    if (saved) {
+      try {
+        return JSON.parse(saved);
+      } catch (e) {
+        console.error('Error parsing chat history', e);
+      }
     }
-  ]);
+    return [
+      {
+        id: 1,
+        sender: 'bot',
+        text: "Hello! I'm your Qlink AI Assistant. How can I help you today?",
+        time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+      }
+    ];
+  });
 
   const messagesEndRef = useRef(null);
+  
+  useEffect(() => {
+    localStorage.setItem('qlink_ai_chat_history', JSON.stringify(messages));
+  }, [messages]);
+
+  const clearHistory = () => {
+    if(window.confirm('Are you sure you want to clear the chat history?')) {
+      setMessages([
+        {
+          id: 1,
+          sender: 'bot',
+          text: "Hello! I'm your Qlink AI Assistant. How can I help you today?",
+          time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+        }
+      ]);
+    }
+  };
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
@@ -104,9 +131,16 @@ const AiChat = ({ isOpen, onClose }) => {
             <h2 className="ai-logo-text">Qlink</h2>
             <span className="ai-badge">AI Assistant</span>
           </div>
-          <button className="ai-close-btn" onClick={onClose}>
-            <X size={24} />
-          </button>
+          <div style={{ display: 'flex', gap: '8px' }}>
+            {messages.length > 1 && (
+              <button className="ai-close-btn" onClick={clearHistory} title="Clear Chat History">
+                <Trash2 size={20} />
+              </button>
+            )}
+            <button className="ai-close-btn" onClick={onClose} title="Close Chat">
+              <X size={24} />
+            </button>
+          </div>
         </div>
 
         <div className="ai-chat-messages">
