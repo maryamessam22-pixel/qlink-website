@@ -2,8 +2,8 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Sparkles, ArrowUp, X, Loader2 } from 'lucide-react';
 import './AiChat.css'; 
 
-// 🚨 المفتاح بتاعك جاهز ومحطوط صح هنا
-const GEMINI_API_KEY = 'AIzaSyCRNZQ_w6_hCNr-07JzcGZM8VbJmeJ_D-A'; 
+// 🚨 المفتاح محتاج يتحط في ملف .env عشان الأمان
+const GEMINI_API_KEY = process.env.REACT_APP_GEMINI_API_KEY;
 
 const AiChat = ({ isOpen, onClose }) => {
   const [inputValue, setInputValue] = useState('');
@@ -30,6 +30,9 @@ const AiChat = ({ isOpen, onClose }) => {
     setIsTyping(true);
     
     try {
+      if (!GEMINI_API_KEY) {
+        throw new Error("API key is missing! Please configure REACT_APP_GEMINI_API_KEY.");
+      }
       const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`, {
         method: 'POST',
         headers: {
