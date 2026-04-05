@@ -60,8 +60,6 @@ function HowQlinkWorks() {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('is-visible');
-        } else {
-          entry.target.classList.remove('is-visible');
         }
       });
     }, { threshold: 0.15, rootMargin: '-50px' });
@@ -136,7 +134,7 @@ function HowQlinkWorks() {
         </div>
       </section>
 
-      <section className={`hw-timeline-section scroll-animate ${lang === 'ar' ? 'rtl-text' : ''}`}>
+      <section className={`hw-timeline-section ${lang === 'ar' ? 'rtl-text' : ''}`}>
         <div className="timeline-container">
           <TimelineRow
             title={t('howWorks.t1Title')}
@@ -165,7 +163,7 @@ function HowQlinkWorks() {
         </div>
       </section>
 
-      <section className={`hw-features-section scroll-animate ${lang === 'ar' ? 'rtl-text' : ''}`}>
+      <section className={`hw-features-section ${lang === 'ar' ? 'rtl-text' : ''}`}>
         <div className="features-col">
           <FeatureBlock
             title={t('howWorks.f1Title')}
@@ -227,7 +225,7 @@ function HowQlinkWorks() {
       </section>
 
   
-      <section className={`hw-setup-section scroll-animate ${lang === 'ar' ? 'rtl-text' : ''}`}>
+      <section className={`hw-setup-section ${lang === 'ar' ? 'rtl-text' : ''}`}>
         <div className="hw-section-sub">{t('howWorks.setupSub')}</div>
         <h2 className="hw-section-title">{t('howWorks.setupTitle')}</h2>
 
@@ -256,7 +254,7 @@ function HowQlinkWorks() {
         </div>
       </section>
 
-      <section className={`hw-help-grid scroll-animate ${lang === 'ar' ? 'rtl-text' : ''}`}>
+      <section className={`hw-help-grid ${lang === 'ar' ? 'rtl-text' : ''}`}>
         <HelpCard
           icon={HelpCircle}
           iconColor="#E03232"
@@ -271,7 +269,7 @@ function HowQlinkWorks() {
         />
       </section>
 
-      <section className={`hw-cta-section scroll-animate ${lang === 'ar' ? 'rtl-text' : ''}`}>
+      <section className={`hw-cta-section ${lang === 'ar' ? 'rtl-text' : ''}`}>
         <h2 style={{ fontSize: '32px', fontWeight: '800' }}>{t('howWorks.ctaTitle')}</h2>
         <div className={`hw-cta-buttons ${lang === 'ar' ? 'rtl-buttons' : ''}`}>
           <Link to="/shop/bracelet" className="btn btn-primary">{t('howWorks.ctaBtn1')}</Link>

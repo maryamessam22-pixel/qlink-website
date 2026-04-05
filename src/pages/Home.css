@@ -561,6 +561,43 @@
     text-align: center;
   }
 
+.what-section.scroll-animate.is-visible{
+  padding: 0 24px;
+}
+
+.hero-buttons.scroll-animate.stag-3.is-visible{
+ padding: 0px;
+ 
+}
+.hero-text{
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+.why-section.scroll-animate.is-visible{
+  padding: 0 24px;
+}
+
+.split-feature.scroll-animate.is-visible{
+  padding: 0 24px;
+}
+
+.half-cards-section.scroll-animate.is-visible{
+  padding: 0 24px;
+}
+
+.cta-section.scroll-animate.is-visible{
+
+  padding: 80px 0px;
+  
+}
+
+.btn btn-primary btn-large-pad{
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+
   .app-section-wrapper {
     padding: 60px 0;
     margin-bottom: 60px;
