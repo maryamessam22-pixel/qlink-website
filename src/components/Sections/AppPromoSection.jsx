@@ -47,7 +47,7 @@ const AppPromoSection = ({ imageSrc, imgClassName, customTitle, customFocus, cus
           </div>
         </div>
         <div className="promo-img scroll-animate stag-large-delay">
-          <img src={imageSrc} alt="Qlink App Access" className={imgClassName} />
+          <img src={imageSrc} alt="Qlink App Access" className={imgClassName} loading="lazy" />
         </div>
       </div>
     </section>

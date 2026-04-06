@@ -90,14 +90,14 @@ function ForCaregivers() {
             </Link>
           </div>
           <div className="fc-hero-image scroll-animate stag-2">
-            <img src={heroImage} alt={t("reviews.caregivers.heroAlt")} />
+            <img src={heroImage} alt={t("reviews.caregivers.heroAlt")} loading="lazy" />
           </div>
         </section>
 
         <section className="fc-connect">
           <div className="fc-connect-grid">
             <div className="fc-connect-image scroll-animate">
-              <img src={stayConnectedImg} alt={t("reviews.caregivers.connectTitle")} />
+              <img src={stayConnectedImg} alt={t("reviews.caregivers.connectTitle")} loading="lazy" />
             </div>
             <div className="fc-connect-info">
               <h2 className="scroll-animate">{t("reviews.caregivers.connectTitle")}</h2>
@@ -136,21 +136,21 @@ function ForCaregivers() {
           
           <div className="fc-family-grid">
             <div className="fc-family-card scroll-animate stag-1">
-              <div className="card-image"><img src={elderlyParentsImg} alt={t("reviews.caregivers.card1Title")} /></div>
+              <div className="card-image"><img src={elderlyParentsImg} alt={t("reviews.caregivers.card1Title")} loading="lazy" /></div>
               <div className="card-body">
                 <h3>{t("reviews.caregivers.card1Title")}</h3>
                 <p>{t("reviews.caregivers.card1Desc")}</p>
               </div>
             </div>
             <div className="fc-family-card scroll-animate stag-2">
-              <div className="card-image"><img src={chronicConditionsImg} alt={t("reviews.caregivers.card2Title")} /></div>
+              <div className="card-image"><img src={chronicConditionsImg} alt={t("reviews.caregivers.card2Title")} loading="lazy" /></div>
               <div className="card-body">
                 <h3>{t("reviews.caregivers.card2Title")}</h3>
                 <p>{t("reviews.caregivers.card2Desc")}</p>
               </div>
             </div>
             <div className="fc-family-card scroll-animate stag-3">
-              <div className="card-image"><img src={activeChildrenImg} alt={t("reviews.caregivers.card3Title")} /></div>
+              <div className="card-image"><img src={activeChildrenImg} alt={t("reviews.caregivers.card3Title")} loading="lazy" /></div>
               <div className="card-body">
                 <h3>{t("reviews.caregivers.card3Title")}</h3>
                 <p>{t("reviews.caregivers.card3Desc")}</p>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState, useContext, useRef, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import SEO from '../../components/common/SEO';
 import { LanguageContext } from '../../context/LanguageContext';
@@ -15,6 +15,71 @@ function OurStory() {
   const [cmsData, setCmsData] = useState({ founder: null, vision: null });
 
   const isArabic = typeof lang === 'string' && lang.toLowerCase().includes('ar');
+  const rawStats = useMemo(() => t('ourStory.stats', { returnObjects: true }) || [], [lang, t]);
+  const [animatedStats, setAnimatedStats] = useState(rawStats.map((stat) => stat.value));
+  const statsSectionRef = useRef(null);
+  const statsStartedRef = useRef(false);
+
+  useEffect(() => {
+    setAnimatedStats(rawStats.map((stat) => stat.value));
+    statsStartedRef.current = false;
+  }, [rawStats]);
+
+  useEffect(() => {
+    const parseStat = (value) => {
+      const raw = String(value || '');
+      const match = raw.match(/(-?[\d,.]+)/);
+      if (!match) return null;
+      const numeric = parseFloat(match[1].replace(/,/g, ''));
+      if (Number.isNaN(numeric)) return null;
+      return {
+        prefix: raw.slice(0, match.index),
+        suffix: raw.slice(match.index + match[1].length),
+        target: numeric,
+        precision: match[1].includes('.') ? match[1].split('.')[1].length : 0,
+      };
+    };
+
+    const statsMeta = rawStats.map((stat) => ({ value: String(stat.value), parsed: parseStat(stat.value) }));
+
+    const animateStat = (index, parsed) => {
+      if (!parsed) return;
+      const duration = 900;
+      const startTime = performance.now();
+
+      const step = (time) => {
+        const progress = Math.min(1, (time - startTime) / duration);
+        const current = parsed.target * progress;
+        const displayNumber = parsed.precision > 0
+          ? current.toFixed(parsed.precision)
+          : Math.round(current).toString();
+
+        setAnimatedStats((prev) => {
+          const next = [...prev];
+          next[index] = `${parsed.prefix}${displayNumber}${parsed.suffix}`;
+          return next;
+        });
+
+        if (progress < 1) requestAnimationFrame(step);
+      };
+
+      requestAnimationFrame(step);
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && !statsStartedRef.current) {
+          statsStartedRef.current = true;
+          statsMeta.forEach((item, index) => {
+            animateStat(index, item.parsed);
+          });
+        }
+      });
+    }, { threshold: 0.5 });
+
+    if (statsSectionRef.current) observer.observe(statsSectionRef.current);
+    return () => observer.disconnect();
+  }, [rawStats]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -185,7 +250,7 @@ function OurStory() {
               {teamMembers.map((m) => (
                 <div key={m.id} className="team-member">
                    <div className="member-photo-wrapper">
-                      <img src={m.image_url} alt={m.name} />
+                      <img src={m.image_url} alt={m.name} loading="lazy" />
                    </div>
                    <h4 className="member-name">{m.name}</h4>
                    <p className="member-role">{isArabic ? m.role_ar : m.role_en}</p>
@@ -197,10 +262,10 @@ function OurStory() {
       </div>
 
       <section className="story-stats-section scroll-animate stag-2">
-         <div className="stats-grid-story">
-            {t('ourStory.stats', { returnObjects: true }).map((s, i) => (
+         <div ref={statsSectionRef} className="stats-grid-story">
+            {rawStats.map((s, i) => (
               <div key={i} className="stat-item-story">
-                 <h3>{s.value}</h3>
+                 <h3>{animatedStats[i]}</h3>
                  <p>{s.label}</p>
               </div>
             ))}

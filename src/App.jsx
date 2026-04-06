@@ -70,6 +70,33 @@ const MainLayout = () => (
 function App() {
   const [loading, setLoading] = React.useState(true);
 
+  React.useEffect(() => {
+    const setLazyLoading = (img) => {
+      if (img && img.tagName === 'IMG' && !img.hasAttribute('loading')) {
+        img.setAttribute('loading', 'lazy');
+      }
+    };
+
+    const processImgs = (root = document) => {
+      root.querySelectorAll && root.querySelectorAll('img:not([loading])').forEach(setLazyLoading);
+    };
+
+    processImgs(document);
+
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        mutation.addedNodes.forEach((node) => {
+          if (node.nodeType !== Node.ELEMENT_NODE) return;
+          processImgs(node);
+          if (node.tagName === 'IMG') setLazyLoading(node);
+        });
+      });
+    });
+
+    observer.observe(document.body, { childList: true, subtree: true });
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <Router>
       <div className="App">
