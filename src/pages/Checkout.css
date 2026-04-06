@@ -7,6 +7,8 @@
   width: 100%;
 }
 
+
+
 .checkout-wrapper {
   max-width: 1200px;
   margin: 0 auto;
@@ -383,6 +385,7 @@
 .checkout-page .scroll-animate.is-visible {
   opacity: 1;
   transform: translateY(0);
+  padding: 30px;
 }
 
 .stag-1 { transition-delay: 0.1s; }

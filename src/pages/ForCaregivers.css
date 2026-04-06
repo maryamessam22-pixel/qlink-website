@@ -10,6 +10,9 @@
   color: var(--text-primary);
   overflow: hidden;
 }
+.fc-family-badge.scroll-animate.is-visible{
+  padding: 6px 16px;
+}
 
 .fc-container {
   position: relative;

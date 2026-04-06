@@ -66,7 +66,7 @@ const TheBracelet = () => {
           {t('bracelet.title').includes('Your') ? (
             <>
               {t('bracelet.title').split('Your')[0]}
-              <span style={{ color: '#E03232' }}>Your</span>
+              <span className="title-highlight">Your</span>
               {t('bracelet.title').split('Your')[1]}
             </>
           ) : (
@@ -94,18 +94,10 @@ const TheBracelet = () => {
 
           return (
             <div key={product.id} className="bracelet-product-card">
-              <div
-                className="bracelet-card-img-wrapper"
-                style={{
-                  background: isNova 
-                    ? 'linear-gradient(135deg, rgba(80,80,100,0.8), rgba(40,40,50,0.9))' 
-                    : 'linear-gradient(135deg, rgba(230,230,230,0.9), rgba(180,180,180,0.8))'
-                }}
-              >
+              <div className={`bracelet-card-img-wrapper ${isNova ? 'is-nova' : 'is-pulse'}`}>
                 <img 
                   src={product.image_url} 
                   alt={isAr ? product.name_ar : product.name_en} 
-                  style={{ filter: 'drop-shadow(0 10px 15px rgba(0,0,0,0.5))' }} 
                 />
               </div>
 

@@ -301,6 +301,15 @@
   gap: 16px;
 }
 
+.histogram-title {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
 .histogram-item {
   display: grid;
   grid-template-columns: 45px 1fr 45px;

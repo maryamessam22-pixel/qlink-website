@@ -164,6 +164,7 @@ const Reviews = () => {
             <p>{t('reviews.basedOn')}</p>
           </div>
           <div className="histogram-list">
+            <h3 className="histogram-title">{lang === 'ar' ? 'ملخص التقييمات الإجمالي' : 'Total Review Summary'}</h3>
             {[92, 5, 2, 1, 0].map((percent, index) => (
               <div key={index} className="histogram-item">
                 <span className="star-label">{5 - index} ★</span>

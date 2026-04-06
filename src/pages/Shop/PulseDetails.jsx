@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import SEO from '../../components/common/SEO';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { 
-  ArrowLeft, Droplets, Zap, Shield, HeartPulse, 
+  ArrowLeft, Star, Droplets, Zap, Shield, HeartPulse, 
   ShoppingCart, Truck, ShieldCheck, Undo2, WifiOff, Sparkles, Upload
 } from 'lucide-react';
 import { LanguageContext } from '../../context/LanguageContext';
@@ -20,6 +20,8 @@ const PulseDetails = () => {
   
   const [qty, setQty] = useState(1);
   const [activeColor, setActiveColor] = useState('gray');
+  const [rating, setRating] = useState(5);
+  const [hoverRating, setHoverRating] = useState(0);
   
 
   const [product, setProduct] = useState(null);
@@ -180,9 +182,24 @@ const PulseDetails = () => {
                   
                   <div className="price-row">
                     <div className="price">{product.price} EGP</div>
-                    <div className="reviews">
-                      <span>★★★★★</span>
-                      {t('pulseDetails.reviews')}
+                    <div className="reviews-section">
+                      <div className="dynamic-stars">
+                        {[1, 2, 3, 4, 5].map((star) => (
+                          <Star
+                            key={star}
+                            size={18}
+                            className={`rating-star ${(hoverRating || rating) >= star ? 'filled' : ''}`}
+                            fill={(hoverRating || rating) >= star ? "gold" : "none"}
+                            onClick={() => setRating(star)}
+                            onMouseEnter={() => setHoverRating(star)}
+                            onMouseLeave={() => setHoverRating(0)}
+                            style={{ cursor: 'pointer', transition: 'transform 0.2s ease' }}
+                          />
+                        ))}
+                      </div>
+                      <span className="reviews-count">
+                        {t('pulseDetails.reviews')}
+                      </span>
                     </div>
                   </div>
                 </div>

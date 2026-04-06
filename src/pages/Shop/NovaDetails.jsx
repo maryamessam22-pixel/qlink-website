@@ -26,6 +26,8 @@ const NovaDetails = () => {
   
   const [qty, setQty] = useState(1);
   const [activeColor, setActiveColor] = useState('black');
+  const [rating, setRating] = useState(5);
+  const [hoverRating, setHoverRating] = useState(0);
   
   const [product, setProduct] = useState(null);
   const [seoData, setSeoData] = useState(null);
@@ -213,9 +215,24 @@ const NovaDetails = () => {
               
               <div className="price-row">
                 <div className="price">{product.price} EGP</div>
-                <div className="reviews">
-                  <span>★★★★★</span>
-                  {t('novaDetails.reviews')}
+                <div className="reviews-section">
+                  <div className="dynamic-stars">
+                    {[1, 2, 3, 4, 5].map((star) => (
+                      <Star
+                        key={star}
+                        size={18}
+                        className={`rating-star ${(hoverRating || rating) >= star ? 'filled' : ''}`}
+                        fill={(hoverRating || rating) >= star ? "gold" : "none"}
+                        onClick={() => setRating(star)}
+                        onMouseEnter={() => setHoverRating(star)}
+                        onMouseLeave={() => setHoverRating(0)}
+                        style={{ cursor: 'pointer', transition: 'transform 0.2s ease' }}
+                      />
+                    ))}
+                  </div>
+                  <span className="reviews-count">
+                    {t('novaDetails.reviews')}
+                  </span>
                 </div>
               </div>
               
