@@ -284,6 +284,8 @@
   margin-top: 0px;
 }
 
+
+
 .star-row-medium {
   display: flex;
   justify-content: center;
@@ -414,6 +416,10 @@
 @media (max-width: 900px) {
   .reviews-page-container {
     padding-top: 120px;
+  }
+
+  .rating-breakdown-section.scroll-animate.stag-2.is-visible {
+    padding: 30px;
   }
 
   .reviews-title {
