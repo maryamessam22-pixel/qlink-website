@@ -490,3 +490,21 @@
 .pulse-info {
   position: relative;
 }
+
+@keyframes fadeInStrapPulse {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeInStrapPulse 0.4s ease-out forwards;
+}
+
+.strap-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(224, 50, 50, 0.2);
+}
+
+.strap-btn.active {
+  border-color: transparent !important;
+}

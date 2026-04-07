@@ -20,6 +20,7 @@ const PulseDetails = () => {
   
   const [qty, setQty] = useState(1);
   const [activeColor, setActiveColor] = useState('gray');
+  const [strapType, setStrapType] = useState('solid'); // 'solid' or 'woven'
   const [rating, setRating] = useState(5);
   const [hoverRating, setHoverRating] = useState(0);
   
@@ -107,6 +108,25 @@ const PulseDetails = () => {
 
  
   const allThumbs = [mainImg, ...galleryImages].filter(Boolean);
+
+  const handleColorChange = (colorId) => {
+    setActiveColor(colorId);
+    if (colorId === 'gray' && allThumbs[0]) setSelectedImg(allThumbs[0]);
+    else if (colorId === 'dark' && allThumbs[1]) setSelectedImg(allThumbs[1]);
+    else if (colorId === 'ruby' && allThumbs[2]) setSelectedImg(allThumbs[2]);
+    else if (colorId === 'blue') {
+      if (strapType === 'woven' && allThumbs[4]) setSelectedImg(allThumbs[4]);
+      else if (allThumbs[3]) setSelectedImg(allThumbs[3]);
+    }
+  };
+
+  const handleStrapChange = (type) => {
+    setStrapType(type);
+    if (activeColor === 'blue') {
+      if (type === 'woven' && allThumbs[4]) setSelectedImg(allThumbs[4]);
+      else if (allThumbs[3]) setSelectedImg(allThumbs[3]);
+    }
+  };
 
   return (
     <div className={`pulse-details-container ${isAr ? 'rtl-text' : ''}`} dir={isAr ? 'rtl' : 'ltr'}>
@@ -219,11 +239,53 @@ const PulseDetails = () => {
                       key={color.id}
                       className={`color-circle ${activeColor === color.id ? 'active' : ''}`}
                       style={{ backgroundColor: color.hex }}
-                      onClick={() => setActiveColor(color.id)}
+                      onClick={() => handleColorChange(color.id)}
                     ></div>
                   ))}
                 </div>
               </div>
+
+              {activeColor === 'blue' && (
+                <div className="strap-selector animate-fade-in" style={{ marginTop: '20px', marginBottom: '20px' }}>
+                  <span className="finish-label">
+                    {isAr ? 'نوع الحزام' : 'Strap Type'}: <strong>{strapType === 'solid' ? (isAr ? 'ناعم' : 'Solid') : (isAr ? 'منسوج' : 'Woven')}</strong>
+                  </span>
+                  <div className="strap-options" style={{ display: 'flex', gap: '12px', marginTop: '8px' }}>
+                    <button 
+                      className={`strap-btn ${strapType === 'solid' ? 'active' : ''}`}
+                      onClick={() => handleStrapChange('solid')}
+                      style={{
+                        padding: '8px 16px',
+                        borderRadius: '20px',
+                        border: '1px solid rgba(255,255,255,0.2)',
+                        background: strapType === 'solid' ? 'var(--color-primary-red)' : 'rgba(255,255,255,0.05)',
+                        color: 'white',
+                        cursor: 'pointer',
+                        fontSize: '13px',
+                        transition: 'all 0.2s ease'
+                      }}
+                    >
+                      {isAr ? 'ناعم' : 'Solid'}
+                    </button>
+                    <button 
+                      className={`strap-btn ${strapType === 'woven' ? 'active' : ''}`}
+                      onClick={() => handleStrapChange('woven')}
+                      style={{
+                        padding: '8px 16px',
+                        borderRadius: '20px',
+                        border: '1px solid rgba(255,255,255,0.2)',
+                        background: strapType === 'woven' ? 'var(--color-primary-red)' : 'rgba(255,255,255,0.05)',
+                        color: 'white',
+                        cursor: 'pointer',
+                        fontSize: '13px',
+                        transition: 'all 0.2s ease'
+                      }}
+                    >
+                      {isAr ? 'منسوج' : 'Woven'}
+                    </button>
+                  </div>
+                </div>
+              )}
               
               <div className="quantity-selector">
                 <span className="finish-label">{t('pulseDetails.quantity')}</span>
@@ -245,10 +307,11 @@ const PulseDetails = () => {
                     slug: 'qlink-pulse',
                     name: isAr ? product.name_ar : product.name_en,
                     color: activeColor,
-                    colorName: selectedColor?.name || activeColor,
+                    colorName: (colors.find(c => c.id === activeColor)?.name || activeColor) + (activeColor === 'blue' ? ` (${strapType === 'solid' ? (isAr ? 'ناعم' : 'Solid') : (isAr ? 'منسوج' : 'Woven')})` : ''),
+                    strap: strapType,
                     qty,
                     price: product.price,
-                    image: product.image_url
+                    image: selectedImg || product.image_url
                   });
                   navigate('/checkout');
                 }}>
@@ -261,10 +324,11 @@ const PulseDetails = () => {
                     slug: 'qlink-pulse',
                     name: isAr ? product.name_ar : product.name_en,
                     color: activeColor,
-                    colorName: selectedColor?.name || activeColor,
+                    colorName: (colors.find(c => c.id === activeColor)?.name || activeColor) + (activeColor === 'blue' ? ` (${strapType === 'solid' ? (isAr ? 'ناعم' : 'Solid') : (isAr ? 'منسوج' : 'Woven')})` : ''),
+                    strap: strapType,
                     qty,
                     price: product.price,
-                    image: product.image_url
+                    image: selectedImg || product.image_url
                   });
                   navigate('/cart');
                 }}>
