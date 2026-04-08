@@ -156,9 +156,14 @@ function Home() {
               )}
             </h1>
 
-            <p className="hero-desc scroll-animate stag-2">
-              {cms['home_hero'] ? pick(cms['home_hero'], 'subtitle') : t('hero.desc')}
-            </p>
+            {/* التعديل الأول: هنا استخدمنا dangerouslySetInnerHTML للـ Subtitle */}
+            <div className="hero-desc scroll-animate stag-2">
+              {cms['home_hero'] ? (
+                <span dangerouslySetInnerHTML={{ __html: pick(cms['home_hero'], 'subtitle') || '' }} />
+              ) : (
+                <p>{t('hero.desc')}</p>
+              )}
+            </div>
 
             <div className={`hero-buttons scroll-animate stag-3 ${lang === 'ar' ? 'rtl-buttons' : ''}`}>
               <button
@@ -275,9 +280,16 @@ function Home() {
             <h2 className="split-title">
               {cms['home_simple_secure'] ? pick(cms['home_simple_secure'], 'title') : t('splitFeature.title')}
             </h2>
-            <p className="split-desc">
-              {cms['home_simple_secure'] ? pick(cms['home_simple_secure'], 'content') : t('splitFeature.desc1')}
-            </p>
+            
+            {/* التعديل التاني: هنا استخدمنا dangerouslySetInnerHTML للـ Content */}
+            <div className="split-desc">
+              {cms['home_simple_secure'] ? (
+                <span dangerouslySetInnerHTML={{ __html: pick(cms['home_simple_secure'], 'content') || '' }} />
+              ) : (
+                <p>{t('splitFeature.desc1')}</p>
+              )}
+            </div>
+
             <Link
               to="/about/our-story"
               className="btn btn-primary link-btn-inline"
