@@ -136,6 +136,7 @@ function OurStory() {
   const missionQuote = vision ? (isArabic ? vision.content_ar : vision.content_en) : t('ourStory.missionQuote');
   const founderName = founder ? (isArabic ? founder.title_ar : founder.title_en) : t('ourStory.founderName');
   const founderRole = founder ? (isArabic ? founder.subtitle_ar : founder.subtitle_en) : t('ourStory.founderRole');
+  const founderMissionText = founder ? (isArabic ? founder.content_ar : founder.content_en) : null;
 
   return (
     <div className={`our-story-detailed-page ${isArabic ? 'rtl-text' : ''}`}>
@@ -210,11 +211,21 @@ function OurStory() {
           </div>
         </section>
 
+        {/* التعديل هنا: استخدام dangerouslySetInnerHTML للنص اللي جاي من الـ CMS */}
         <section className="founder-mission-section scroll-animate stag-2">
           <div className="mission-glass-box">
             <Quote size={40} className="mission-quote-icon" />
             <h2 className="mission-title">{missionTitle}</h2>
-            <p className="mission-text" style={{ fontStyle: 'italic' }}>"{missionQuote}"</p>
+            {vision ? (
+                <div className="mission-text" style={{ fontStyle: 'italic' }} dangerouslySetInnerHTML={{ __html: missionQuote }} />
+            ) : (
+                <p className="mission-text" style={{ fontStyle: 'italic' }}>"{missionQuote}"</p>
+            )}
+            
+            {founderMissionText && (
+                <div className="mission-text-secondary" style={{ marginTop: '20px', fontSize: '15px' }} dangerouslySetInnerHTML={{ __html: founderMissionText }} />
+            )}
+
             <div className="founder-footer">
                <div className="founder-line"></div>
                <h4 className="founder-name">{founderName}</h4>
