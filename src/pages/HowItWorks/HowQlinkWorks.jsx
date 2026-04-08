@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import SEO from '../../components/common/SEO';
 import './HowQlinkWorks.css';
 import { LanguageContext } from '../../context/LanguageContext';
-import { supabase } from '../../lib/Supabase'; 
+import { supabase } from '../../lib/Supabase';
 import {
   ShieldCheck,
   Database,
@@ -33,7 +33,7 @@ import DynamicBackground from '../../components/common/DynamicBackground';
 function HowQlinkWorks() {
   const lensRef = useRef(null);
   const { t, lang } = useContext(LanguageContext);
-  
+
 
   const [seoData, setSeoData] = useState(null);
 
@@ -110,21 +110,21 @@ function HowQlinkWorks() {
 
   return (
     <div className="how-works-page">
-     
-      <SEO 
+
+      <SEO
         title={seoData ? (lang === 'ar' ? seoData.title_ar : seoData.title_en) : (lang === 'ar' ? 'كيف يعمل' : 'How it Works')}
         description={seoData ? (lang === 'ar' ? seoData.description_ar : seoData.description_en) : ''}
         slug="how-it-works"
       />
-      <DynamicBackground/>
- 
+      <DynamicBackground />
+
       <div className="hw-liquid-bg">
         <div className="hw-glow hw-glow-1"></div>
         <div className="hw-glow hw-glow-2"></div>
         <div className="hw-glow hw-glow-3"></div>
       </div>
 
-  
+
       <section className={`hw-hero scroll-animate ${lang === 'ar' ? 'rtl-text' : ''}`}>
         <video className="hw-hero-video" src={qlinkVideoSrc} autoPlay loop muted playsInline />
         <div className="hw-hero-overlay"></div>
@@ -224,7 +224,7 @@ function HowQlinkWorks() {
         />
       </section>
 
-  
+
       <section className={`hw-setup-section ${lang === 'ar' ? 'rtl-text' : ''}`}>
         <div className="hw-section-sub">{t('howWorks.setupSub')}</div>
         <h2 className="hw-section-title">{t('howWorks.setupTitle')}</h2>

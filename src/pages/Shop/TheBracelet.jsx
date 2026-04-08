@@ -95,9 +95,10 @@ const TheBracelet = () => {
           return (
             <div key={product.id} className="bracelet-product-card">
               <div className={`bracelet-card-img-wrapper ${isNova ? 'is-nova' : 'is-pulse'}`}>
+                {/* التعديل هنا: بيستخدم الـ alt من الداتابيز، ولو مش موجود بيستخدم اسم المنتج */}
                 <img 
                   src={product.image_url} 
-                  alt={isAr ? product.name_ar : product.name_en} 
+                  alt={product.featured_image_alt || (isAr ? product.name_ar : product.name_en)} 
                 />
               </div>
 
