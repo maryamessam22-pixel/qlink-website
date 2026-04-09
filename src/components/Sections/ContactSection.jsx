@@ -47,13 +47,13 @@ const ContactSection = () => {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
 
-  
-  const title    = pick('title')    || t('supportCenter.contactTitle');
+
+  const title = pick('title') || t('supportCenter.contactTitle');
   const subtitle = pick('subtitle') || t('supportCenter.contactDesc');
-  const extra    = cmsData?.extra_data || {};
-  const emailVal = extra.email   || 'support@qlink.com';
-  const phone    = extra.phone   || '+20 123 456 7890';
-  const address  = extra.address || 'Maadi, 223 st.';
+  const extra = cmsData?.extra_data || {};
+  const emailVal = extra.email || 'support@qlink.com';
+  const phone = extra.phone || '+20 123 456 7890';
+  const address = extra.address || 'Maadi, 223 st.';
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -69,7 +69,7 @@ const ContactSection = () => {
         .from('support_messages')
         .insert([
           {
-            id: crypto.randomUUID(), 
+            id: crypto.randomUUID(),
             sender_name: formData.name,
             subject: formData.subject,
             message_body: formData.message,
@@ -112,15 +112,15 @@ const ContactSection = () => {
             <span className="cm-text">{address}</span>
           </div>
         </div>
-        
+
         <div className="contact-form-col">
           {success ? (
             <div className="contact-success-msg" style={{ textAlign: 'center', padding: '40px 0' }}>
               <div style={{ color: '#10B981', fontSize: '24px', marginBottom: '16px' }}>✓</div>
               <h3 style={{ fontSize: '20px', marginBottom: '8px' }}>{lang === 'ar' ? 'شكراً لتواصلك معنا!' : 'Thank You!'}</h3>
               <p style={{ color: '#94A3B8' }}>{lang === 'ar' ? 'لقد تم إرسال رسالتك بنجاح. سنرد عليك في أقرب وقت ممكن.' : 'Your message has been sent successfully. We\'ll get back to you soon.'}</p>
-              <button 
-                className="cf-submit" 
+              <button
+                className="cf-submit"
                 style={{ marginTop: '24px', width: 'auto', padding: '10px 24px' }}
                 onClick={() => setSuccess(false)}
               >
@@ -132,23 +132,23 @@ const ContactSection = () => {
               <div className="cf-row">
                 <div className="cf-group">
                   <label>{t('supportCenter.formName') || 'Name'}</label>
-                  <input 
+                  <input
                     name="name"
                     required
-                    className="cf-input" 
-                    placeholder={lang === 'ar' ? 'الاسم الخاص بك' : 'Your name'} 
+                    className="cf-input"
+                    placeholder={lang === 'ar' ? 'الاسم الخاص بك' : 'Your name'}
                     value={formData.name}
                     onChange={handleChange}
                   />
                 </div>
                 <div className="cf-group">
                   <label>{lang === 'ar' ? 'البريد الإلكتروني' : 'Email'}</label>
-                  <input 
+                  <input
                     name="email"
                     type="email"
                     required
-                    className="cf-input" 
-                    placeholder="your@email.com" 
+                    className="cf-input"
+                    placeholder="your@email.com"
                     value={formData.email}
                     onChange={handleChange}
                   />
@@ -156,7 +156,7 @@ const ContactSection = () => {
               </div>
               <div className="cf-group">
                 <label>{t('supportCenter.formSubject') || 'Subject'}</label>
-                <select 
+                <select
                   name="subject"
                   required
                   className="cf-input cf-select"
@@ -172,10 +172,10 @@ const ContactSection = () => {
               </div>
               <div className="cf-group cf-textarea-group">
                 <label>{t('supportCenter.formMessage') || 'Messages'}</label>
-                <textarea 
+                <textarea
                   name="message"
                   required
-                  className="cf-input cf-textarea" 
+                  className="cf-input cf-textarea"
                   placeholder={lang === 'ar' ? 'كيف يمكننا المساعدة؟' : 'How can we help?'}
                   value={formData.message}
                   onChange={handleChange}

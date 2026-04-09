@@ -254,7 +254,7 @@ function HowQlinkWorks() {
         </div>
       </section>
 
-      <section className={`hw-help-grid ${lang === 'ar' ? 'rtl-text' : ''}`}>
+      {/* <section className={`hw-help-grid ${lang === 'ar' ? 'rtl-text' : ''}`}>
         <HelpCard
           icon={HelpCircle}
           iconColor="#E03232"
@@ -267,7 +267,7 @@ function HowQlinkWorks() {
           title={t('howWorks.helpTitle')}
           description={t('howWorks.helpDesc')}
         />
-      </section>
+      </section> */}
 
       <section className={`hw-cta-section ${lang === 'ar' ? 'rtl-text' : ''}`}>
         <h2 style={{ fontSize: '32px', fontWeight: '800' }}>{t('howWorks.ctaTitle')}</h2>

@@ -109,9 +109,9 @@ function App() {
           {/* Public Home */}
           <Route element={<MainLayout />}>
             <Route path="/" element={<Home />} />
-            <Route path="/complete-purchase" element={<CompletePurchase />} />
             
             <Route element={<ProtectedRoute />}>
+              <Route path="/complete-purchase" element={<CompletePurchase />} />
               <Route path="/how-it-works/qlink" element={<HowQlinkWorks />} />
               <Route path="/how-it-works/emergency" element={<EmergencyScenario />} />
               <Route path="/shop/bracelet" element={<TheBracelet />} />
@@ -134,6 +134,7 @@ function App() {
               <Route path="/checkout" element={<Checkout />} />
             </Route>
           </Route>
+          <Route path="*" element={<Navigate to="/" replace />} />
 
         </Routes>
       </div>

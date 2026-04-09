@@ -281,7 +281,7 @@ function Home() {
               {cms['home_simple_secure'] ? pick(cms['home_simple_secure'], 'title') : t('splitFeature.title')}
             </h2>
             
-            {/* التعديل التاني: هنا استخدمنا dangerouslySetInnerHTML للـ Content */}
+          {/* التعديل هنا: استخدمنا dangerouslySetInnerHTML للـ Content */}
             <div className="split-desc">
               {cms['home_simple_secure'] ? (
                 <span dangerouslySetInnerHTML={{ __html: pick(cms['home_simple_secure'], 'content') || '' }} />

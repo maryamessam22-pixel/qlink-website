@@ -1,123 +1,126 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Sparkles, ArrowUp, X, Loader2, Trash2 } from 'lucide-react';
-import './AiChat.css'; 
+import { supabase } from '../../lib/Supabase';
+import './AiChat.css';
 
+const getSessionId = () => {
+  let id = localStorage.getItem('qlink_session_id');
+  if (!id) {
+    id = `sess_${crypto.randomUUID()}`;
+    localStorage.setItem('qlink_session_id', id);
+  }
+  return id;
+};
 
-const GEMINI_API_KEY = process.env.REACT_APP_GEMINI_API_KEY;
+const INITIAL_MESSAGE = {
+  id: 1,
+  sender: 'bot',
+  text: "Hello! I'm your Qlink AI Assistant. How can I help you today?",
+  time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+};
 
 const AiChat = ({ isOpen, onClose }) => {
   const [inputValue, setInputValue] = useState('');
   const [isTyping, setIsTyping] = useState(false);
-  const [messages, setMessages] = useState(() => {
-    const saved = localStorage.getItem('qlink_ai_chat_history');
-    if (saved) {
-      try {
-        return JSON.parse(saved);
-      } catch (e) {
-        console.error('Error parsing chat history', e);
-      }
-    }
-    return [
-      {
-        id: 1,
-        sender: 'bot',
-        text: "Hello! I'm your Qlink AI Assistant. How can I help you today?",
-        time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
-      }
-    ];
-  });
-
+  const [messages, setMessages] = useState([INITIAL_MESSAGE]);
   const messagesEndRef = useRef(null);
-  
-  useEffect(() => {
-    localStorage.setItem('qlink_ai_chat_history', JSON.stringify(messages));
-  }, [messages]);
+  const sessionId = useRef(getSessionId()).current;
 
-  const clearHistory = () => {
-    if(window.confirm('Are you sure you want to clear the chat history?')) {
-      setMessages([
-        {
-          id: 1,
-          sender: 'bot',
-          text: "Hello! I'm your Qlink AI Assistant. How can I help you today?",
-          time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
-        }
-      ]);
+  const clearHistory = async () => {
+    if (!window.confirm('Clear all chat history?')) return;
+    const { error } = await supabase
+      .from('chat_messages')
+      .delete()
+      .eq('session_id', sessionId);
+
+    if (error) {
+      console.error('Failed to clear chat history:', error);
+      return;
     }
+    setMessages([INITIAL_MESSAGE]);
   };
+
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
   useEffect(() => {
     scrollToBottom();
-  }, [messages]);
+  }, [messages, isTyping]);
 
-  const generateAIResponse = async (userText) => {
-    setIsTyping(true);
-    
-    try {
-      if (!GEMINI_API_KEY) {
-        throw new Error("API key is missing! Please configure REACT_APP_GEMINI_API_KEY.");
-      }
-      const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          contents: [{
-            parts: [{
-              text: `You are Qlink Safety Bot, a professional AI assistant for Qlink (a smart emergency medical bracelet). Answer this briefly: ${userText}`
-            }]
-          }]
-        })
-      });
-
-      const data = await response.json();
-
-      if (data.error) {
-        throw new Error(data.error.message);
-      }
-      
-      if (data.candidates && data.candidates[0].content) {
-        const botReply = data.candidates[0].content.parts[0].text;
-        
-        setMessages(prev => [...prev, {
-          id: Date.now(),
-          sender: 'bot',
-          text: botReply,
-          time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
-        }]);
-      }
-    } catch (error) {
-      console.error("AI Error:", error);
-      setMessages(prev => [...prev, {
-        id: Date.now(),
-        sender: 'bot',
-        text: "I'm having trouble connecting. Error: " + error.message,
-        time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
-      }]);
-    } finally {
-      setIsTyping(false);
-    }
-  };
-
-  const handleSend = async (e) => {
+  const sendMessage = async (e) => {
     e.preventDefault();
     if (!inputValue.trim() || isTyping) return;
 
-    const userText = inputValue;
-    
-    setMessages(prev => [...prev, {
-      id: Date.now(),
-      sender: 'user',
-      text: userText,
-      time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
-    }]);
-    
+    const userText = inputValue.trim();
     setInputValue('');
-    await generateAIResponse(userText);
+
+    setMessages((prev) => [
+      ...prev,
+      {
+        id: Date.now(),
+        sender: 'user',
+        text: userText,
+        time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+      }
+    ]);
+
+    setIsTyping(true);
+
+    try {
+      const supabaseUrl = process.env.REACT_APP_SUPABASE_URL || 'https://vveftffbvwptlsqqeygp.supabase.co';
+      const normalizedUrl = supabaseUrl.startsWith('http') ? supabaseUrl : `https://${supabaseUrl}`;
+      const functionUrl = `${normalizedUrl.replace(/\/$/, '')}/functions/v1/ai-chat-proxy`;
+      const authKey = process.env.REACT_APP_SUPABASE_ANON_KEY;
+
+      // مراقبة البيانات قبل الإرسال
+      console.log("1. Input being sent to Bot:", userText); 
+      console.log("2. Target URL:", functionUrl);
+
+      const res = await fetch(functionUrl, { 
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          apikey: authKey,
+          Authorization: `Bearer ${authKey}`,
+        },
+        body: JSON.stringify({ message: userText, session_id: sessionId }),
+      });
+
+      const result = await res.json();
+      
+      // مراقبة الرد
+      console.log("3. Full API Response:", result);
+
+      if (!res.ok) {
+        throw new Error(result.error || `Edge Function returned status ${res.status}`);
+      }
+
+      setMessages((prev) => [
+        ...prev,
+        {
+          id: Date.now() + 1,
+          sender: 'bot',
+          text: result.reply,
+          time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+        }
+      ]);
+
+    } catch (err) {
+      const errorMessage = err instanceof Error ? err.message : String(err);
+      console.error('AI chat error details:', err);
+      setMessages((prev) => [
+        ...prev,
+        {
+          id: Date.now() + 1,
+          sender: 'bot',
+          text: `Service error: ${errorMessage}`,
+          time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+        }
+      ]);
+    } finally {
+      setIsTyping(false);
+    }
   };
 
   if (!isOpen) return null;
@@ -125,7 +128,6 @@ const AiChat = ({ isOpen, onClose }) => {
   return (
     <div className="ai-chat-overlay">
       <div className="ai-chat-container">
-        
         <div className="ai-chat-header">
           <div className="ai-header-left">
             <h2 className="ai-logo-text">Qlink</h2>
@@ -160,7 +162,6 @@ const AiChat = ({ isOpen, onClose }) => {
               <span className={`ai-message-time ${msg.sender}`}>{msg.time}</span>
             </div>
           ))}
-          
           {isTyping && (
             <div className="ai-message-wrapper bot">
               <div className="ai-bot-identity">
@@ -179,7 +180,7 @@ const AiChat = ({ isOpen, onClose }) => {
         </div>
 
         <div className="ai-chat-footer">
-          <form className="ai-input-wrapper" onSubmit={handleSend}>
+          <form className="ai-input-wrapper" onSubmit={sendMessage}>
             <input 
               type="text" 
               placeholder="Ask about Qlink safety..." 
@@ -196,7 +197,6 @@ const AiChat = ({ isOpen, onClose }) => {
             </button>
           </form>
         </div>
-
       </div>
     </div>
   );

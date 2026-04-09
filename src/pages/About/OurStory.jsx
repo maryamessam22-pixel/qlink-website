@@ -211,7 +211,6 @@ function OurStory() {
           </div>
         </section>
 
-        {/* التعديل هنا: استخدام dangerouslySetInnerHTML للنص اللي جاي من الـ CMS */}
         <section className="founder-mission-section scroll-animate stag-2">
           <div className="mission-glass-box">
             <Quote size={40} className="mission-quote-icon" />
