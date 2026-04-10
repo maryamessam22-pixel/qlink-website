@@ -72,7 +72,7 @@ function HowQlinkWorks() {
 
   const centerVideoSrc = watchVidSrc;
 
-  // Lens Effect
+  // Single video + feathered lens: follow pointer (mouse / touch / pen)
   useEffect(() => {
     const wrapper = lensRef.current;
     if (!wrapper) return;
@@ -83,27 +83,38 @@ function HowQlinkWorks() {
     let targetY = currentY;
     let rafId;
 
-    const onMouseMove = (e) => {
+    const setTargetFromClient = (clientX, clientY) => {
       const rect = wrapper.getBoundingClientRect();
-      targetX = e.clientX - rect.left;
-      targetY = e.clientY - rect.top;
+      targetX = clientX - rect.left;
+      targetY = clientY - rect.top;
     };
 
-    const updatePosition = () => {
+    const onPointerMove = (e) => {
+      setTargetFromClient(e.clientX, e.clientY);
+    };
+
+    const onPointerLeave = () => {
+      targetX = wrapper.offsetWidth / 2;
+      targetY = wrapper.offsetHeight / 2;
+    };
+
+    const tick = () => {
       currentX += (targetX - currentX) * 0.12;
       currentY += (targetY - currentY) * 0.12;
-
       wrapper.style.setProperty('--lens-x', `${currentX}px`);
       wrapper.style.setProperty('--lens-y', `${currentY}px`);
-
-      rafId = requestAnimationFrame(updatePosition);
+      rafId = requestAnimationFrame(tick);
     };
 
-    wrapper.addEventListener('mousemove', onMouseMove);
-    updatePosition();
+    wrapper.addEventListener('pointermove', onPointerMove);
+    wrapper.addEventListener('pointerdown', onPointerMove);
+    wrapper.addEventListener('pointerleave', onPointerLeave);
+    rafId = requestAnimationFrame(tick);
 
     return () => {
-      wrapper.removeEventListener('mousemove', onMouseMove);
+      wrapper.removeEventListener('pointermove', onPointerMove);
+      wrapper.removeEventListener('pointerdown', onPointerMove);
+      wrapper.removeEventListener('pointerleave', onPointerLeave);
       cancelAnimationFrame(rafId);
     };
   }, []);
@@ -175,18 +186,23 @@ function HowQlinkWorks() {
           />
         </div>
 
-        <div className="features-video-wrapper scroll-animate" ref={lensRef}>
-          <div className="hw-layer hw-blurred-layer">
-            <video className="features-center-video" autoPlay loop muted playsInline>
-              <source src={centerVideoSrc} type="video/mp4" />
-            </video>
-          </div>
-          <div className="hw-layer hw-clear-layer">
-            <video className="features-center-video" autoPlay loop muted playsInline>
-              <source src={centerVideoSrc} type="video/mp4" />
-            </video>
-          </div>
-          <div className="lens-ring-overlay"></div>
+        <div
+          className="features-video-wrapper scroll-animate hw-lens-wrapper"
+          ref={lensRef}
+          role="img"
+          aria-label={lang === 'ar' ? 'معاينة فيديو تفاعلية' : 'Interactive product video preview'}
+        >
+          <video
+            className="hw-lens-video"
+            src={centerVideoSrc}
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="auto"
+          />
+          <div className="hw-blur-overlay" aria-hidden />
+          <div className="hw-lens-soft-halo" aria-hidden />
         </div>
 
         <div className="features-col">

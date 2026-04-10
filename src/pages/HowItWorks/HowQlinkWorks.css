@@ -24,31 +24,7 @@
   padding: 30px;
 }
 
-.hw-layer.hw-blurred-layer.scroll-animate.is-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.feature-block.scroll-animate.active.is-visible {
-  opacity: 1;
-  transform: translateY(0);
-  padding: 30px;
-}
-
-.hw-layer.hw-blurred-layer.scroll-animate.is-visible {
-  opacity: 1;
-  transform: translateY(0);
-  padding: 30px;
-  border-radius: 800;
-}
-
-/* .timeline-row.scroll-animate.is-visible {
-  opacity: 1;
-  transform: translateY(0);
-  padding: 30px;
-} */
-
-.hw-layer.hw-clear-layer.scroll-animate.is-visible {
+.features-video-wrapper.hw-lens-wrapper.scroll-animate.is-visible {
   opacity: 1;
   transform: translateY(0);
 }
@@ -356,76 +332,88 @@
   line-height: 1.6;
 }
 
-.features-video-wrapper {
+/* One video + feathered lens: blur via backdrop-filter mask (no second <video>) */
+.features-video-wrapper.hw-lens-wrapper {
   position: relative;
   width: 100%;
   max-width: 320px;
   height: 520px;
-
   margin: 0 auto;
   border-radius: 900px !important;
   overflow: hidden;
+  --lens-radius: 118px;
   --lens-x: 50%;
   --lens-y: 50%;
   cursor: crosshair;
-  background: rgba(11, 17, 32, 0.5);
+  touch-action: manipulation;
+  background: #0b1120;
   box-shadow:
     inset 0 0 50px rgba(0, 0, 0, 1),
     0 20px 60px rgba(0, 0, 0, 0.6);
   border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-.features-video-wrapper .hw-layer {
+.hw-lens-video {
   position: absolute;
-  top: 0;
-  left: 0;
+  inset: 0;
   width: 100%;
   height: 100%;
-}
-
-.features-center-video {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  min-width: 100%;
-  min-height: 100%;
   object-fit: cover;
+  z-index: 0;
   pointer-events: none;
-  border-radius: 900px;
+  transform: scale(1.02);
 }
 
-.hw-blurred-layer .features-center-video {
-  filter: blur(12px) brightness(0.4);
-
-  transform: translate(-50%, -50%) scale(1.15);
-}
-
-.hw-clear-layer {
-  display: block;
-  clip-path: circle(120px at var(--lens-x) var(--lens-y));
-  z-index: 2;
-}
-
-.hw-clear-layer .features-center-video {
-  filter: brightness(1.1) contrast(1.1);
-}
-
-.lens-ring-overlay {
-  display: block;
+/* Soft feathered “window”: transparent center shows sharp video; edges blur what’s behind */
+.hw-blur-overlay {
   position: absolute;
-  width: 240px;
-
-  height: 240px;
-  border-radius: 50%;
-  top: calc(var(--lens-y) - 120px);
-  left: calc(var(--lens-x) - 120px);
-  box-shadow:
-    inset 0 0 30px rgba(255, 255, 255, 0.1),
-    0 0 20px rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  inset: 0;
+  z-index: 1;
   pointer-events: none;
-  z-index: 3;
+  border-radius: inherit;
+  -webkit-backdrop-filter: blur(18px) brightness(0.5);
+  backdrop-filter: blur(18px) brightness(0.5);
+  mask-image: radial-gradient(
+    circle var(--lens-radius) at var(--lens-x) var(--lens-y),
+    transparent 0%,
+    transparent 38%,
+    rgba(0, 0, 0, 0.18) 46%,
+    rgba(0, 0, 0, 0.52) 54%,
+    rgba(0, 0, 0, 0.82) 62%,
+    black 74%
+  );
+  -webkit-mask-image: radial-gradient(
+    circle var(--lens-radius) at var(--lens-x) var(--lens-y),
+    transparent 0%,
+    transparent 38%,
+    rgba(0, 0, 0, 0.18) 46%,
+    rgba(0, 0, 0, 0.52) 54%,
+    rgba(0, 0, 0, 0.82) 62%,
+    black 74%
+  );
+  mask-repeat: no-repeat;
+  -webkit-mask-repeat: no-repeat;
+}
+
+.hw-lens-soft-halo {
+  position: absolute;
+  top: calc(var(--lens-y) - var(--lens-radius));
+  left: calc(var(--lens-x) - var(--lens-radius));
+  width: calc(var(--lens-radius) * 2);
+  height: calc(var(--lens-radius) * 2);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 2;
+  box-shadow:
+    inset 0 0 45px rgba(0, 0, 0, 0.4),
+    0 0 32px rgba(255, 255, 255, 0.06),
+    0 0 72px rgba(224, 50, 50, 0.05);
+}
+
+@supports not ((backdrop-filter: blur(2px)) or (-webkit-backdrop-filter: blur(2px))) {
+  .hw-blur-overlay {
+    display: none;
+  }
 }
 
 .hw-compare-section {
@@ -528,11 +516,12 @@
     flex-direction: column;
   }
 
-  .features-video-wrapper {
+  .features-video-wrapper.hw-lens-wrapper {
     max-width: 90%;
     width: 280px;
     height: 480px;
     margin: 40px auto;
+    --lens-radius: 96px;
   }
 
   .setup-grid,

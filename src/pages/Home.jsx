@@ -448,20 +448,29 @@ function Home() {
           </section>
         </div>
 
-        <section className={`cta-section scroll-animate ${lang === 'ar' ? 'rtl-text' : ''}`}>
-          <h2 className={`cta-title ${lang === 'ar' ? '' : 'cta-title-eng'}`}>{t('cta.title')}</h2>
-          <button
-            className="btn btn-primary btn-large-pad"
-            onClick={(e) => handleGuardedClick(e, '/shop/bracelet')}
-          >
-            {t('cta.btn')}
-          </button>
+        <section
+          className={`home-cta-section cta-section scroll-animate ${lang === 'ar' ? 'rtl-text' : ''}`}
+          aria-labelledby="home-cta-heading"
+        >
+          <div className="cta-section-inner">
+            <h2
+              id="home-cta-heading"
+              className={`cta-title ${lang === 'ar' ? '' : 'cta-title-eng'}`}
+            >
+              {t('cta.title')}
+            </h2>
+            <button
+              type="button"
+              className="btn btn-primary btn-large-pad cta-shop-btn"
+              onClick={(e) => handleGuardedClick(e, '/shop/bracelet')}
+            >
+              {t('cta.btn')}
+            </button>
 
-          <div className="cta-line"></div>
+            <div className="cta-line" aria-hidden />
 
-          <p className="cta-footer-text">
-            {t('cta.footer')}
-          </p>
+            <p className="cta-footer-text">{t('cta.footer')}</p>
+          </div>
         </section>
       </div>
     </div>
