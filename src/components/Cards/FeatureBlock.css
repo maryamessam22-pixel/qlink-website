@@ -13,11 +13,13 @@
   font-size: 18px;
   font-weight: 700;
   margin-bottom: 12px;
+  margin-left: 24px;
   color: var(--text-primary);
 }
 
 .feature-block p {
   font-size: 14px;
   color: var(--text-secondary);
+  margin-left: 24px;
   line-height: 1.6;
 }

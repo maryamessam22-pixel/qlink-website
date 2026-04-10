@@ -324,11 +324,13 @@
   font-weight: 700;
   margin-bottom: 12px;
   color: white;
+  margin-left: 24px;
 }
 
 .feature-block p {
   font-size: 14px;
   color: #94a3b8;
+  margin-left: 24px;
   line-height: 1.6;
 }
 
