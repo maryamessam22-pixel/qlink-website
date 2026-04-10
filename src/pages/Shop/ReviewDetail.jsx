@@ -75,7 +75,7 @@ const ReviewDetail = () => {
         .from('reviews')
         .select('*')
         .eq('id', id)
-        .eq('is_featured', true)
+        .eq('is_visible', true)
         .maybeSingle();
 
       if (cancelled) return;

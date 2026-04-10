@@ -95,6 +95,7 @@ const Reviews = () => {
         const { data, error } = await supabase
           .from('reviews')
           .select('id, customer_name, customer_subtitle, rating, review_text, created_at')
+          .eq('is_visible', true)
           .eq('is_featured', true)
           .order('created_at', { ascending: false });
 
@@ -151,6 +152,7 @@ const Reviews = () => {
           rating,
           review_text: reviewBody,
           is_featured: false,
+          is_visible: false,
           created_at: new Date().toISOString(),
         },
       ]);
