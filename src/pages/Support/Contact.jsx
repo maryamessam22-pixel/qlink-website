@@ -14,34 +14,46 @@ import mobileVisuals from '../../assets/images/mobile3rd.png';
 function Contact() {
   const { lang, t } = useContext(LanguageContext);
   
-  // State  SEO
   const [seoData, setSeoData] = useState(null);
+  const [cms, setCms] = useState({}); // State لتخزين بيانات الـ CMS
 
   const isArabic = typeof lang === 'string' && lang.toLowerCase().includes('ar');
 
-  // Fetch SEO
+  // دالة مساعدة لجلب النص حسب اللغة
+  const pick = (row, field) => {
+    if (!row) return null;
+    return isArabic ? row[`${field}_ar`] : row[`${field}_en`];
+  };
+
   useEffect(() => {
-    const fetchSeo = async () => {
+    const fetchData = async () => {
       try {
-        const { data, error } = await supabase
+        // 1. Fetch SEO
+        const { data: seo } = await supabase
           .from('seo')
           .select('*')
           .eq('slug', 'support/contact')
           .single();
+        if (seo) setSeoData(seo);
 
-        if (error && error.code !== 'PGRST116') {
-          console.error('Supabase Contact SEO fetch error:', error);
-        } else if (data) {
-          console.log("SEO DATA GAT YAAAAY (Contact): ", data);
-          setSeoData(data);
+        // 2. Fetch CMS Content (سحب بيانات التواصل والأبلكيشن)
+        const { data: content } = await supabase
+          .from('cms_content')
+          .select('*')
+          .in('section_key', ['contact_info', 'home_app_section']); // ضيفي أي keys تانية محتاجاها هنا
+
+        if (content) {
+          const map = {};
+          content.forEach(item => { map[item.section_key] = item; });
+          setCms(map);
         }
       } catch (err) {
-        console.error('Unexpected error fetching Contact SEO:', err);
+        console.error('Error fetching Contact data:', err);
       }
     };
 
-    fetchSeo();
-  }, []);
+    fetchData();
+  }, [lang]);
 
   // Animations Observer
   useEffect(() => {
@@ -63,24 +75,21 @@ function Contact() {
     <div className={`contact-page ${isArabic ? 'rtl-text' : ''}`}>
    
       <SEO 
-        title={
-          seoData 
-            ? (isArabic ? seoData.title_ar : seoData.title_en) 
-            : (isArabic ? 'اتصل بنا' : 'Contact Us')
-        }
-        description={
-          seoData 
-            ? (isArabic ? seoData.description_ar : seoData.description_en) 
-            : (isArabic ? 'تواصل مع فريق كيو لينك لأي استفسارات أو دعم.' : 'Get in touch with the Qlink team for any inquiries or support.')
-        }
+        title={seoData ? pick(seoData, 'title') : (isArabic ? 'اتصل بنا' : 'Contact Us')}
+        description={seoData ? pick(seoData, 'description') : (isArabic ? 'تواصل معنا لأي استفسار' : 'Get in touch')}
         slug={seoData ? seoData.slug : "support/contact"}
       />
+      
       <DynamicBackground />
       
-      {/* 1. Hero */}
+      {/* 1. Hero - Dynamic from contact_info */}
       <section className="contact-hero scroll-animate stag-1">
-        <h1>{isArabic ? 'تواصل ' : 'Get in '}<span>{isArabic ? 'معنا' : 'Touch'}</span></h1>
-        <p>{isArabic ? 'هل لديك أسئلة حول كيو لينك؟ فريقنا هنا لمساعدتك في تأمين راحة بالك.' : 'Have questions about Qlink? Our team is here to help you secure your peace of mind.'}</p>
+        <h1>
+          {cms['contact_info'] ? pick(cms['contact_info'], 'title') : (isArabic ? 'تواصل معنا' : 'Get in Touch')}
+        </h1>
+        <p>
+          {cms['contact_info'] ? pick(cms['contact_info'], 'subtitle') : (isArabic ? 'هل لديك أسئلة؟' : 'Have questions?')}
+        </p>
       </section>
 
       {/* 2. Contact Main (Form + Info) */}
@@ -94,7 +103,7 @@ function Contact() {
           <HelpCircle size={32} />
         </div>
         <h2>{isArabic ? 'لا تزال لديك أسئلة؟' : 'Still have questions?'}</h2>
-        <p>{isArabic ? 'لا تجد الإجابة التي تبحث عنها؟ تحقق من قسم الأسئلة الشائعة الشامل للحصول على معلومات مفصلة عن كيو لينك.' : 'Can\'t find the answer you\'re looking for? Check out our comprehensive FAQ section for detailed information about Qlink.'}</p>
+        <p>{isArabic ? 'تحقق من قسم الأسئلة الشائعة للحصول على معلومات مفصلة.' : 'Check out our comprehensive FAQ section.'}</p>
         <button className="btn-cta" onClick={() => window.location.href = '/support/faqs'}>
           {isArabic ? 'عرض الأسئلة الشائعة' : 'View FAQs'}
         </button>
@@ -103,19 +112,19 @@ function Contact() {
       {/* 4. Stay Updated (Newsletter) */}
       <section className="newsletter-section scroll-animate stag-3">
         <h2>{isArabic ? 'ابق على اطلاع' : 'Stay Updated'}</h2>
-        <p>{isArabic ? 'اشترك في نشرتنا الإخبارية للحصول على أحدث نصائح الأمان وتحديثات المنتجات والعروض الحصرية.' : 'Subscribe to our newsletter for the latest safety tips, product updates, and exclusive offers.'}</p>
+        <p>{isArabic ? 'اشترك في نشرتنا الإخبارية للحصول على أحدث نصائح الأمان.' : 'Subscribe for the latest safety tips.'}</p>
         <div className="newsletter-form">
           <input type="email" placeholder={isArabic ? 'أدخل بريدك الإلكتروني' : 'Enter your email'} />
           <button className="btn-sub">{isArabic ? 'اشترك' : 'Subscribe'}</button>
         </div>
       </section>
 
-      {/* 5. Install App */}
+      {/* 5. Install App - Dynamic from home_app_section */}
       <AppPromoSection 
         imageSrc={mobileVisuals}
-        customTitle={isArabic ? 'ثبت التطبيق ' : 'Install the App '}
+        customTitle={cms['home_app_section'] ? pick(cms['home_app_section'], 'title') : (isArabic ? 'ثبت التطبيق ' : 'Install the App ')}
         customFocus={isArabic ? 'الآن!' : 'Now!'}
-        customDesc={isArabic ? 'تحكم بشكل كامل في سلامتك. أدر الملفات الشخصية، واحصل على تنبيهات فورية، والمزيد.' : 'Take full control of your safety. Manage profiles, get real-time alerts, and more.'}
+        customDesc={cms['home_app_section'] ? pick(cms['home_app_section'], 'subtitle') : (isArabic ? 'تحكم بشكل كامل في سلامتك.' : 'Take full control of your safety.')}
       />
 
     </div>

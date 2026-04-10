@@ -64,6 +64,15 @@ function Home() {
     return lang === 'ar' ? row[`${field}_ar`] : row[`${field}_en`];
   };
 
+  /** CMS columns use hyphens: card-one-title-en, card-one-desc-ar, … */
+  const cmsCard = (row, ordinal, part) => {
+    if (!row) return null;
+    const key = `card-${ordinal}-${part}-${lang}`;
+    const v = row[key];
+    if (v == null || String(v).trim() === '') return null;
+    return v;
+  };
+
   useEffect(() => {
     const fetchContent = async () => {
       try {
@@ -77,7 +86,14 @@ function Home() {
         const { data: content, error } = await supabase
           .from('cms_content')
           .select('*')
-          .in('section_key', ['home_hero', 'home_features', 'home_simple_secure']);
+          .in('section_key', [
+            'home_hero',
+            'home_features',
+            'home_simple_secure',
+            'home_why_choose',
+            'home_journey',
+            'home_who_it_for',
+          ]);
 
         if (error) return;
         if (content) {
@@ -246,31 +262,35 @@ function Home() {
         </section>
 
         <section className={`why-section scroll-animate ${lang === 'ar' ? 'rtl-text' : ''}`}>
-          <h2 className="section-title">{t('whyChoose.title')}</h2>
+          <h2 className="section-title">
+            {cms['home_why_choose'] ? pick(cms['home_why_choose'], 'title') || t('whyChoose.title') : t('whyChoose.title')}
+          </h2>
           <p className="section-subtitle">
-            {t('whyChoose.subtitle')}
+            {cms['home_why_choose']
+              ? pick(cms['home_why_choose'], 'subtitle') || t('whyChoose.subtitle')
+              : t('whyChoose.subtitle')}
           </p>
 
           <div className="card-grid-4">
             <WhyCard
               icon={Wifi}
-              title={t('whyChoose.w1Title')}
-              description={t('whyChoose.w1Desc')}
+              title={cmsCard(cms['home_why_choose'], 'one', 'title') || t('whyChoose.w1Title')}
+              description={cmsCard(cms['home_why_choose'], 'one', 'desc') || t('whyChoose.w1Desc')}
             />
             <WhyCard
               icon={ShieldCheck}
-              title={t('whyChoose.w2Title')}
-              description={t('whyChoose.w2Desc')}
+              title={cmsCard(cms['home_why_choose'], 'two', 'title') || t('whyChoose.w2Title')}
+              description={cmsCard(cms['home_why_choose'], 'two', 'desc') || t('whyChoose.w2Desc')}
             />
             <WhyCard
               icon={Smartphone}
-              title={t('whyChoose.w3Title')}
-              description={t('whyChoose.w3Desc')}
+              title={cmsCard(cms['home_why_choose'], 'three', 'title') || t('whyChoose.w3Title')}
+              description={cmsCard(cms['home_why_choose'], 'three', 'desc') || t('whyChoose.w3Desc')}
             />
             <WhyCard
               icon={HeartPulse}
-              title={t('whyChoose.w4Title')}
-              description={t('whyChoose.w4Desc')}
+              title={cmsCard(cms['home_why_choose'], 'four', 'title') || t('whyChoose.w4Title')}
+              description={cmsCard(cms['home_why_choose'], 'four', 'desc') || t('whyChoose.w4Desc')}
             />
           </div>
         </section>
@@ -304,9 +324,13 @@ function Home() {
         </section>
 
         <section className={`what-section scroll-animate ${lang === 'ar' ? 'rtl-text' : ''}`}>
-          <h2 className="section-title">{t('whoIsFor.title')}</h2>
+          <h2 className="section-title">
+            {cms['home_who_it_for'] ? pick(cms['home_who_it_for'], 'title') || t('whoIsFor.title') : t('whoIsFor.title')}
+          </h2>
           <p className="section-subtitle">
-            {t('whoIsFor.subtitle')}
+            {cms['home_who_it_for']
+              ? pick(cms['home_who_it_for'], 'subtitle') || t('whoIsFor.subtitle')
+              : t('whoIsFor.subtitle')}
           </p>
 
           <div className="card-grid-3">
@@ -316,8 +340,8 @@ function Home() {
               icon={Users}
               iconSize={24}
               iconColor="#b0b8c8"
-              title={t('whoIsFor.c1Title')}
-              description={t('whoIsFor.c1Desc')}
+              title={cmsCard(cms['home_who_it_for'], 'one', 'title') || t('whoIsFor.c1Title')}
+              description={cmsCard(cms['home_who_it_for'], 'one', 'desc') || t('whoIsFor.c1Desc')}
             />
             <InfoCard
               className="pad-40-24"
@@ -325,8 +349,8 @@ function Home() {
               icon={Activity}
               iconSize={24}
               iconColor="#E03232"
-              title={t('whoIsFor.c2Title')}
-              description={t('whoIsFor.c2Desc')}
+              title={cmsCard(cms['home_who_it_for'], 'two', 'title') || t('whoIsFor.c2Title')}
+              description={cmsCard(cms['home_who_it_for'], 'two', 'desc') || t('whoIsFor.c2Desc')}
             />
             <InfoCard
               className="pad-40-24"
@@ -334,42 +358,46 @@ function Home() {
               icon={Baby}
               iconSize={24}
               iconColor="#b0b8c8"
-              title={t('whoIsFor.c3Title')}
-              description={t('whoIsFor.c3Desc')}
+              title={cmsCard(cms['home_who_it_for'], 'three', 'title') || t('whoIsFor.c3Title')}
+              description={cmsCard(cms['home_who_it_for'], 'three', 'desc') || t('whoIsFor.c3Desc')}
             />
           </div>
         </section>
 
         <section className={`journey-section scroll-animate ${lang === 'ar' ? 'rtl-text' : ''}`}>
-          <h2 className="section-title">{t('journey.title')}</h2>
+          <h2 className="section-title">
+            {cms['home_journey'] ? pick(cms['home_journey'], 'title') || t('journey.title') : t('journey.title')}
+          </h2>
           <p className="section-subtitle">
-            {t('journey.subtitle')}
+            {cms['home_journey']
+              ? pick(cms['home_journey'], 'subtitle') || t('journey.subtitle')
+              : t('journey.subtitle')}
           </p>
 
           <div className="step-grid">
             <StepItem
               icon={Watch}
               iconColor="#E03232"
-              title={t('journey.s1Title')}
-              description={t('journey.s1Desc')}
+              title={cmsCard(cms['home_journey'], 'one', 'title') || t('journey.s1Title')}
+              description={cmsCard(cms['home_journey'], 'one', 'desc') || t('journey.s1Desc')}
             />
             <StepItem
               icon={FileText}
               iconColor="#E03232"
-              title={t('journey.s2Title')}
-              description={t('journey.s2Desc')}
+              title={cmsCard(cms['home_journey'], 'two', 'title') || t('journey.s2Title')}
+              description={cmsCard(cms['home_journey'], 'two', 'desc') || t('journey.s2Desc')}
             />
             <StepItem
               icon={CheckCircle2}
               iconColor="#E03232"
-              title={t('journey.s3Title')}
-              description={t('journey.s3Desc')}
+              title={cmsCard(cms['home_journey'], 'three', 'title') || t('journey.s3Title')}
+              description={cmsCard(cms['home_journey'], 'three', 'desc') || t('journey.s3Desc')}
             />
             <StepItem
               icon={Truck}
               iconColor="#E03232"
-              title={t('journey.s4Title')}
-              description={t('journey.s4Desc')}
+              title={cmsCard(cms['home_journey'], 'four', 'title') || t('journey.s4Title')}
+              description={cmsCard(cms['home_journey'], 'four', 'desc') || t('journey.s4Desc')}
             />
           </div>
         </section>
