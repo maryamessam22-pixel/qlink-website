@@ -24,12 +24,23 @@ const getAvatarForUser = (name) => {
   return heroImg; 
 };
 
+/** Strip internal email footnote we append on submit (`\n\n— email`). */
+const publicReviewBody = (text) => {
+  if (!text || typeof text !== 'string') return '';
+  const marker = '\n\n— ';
+  const i = text.lastIndexOf(marker);
+  if (i === -1) return text.trim();
+  return text.slice(0, i).trim();
+};
+
 const Reviews = () => {
   const { t, lang } = useContext(LanguageContext);
   const navigate = useNavigate();
   const [addReviewCms, setAddReviewCms] = useState(null);
+  const [publicReviews, setPublicReviews] = useState([]);
   const [reviewForm, setReviewForm] = useState({
     name: '',
+    subtitle: '',
     email: '',
     rating: 5,
     message: '',
@@ -78,6 +89,36 @@ const Reviews = () => {
     fetchAddReviewCms();
   }, [lang]);
 
+  useEffect(() => {
+    const loadFeaturedReviews = async () => {
+      try {
+        const { data, error } = await supabase
+          .from('reviews')
+          .select('id, customer_name, customer_subtitle, rating, review_text, created_at')
+          .eq('is_featured', true)
+          .order('created_at', { ascending: false });
+
+        if (!error && Array.isArray(data) && data.length > 0) {
+          setPublicReviews(
+            data.map((row) => ({
+              id: row.id,
+              author: row.customer_name,
+              role: row.customer_subtitle ?? '',
+              stars: row.rating,
+              quote: publicReviewBody(row.review_text),
+            }))
+          );
+          return;
+        }
+      } catch (e) {
+        console.error(e);
+      }
+      const fallback = t('reviews.testimonials', { returnObjects: true });
+      setPublicReviews(Array.isArray(fallback) ? fallback : []);
+    };
+    loadFeaturedReviews();
+  }, [lang]);
+
   const handleReviewChange = (e) => {
     const { name, value } = e.target;
     setReviewForm((prev) => ({ ...prev, [name]: value }));
@@ -96,19 +137,21 @@ const Reviews = () => {
     setReviewSubmitting(true);
     try {
       const rating = Math.min(5, Math.max(1, Number(reviewForm.rating) || 5));
-      const emailLine = reviewForm.email.trim() ? reviewForm.email.trim() : '—';
-      const subject = `[Qlink Review] ${rating}/5 — ${name}`.slice(0, 240);
-      const messageBody = `Rating: ${rating}/5\nEmail: ${emailLine}\n\n${message}`;
+      const subtitle = (reviewForm.subtitle || '').trim();
+      const email = (reviewForm.email || '').trim();
+      const customerSubtitle =
+        subtitle || (lang === 'ar' ? 'عميل' : 'Customer');
+      const reviewBody = email ? `${message}\n\n— ${email}` : message;
 
-      const { error } = await supabase.from('support_messages').insert([
+      const { error } = await supabase.from('reviews').insert([
         {
           id: crypto.randomUUID(),
-          sender_name: name,
-          subject,
-          message_body: messageBody,
-          status: 'Unread',
-          received_at: new Date().toISOString(),
-          date: new Date().toISOString().split('T')[0],
+          customer_name: name,
+          customer_subtitle: customerSubtitle,
+          rating,
+          review_text: reviewBody,
+          is_featured: false,
+          created_at: new Date().toISOString(),
         },
       ]);
 
@@ -118,7 +161,7 @@ const Reviews = () => {
         return;
       }
       setReviewSuccess(true);
-      setReviewForm({ name: '', email: '', rating: 5, message: '' });
+      setReviewForm({ name: '', subtitle: '', email: '', rating: 5, message: '' });
     } catch (err) {
       console.error(err);
       setReviewError(t('reviews.addReviewError'));
@@ -138,9 +181,9 @@ const Reviews = () => {
 
     const animatedElements = document.querySelectorAll('.scroll-animate');
     animatedElements.forEach(el => observer.observe(el));
-    
+
     return () => observer.disconnect();
-  }, []); 
+  }, [publicReviews]);
 
   return (
     <div className={`reviews-page-container ${lang === 'ar' ? 'rtl-text' : ''}`}>
@@ -213,8 +256,7 @@ const Reviews = () => {
 
        
         <div className="testimonials-grid scroll-animate stag-1">
-          {Array.isArray(t('reviews.testimonials', { returnObjects: true })) && 
-           t('reviews.testimonials', { returnObjects: true }).map((item) => (
+          {publicReviews.map((item) => (
             <div 
               key={item.id} 
               className="testimonial-card"
@@ -231,7 +273,7 @@ const Reviews = () => {
                   </div>
                   <div>
                     <h4>{item.author}</h4>
-                    <span>{item.role}</span>
+                    {item.role ? <span>{item.role}</span> : null}
                   </div>
                 </div>
                 <Quote size={24} className="quote-icon" />
@@ -305,6 +347,18 @@ const Reviews = () => {
                   placeholder={extraLabel('name_placeholder') || t('reviews.addReviewName')}
                   disabled={reviewSubmitting}
                   required
+                />
+              </div>
+              <div className="add-review-field">
+                <label htmlFor="review-subtitle">{extraLabel('role_label') || t('reviews.addReviewRole')}</label>
+                <input
+                  id="review-subtitle"
+                  name="subtitle"
+                  type="text"
+                  value={reviewForm.subtitle}
+                  onChange={handleReviewChange}
+                  placeholder={extraLabel('role_placeholder') || t('reviews.addReviewRolePlaceholder')}
+                  disabled={reviewSubmitting}
                 />
               </div>
               <div className="add-review-field">
