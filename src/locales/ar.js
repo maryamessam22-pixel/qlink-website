@@ -398,7 +398,8 @@ const arTranslations = {
     addReviewPlaceholder: "اكتب تجربتك مع كيو لينك…",
     addReviewSubmit: "إرسال التقييم",
     addReviewSubmitting: "جاري الإرسال…",
-    addReviewSuccess: "شكرًا لك! استلمنا تقييمك وسنراجعه قريبًا.",
+    addReviewSuccess:
+      "شكرًا! تم حفظ التقييم. من لوحة التحكم يمكنك جعله مرئيًا ومميزًا ليظهر على الموقع عندما تكون جاهزًا.",
     addReviewError: "تعذر إرسال التقييم. حاول مرة أخرى أو استخدم صفحة التواصل.",
     dbDetailStory: "التقييم كاملاً",
     dbDetailCtaTitle: "جاهز لمزيد من الأمان؟",

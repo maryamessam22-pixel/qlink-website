@@ -392,7 +392,8 @@ const translations = {
     addReviewPlaceholder: "Tell us about your experience with Qlink…",
     addReviewSubmit: "Submit review",
     addReviewSubmitting: "Sending…",
-    addReviewSuccess: "Thank you! We received your review and will review it shortly.",
+    addReviewSuccess:
+      "Thank you! Your review is saved. Open your dashboard, set it visible / featured when you are ready, and it will appear on the site.",
     addReviewError: "Could not send your review. Please try again or use Contact.",
     dbDetailStory: "Full review",
     dbDetailCtaTitle: "Ready to feel safer?",

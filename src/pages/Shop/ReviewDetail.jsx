@@ -29,6 +29,35 @@ const publicReviewBody = (text) => {
   return text.slice(0, i).trim();
 };
 
+/** CMS fields on `reviews`; supports typo column names with a space before `_en` / `_ar`. */
+const pickReviewTitle = (row, lang) => {
+  if (!row) return '';
+  const en = row.title_en;
+  const ar = row.title_ar;
+  if (lang === 'ar') {
+    if (ar != null && String(ar).trim()) return String(ar).trim();
+    if (en != null && String(en).trim()) return String(en).trim();
+  } else {
+    if (en != null && String(en).trim()) return String(en).trim();
+    if (ar != null && String(ar).trim()) return String(ar).trim();
+  }
+  return '';
+};
+
+const pickReviewDescription = (row, lang) => {
+  if (!row) return '';
+  const en = row.description_en ?? row['description _en'];
+  const ar = row.description_ar ?? row['description _ar'];
+  if (lang === 'ar') {
+    if (ar != null && String(ar).trim()) return String(ar).trim();
+    if (en != null && String(en).trim()) return String(en).trim();
+  } else {
+    if (en != null && String(en).trim()) return String(en).trim();
+    if (ar != null && String(ar).trim()) return String(ar).trim();
+  }
+  return '';
+};
+
 const getAvatarForUser = (name) => {
   if (!name) return fallbackHero;
   if (name.includes('Salma') || name.includes('سلمى')) return salmaImg;
@@ -126,16 +155,25 @@ const ReviewDetail = () => {
     const displayQuote = publicReviewBody(dbReview.review_text);
     const paragraphs = displayQuote.split(/\n\n+/).filter(Boolean);
     const avatarSrc = getAvatarForUser(dbReview.customer_name);
+    const storyTitle = pickReviewTitle(dbReview, lang);
+    const storyDescription = pickReviewDescription(dbReview, lang);
+    const descParagraphs = storyDescription
+      ? storyDescription.split(/\n\n+/).map((p) => p.trim()).filter(Boolean)
+      : [];
+    const hasCmsStory = Boolean(storyTitle || descParagraphs.length);
+    const seoDesc = (storyDescription || displayQuote).slice(0, 160);
 
     return (
       <div className={`rd-page ${lang === 'ar' ? 'rtl-text' : ''}`}>
         <SEO
           title={
-            lang === 'ar'
-              ? `تقييم ${dbReview.customer_name}`
-              : `${dbReview.customer_name}'s review`
+            storyTitle
+              ? `${storyTitle} — ${dbReview.customer_name}`
+              : lang === 'ar'
+                ? `تقييم ${dbReview.customer_name}`
+                : `${dbReview.customer_name}'s review`
           }
-          description={displayQuote.slice(0, 160)}
+          description={seoDesc}
           slug={`shop/reviews/${id}`}
         />
         <DynamicBackground />
@@ -175,7 +213,24 @@ const ReviewDetail = () => {
         </div>
 
         <div className="rd-content">
-          {paragraphs.length > 1 && (
+          {hasCmsStory && (
+            <section className="rd-story-section scroll-animate">
+              <div className="rd-story-card">
+                {storyTitle ? (
+                  <h2 className="rd-section-title">{storyTitle}</h2>
+                ) : (
+                  <h2 className="rd-section-title">{t('reviews.dbDetailStory')}</h2>
+                )}
+                {descParagraphs.map((para, i) => (
+                  <p key={i} className="rd-story-para">
+                    {para}
+                  </p>
+                ))}
+              </div>
+            </section>
+          )}
+
+          {!hasCmsStory && paragraphs.length > 1 && (
             <section className="rd-story-section scroll-animate">
               <div className="rd-story-card">
                 <h2 className="rd-section-title">{t('reviews.dbDetailStory')}</h2>
