@@ -1,16 +1,9 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { Sparkles, ArrowUp, X, Loader2, Trash2 } from 'lucide-react';
+import React, { useState, useRef, useEffect, useLayoutEffect, useCallback } from 'react';
+import { Sparkles, ArrowUp, X, Loader2, Trash2, UserCircle } from 'lucide-react';
 import { supabase } from '../../lib/Supabase';
 import './AiChat.css';
 
-const getSessionId = () => {
-  let id = localStorage.getItem('qlink_session_id');
-  if (!id) {
-    id = `sess_${crypto.randomUUID()}`;
-    localStorage.setItem('qlink_session_id', id);
-  }
-  return id;
-};
+const IDENTITY_STORAGE_KEY = 'qlink_chat_identity';
 
 const INITIAL_MESSAGE = {
   id: 1,
@@ -19,26 +12,64 @@ const INITIAL_MESSAGE = {
   time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
 };
 
+const loadStoredIdentity = () => {
+  try {
+    const raw = localStorage.getItem(IDENTITY_STORAGE_KEY);
+    if (!raw) return null;
+    const j = JSON.parse(raw);
+    if (j?.name && j?.email && j?.sessionId) {
+      return {
+        name: String(j.name).trim(),
+        email: String(j.email).trim(),
+        sessionId: String(j.sessionId).trim(),
+      };
+    }
+  } catch {
+    /* ignore */
+  }
+  return null;
+};
+
 const AiChat = ({ isOpen, onClose }) => {
   const [inputValue, setInputValue] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const [messages, setMessages] = useState([INITIAL_MESSAGE]);
   const messagesEndRef = useRef(null);
-  const sessionId = useRef(getSessionId()).current;
 
-  const clearHistory = async () => {
-    if (!window.confirm('Clear all chat history?')) return;
-    const { error } = await supabase
-      .from('chat_messages')
-      .delete()
-      .eq('session_id', sessionId);
+  const [gatePhase, setGatePhase] = useState('form'); // 'form' | 'chat'
+  const [gateName, setGateName] = useState('');
+  const [gateEmail, setGateEmail] = useState('');
+  const [gateError, setGateError] = useState('');
+  const [gateSubmitting, setGateSubmitting] = useState(false);
 
-    if (error) {
-      console.error('Failed to clear chat history:', error);
-      return;
-    }
+  const [userName, setUserName] = useState('');
+  const [userEmail, setUserEmail] = useState('');
+  const [sessionId, setSessionId] = useState('');
+
+  const clearIdentityAndGate = useCallback(() => {
+    localStorage.removeItem(IDENTITY_STORAGE_KEY);
+    setUserName('');
+    setUserEmail('');
+    setSessionId('');
     setMessages([INITIAL_MESSAGE]);
-  };
+    setGatePhase('form');
+    setGateName('');
+    setGateEmail('');
+    setGateError('');
+  }, []);
+
+  useLayoutEffect(() => {
+    if (!isOpen) return;
+    const stored = loadStoredIdentity();
+    if (stored) {
+      setUserName(stored.name);
+      setUserEmail(stored.email);
+      setSessionId(stored.sessionId);
+      setGatePhase('chat');
+    } else {
+      setGatePhase('form');
+    }
+  }, [isOpen]);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -46,11 +77,87 @@ const AiChat = ({ isOpen, onClose }) => {
 
   useEffect(() => {
     scrollToBottom();
-  }, [messages, isTyping]);
+  }, [messages, isTyping, gatePhase]);
+
+  const clearHistory = async () => {
+    if (!window.confirm('Clear all chat history?')) return;
+    if (!sessionId) return;
+    const { error } = await supabase.from('chat_messages').delete().eq('session_id', sessionId);
+    if (error) {
+      console.error('Failed to clear chat history:', error);
+      return;
+    }
+    setMessages([INITIAL_MESSAGE]);
+  };
+
+  const handleGateSubmit = async (e) => {
+    e.preventDefault();
+    setGateError('');
+    const name = gateName.trim();
+    const email = gateEmail.trim();
+    if (!name) {
+      setGateError('Please enter your name.');
+      return;
+    }
+    if (!email) {
+      setGateError('Please enter your email.');
+      return;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      setGateError('Please enter a valid email address.');
+      return;
+    }
+
+    setGateSubmitting(true);
+    const newSessionId = `sess_${crypto.randomUUID()}`;
+
+    try {
+      const { error: sessionErr } = await supabase.from('chat_sessions').insert({
+        session_id: newSessionId,
+        created_at: new Date().toISOString(),
+      });
+
+      if (sessionErr) {
+        console.error(sessionErr);
+        setGateError(sessionErr.message || 'Could not start session. Check Supabase policies.');
+        setGateSubmitting(false);
+        return;
+      }
+
+      localStorage.setItem(
+        IDENTITY_STORAGE_KEY,
+        JSON.stringify({ name, email, sessionId: newSessionId })
+      );
+      setUserName(name);
+      setUserEmail(email);
+      setSessionId(newSessionId);
+      setMessages([INITIAL_MESSAGE]);
+      setGatePhase('chat');
+    } catch (err) {
+      console.error(err);
+      setGateError('Something went wrong. Please try again.');
+    } finally {
+      setGateSubmitting(false);
+    }
+  };
+
+  const insertChatMessage = async (row) => {
+    const payload = {
+      sender: row.sender,
+      text: row.text,
+      session_id: sessionId,
+      name: userName,
+      email: userEmail,
+      created_at: new Date().toISOString(),
+      ...(row.model_used != null ? { model_used: row.model_used } : {}),
+    };
+    const { error } = await supabase.from('chat_messages').insert(payload);
+    if (error) console.error('chat_messages insert:', error);
+  };
 
   const sendMessage = async (e) => {
     e.preventDefault();
-    if (!inputValue.trim() || isTyping) return;
+    if (!inputValue.trim() || isTyping || !sessionId) return;
 
     const userText = inputValue.trim();
     setInputValue('');
@@ -65,19 +172,17 @@ const AiChat = ({ isOpen, onClose }) => {
       }
     ]);
 
+    await insertChatMessage({ sender: 'user', text: userText });
+
     setIsTyping(true);
 
     try {
-      const supabaseUrl = process.env.REACT_APP_SUPABASE_URL || 'https://vveftffbvwptlsqqeygp.supabase.co';
+      const supabaseUrl = process.env.REACT_APP_SUPABASE_URL || 'https://vveftffbvwptlsqgeygp.supabase.co';
       const normalizedUrl = supabaseUrl.startsWith('http') ? supabaseUrl : `https://${supabaseUrl}`;
       const functionUrl = `${normalizedUrl.replace(/\/$/, '')}/functions/v1/ai-chat-proxy`;
       const authKey = process.env.REACT_APP_SUPABASE_ANON_KEY;
 
-      // مراقبة البيانات قبل الإرسال
-      console.log("1. Input being sent to Bot:", userText); 
-      console.log("2. Target URL:", functionUrl);
-
-      const res = await fetch(functionUrl, { 
+      const res = await fetch(functionUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -88,24 +193,29 @@ const AiChat = ({ isOpen, onClose }) => {
       });
 
       const result = await res.json();
-      
-      // مراقبة الرد
-      console.log("3. Full API Response:", result);
 
       if (!res.ok) {
         throw new Error(result.error || `Edge Function returned status ${res.status}`);
       }
+
+      const replyText = result.reply ?? '';
+      const modelUsed = result.model_used ?? result.model ?? null;
 
       setMessages((prev) => [
         ...prev,
         {
           id: Date.now() + 1,
           sender: 'bot',
-          text: result.reply,
+          text: replyText,
           time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
         }
       ]);
 
+      await insertChatMessage({
+        sender: 'bot',
+        text: replyText,
+        model_used: modelUsed,
+      });
     } catch (err) {
       const errorMessage = err instanceof Error ? err.message : String(err);
       console.error('AI chat error details:', err);
@@ -118,12 +228,62 @@ const AiChat = ({ isOpen, onClose }) => {
           time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
         }
       ]);
+      await insertChatMessage({ sender: 'bot', text: `Service error: ${errorMessage}`, model_used: null });
     } finally {
       setIsTyping(false);
     }
   };
 
   if (!isOpen) return null;
+
+  if (gatePhase === 'form') {
+    return (
+      <div className="ai-chat-overlay">
+        <div className="ai-chat-gate-card">
+          <div className="ai-chat-gate-head">
+            <div className="ai-gate-icon">
+              <UserCircle size={28} />
+            </div>
+            <h2 className="ai-gate-title">Start chatting</h2>
+            <p className="ai-gate-sub">Please enter your name and email so we can help you with Qlink safety.</p>
+          </div>
+          <form className="ai-chat-gate-form" onSubmit={handleGateSubmit}>
+            {gateError && <div className="ai-gate-error" role="alert">{gateError}</div>}
+            <label className="ai-gate-label" htmlFor="ai-gate-name">Name</label>
+            <input
+              id="ai-gate-name"
+              className="ai-gate-input"
+              type="text"
+              autoComplete="name"
+              value={gateName}
+              onChange={(e) => setGateName(e.target.value)}
+              placeholder="Your name"
+              disabled={gateSubmitting}
+            />
+            <label className="ai-gate-label" htmlFor="ai-gate-email">Email</label>
+            <input
+              id="ai-gate-email"
+              className="ai-gate-input"
+              type="email"
+              autoComplete="email"
+              value={gateEmail}
+              onChange={(e) => setGateEmail(e.target.value)}
+              placeholder="you@example.com"
+              disabled={gateSubmitting}
+            />
+            <div className="ai-gate-actions">
+              <button type="button" className="ai-gate-btn ai-gate-btn-secondary" onClick={onClose} disabled={gateSubmitting}>
+                Cancel
+              </button>
+              <button type="submit" className="ai-gate-btn ai-gate-btn-primary" disabled={gateSubmitting}>
+                {gateSubmitting ? 'Please wait…' : 'Confirm'}
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="ai-chat-overlay">
@@ -133,7 +293,15 @@ const AiChat = ({ isOpen, onClose }) => {
             <h2 className="ai-logo-text">Qlink</h2>
             <span className="ai-badge">AI Assistant</span>
           </div>
-          <div style={{ display: 'flex', gap: '8px' }}>
+          <div className="ai-header-actions">
+            <button
+              type="button"
+              className="ai-change-user-btn"
+              onClick={clearIdentityAndGate}
+              title="Change name / email"
+            >
+              Change user
+            </button>
             {messages.length > 1 && (
               <button className="ai-close-btn" onClick={clearHistory} title="Clear Chat History">
                 <Trash2 size={20} />
@@ -181,15 +349,15 @@ const AiChat = ({ isOpen, onClose }) => {
 
         <div className="ai-chat-footer">
           <form className="ai-input-wrapper" onSubmit={sendMessage}>
-            <input 
-              type="text" 
-              placeholder="Ask about Qlink safety..." 
+            <input
+              type="text"
+              placeholder="Ask about Qlink safety..."
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
               disabled={isTyping}
             />
-            <button 
-              type="submit" 
+            <button
+              type="submit"
               className={`ai-send-btn ${inputValue.trim() && !isTyping ? 'active' : ''}`}
               disabled={!inputValue.trim() || isTyping}
             >
