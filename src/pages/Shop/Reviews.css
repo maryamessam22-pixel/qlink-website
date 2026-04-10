@@ -266,11 +266,11 @@
 }
 
 .add-review-card {
-  background: rgb(16 16 31 / 85%);
+  background: rgb(16 16 31 / 46%);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 20px;
   padding: 40px 40px 36px;
-  max-width: 640px;
+  max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
 }
