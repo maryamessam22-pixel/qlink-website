@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useState } from 'react';
+import React, { useEffect, useContext, useState, useMemo } from 'react';
 import SEO from '../../components/common/SEO';
 import { LanguageContext } from '../../context/LanguageContext';
 import DynamicBackground from '../../components/common/DynamicBackground';
@@ -26,12 +26,43 @@ import no3 from '../../assets/images/no3.png';
 import no4 from '../../assets/images/no4.png';
 import footerPhones from '../../assets/images/new.png';
 
+const APP_FEATURES_SECTION_KEY = 'app_features_page';
+
+const FEATURE_ICONS = [ShieldCheck, Bell, RefreshCw, MapPin, Users, Lock];
+const FEATURE_CARD_ORDINALS = ['one', 'two', 'three', 'four', 'five', 'six'];
+
 const AppDownload = () => {
   const { lang, t } = useContext(LanguageContext);
   const [activeFaq, setActiveFaq] = useState(0);
   const [seoData, setSeoData] = useState(null);
+  const [appFeaturesCms, setAppFeaturesCms] = useState(null);
 
   const isArabic = typeof lang === 'string' && lang.toLowerCase().includes('ar');
+  const locale = isArabic ? 'ar' : 'en';
+  const altLocale = isArabic ? 'en' : 'ar';
+
+  /** CMS hyphen keys: card-one-title-en, card-one-desc-ar, … */
+  const cmsCardField = (row, ordinal, part) => {
+    if (!row) return null;
+    const k = `card-${ordinal}-${part}-${locale}`;
+    let v = row[k];
+    if (v == null || String(v).trim() === '') {
+      const fallbackKey = `card-${ordinal}-${part}-${altLocale}`;
+      v = row[fallbackKey];
+    }
+    return v != null && String(v).trim() !== '' ? String(v).trim() : null;
+  };
+
+  const pickCmsTitleSubtitle = (row, field, fallback) => {
+    if (!row) return fallback;
+    const en = row[`${field}_en`];
+    const ar = row[`${field}_ar`];
+    const primary = locale === 'ar' ? ar : en;
+    const secondary = locale === 'ar' ? en : ar;
+    if (primary != null && String(primary).trim() !== '') return String(primary).trim();
+    if (secondary != null && String(secondary).trim() !== '') return String(secondary).trim();
+    return fallback;
+  };
 
   useEffect(() => {
     const fetchSeo = async () => {
@@ -57,6 +88,28 @@ const AppDownload = () => {
   }, []);
 
   useEffect(() => {
+    const fetchAppFeaturesCms = async () => {
+      try {
+        const { data, error } = await supabase
+          .from('cms_content')
+          .select('*')
+          .eq('section_key', APP_FEATURES_SECTION_KEY)
+          .maybeSingle();
+
+        if (error && error.code !== 'PGRST116') {
+          console.error('Supabase app_features_page cms_content:', error);
+        } else if (data) {
+          setAppFeaturesCms(data);
+        }
+      } catch (err) {
+        console.error('Unexpected error fetching app_features_page:', err);
+      }
+    };
+
+    fetchAppFeaturesCms();
+  }, []);
+
+  useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -71,14 +124,43 @@ const AppDownload = () => {
     return () => observer.disconnect();
   }, []);
 
-  const features = [
-    { icon: ShieldCheck, title: isArabic ? 'ملفات آمنة' : 'Secure Profiles', desc: isArabic ? 'تشفير بياناتك الطبية والشخصية.' : 'End-to-end encryption for your medical and personal data.' },
-    { icon: Bell, title: isArabic ? 'تنبيهات فورية' : 'Instant Alerts', desc: isArabic ? 'إشعارات لحظية لجهات اتصال الطوارئ.' : 'Instant notifications for emergency contacts on events.' },
-    { icon: RefreshCw, title: isArabic ? 'مزامنة مباشرة' : 'Real-Time Sync', desc: isArabic ? 'تحديث المعلومات عبر جميع الأجهزة فورياً.' : 'Update information across all connected devices instantly.' },
-    { icon: MapPin, title: isArabic ? 'تتبع الموقع' : 'Location Tracking', desc: isArabic ? 'مشاركة موقعك بدقة مع خدمات الطوارئ.' : 'Share your precise location with emergency services.' },
-    { icon: Users, title: isArabic ? 'مشاركة عائلية' : 'Family Sharing', desc: isArabic ? 'إدارة ملفات أفراد العائلة من حساب واحد.' : 'Manage family member profiles from a single dashboard.' },
-    { icon: Lock, title: isArabic ? 'ضوابط الخصوصية' : 'Privacy Controls', desc: isArabic ? 'تحكم كامل في من يرى بياناتك ومتى.' : 'Full control over who sees your data and when.' }
-  ];
+  const featureFallbacks = useMemo(
+    () => [
+      { title: isArabic ? 'ملفات آمنة' : 'Secure Profiles', desc: isArabic ? 'تشفير بياناتك الطبية والشخصية.' : 'End-to-end encryption for your medical and personal data.' },
+      { title: isArabic ? 'تنبيهات فورية' : 'Instant Alerts', desc: isArabic ? 'إشعارات لحظية لجهات اتصال الطوارئ.' : 'Instant notifications for emergency contacts on events.' },
+      { title: isArabic ? 'مزامنة مباشرة' : 'Real-Time Sync', desc: isArabic ? 'تحديث المعلومات عبر جميع الأجهزة فورياً.' : 'Update information across all connected devices instantly.' },
+      { title: isArabic ? 'تتبع الموقع' : 'Location Tracking', desc: isArabic ? 'مشاركة موقعك بدقة مع خدمات الطوارئ.' : 'Share your precise location with emergency services.' },
+      { title: isArabic ? 'مشاركة عائلية' : 'Family Sharing', desc: isArabic ? 'إدارة ملفات أفراد العائلة من حساب واحد.' : 'Manage family member profiles from a single dashboard.' },
+      { title: isArabic ? 'ضوابط الخصوصية' : 'Privacy Controls', desc: isArabic ? 'تحكم كامل في من يرى بياناتك ومتى.' : 'Full control over who sees your data and when.' },
+    ],
+    [isArabic]
+  );
+
+  const features = useMemo(
+    () =>
+      FEATURE_CARD_ORDINALS.map((ordinal, i) => {
+        const title = cmsCardField(appFeaturesCms, ordinal, 'title');
+        const desc = cmsCardField(appFeaturesCms, ordinal, 'desc');
+        const fb = featureFallbacks[i];
+        return {
+          icon: FEATURE_ICONS[i],
+          title: title || fb.title,
+          desc: desc || fb.desc,
+        };
+      }),
+    [appFeaturesCms, locale, featureFallbacks]
+  );
+
+  const appFeaturesBadge = pickCmsTitleSubtitle(
+    appFeaturesCms,
+    'title',
+    isArabic ? 'تنزيل التطبيق' : 'DOWNLOAD APP'
+  );
+  const appFeaturesHeading = pickCmsTitleSubtitle(
+    appFeaturesCms,
+    'subtitle',
+    isArabic ? 'مميزات التطبيق' : 'App Features'
+  );
 
   const faqs = [
     { q: isArabic ? 'هل التطبيق مجاني؟' : 'Is the app free?', a: isArabic ? 'نعم، كيو لينك مجاني تماماً للتحميل والاستخدام الأساسي.' : 'Yes, Qlink is completely free to download and for basic essential features.' },
@@ -140,8 +222,8 @@ const AppDownload = () => {
       </section>
 
       <section className="ad-features-section scroll-animate">
-        <div className="ad-section-badge">{isArabic ? 'تنزيل التطبيق' : 'DOWNLOAD APP'}</div>
-        <h2 className="ad-section-title">{isArabic ? 'مميزات التطبيق' : 'App Features'}</h2>
+        <div className="ad-section-badge">{appFeaturesBadge}</div>
+        <h2 className="ad-section-title">{appFeaturesHeading}</h2>
         
         <div className="ad-features-grid">
           {features.map((f, i) => (
