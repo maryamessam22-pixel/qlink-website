@@ -7,7 +7,6 @@ import './LoginModal.css';
 
 function LoginModal({ isOpen }) {
   const {
-    isAuthenticated,
     showLoginModal,
     pendingRoute,
     setPendingRoute,
@@ -25,22 +24,19 @@ function LoginModal({ isOpen }) {
 
   const navigate = useNavigate();
 
-  React.useEffect(() => {
-    if (isAuthenticated && showLoginModal) {
-      if (pendingRoute) {
+  const isVisible = isOpen !== undefined ? isOpen : showLoginModal;
+
+  const handleSubmit = useCallback(
+    (e) => {
+      e.preventDefault();
+      const ok = login(password, email);
+      if (ok && pendingRoute) {
         navigate(pendingRoute);
         setPendingRoute(null);
       }
-      closeModal();
-    }
-  }, [isAuthenticated, showLoginModal, pendingRoute, navigate, closeModal, setPendingRoute]);
-
-  const isVisible = isOpen !== undefined ? isOpen : showLoginModal;
-
-  const handleSubmit = useCallback((e) => {
-    e.preventDefault();
-    login(password, email);
-  }, [login, password, email]);
+    },
+    [login, password, email, pendingRoute, navigate, setPendingRoute]
+  );
 
 
   const handleOverlayClick = useCallback((e) => {

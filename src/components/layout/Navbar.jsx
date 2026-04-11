@@ -125,7 +125,13 @@ function Navbar() {
         <button className="lang-btn" onClick={toggleLanguage}>
           {lang === 'en' ? 'AR' : 'EN'}
         </button>
-        <button className="icon-btn cart-icon-wrapper" onClick={() => navigate('/cart')}>
+        <button
+          className="icon-btn cart-icon-wrapper"
+          onClick={() => {
+            if (isAuthenticated) navigate('/cart');
+            else openModalWithRoute('/cart');
+          }}
+        >
           <ShoppingCart size={22} color="var(--text-primary)" />
           {cartCount > 0 && (
             <span className="cart-badge">{cartCount > 99 ? '99+' : cartCount}</span>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate, Outlet, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate, Outlet } from 'react-router-dom';
 
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
@@ -37,17 +37,10 @@ import CompletePurchase from './pages/CompletePurchase';
 // Auth
 import AuthPage from './pages/Auth/AuthPage';
 
-// Protected Route
+// Protected routes: redirect to home if not logged in (no modal here — avoids popup on refresh).
+// In-app navigation to these routes uses openModalWithRoute / guarded links so the login modal still appears when the user chooses a page.
 const ProtectedRoute = () => {
-  const { isAuthenticated, setPendingRoute, setShowLoginModal } = useAuth();
-  const location = useLocation();
-
-  React.useEffect(() => {
-    if (!isAuthenticated) {
-      setPendingRoute(location.pathname);
-      setShowLoginModal(true);
-    }
-  }, [isAuthenticated, location, setPendingRoute, setShowLoginModal]);
+  const { isAuthenticated } = useAuth();
 
   if (!isAuthenticated) {
     return <Navigate to="/" replace />;
