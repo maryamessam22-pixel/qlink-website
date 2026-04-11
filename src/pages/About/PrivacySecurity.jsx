@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useState } from 'react';
+import React, { useEffect, useContext, useState, useMemo } from 'react';
 import SEO from '../../components/common/SEO';
 import { LanguageContext } from '../../context/LanguageContext';
 import DynamicBackground from '../../components/common/DynamicBackground';
@@ -7,6 +7,28 @@ import { supabase } from '../../lib/Supabase';
 import './PrivacySecurity.css';
 
 import promoMobiles from '../../assets/images/appscreen.png';
+
+function parsePointsColumn(raw) {
+  if (raw == null) return [];
+  if (Array.isArray(raw)) return raw.map(String).filter(Boolean);
+  if (typeof raw === 'string') {
+    try {
+      const p = JSON.parse(raw);
+      return Array.isArray(p) ? p.map(String).filter(Boolean) : [];
+    } catch {
+      return [];
+    }
+  }
+  return [];
+}
+
+function pickLocalizedText(ar, en, isArabic) {
+  const primary = isArabic ? ar : en;
+  const secondary = isArabic ? en : ar;
+  if (primary != null && String(primary).trim() !== '') return String(primary).trim();
+  if (secondary != null && String(secondary).trim() !== '') return String(secondary).trim();
+  return '';
+}
 
 const PrivacySecurity = () => {
   const { t, lang } = useContext(LanguageContext);
@@ -17,6 +39,7 @@ const PrivacySecurity = () => {
     protocol: null,
     legal: null
   });
+  const [privacyCardRows, setPrivacyCardRows] = useState(null);
 
   const isArabic = typeof lang === 'string' && lang.toLowerCase().includes('ar');
 
@@ -42,6 +65,16 @@ const PrivacySecurity = () => {
             protocol: cms.find(c => c.section_key === 'privacy_protocol'),
             legal: cms.find(c => c.section_key === 'legal_privacy')
           });
+        }
+
+        const { data: psc, error: pscError } = await supabase
+          .from('privacy_security_cards')
+          .select('*');
+
+        if (pscError) {
+          console.error('privacy_security_cards:', pscError);
+        } else if (psc?.length) {
+          setPrivacyCardRows(psc);
         }
       } catch (err) {
         console.error(err);
@@ -82,6 +115,43 @@ const PrivacySecurity = () => {
   const protocolTitle = protocol ? (isArabic ? protocol.title_ar : protocol.title_en) : t('privacy.protocolTitle');
   const protocolDesc = protocol ? (isArabic ? protocol.content_ar : protocol.content_en) : t('privacy.protocolDesc');
 
+  /**
+   * Seed rows use correct titles per card_type, but bullet arrays were attached to the opposite row.
+   * Titles come from matching type; lists are taken from the other row so copy matches each heading.
+   */
+  const { sharedTitle, notSharedTitle, sharedItems, notSharedItems } = useMemo(() => {
+    const sharedRow = privacyCardRows?.find(r => r.card_type === 'shared');
+    const notSharedRow = privacyCardRows?.find(r => r.card_type === 'not_shared');
+    const fallbackShared = t('privacy.sharedItems', { returnObjects: true }) || [];
+    const fallbackNot = t('privacy.notSharedItems', { returnObjects: true }) || [];
+
+    if (!sharedRow || !notSharedRow) {
+      return {
+        sharedTitle: t('privacy.sharedTitle'),
+        notSharedTitle: t('privacy.notSharedTitle'),
+        sharedItems: Array.isArray(fallbackShared) ? fallbackShared : [],
+        notSharedItems: Array.isArray(fallbackNot) ? fallbackNot : [],
+      };
+    }
+
+    const sharedTitleText = pickLocalizedText(sharedRow.title_ar, sharedRow.title_en, isArabic) || t('privacy.sharedTitle');
+    const notSharedTitleText =
+      pickLocalizedText(notSharedRow.title_ar, notSharedRow.title_en, isArabic) || t('privacy.notSharedTitle');
+
+    const sharedPts = parsePointsColumn(isArabic ? notSharedRow.points_ar : notSharedRow.points_en);
+    const notSharedPts = parsePointsColumn(isArabic ? sharedRow.points_ar : sharedRow.points_en);
+    const sharedPtsAlt = parsePointsColumn(isArabic ? notSharedRow.points_en : notSharedRow.points_ar);
+    const notSharedPtsAlt = parsePointsColumn(isArabic ? sharedRow.points_en : sharedRow.points_ar);
+
+    return {
+      sharedTitle: sharedTitleText,
+      notSharedTitle: notSharedTitleText,
+      sharedItems: sharedPts.length ? sharedPts : sharedPtsAlt.length ? sharedPtsAlt : (Array.isArray(fallbackShared) ? fallbackShared : []),
+      notSharedItems:
+        notSharedPts.length ? notSharedPts : notSharedPtsAlt.length ? notSharedPtsAlt : (Array.isArray(fallbackNot) ? fallbackNot : []),
+    };
+  }, [privacyCardRows, isArabic, t]);
+
   return (
     <div className={`privacy-security-page ${isArabic ? 'rtl-text' : ''}`}>
       <SEO
@@ -121,10 +191,10 @@ const PrivacySecurity = () => {
                     <div className="ps-small-icon green">
                       <Lock size={20} />
                     </div>
-                    <h3>{t('privacy.sharedTitle')}</h3>
+                    <h3>{sharedTitle}</h3>
                   </div>
                   <ul className="ps-list green">
-                    {t('privacy.sharedItems', { returnObjects: true }).map((item, idx) => (
+                    {sharedItems.map((item, idx) => (
                       <li key={idx}><span className="dot"></span>{item}</li>
                     ))}
                   </ul>
@@ -135,10 +205,10 @@ const PrivacySecurity = () => {
                     <div className="ps-small-icon red">
                       <EyeOff size={20} />
                     </div>
-                    <h3>{t('privacy.notSharedTitle')}</h3>
+                    <h3>{notSharedTitle}</h3>
                   </div>
                   <ul className="ps-list red">
-                    {t('privacy.notSharedItems', { returnObjects: true }).map((item, idx) => (
+                    {notSharedItems.map((item, idx) => (
                       <li key={idx}><span className="dot"></span>{item}</li>
                     ))}
                   </ul>
