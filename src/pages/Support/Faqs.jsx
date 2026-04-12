@@ -4,7 +4,6 @@ import { LanguageContext } from '../../context/LanguageContext';
 import { Link } from 'react-router-dom';
 import { ChevronDown } from 'lucide-react';
 import { supabase } from '../../lib/Supabase';
-import DynamicBackground from '../../components/common/DynamicBackground';
 import './Faqs.css';
 
 function Faqs() {
@@ -107,7 +106,6 @@ function Faqs() {
         }
         slug={seoData ? seoData.slug : "support/faqs"} 
       />
-      <DynamicBackground />
 
       <div className={`faqs-content ${isArabic ? 'rtl-text' : ''}`}>
 

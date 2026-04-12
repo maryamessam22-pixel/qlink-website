@@ -3,7 +3,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Trash2, Minus, Plus, ShoppingBag, ArrowLeft } from 'lucide-react';
 import { LanguageContext } from '../context/LanguageContext';
 import { useCart } from '../context/CartContext';
-import DynamicBackground from '../components/common/DynamicBackground';
 import SEO from '../components/common/SEO';
 import './CartScreen.css';
 
@@ -39,8 +38,6 @@ const CartScreen = () => {
                 description={isAr ? 'مراجعة المنتجات في سلة التسوق' : 'Review products in your cart'}
                 slug="cart"
             />
-            <DynamicBackground />
-
             <div className="cart-wrapper">
                 <Link to="/shop/bracelet" className="cart-back-btn scroll-animate">
                     <ArrowLeft size={20} style={isAr ? { transform: 'rotate(180deg)' } : {}} />

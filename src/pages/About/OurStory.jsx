@@ -2,7 +2,6 @@ import React, { useEffect, useState, useContext, useRef, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import SEO from '../../components/common/SEO';
 import { LanguageContext } from '../../context/LanguageContext';
-import DynamicBackground from '../../components/common/DynamicBackground';
 import { Quote, AlertCircle, CheckCircle, Shield, Globe, Zap, Users } from 'lucide-react';
 import { supabase } from '../../lib/Supabase';
 
@@ -145,8 +144,6 @@ function OurStory() {
         description={seoData ? (isArabic ? seoData.description_ar : seoData.description_en) : (isArabic ? 'تعرف على قصة كيو لينك.' : 'Discover the story behind Qlink.')}
         slug={seoData ? seoData.slug : "about/our-story"}
       />
-      <DynamicBackground />
-      
       <div className="story-content-container">
         <header className="story-page-header scroll-animate stag-1">
           <span className="badge-red">{t('ourStory.heroBadge')}</span>

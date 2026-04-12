@@ -1,7 +1,6 @@
 import React, { useEffect, useContext, useState, useMemo } from 'react';
 import SEO from '../../components/common/SEO';
 import { LanguageContext } from '../../context/LanguageContext';
-import DynamicBackground from '../../components/common/DynamicBackground';
 import { ShieldCheck, Lock, EyeOff, Activity, AlertCircle, CheckCircle2, Apple, Play } from 'lucide-react';
 import { supabase } from '../../lib/Supabase';
 import './PrivacySecurity.css';
@@ -159,8 +158,6 @@ const PrivacySecurity = () => {
         description={seoData ? (isArabic ? seoData.description_ar : seoData.description_en) : (isArabic ? 'خصوصيتك هي أولويتنا.' : 'Your privacy is our priority.')}
         slug={seoData ? seoData.slug : "about/privacy"}
       />
-      <DynamicBackground />
-
       <div className="ps-content-container">
         <header className="ps-header scroll-animate">
           <h1>

@@ -3,8 +3,10 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 100vh;
-  z-index: -1;
+  height: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  z-index: 0;
   pointer-events: none;
   overflow: hidden;
 }
@@ -12,43 +14,106 @@
 .bg-glow {
   position: absolute;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(50, 124, 243, 0.25) 0%, rgba(17, 107, 253, 0) 75%);
-  filter: blur(120px);
-  animation: floatOrb 15s infinite alternate ease-in-out;
+  background: radial-gradient(
+    circle,
+    rgba(3, 32, 79, 0.42) 0%,
+    rgba(6, 31, 86, 0.22) 35%,
+    rgba(4, 41, 100, 0.388) 55%,
+    rgba(4, 36, 88, 0) 72%
+  );
+  filter: blur(72px);
+  animation: floatOrb 18s infinite alternate ease-in-out;
+  will-change: transform;
 }
 
 .bg-glow-1 {
-  width: 600px;
-  height: 600px;
-  top: 10%;
-  left: 10%;
-  animation-duration: 25s;
+  width: 720px;
+  height: 720px;
+  top: 6%;
+  left: 5%;
+  animation-duration: 22s;
 }
 
 .bg-glow-2 {
-  width: 500px;
-  height: 500px;
-  top: 50%;
-  right: -10%;
-  animation-duration: 5s;
+  width: 580px;
+  height: 580px;
+  top: 42%;
+  right: -8%;
+  animation-duration: 14s;
+  animation-delay: -2s;
 }
 
 .bg-glow-3 {
-  width: 700px;
-  height: 700px;
-  bottom: -20%;
-  left: 30%;
-  animation-duration: 10s;
+  width: 820px;
+  height: 820px;
+  bottom: -18%;
+  left: 22%;
+  animation-duration: 12s;
+  animation-delay: -4s;
+}
+
+.bg-glow-4 {
+  width: 420px;
+  height: 420px;
+  top: 65%;
+  left: 8%;
+  animation-duration: 16s;
+  animation-delay: -1s;
+  background: radial-gradient(
+    circle,
+    rgba(7, 47, 96, 0.5) 0%,
+    rgba(3, 31, 77, 0.83) 45%,
+    rgba(4, 43, 104, 0.697) 70%
+  );
+  filter: blur(56px);
+}
+
+.bg-glow-5 {
+  width: 380px;
+  height: 380px;
+  top: 18%;
+  right: 22%;
+  animation-duration: 11s;
+  animation-delay: -3s;
+  background: radial-gradient(
+    circle,
+    rgba(6, 78, 160, 0.658) 0%,
+    rgba(37, 99, 235, 0.15) 50%,
+    rgba(17, 107, 253, 0) 72%
+  );
+  filter: blur(48px);
+}
+
+.bg-glow-6 {
+  width: 520px;
+  height: 520px;
+  bottom: 28%;
+  right: 12%;
+  animation-duration: 20s;
+  animation-delay: -5s;
+  background: radial-gradient(
+    circle,
+    rgba(15, 81, 187, 0.605) 0%,
+    rgba(30, 64, 175, 0.12) 48%,
+    rgba(17, 107, 253, 0) 68%
+  );
+  filter: blur(64px);
 }
 
 @keyframes floatOrb {
   0% {
-    transform: translate(0, 0) scale(1.1);
+    transform: translate(0, 0) scale(1.05);
   }
   50% {
-    transform: translate(5vw, 10vh) scale(0.9);
+    transform: translate(6vw, 12vh) scale(0.92);
   }
   100% {
-    transform: translate(-10vw, -5vh) scale(1.1);
+    transform: translate(-12vw, -8vh) scale(1.08);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bg-glow {
+    animation: none;
   }
 }

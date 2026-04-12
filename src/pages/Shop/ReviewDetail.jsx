@@ -6,7 +6,6 @@ import {
   Activity, Heart, Clock, MapPin, Users, Settings, Shield, Zap
 } from 'lucide-react';
 import { LanguageContext } from '../../context/LanguageContext';
-import DynamicBackground from '../../components/common/DynamicBackground';
 import { supabase } from '../../lib/Supabase';
 import './ReviewDetail.css';
 
@@ -131,7 +130,6 @@ const ReviewDetail = () => {
   if (loading) {
     return (
       <div className={`rd-page ${lang === 'ar' ? 'rtl-text' : ''}`}>
-        <DynamicBackground />
         <div className="rd-not-found" style={{ minHeight: '50vh', paddingTop: '120px' }}>
           <p>{lang === 'ar' ? 'جاري التحميل…' : 'Loading…'}</p>
         </div>
@@ -142,7 +140,6 @@ const ReviewDetail = () => {
   if (!dbReview && !localeReview) {
     return (
       <div className="rd-not-found">
-        <DynamicBackground />
         <p>{t('reviews.notFound')}</p>
         <button className="rd-back-btn" onClick={() => navigate('/shop/reviews')}>
           ← {t('reviews.backToReviews')}
@@ -176,7 +173,6 @@ const ReviewDetail = () => {
           description={seoDesc}
           slug={`shop/reviews/${id}`}
         />
-        <DynamicBackground />
 
         <div className="rd-back-container">
           <Link to="/shop/reviews" className="rd-back-btn">
@@ -273,7 +269,6 @@ const ReviewDetail = () => {
         description={review.quote}
         slug={`shop/reviews/${id}`}
       />
-      <DynamicBackground />
 
       <div className="rd-back-container">
         <Link to="/shop/reviews" className="rd-back-btn">

@@ -7,7 +7,6 @@ import {
 } from 'lucide-react';
 import { LanguageContext } from '../../context/LanguageContext';
 import { useCart } from '../../context/CartContext';
-import DynamicBackground from '../../components/common/DynamicBackground';
 import { supabase } from '../../lib/Supabase';
 import './ProductSubPage.css';
 
@@ -127,7 +126,6 @@ const PrivacydataNova = () => {
   if (loading) {
     return (
       <div className="subpage-loading-container">
-        <DynamicBackground />
         <h2 className="subpage-loading-text">
           {isAr ? 'جاري تحميل التفاصيل...' : 'Loading Details...'}
         </h2>
@@ -147,7 +145,6 @@ const PrivacydataNova = () => {
         description={seoData ? (isAr ? seoData.description_ar : seoData.description_en) : ''}
         slug="shop/nova/privacy"
       />
-      <DynamicBackground />
 
       <div className="subpage-wrapper">
         <Link to="/shop/bracelet" className="back-btn scroll-animate">

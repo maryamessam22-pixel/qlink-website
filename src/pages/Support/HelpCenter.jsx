@@ -15,7 +15,6 @@ import {
 } from 'lucide-react';
 import { supabase } from '../../lib/Supabase';
 import './HelpCenter.css';
-import DynamicBackground from '../../components/common/DynamicBackground';
 import ContactSection from '../../components/Sections/ContactSection';
 import appScreenImg from '../../assets/images/appscreen.png';
 
@@ -98,7 +97,6 @@ function HelpCenter() {
         }
         slug={seoData ? seoData.slug : "support/help-center"}
       />
-      <DynamicBackground />
 
       <div className={`help-center-content ${isArabic ? 'rtl-text' : ''}`}>
 

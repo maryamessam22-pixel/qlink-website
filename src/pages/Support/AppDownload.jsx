@@ -1,7 +1,6 @@
 import React, { useEffect, useContext, useState, useMemo } from 'react';
 import SEO from '../../components/common/SEO';
 import { LanguageContext } from '../../context/LanguageContext';
-import DynamicBackground from '../../components/common/DynamicBackground';
 import { 
   ShieldCheck, 
   Bell, 
@@ -183,8 +182,7 @@ const AppDownload = () => {
         }
         slug={seoData ? seoData.slug : "app-download"}
       />
-      <DynamicBackground />
-
+      {/* Backdrop: DynamicBackground is mounted once in App.jsx — do not add it here */}
       <section className="ad-hero-wrapper scroll-animate">
         <div className="ad-hero-container">
           <div className="ad-hero-content">

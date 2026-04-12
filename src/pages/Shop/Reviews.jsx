@@ -3,7 +3,6 @@ import SEO from '../../components/common/SEO';
 import { useNavigate } from 'react-router-dom';
 import { Quote, Star, MessageSquare, Share2, Users, CheckCircle2, PenLine } from 'lucide-react';
 import { LanguageContext } from '../../context/LanguageContext';
-import DynamicBackground from '../../components/common/DynamicBackground';
 import AppPromoSection from '../../components/Sections/AppPromoSection';
 import { supabase } from '../../lib/Supabase';
 import mobilesImg from '../../assets/images/mobile3rd.png';
@@ -194,8 +193,6 @@ const Reviews = () => {
         description={lang === 'ar' ? 'ماذا يقول عملاؤنا عن كيو لينك' : 'What our customers say about Qlink'}
         slug="shop/reviews"
       />
-      <DynamicBackground />
-      
       <div className="reviews-content-wrapper">
  
 

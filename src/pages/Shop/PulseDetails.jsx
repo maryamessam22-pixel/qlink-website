@@ -7,7 +7,6 @@ import {
 } from 'lucide-react';
 import { LanguageContext } from '../../context/LanguageContext';
 import { useCart } from '../../context/CartContext';
-import DynamicBackground from '../../components/common/DynamicBackground';
 import { supabase } from '../../lib/Supabase';
 import './PulseDetails.css';
 
@@ -135,7 +134,6 @@ const PulseDetails = () => {
         description={seoData ? (isAr ? seoData.description_ar : seoData.description_en) : ''}
         slug="shop/pulse"
       />
-      <DynamicBackground />
   
       {loading ? (
         <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: '8px', color: '#ffffff' }}>

@@ -3,7 +3,6 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { CheckCircle, Mail, Smartphone, ArrowRight, ShieldCheck, Apple, Play } from 'lucide-react';
 import { LanguageContext } from '../context/LanguageContext';
 import SEO from '../components/common/SEO';
-import DynamicBackground from '../components/common/DynamicBackground';
 import './CompletePurchase.css';
 
 import mobileMockup from '../assets/images/mobile2.png';
@@ -38,8 +37,6 @@ const CompletePurchase = () => {
                 description={isAr ? 'شكراً لشرائك من كيو لينك' : 'Thank you for your purchase from Qlink'}
                 slug="complete-purchase"
             />
-            <DynamicBackground />
-
             <div className="cp-container">
                 
                 <div className="cp-success-header scroll-animate">

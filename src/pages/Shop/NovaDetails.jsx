@@ -7,7 +7,6 @@ import {
 } from 'lucide-react';
 import { LanguageContext } from '../../context/LanguageContext';
 import { useCart } from '../../context/CartContext';
-import DynamicBackground from '../../components/common/DynamicBackground';
 import { supabase } from '../../lib/Supabase';
 import './NovaDetails.css';
 
@@ -144,7 +143,6 @@ const NovaDetails = () => {
         description={seoData ? (isAr ? seoData.description_ar : seoData.description_en) : ''}
         slug="shop/nova"
       />
-      <DynamicBackground />
       
       {loading ? (
         <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: '1px', color: '#ffffff' }}>

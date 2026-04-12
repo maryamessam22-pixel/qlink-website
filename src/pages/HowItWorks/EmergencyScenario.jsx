@@ -19,7 +19,6 @@ import mobiles from '../../assets/images/2mobiles.png';
 import EmergencyFeatureCard from '../../components/Cards/EmergencyFeatureCard';
 import EmergencyStepCard from '../../components/Cards/EmergencyStepCard';
 import AppPromoSection from '../../components/Sections/AppPromoSection';
-import DynamicBackground from '../../components/common/DynamicBackground';
 
 import { ArrowLeft, ArrowRight, ShieldAlert, ScanLine, FileText, BellRing, Apple, Play } from 'lucide-react';
 
@@ -84,7 +83,6 @@ const EmergencyScenario = () => {
         description={seoData ? (lang === 'ar' ? seoData.description_ar : seoData.description_en) : ''}
         slug="how-it-works/emergency"
       />
-      <DynamicBackground/>
       
      
       <section className={`es-hero scroll-animate ${lang === 'ar' ? 'rtl-text' : ''}`} style={{ backgroundImage: `url(${heroImg})` }}>

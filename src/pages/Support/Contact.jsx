@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import SEO from '../../components/common/SEO';
 import { LanguageContext } from '../../context/LanguageContext';
-import DynamicBackground from '../../components/common/DynamicBackground';
 import ContactSection from '../../components/Sections/ContactSection';
 import AppPromoSection from '../../components/Sections/AppPromoSection';
 import { HelpCircle } from 'lucide-react';
@@ -79,8 +78,6 @@ function Contact() {
         description={seoData ? pick(seoData, 'description') : (isArabic ? 'تواصل معنا لأي استفسار' : 'Get in touch')}
         slug={seoData ? seoData.slug : "support/contact"}
       />
-      
-      <DynamicBackground />
       
       {/* 1. Hero - Dynamic from contact_info */}
       <section className="contact-hero scroll-animate stag-1">

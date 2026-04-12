@@ -9,6 +9,7 @@ import './App.css';
 import Preloader from './components/common/Preloader';
 import ScrollToTop from './components/layout/ScrollToTop';
 import LoginModal from './components/common/LoginModal';
+import DynamicBackground from './components/common/DynamicBackground';
 import { useAuth } from './context/AuthContext';
 
 // Pages
@@ -93,6 +94,7 @@ function App() {
   return (
     <Router>
       <div className="App">
+        <DynamicBackground />
         {loading && <Preloader onFinish={() => setLoading(false)} />}
 
         <Routes>

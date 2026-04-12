@@ -2,7 +2,6 @@ import React, { useEffect, useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import SEO from '../components/common/SEO';
 import { LanguageContext } from '../context/LanguageContext';
-import DynamicBackground from '../components/common/DynamicBackground';
 import { ShieldCheck, MapPin, BellRing, HeartPulse } from 'lucide-react';
 import { supabase } from '../lib/Supabase';
 import './ForCaregivers.css';
@@ -72,7 +71,6 @@ function ForCaregivers() {
         description={seoData ? (isArabic ? seoData.description_ar : seoData.description_en) : (isArabic ? 'حلول أمان متكاملة لمقدمي الرعاية.' : 'Empower caregivers with Qlink.')}
         slug={seoData ? seoData.slug : "caregivers"}
       />
-      <DynamicBackground />
       <main className="fc-container">
         <section className={`fc-hero ${isArabic ? 'rtl-text' : ''}`}>
           <div className="fc-hero-content">

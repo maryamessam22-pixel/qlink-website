@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import { CreditCard, Banknote, Minus, Plus } from 'lucide-react';
 import { LanguageContext } from '../context/LanguageContext';
 import { useCart } from '../context/CartContext';
-import DynamicBackground from '../components/common/DynamicBackground';
 import SEO from '../components/common/SEO';
 import { supabase } from '../lib/Supabase';
 import './Checkout.css';
@@ -141,8 +140,6 @@ const Checkout = () => {
                 description={seoData ? (isAr ? seoData.description_ar : seoData.description_en) : ''}
                 slug="checkout"
             />
-            <DynamicBackground />
-
             <div className="checkout-wrapper">
                 <div className="checkout-layout">
 

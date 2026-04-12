@@ -28,7 +28,6 @@ import HelpCard from '../../components/Cards/HelpCard';
 
 import watchVidSrc from '../../assets/videos/watch vid.mp4';
 import qlinkVideoSrc from '../../assets/videos/qlink-video.mp4';
-import DynamicBackground from '../../components/common/DynamicBackground';
 
 function HowQlinkWorks() {
   const lensRef = useRef(null);
@@ -127,7 +126,6 @@ function HowQlinkWorks() {
         description={seoData ? (lang === 'ar' ? seoData.description_ar : seoData.description_en) : ''}
         slug="how-it-works"
       />
-      <DynamicBackground />
 
       <div className="hw-liquid-bg">
         <div className="hw-glow hw-glow-1"></div>

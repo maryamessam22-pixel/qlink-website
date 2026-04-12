@@ -4,7 +4,6 @@ import { Link, useParams } from 'react-router-dom';
 import { LanguageContext } from '../../context/LanguageContext';
 import SetupSection from '../../components/Sections/SetupSection';
 import AppPromoSection from '../../components/Sections/AppPromoSection';
-import DynamicBackground from '../../components/common/DynamicBackground';
 import NovaDetails from './NovaDetails';
 import PulseDetails from './PulseDetails';
 import { supabase } from '../../lib/Supabase';
@@ -58,9 +57,6 @@ const TheBracelet = () => {
         description={seoData ? (isAr ? seoData.description_ar : seoData.description_en) : ''}
         slug="shop/bracelet"
       />
-      <DynamicBackground />
-
-     
       <div className="bracelet-header-section">
         <h1 className="bracelet-title">
           {t('bracelet.title').includes('Your') ? (

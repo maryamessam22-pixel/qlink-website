@@ -9,7 +9,6 @@ import pulseIcon from '../../assets/icons/PULSE-ICON.png';
 import SetupSection from '../../components/Sections/SetupSection';
 import AppPromoSection from '../../components/Sections/AppPromoSection';
 import promoAltImg from '../../assets/images/mobile2.png';
-import DynamicBackground from '../../components/common/DynamicBackground';
 import ShopCTA from '../../components/Sections/ShopCTA';
 
 function Compare() {
@@ -98,7 +97,6 @@ function Compare() {
         description={seoData ? (lang === 'ar' ? seoData.description_ar : seoData.description_en) : ''}
         slug="shop/compare"
       />
-      <DynamicBackground/>
   
       <div className="compare-hero scroll-animate">
         <h1 className="compare-title">
