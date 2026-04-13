@@ -177,9 +177,9 @@ const InTheBoxPulse = () => {
               ))}
             </div>
             <div className="perks-row">
-              <div className="perk-box"><Droplets size={22} color="#3b82f6" /><span className="perk-text">{t('pulseDetails.perk1')}</span></div>
+              <div className="perk-box"><Droplets size={22} color="var(--color-cta-primary)" /><span className="perk-text">{t('pulseDetails.perk1')}</span></div>
               <div className="perk-box"><Zap size={22} color="#10b981" /><span className="perk-text">{t('pulseDetails.perk2')}</span></div>
-              <div className="perk-box"><Shield size={22} color="#E03232" /><span className="perk-text">{t('pulseDetails.perk3')}</span></div>
+              <div className="perk-box"><Shield size={22} color="var(--color-cta-primary)" /><span className="perk-text">{t('pulseDetails.perk3')}</span></div>
             </div>
           </div>
 

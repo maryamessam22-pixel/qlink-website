@@ -27,7 +27,11 @@
     font-size: 42px;
     font-weight: 700;
     margin-bottom: 16px;
-    background: linear-gradient(to bottom, #fff, #8892b0);
+    background: linear-gradient(
+      to bottom,
+      var(--text-primary),
+      var(--text-secondary)
+    );
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -42,9 +46,9 @@
 
 
 .cp-order-card {
-    background: rgba(21, 29, 52, 0.4);
+    background: var(--bg-card);
     backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-light);
     border-radius: 20px;
     padding: 40px;
     margin-bottom: 30px;
@@ -55,7 +59,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 15px 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid var(--border-light);
 }
 
 .cp-order-row:last-of-type {
@@ -71,7 +75,7 @@
 .cp-value {
     font-weight: 600;
     font-size: 18px;
-    color: #fff;
+    color: var(--text-primary);
     font-family: monospace;
 }
 
@@ -80,7 +84,7 @@
 }
 
 .cp-email-notice {
-    background: rgba(255, 255, 255, 0.03);
+    background: var(--bg-surface-dark);
     border-radius: 14px;
     padding: 24px;
     display: flex;
@@ -101,9 +105,9 @@
 
 
 .cp-app-quick-card {
-    background: rgba(21, 29, 52, 0.4);
+    background: var(--bg-card);
     backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-light);
     border-radius: 20px;
     padding: 30px 40px;
     margin-bottom: 80px;
@@ -155,7 +159,7 @@
     align-items: center;
     gap: 60px;
     margin-bottom: 100px;
-    background: radial-gradient(circle at right, rgba(59, 130, 246, 0.05) 0%, transparent 60%);
+    background: radial-gradient(circle at right, rgba(224, 50, 50, 0.05) 0%, transparent 60%);
 }
 
 .cp-feature-content {
@@ -212,9 +216,9 @@
 }
 
 .cp-store-btn.secondary {
-    background: rgba(255,255,255,0.05);
-    color: #fff;
-    border: 1px solid rgba(255,255,255,0.1);
+    background: var(--bg-card);
+    color: var(--text-primary);
+    border: 1px solid var(--border-light);
 }
 
 .cp-feature-visual {
@@ -286,7 +290,8 @@
     width: 100px;
     height: 100px;
     border-radius: 50%;
-    background: #0b111e;
+    background: var(--color-primary-navy);
+    color: #fff;
     border: 2px solid rgba(224, 50, 50, 0.2);
     display: flex;
     align-items: center;
@@ -323,7 +328,7 @@
     background: transparent;
     border: 1px solid var(--border-subtle);
     border-radius: 50px;
-    color: #fff;
+    color: var(--text-primary);
     font-size: 16px;
     font-weight: 600;
     cursor: pointer;
@@ -331,7 +336,7 @@
 }
 
 .cp-home-btn:hover {
-    background: rgba(255,255,255,0.05);
+    background: var(--bg-surface-highlight);
     border-color: var(--text-secondary);
 }
 

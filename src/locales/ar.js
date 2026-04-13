@@ -6,6 +6,8 @@ const arTranslations = {
     forCaregivers: "لمقدمي الرعاية",
     about: "عن كيو لينك",
     support: "الدعم",
+    switchToLight: "التبديل إلى الوضع الفاتح",
+    switchToDark: "التبديل إلى الوضع الداكن",
     drop: {
       howQlink: "كيف يعمل كيو لينك",
       emergency: "سيناريو الطوارئ",
@@ -278,7 +280,7 @@ const arTranslations = {
     reviews: "4.9/5 تقييمات معتمدة",
     finish: "اختر اللون",
     colorBlack: "أسود",
-    colorGrey: "رمادي",
+    colorGrey: "فضي",
     colorRed: "أحمر",
     colorBlue: "أزرق",
     quantity: "الكمية",

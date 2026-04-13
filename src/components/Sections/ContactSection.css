@@ -4,7 +4,7 @@
 }
 
 .contact-panel {
-    background: linear-gradient(135deg, #151d3421 0%, rgba(15, 22, 37, 0.95) 100%);
+    background: var(--bg-card);
     border: 1px solid var(--border-subtle);
     border-radius: 16px;
     padding: 40px;
@@ -88,10 +88,10 @@
 .cf-input {
   width: 100%;
   padding: 10px 14px;
-  background: #172136; /* Solid dark background */
-  border: 1px solid rgba(59, 130, 246, 0.25);
+  background: var(--bg-surface-input);
+  border: 1px solid var(--border-light);
   border-radius: 8px;
-  color: white;
+  color: var(--text-primary);
   font-family: inherit;
   font-size: 14px;
   outline: none;
@@ -100,16 +100,17 @@
 }
 
 .cf-input::placeholder {
-  color: rgba(255, 255, 255, 0.3);
+  color: var(--text-muted-dark);
+  opacity: 0.8;
 }
 
 .cf-select option {
-  background-color: #172136;
-  color: white;
+  background-color: var(--bg-surface-input);
+  color: var(--text-primary);
 }
 
 .cf-input:focus {
-  border-color: var(--color-primary-blue);
+  border-color: var(--color-primary-red);
 }
 
 .cf-select {

@@ -8,9 +8,44 @@
   align-items: center;
   justify-content: center;
   font-family: var(--font-family-primary);
-  color: white;
+  color: var(--text-primary);
   position: relative;
   overflow: hidden;
+}
+
+.auth-theme-toggle {
+  position: absolute;
+  top: 40px;
+  inset-inline-end: 40px;
+  z-index: 12;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid var(--border-light);
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.auth-theme-toggle:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+html[data-theme="light"] .auth-theme-toggle {
+  background: rgba(255, 255, 255, 0.95);
+  border-color: rgba(15, 23, 42, 0.12);
+  box-shadow: 0 2px 12px rgba(15, 23, 42, 0.08);
+}
+
+html[data-theme="light"] .auth-theme-toggle:hover {
+  background: #ffffff;
 }
 
 
@@ -121,7 +156,7 @@
 }
 
 .auth-back-btn:hover {
-  color: white;
+  color: var(--text-primary);
 }
 
 .auth-header {
@@ -191,7 +226,7 @@
 
 .tab-btn.active {
   background-color: var(--bg-surface-highlight);
-  color: white;
+  color: var(--text-primary);
   border-radius: 6px;
   margin: 4px;
 }
@@ -235,7 +270,7 @@ form {
   background-color: var(--bg-surface-deep);
   border: 1px solid var(--border-subtle);
   border-radius: 10px;
-  color: white;
+  color: var(--text-primary);
   font-size: 14px;
   font-family: inherit;
   outline: none;
@@ -244,7 +279,7 @@ form {
 }
 
 .input-wrap input:focus {
-  border-color: var(--color-primary-blue);
+  border-color: var(--color-cta-primary);
 }
 
 .forgot-row {
@@ -253,7 +288,7 @@ form {
 }
 
 .forgot-row a {
-  color: var(--color-primary-blue);
+  color: var(--color-cta-primary);
   text-decoration: none;
   font-size: 13px;
 }
@@ -263,7 +298,7 @@ form {
   padding: 0 12px;
   height: 48px;
   background-color: var(--bg-surface-deep); 
-  color: white;
+  color: var(--text-primary);
   border: none;
   border-radius: 10px;
   font-size: 14px;
@@ -338,7 +373,7 @@ form {
 }
 
 .card-footer a {
-  color: var(--color-primary-blue);
+  color: var(--color-cta-primary);
   cursor: pointer;
   font-weight: 500;
   text-decoration: none;
@@ -357,9 +392,9 @@ form {
 .spinner {
   width: 40px;
   height: 40px;
-  border: 3px solid rgba(255, 255, 255, 0.1);
+  border: 3px solid var(--border-light);
   border-radius: 50%;
-  border-top-color: white;
+  border-top-color: var(--text-primary);
   animation: spin 1s ease-in-out infinite;
 }
 

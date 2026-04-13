@@ -23,7 +23,7 @@
   height: 55px;
   border-radius: 50%;
   background: white;
-  color: var(--color-primary-red);
+  color: var(--color-cta-primary);
   border: none;
   display: flex;
   align-items: center;
@@ -37,6 +37,7 @@
   transform: scale(1.1);
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
   background: white;
+  color: var(--color-cta-primary-hover);
 }
 
 @media (max-width: 900px) {

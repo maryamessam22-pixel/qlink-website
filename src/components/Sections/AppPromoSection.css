@@ -5,7 +5,7 @@
   right: 50%;
   margin-left: -50vw;
   margin-right: -50vw;
-  background-color: #141D35;
+  background-color: var(--bg-surface-navy);
   display: flex;
   align-items: flex-start;
   justify-content: center;
@@ -75,14 +75,14 @@
 }
 
 .promo-app-btn.secondary {
-  background: rgba(255, 255, 255, 0.05);
-  color: white;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--bg-card);
+  color: var(--text-primary);
+  border: 1px solid var(--border-light);
 }
 
 .promo-app-btn.secondary:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.2);
+  background: var(--bg-surface-highlight);
+  border-color: var(--border-subtle);
 }
 
 .promo-app-btn:active {

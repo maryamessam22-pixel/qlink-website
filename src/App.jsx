@@ -6,6 +6,7 @@ import Footer from './components/layout/Footer';
 import ArrowUp from './components/layout/ArrowUp';
 import AIAssistantBtn from './components/layout/AIAssistantBtn';
 import './App.css';
+import './theme-light.css';
 import Preloader from './components/common/Preloader';
 import ScrollToTop from './components/layout/ScrollToTop';
 import LoginModal from './components/common/LoginModal';

@@ -8,6 +8,13 @@ import {
 import { LanguageContext } from '../../context/LanguageContext';
 import { useCart } from '../../context/CartContext';
 import { supabase } from '../../lib/Supabase';
+import {
+  resolveNovaGalleryUrl,
+  formatNovaCartColorName,
+  inferNovaSelectionFromGalleryIndex,
+  novaGallerySlotFilled,
+  getMergedNovaGallery,
+} from './novaGalleryMap';
 import './ProductSubPage.css';
 
 const checkIsVideo = (url) => {
@@ -56,11 +63,10 @@ const InTheBoxNova = () => {
           
         if (prodData) {
           setProduct(prodData);
-          let gImages = prodData['gallery-images'] || prodData.gallery_images || [];
-          if (typeof gImages === 'string') {
-            try { gImages = JSON.parse(gImages); } catch { gImages = []; }
-          }
-          setSelectedImg(gImages.length > 0 ? gImages[0] : prodData.image_url);
+          const merged = getMergedNovaGallery(prodData);
+          setSelectedImg(
+            resolveNovaGalleryUrl(merged, 'black', 'solid') || prodData.image_url
+          );
         }
 
         const { data: seo } = await supabase
@@ -100,33 +106,28 @@ const InTheBoxNova = () => {
     navigate(path);
   };
 
-  const galleryImages = React.useMemo(() => {
-    const images = product?.['gallery-images'] || product?.gallery_images;
-    if (!images) return [];
-    try {
-      return typeof images === 'string' ? JSON.parse(images) : images;
-    } catch { return []; }
-  }, [product]);
+  const galleryImages = React.useMemo(() => getMergedNovaGallery(product), [product]);
 
-  const allThumbs = galleryImages.filter(Boolean);
   const imgAltText = product?.featured_image_alt || (isAr ? product?.name_ar : product?.name_en);
 
   const handleColorChange = (colorId) => {
     setActiveColor(colorId);
-    if (colorId === 'black' && allThumbs[0]) setSelectedImg(allThumbs[0]);
-    else if (colorId === 'grey' && allThumbs[2]) setSelectedImg(allThumbs[2]);
-    else if (colorId === 'red' && allThumbs[3]) setSelectedImg(allThumbs[3]);
-    else if (colorId === 'blue') {
-      if (strapType === 'woven' && allThumbs[5]) setSelectedImg(allThumbs[5]);
-      else if (allThumbs[4]) setSelectedImg(allThumbs[4]);
-    }
+    const url = resolveNovaGalleryUrl(galleryImages, colorId, strapType);
+    if (url) setSelectedImg(url);
   };
 
   const handleStrapChange = (type) => {
     setStrapType(type);
-    if (activeColor === 'blue') {
-      if (type === 'woven' && allThumbs[5]) setSelectedImg(allThumbs[5]);
-      else if (allThumbs[4]) setSelectedImg(allThumbs[4]);
+    const url = resolveNovaGalleryUrl(galleryImages, activeColor, type);
+    if (url) setSelectedImg(url);
+  };
+
+  const handleGalleryThumbClick = (mediaUrl, idx) => {
+    setSelectedImg(mediaUrl);
+    const sel = inferNovaSelectionFromGalleryIndex(idx);
+    if (sel) {
+      setActiveColor(sel.color);
+      setStrapType(sel.strap);
     }
   };
 
@@ -169,18 +170,25 @@ const InTheBoxNova = () => {
               )}
             </div>
             <div className="thumbnail-group">
-              {allThumbs.map((img, i) => (
-                <div key={i} className={`thumb ${selectedImg === img ? 'active' : ''}`} onClick={() => setSelectedImg(img)}>
-                  {checkIsVideo(img) ? (
-                    <video src={img} muted playsInline className="thumb-media" />
-                  ) : (
-                    <img src={img} alt={`Thumb ${i}`} />
-                  )}
-                </div>
-              ))}
+              {galleryImages.map((img, i) => {
+                if (!novaGallerySlotFilled(img)) return null;
+                return (
+                  <div
+                    key={i}
+                    className={`thumb ${selectedImg === img ? 'active' : ''}`}
+                    onClick={() => handleGalleryThumbClick(img, i)}
+                  >
+                    {checkIsVideo(img) ? (
+                      <video src={img} muted playsInline className="thumb-media" />
+                    ) : (
+                      <img src={img} alt={`Thumb ${i + 1}`} />
+                    )}
+                  </div>
+                );
+              })}
             </div>
             <div className="perks-row">
-              <div className="perk-box"><Droplets size={22} color="#3b82f6" /><span className="perk-text">{t('novaDetails.perk1')}</span></div>
+              <div className="perk-box"><Droplets size={22} color="#E03232" /><span className="perk-text">{t('novaDetails.perk1')}</span></div>
               <div className="perk-box"><HeartPulse size={22} color="#10b981" /><span className="perk-text">{t('novaDetails.perk2')}</span></div>
               <div className="perk-box"><Sparkles size={20} color="#E03232" /><span className="perk-text">{t('novaDetails.perk3')}</span></div>
             </div>
@@ -204,47 +212,30 @@ const InTheBoxNova = () => {
               </div>
             </div>
 
-            {activeColor === 'blue' && (
-              <div className="strap-selector animate-fade-in" style={{ marginBottom: '32px' }}>
-                <span className="finish-label">
-                  {isAr ? 'نوع الحزام' : 'Strap Type'}: <strong>{strapType === 'solid' ? (isAr ? 'ناعم' : 'Solid') : (isAr ? 'منسوج' : 'Woven')}</strong>
-                </span>
-                <div className="strap-options" style={{ display: 'flex', gap: '12px', marginTop: '8px' }}>
-                  <button 
-                    className={`strap-btn ${strapType === 'solid' ? 'active' : ''}`}
-                    onClick={() => handleStrapChange('solid')}
-                    style={{
-                      padding: '8px 16px',
-                      borderRadius: '20px',
-                      border: '1px solid rgba(255,255,255,0.2)',
-                      background: strapType === 'solid' ? 'var(--color-primary-red)' : 'rgba(255,255,255,0.05)',
-                      color: 'white',
-                      cursor: 'pointer',
-                      fontSize: '13px',
-                      transition: 'all 0.2s ease'
-                    }}
-                  >
-                    {isAr ? 'ناعم' : 'Solid'}
-                  </button>
-                  <button 
-                    className={`strap-btn ${strapType === 'woven' ? 'active' : ''}`}
-                    onClick={() => handleStrapChange('woven')}
-                    style={{
-                      padding: '8px 16px',
-                      borderRadius: '20px',
-                      border: '1px solid rgba(255,255,255,0.2)',
-                      background: strapType === 'woven' ? 'var(--color-primary-red)' : 'rgba(255,255,255,0.05)',
-                      color: 'white',
-                      cursor: 'pointer',
-                      fontSize: '13px',
-                      transition: 'all 0.2s ease'
-                    }}
-                  >
-                    {isAr ? 'منسوج' : 'Woven'}
-                  </button>
-                </div>
+            <div className="strap-selector animate-fade-in">
+              <span className="finish-label">
+                {isAr ? 'نوع الحزام' : 'Strap Type'}:{' '}
+                <strong>
+                  {strapType === 'solid' ? (isAr ? 'ناعم' : 'Solid') : isAr ? 'منسوج' : 'Woven'}
+                </strong>
+              </span>
+              <div className="strap-options">
+                <button
+                  type="button"
+                  className={`strap-btn ${strapType === 'solid' ? 'active' : ''}`}
+                  onClick={() => handleStrapChange('solid')}
+                >
+                  {isAr ? 'ناعم' : 'Solid'}
+                </button>
+                <button
+                  type="button"
+                  className={`strap-btn ${strapType === 'woven' ? 'active' : ''}`}
+                  onClick={() => handleStrapChange('woven')}
+                >
+                  {isAr ? 'منسوج' : 'Woven'}
+                </button>
               </div>
-            )}
+            </div>
             <div className="quantity-selector">
               <span className="finish-label">{t('novaDetails.quantity')}</span>
               <div className="qty-controls">
@@ -256,12 +247,11 @@ const InTheBoxNova = () => {
             <div className="sizing-info">{t('novaDetails.sizing')}</div>
             <div className="action-buttons">
               <button className="btn-buy" onClick={() => {
-                const selectedColor = colors.find(c => c.id === activeColor);
                 addToCart({
                   slug: 'qlink-nova-touch',
                   name: isAr ? product.name_ar : product.name_en,
                   color: activeColor,
-                  colorName: (colors.find(c => c.id === activeColor)?.name || activeColor) + (activeColor === 'blue' ? ` (${strapType === 'solid' ? (isAr ? 'ناعم' : 'Solid') : (isAr ? 'منسوج' : 'Woven')})` : ''),
+                  colorName: formatNovaCartColorName(activeColor, colors, strapType, isAr),
                   strap: strapType,
                   qty,
                   price: product.price,
@@ -272,12 +262,11 @@ const InTheBoxNova = () => {
                 <Zap fill="white" size={18} /> {t('novaDetails.buyNow')}
               </button>
               <button className="btn-cart" onClick={() => {
-                const selectedColor = colors.find(c => c.id === activeColor);
                 addToCart({
                   slug: 'qlink-nova-touch',
                   name: isAr ? product.name_ar : product.name_en,
                   color: activeColor,
-                  colorName: (colors.find(c => c.id === activeColor)?.name || activeColor) + (activeColor === 'blue' ? ` (${strapType === 'solid' ? (isAr ? 'ناعم' : 'Solid') : (isAr ? 'منسوج' : 'Woven')})` : ''),
+                  colorName: formatNovaCartColorName(activeColor, colors, strapType, isAr),
                   strap: strapType,
                   qty,
                   price: product.price,

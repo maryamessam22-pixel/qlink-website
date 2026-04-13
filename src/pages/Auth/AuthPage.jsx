@@ -4,6 +4,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { LanguageContext } from '../../context/LanguageContext';
 import Logo from '../../components/layout/Logo';
+import ThemeToggleButton from '../../components/common/ThemeToggleButton';
 import { useAuth } from '../../context/AuthContext';
 import { supabase } from '../../lib/Supabase'; 
 import qlinkBg from '../../assets/images/qlink-bg.png';
@@ -156,6 +157,7 @@ function AuthPage() {
   if (showSplash) {
     return (
       <div className="auth-container">
+        <ThemeToggleButton className="auth-theme-toggle" />
         <div className="dynamic-light"></div>
         <div className="dynamic-light-2"></div>
         <div className="dynamic-light-3"></div>
@@ -174,6 +176,7 @@ function AuthPage() {
   if (isLoading) {
     return (
       <div className="auth-container">
+        <ThemeToggleButton className="auth-theme-toggle" />
         <div className="dynamic-light"></div>
         <div className="dynamic-light-2"></div>
         <div className="dynamic-light-3"></div>
@@ -202,6 +205,8 @@ function AuthPage() {
         {isAr ? <ArrowRight size={20} /> : <ArrowLeft size={20} />}
         <span>{t('auth.back')}</span>
       </button>
+
+      <ThemeToggleButton className="auth-theme-toggle" />
 
       <div className="dynamic-light"></div>
       <div className="dynamic-light-2"></div>

@@ -230,7 +230,7 @@ function Home() {
             <InfoCard
               className="bg-blue-light"
               icon={QrCode}
-              iconColor="var(--color-primary-blue)"
+              iconColor="var(--color-primary-red)"
               title={
                 cms['home_features']
                   ? cms['home_features'][`card-two-title-${lang}`] || t('whatIs.c2Title')

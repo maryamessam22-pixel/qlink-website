@@ -63,7 +63,7 @@
 }
 
 .faqs-search-input:focus {
-  border-color: var(--color-primary-blue);
+  border-color: var(--color-primary-red);
 }
 
 
@@ -110,7 +110,7 @@
 
 .faqs-accordion-item {
   background: var(--bg-card);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-light);
   border-radius: 12px;
   cursor: pointer;
   transition: all 0.3s ease;

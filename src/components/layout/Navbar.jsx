@@ -6,6 +6,7 @@ import { AuthContext } from '../../context/AuthContext';
 import { useCart } from '../../context/CartContext';
 import Dropdown from './Dropdown';
 import Logo from './Logo';
+import ThemeToggleButton from '../common/ThemeToggleButton';
 import './Navbar.css';
 
 function Navbar() {
@@ -125,6 +126,7 @@ function Navbar() {
         <button className="lang-btn" onClick={toggleLanguage}>
           {lang === 'en' ? 'AR' : 'EN'}
         </button>
+        <ThemeToggleButton className="theme-toggle-btn" />
         <button
           className="icon-btn cart-icon-wrapper"
           onClick={() => {

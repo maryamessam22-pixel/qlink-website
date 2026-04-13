@@ -5,12 +5,21 @@
   text-align: right;
 } */
 :root {
+  --app-body-bg: linear-gradient(180deg, #12203a 0%, #162b4b 100%);
+
   /* Brand Colors */
   --color-primary-navy: #131C2F;
   --color-primary-blue: #3b82f6; 
   --color-brand-blue-glow: #116BFD;
   --color-primary-red: #E03232;
   --color-primary-red-hover: #c92c2c;
+  /* Reserved for emergency / critical emphasis (e.g. “Scan”) */
+  --color-emergency: #e03232;
+
+  /* Primary UI accent — red in dark; theme-light.css switches to medical blue */
+  --color-cta-primary: #E03232;
+  --color-cta-primary-hover: #c92c2c;
+  --color-cta-shadow: rgba(224, 50, 50, 0.35);
   
   /* Status Colors */
   --color-success: #10B981;
@@ -37,6 +46,12 @@
 
   /* Typography */
   --font-family-primary: 'Roboto', sans-serif;
+
+  --footer-surface-bg: var(--color-primary-navy);
+  --footer-surface-text: var(--text-primary);
+  --footer-surface-muted: var(--text-muted);
+  --footer-surface-border: rgba(255, 255, 255, 0.05);
+  --footer-bottom-text: rgba(255, 255, 255, 0.4);
 }
 
 body {
@@ -44,11 +59,7 @@ body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
-  /* background-color: var(--bg-main); */
-   /* background: linear-gradient(180deg, #1D2C4B 0%, #192149 100%); */
-   background: linear-gradient(180deg, #12203a 0%, #162b4b 100%);
-
-   /* background: linear-gradient(180deg, #1D2C4B 0%, #192149 100%); */
+   background: var(--app-body-bg);
    
   color: var(--text-primary);
 }
@@ -112,6 +123,11 @@ body.rtl-active .icon-btn {
   background-color: var(--color-primary-red-hover);
   transform: translateY(-2px) scale(1.03);
   color: white;
+}
+
+/* Dark mode: brand red highlights. Light mode overrides in theme-light.css */
+.red-text {
+  color: var(--color-emergency);
 }
 
 .btn-secondary {

@@ -143,7 +143,7 @@ const EmergencyScenario = () => {
         <EmergencyStepCard
           IconComponent={ScanLine}
           iconWrapClass="es-icon-blue"
-          iconColor="var(--color-primary-blue)"
+          iconColor="var(--color-primary-red)"
           title={t('emergency.s1Title')}
           desc={t('emergency.s1Desc')}
         />
@@ -182,7 +182,7 @@ const EmergencyScenario = () => {
       <section className={`es-cta-box-section scroll-animate ${lang === 'ar' ? 'rtl-text' : ''}`}>
         <div className="es-cta-box">
           <div className="es-cta-icon">
-             <ShieldAlert size={36} color="var(--color-primary-blue)" />
+             <ShieldAlert size={36} color="var(--color-primary-red)" />
           </div>
           <h2 style={lang === 'ar' ? {} : { whiteSpace: 'pre-wrap' }}>{t('emergency.ctaSubtitle')}</h2>
           <p>{t('emergency.ctaDesc')}</p>

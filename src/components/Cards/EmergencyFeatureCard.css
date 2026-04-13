@@ -32,7 +32,7 @@
 }
 
 .es-f-subtitle {
-  color: var(--color-primary-blue);
+  color: var(--color-primary-red);
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 1.5px;
@@ -45,7 +45,7 @@
 }
 
 .es-feature-row:nth-child(3) .es-f-subtitle {
-  color: var(--color-brand-blue-glow);
+  color: #ff6b6b;
 }
 
 .es-f-title {

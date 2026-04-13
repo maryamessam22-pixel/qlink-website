@@ -1,6 +1,6 @@
 .shop-cta-section {
     padding: 100px 24px;
-    background: #151e36;
+    background: var(--bg-surface-navy);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -29,7 +29,7 @@
 
 .shop-cta-button {
     background-color: var(--color-primary-red);
-    color: var(--text-primary);
+    color: #fff;
     padding: 14px 48px;
     font-size: 18px;
     font-weight: 700;
@@ -37,7 +37,7 @@
     border-radius: 12px;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(224, 50, 50, 0.3);
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
 }
 
 .shop-cta-button:hover {

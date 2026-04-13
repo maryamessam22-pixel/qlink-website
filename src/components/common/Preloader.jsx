@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import qlinkLogoMark from '../../assets/brand/qlink-logo-mark.png';
+import qlinkPreloaderLight from '../../assets/brand/qlink-preloader-light.png';
+import { useTheme } from '../../context/ThemeContext';
 import './Preloader.css';
 
 const MEET_MS = 1100;
 const SPIN_BEFORE_FADE_MS = 1200;
 
 const Preloader = ({ onFinish }) => {
+  const { isLight } = useTheme();
   const [isVisible, setIsVisible] = useState(true);
   const [phase, setPhase] = useState('meet');
 
@@ -31,16 +34,27 @@ const Preloader = ({ onFinish }) => {
     <div className={`preloader-wrapper ${isVisible ? '' : 'fade-out'}`}>
       <div className="preloader-content">
         <div
-          className={`qlink-logo-loader ${phase === 'spin' ? 'qlink-logo-loader--spinning' : ''}`}
+          className={`qlink-logo-loader ${phase === 'spin' ? 'qlink-logo-loader--spinning' : ''} ${isLight ? 'qlink-logo-loader--light' : ''}`}
           aria-hidden
         >
           <div className="qlink-logo-merge">
-            <div className="qlink-logo-split qlink-logo-split--left">
-              <img src={qlinkLogoMark} alt="" className="qlink-logo-img" draggable={false} />
-            </div>
-            <div className="qlink-logo-split qlink-logo-split--right">
-              <img src={qlinkLogoMark} alt="" className="qlink-logo-img" draggable={false} />
-            </div>
+            {isLight ? (
+              <img
+                src={qlinkPreloaderLight}
+                alt=""
+                className="qlink-logo-img qlink-logo-img--whole"
+                draggable={false}
+              />
+            ) : (
+              <>
+                <div className="qlink-logo-split qlink-logo-split--left">
+                  <img src={qlinkLogoMark} alt="" className="qlink-logo-img" draggable={false} />
+                </div>
+                <div className="qlink-logo-split qlink-logo-split--right">
+                  <img src={qlinkLogoMark} alt="" className="qlink-logo-img" draggable={false} />
+                </div>
+              </>
+            )}
           </div>
         </div>
 

@@ -59,15 +59,15 @@ body {
 .es-hero {
   position: relative;
   width: 100%;
-  padding: 180px 20px 100px;
+  padding: 200px 20px 120px;
   background-size: cover;
-  background-position: center top;
+  background-position: center center;
   background-repeat: no-repeat;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
-  min-height: 80vh;
+  min-height: 105vh;
 }
 
 .es-hero-overlay {

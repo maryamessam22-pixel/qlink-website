@@ -3,7 +3,7 @@
   padding-top: 150px;
   position: relative;
   z-index: 1;
-  color: white;
+  color: var(--text-primary);
   width: 100%;
   overflow-x: hidden;
 }
@@ -25,9 +25,13 @@
   margin-bottom: 16px;
 }
 
+.reviews-title-accent {
+  color: var(--color-primary-red);
+}
+
 .reviews-subtitle {
   font-size: 18px;
-  color: rgba(255, 255, 255, 0.7);
+  color: var(--text-secondary);
   max-width: 600px;
   margin: 0 auto;
 }
@@ -36,10 +40,10 @@
 .featured-story-banner {
   display: grid;
   grid-template-columns: 1fr;
-  background: rgb(16 16 31 / 73%);
+  background: var(--bg-card);
   border-radius: 20px;
   overflow: hidden;
-  border: 1px solid rgba(255,255,255,0.05);
+  border: 1px solid var(--border-light);
   margin-bottom: 64px;
   position: relative;
 }
@@ -81,7 +85,7 @@
 
 .quote-overlay p {
   font-size: 16px;
-  color: rgba(255,255,255,0.8);
+  color: rgba(248, 250, 252, 0.92);
   margin-bottom: 24px;
   line-height: 1.6;
   max-width: 725px;
@@ -103,7 +107,7 @@
 }
 
 .secondary-image-side {
-  background: rgba(40,40,60,0.4);
+  background: var(--bg-surface-highlight);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -147,7 +151,7 @@
   align-items: center;
   gap: 8px;
   font-size: 14px;
-  color: rgba(255,255,255,0.6);
+  color: var(--text-muted);
   justify-content: center;
 }
 
@@ -167,8 +171,8 @@
 }
 
 .testimonial-card {
-  background: rgb(16 16 31 / 73%);
-  border: 1px solid rgba(255,255,255,0.05);
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
   border-radius: 16px;
   padding: 32px;
   transition: transform 0.3s ease;
@@ -179,7 +183,7 @@
 
 .testimonial-card:hover {
   transform: translateY(-5px);
-  border-color: rgba(255,255,255,0.1);
+  border-color: var(--border-subtle);
 }
 
 .card-header {
@@ -203,7 +207,7 @@
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  background: rgba(255,255,255,0.05);
+  background: var(--bg-surface-highlight);
 }
 
 .user-avatar img {
@@ -220,11 +224,11 @@
 
 .user-info span {
   font-size: 14px;
-  color: rgba(255,255,255,0.5);
+  color: var(--text-muted);
 }
 
 .quote-icon {
-  color: rgba(255,255,255,0.1);
+  color: var(--border-subtle);
 }
 
 .star-row-small {
@@ -235,7 +239,7 @@
 
 .card-quote {
   font-size: 15px;
-  color: rgba(255,255,255,0.7);
+  color: var(--text-secondary);
   line-height: 1.6;
   margin-bottom: 24px;
 }
@@ -243,7 +247,7 @@
 .read-more-link {
   background: transparent;
   border: none;
-  color: white;
+  color: var(--color-primary-red);
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
@@ -266,8 +270,8 @@
 }
 
 .add-review-card {
-  background: rgb(16 16 31 / 46%);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
   border-radius: 20px;
   padding: 40px 40px 36px;
   max-width: 1200px;
@@ -305,13 +309,13 @@
   margin: 0;
   font-size: 15px;
   line-height: 1.55;
-  color: rgba(255, 255, 255, 0.68);
+  color: var(--text-secondary);
 }
 
 .add-review-cms-html {
   font-size: 14px;
   line-height: 1.6;
-  color: rgba(255, 255, 255, 0.65);
+  color: var(--text-muted);
   margin-bottom: 24px;
 }
 
@@ -350,7 +354,7 @@
   display: block;
   font-size: 13px;
   font-weight: 600;
-  color: rgba(255, 255, 255, 0.85);
+  color: var(--text-primary);
   margin-bottom: 8px;
 }
 
@@ -358,18 +362,18 @@
 .add-review-field textarea {
   width: 100%;
   box-sizing: border-box;
-  background: rgba(0, 0, 0, 0.25);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--bg-surface-input);
+  border: 1px solid var(--border-light);
   border-radius: 10px;
   padding: 12px 14px;
   font-size: 15px;
-  color: #fff;
+  color: var(--text-primary);
   font-family: inherit;
 }
 
 .add-review-field input::placeholder,
 .add-review-field textarea::placeholder {
-  color: rgba(255, 255, 255, 0.35);
+  color: var(--text-muted-dark);
 }
 
 .add-review-field input:focus,
@@ -401,7 +405,7 @@
 
 .add-review-star-btn:hover:not(:disabled) {
   transform: scale(1.08);
-  background: rgba(255, 255, 255, 0.06);
+  background: var(--bg-surface-highlight);
 }
 
 .add-review-star-btn:disabled {
@@ -412,7 +416,7 @@
 .add-review-submit {
   margin-top: 8px;
   align-self: flex-start;
-  background: #e03232;
+  background: var(--color-primary-red);
   color: #fff;
   border: none;
   padding: 14px 28px;
@@ -454,8 +458,8 @@
   display: grid;
   grid-template-columns: 1fr 2fr;
   gap: 64px;
-  background: rgb(16 16 31 / 73%);
-  border: 1px solid rgba(255,255,255,0.05);
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
   border-radius: 20px;
   padding: 48px;
   margin-bottom: 80px;
@@ -484,7 +488,7 @@
 
 .overall-score-card p {
   font-size: 14px;
-  color: rgba(255,255,255,0.5);
+  color: var(--text-muted);
 }
 
 .histogram-list {
@@ -497,7 +501,7 @@
   font-size: 18px;
   font-weight: 700;
   margin-bottom: 8px;
-  color: white;
+  color: var(--text-primary);
   text-transform: uppercase;
   letter-spacing: 1px;
 }
@@ -519,18 +523,18 @@
 .star-label, .percent-label {
   font-size: 14px;
   font-weight: 600;
-  color: rgba(255,255,255,0.6);
+  color: var(--text-muted);
 }
 
 .progress-bg {
   height: 8px;
-  background: rgba(255,255,255,0.05);
+  background: var(--bg-surface-highlight);
   border-radius: 4px;
 }
 
 .progress-fill {
   height: 100%;
-  background: #3b82f6;
+  background: var(--color-cta-primary);
   border-radius: 4px;
 }
 
@@ -543,8 +547,8 @@
 }
 
 .cta-box {
-  background: rgb(16 16 31 / 73%);
-  border: 1px solid rgba(255,255,255,0.05);
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
   border-radius: 16px;
   padding: 48px;
   text-align: center;
@@ -556,7 +560,7 @@
 
 .cta-icon {
   margin-bottom: 8px;
-  color: #3b82f6;
+  color: var(--color-cta-primary);
 }
 
 .cta-box h3 {
@@ -565,14 +569,14 @@
 }
 
 .cta-box p {
-  color: rgba(255,255,255,0.7);
+  color: var(--text-secondary);
   font-size: 15px;
   line-height: 1.6;
 }
 
 .cta-btn-primary {
-  background: #ff3b30;
-  color: white;
+  background: var(--color-primary-red);
+  color: #fff;
   border: none;
   padding: 12px 32px;
   border-radius: 8px;

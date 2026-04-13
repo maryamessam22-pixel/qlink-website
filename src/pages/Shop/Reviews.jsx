@@ -199,7 +199,7 @@ const Reviews = () => {
         <div className="reviews-header scroll-animate stag-1">
           <h1 className="reviews-title">
             {t('reviews.heroTitleTop')}
-            <span style={{ color: '#E03232' }}>{t('reviews.heroTitleHighlight')}</span>
+            <span className="reviews-title-accent">{t('reviews.heroTitleHighlight')}</span>
           </h1>
           <p className="reviews-subtitle">{t('reviews.heroSubtitle')}</p>
         </div>
@@ -231,7 +231,7 @@ const Reviews = () => {
           <div className="stat-card">
             <h3>{t('reviews.statUsers')}</h3>
             <div className="stat-sub">
-              <Users size={16} color="#3b82f6" />
+              <Users size={16} color="var(--color-cta-primary)" />
               <span>{t('reviews.statUsersLabel')}</span>
             </div>
           </div>

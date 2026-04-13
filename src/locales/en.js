@@ -6,6 +6,8 @@ const translations = {
     forCaregivers: "For Caregivers",
     about: "About",
     support: "Support",
+    switchToLight: "Switch to light mode",
+    switchToDark: "Switch to dark mode",
     drop: {
       howQlink: "How Qlink Works",
       emergency: "Emergency Scenario",
@@ -272,7 +274,7 @@ const translations = {
     reviews: "4.9/5 Verified Reviews",
     finish: "Select Finish",
     colorBlack: "Black",
-    colorGrey: "Grey",
+    colorGrey: "Silver",
     colorRed: "Red",
     colorBlue: "Blue",
     quantity: "Quantity",

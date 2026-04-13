@@ -177,7 +177,7 @@ const PulseDetails = () => {
               
               <div className="perks-row">
                 <div className="perk-box">
-                  <Droplets size={24} color="#3b82f6" />
+                  <Droplets size={24} color="#E03232" />
                   <span className="perk-text">{t('pulseDetails.perk1')}</span>
                 </div>
                 <div className="perk-box">
@@ -368,7 +368,7 @@ const PulseDetails = () => {
                   <p>{t('pulseDetails.feature1Desc')}</p>
                 </div>
                 <div className="feat-box">
-                  <Droplets size={32} color="#3b82f6" />
+                  <Droplets size={32} color="#E03232" />
                   <h4>{t('pulseDetails.feature2Title')}</h4>
                   <p>{t('pulseDetails.feature2Desc')}</p>
                 </div>

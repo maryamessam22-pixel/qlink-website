@@ -226,7 +226,7 @@ const AppDownload = () => {
         <div className="ad-features-grid">
           {features.map((f, i) => (
             <div key={i} className="ad-feature-card">
-              <div className="ad-f-icon"><f.icon size={24} color="#3b82f6" /></div>
+              <div className="ad-f-icon"><f.icon size={24} color="currentColor" /></div>
               <h3>{f.title}</h3>
               <p>{f.desc}</p>
             </div>

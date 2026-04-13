@@ -60,7 +60,7 @@ const CompletePurchase = () => {
                     
                     <div className="cp-email-notice">
                         <div className="cp-email-icon">
-                            <Mail size={24} color="#3b82f6" />
+                            <Mail size={24} color="var(--color-cta-primary)" />
                         </div>
                         <div className="cp-email-text">
                             <h3>{t('completePurchase.checkEmail')}</h3>

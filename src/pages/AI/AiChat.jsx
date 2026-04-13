@@ -1,4 +1,5 @@
-import React, { useState, useRef, useEffect, useLayoutEffect, useCallback } from 'react';
+import React, { useState, useRef, useEffect, useLayoutEffect, useCallback, useMemo } from 'react';
+import { createPortal } from 'react-dom';
 import { Sparkles, ArrowUp, X, Loader2, Trash2, UserCircle } from 'lucide-react';
 import { supabase } from '../../lib/Supabase';
 import './AiChat.css';
@@ -31,20 +32,27 @@ const loadStoredIdentity = () => {
 };
 
 const AiChat = ({ isOpen, onClose }) => {
+  const identityInit = useMemo(() => {
+    const s = loadStoredIdentity();
+    return s
+      ? { phase: 'chat', name: s.name, email: s.email, sessionId: s.sessionId }
+      : { phase: 'form', name: '', email: '', sessionId: '' };
+  }, []);
+
   const [inputValue, setInputValue] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const [messages, setMessages] = useState([INITIAL_MESSAGE]);
   const messagesEndRef = useRef(null);
 
-  const [gatePhase, setGatePhase] = useState('form'); // 'form' | 'chat'
+  const [gatePhase, setGatePhase] = useState(identityInit.phase); // 'form' | 'chat'
   const [gateName, setGateName] = useState('');
   const [gateEmail, setGateEmail] = useState('');
   const [gateError, setGateError] = useState('');
   const [gateSubmitting, setGateSubmitting] = useState(false);
 
-  const [userName, setUserName] = useState('');
-  const [userEmail, setUserEmail] = useState('');
-  const [sessionId, setSessionId] = useState('');
+  const [userName, setUserName] = useState(identityInit.name);
+  const [userEmail, setUserEmail] = useState(identityInit.email);
+  const [sessionId, setSessionId] = useState(identityInit.sessionId);
 
   const clearIdentityAndGate = useCallback(() => {
     localStorage.removeItem(IDENTITY_STORAGE_KEY);
@@ -236,8 +244,8 @@ const AiChat = ({ isOpen, onClose }) => {
 
   if (!isOpen) return null;
 
-  if (gatePhase === 'form') {
-    return (
+  const overlay =
+    gatePhase === 'form' ? (
       <div className="ai-chat-overlay">
         <div className="ai-chat-gate-card">
           <div className="ai-chat-gate-head">
@@ -282,92 +290,91 @@ const AiChat = ({ isOpen, onClose }) => {
           </form>
         </div>
       </div>
-    );
-  }
-
-  return (
-    <div className="ai-chat-overlay">
-      <div className="ai-chat-container">
-        <div className="ai-chat-header">
-          <div className="ai-header-left">
-            <h2 className="ai-logo-text">Qlink</h2>
-            <span className="ai-badge">AI Assistant</span>
-          </div>
-          <div className="ai-header-actions">
-            <button
-              type="button"
-              className="ai-change-user-btn"
-              onClick={clearIdentityAndGate}
-              title="Change name / email"
-            >
-              Change user
-            </button>
-            {messages.length > 1 && (
-              <button className="ai-close-btn" onClick={clearHistory} title="Clear Chat History">
-                <Trash2 size={20} />
+    ) : (
+      <div className="ai-chat-overlay">
+        <div className="ai-chat-container">
+          <div className="ai-chat-header">
+            <div className="ai-header-left">
+              <h2 className="ai-logo-text">Qlink</h2>
+              <span className="ai-badge">AI Assistant</span>
+            </div>
+            <div className="ai-header-actions">
+              <button
+                type="button"
+                className="ai-change-user-btn"
+                onClick={clearIdentityAndGate}
+                title="Change name / email"
+              >
+                Change user
               </button>
-            )}
-            <button className="ai-close-btn" onClick={onClose} title="Close Chat">
-              <X size={24} />
-            </button>
+              {messages.length > 1 && (
+                <button className="ai-close-btn" onClick={clearHistory} title="Clear Chat History">
+                  <Trash2 size={20} />
+                </button>
+              )}
+              <button className="ai-close-btn" onClick={onClose} title="Close Chat">
+                <X size={24} />
+              </button>
+            </div>
           </div>
-        </div>
 
-        <div className="ai-chat-messages">
-          {messages.map((msg) => (
-            <div key={msg.id} className={`ai-message-wrapper ${msg.sender}`}>
-              {msg.sender === 'bot' && (
+          <div className="ai-chat-messages">
+            {messages.map((msg) => (
+              <div key={msg.id} className={`ai-message-wrapper ${msg.sender}`}>
+                {msg.sender === 'bot' && (
+                  <div className="ai-bot-identity">
+                    <div className="ai-bot-icon">
+                      <Sparkles size={16} color="white" />
+                    </div>
+                    <span className="ai-bot-name">Qlink Safety Bot</span>
+                  </div>
+                )}
+                <div className={`ai-message-bubble ${msg.sender}`}>
+                  <p>{msg.text}</p>
+                </div>
+                <span className={`ai-message-time ${msg.sender}`}>{msg.time}</span>
+              </div>
+            ))}
+            {isTyping && (
+              <div className="ai-message-wrapper bot">
                 <div className="ai-bot-identity">
                   <div className="ai-bot-icon">
                     <Sparkles size={16} color="white" />
                   </div>
                   <span className="ai-bot-name">Qlink Safety Bot</span>
                 </div>
-              )}
-              <div className={`ai-message-bubble ${msg.sender}`}>
-                <p>{msg.text}</p>
-              </div>
-              <span className={`ai-message-time ${msg.sender}`}>{msg.time}</span>
-            </div>
-          ))}
-          {isTyping && (
-            <div className="ai-message-wrapper bot">
-              <div className="ai-bot-identity">
-                <div className="ai-bot-icon">
-                  <Sparkles size={16} color="white" />
+                <div className="ai-message-bubble bot" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <Loader2 size={18} className="spin-animation" color="#888" />
+                  <span style={{ color: '#888', fontStyle: 'italic', fontSize: '14px' }}>Thinking...</span>
                 </div>
-                <span className="ai-bot-name">Qlink Safety Bot</span>
               </div>
-              <div className="ai-message-bubble bot" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <Loader2 size={18} className="spin-animation" color="#888" />
-                <span style={{ color: '#888', fontStyle: 'italic', fontSize: '14px' }}>Thinking...</span>
-              </div>
-            </div>
-          )}
-          <div ref={messagesEndRef} />
-        </div>
+            )}
+            <div ref={messagesEndRef} />
+          </div>
 
-        <div className="ai-chat-footer">
-          <form className="ai-input-wrapper" onSubmit={sendMessage}>
-            <input
-              type="text"
-              placeholder="Ask about Qlink safety..."
-              value={inputValue}
-              onChange={(e) => setInputValue(e.target.value)}
-              disabled={isTyping}
-            />
-            <button
-              type="submit"
-              className={`ai-send-btn ${inputValue.trim() && !isTyping ? 'active' : ''}`}
-              disabled={!inputValue.trim() || isTyping}
-            >
-              <ArrowUp size={20} />
-            </button>
-          </form>
+          <div className="ai-chat-footer">
+            <form className="ai-input-wrapper" onSubmit={sendMessage}>
+              <input
+                type="text"
+                placeholder="Ask about Qlink safety..."
+                value={inputValue}
+                onChange={(e) => setInputValue(e.target.value)}
+                disabled={isTyping}
+              />
+              <button
+                type="submit"
+                className={`ai-send-btn ${inputValue.trim() && !isTyping ? 'active' : ''}`}
+                disabled={!inputValue.trim() || isTyping}
+              >
+                <ArrowUp size={20} />
+              </button>
+            </form>
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
+
+  return createPortal(overlay, document.body);
 };
 
 export default AiChat;

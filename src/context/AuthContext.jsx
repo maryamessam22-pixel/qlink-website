@@ -1,4 +1,4 @@
-import React, { createContext, useState, useContext, useCallback, useEffect } from 'react';
+import React, { createContext, useState, useContext, useCallback } from 'react';
 
 export const AuthContext = createContext();
 
@@ -6,14 +6,13 @@ const CORRECT_PASSWORD = 'mariam123';
 const STORAGE_KEY = 'isAuthenticated';
 
 export const AuthProvider = ({ children }) => {
-
-  // Always start logged out when the app is opened.
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-
-  useEffect(() => {
-    localStorage.removeItem(STORAGE_KEY);
-    setIsAuthenticated(false);
-  }, []);
+  const [isAuthenticated, setIsAuthenticated] = useState(() => {
+    try {
+      return localStorage.getItem(STORAGE_KEY) === 'true';
+    } catch {
+      return false;
+    }
+  });
 
 
   const [showLoginModal, setShowLoginModal] = useState(false);
@@ -45,6 +44,11 @@ export const AuthProvider = ({ children }) => {
   const login = useCallback((pwd, em, isPreValidated = false) => {
     if (isPreValidated || pwd === CORRECT_PASSWORD) {
       setIsAuthenticated(true);
+      try {
+        localStorage.setItem(STORAGE_KEY, 'true');
+      } catch {
+        /* ignore */
+      }
       setShowLoginModal(false);
       setLoginError('');
       setPassword('');

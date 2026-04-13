@@ -1,0 +1,1078 @@
+/* Jost loads from public/index.html for early fetch (heading font in light mode). */
+
+/* Light theme: clinical / medical-tech aesthetic (soft surfaces, blue CTAs, red = emergency only) */
+html[data-theme="light"] {
+  --app-body-bg: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 55%, #eef2f6 100%);
+
+  --bg-main: #f8fafc;
+  --bg-gradient-dark: #f1f5f9;
+  --bg-card: rgba(241, 245, 249, 0.92);
+  --bg-surface-navy: #f1f5f9;
+  --bg-surface-dark: #f8fafc;
+  --bg-surface-input: #f1f5f9;
+  --bg-surface-highlight: #e2e8f0;
+  --bg-surface-deep: #f1f5f9;
+
+  /* Headings & high-emphasis type */
+  --text-primary: #0f172a;
+  /* Body copy */
+  --text-secondary: #475569;
+  --text-muted: #64748b;
+  --text-muted-dark: #94a3b8;
+
+  --border-subtle: #cbd5e1;
+  --border-light: rgba(15, 23, 42, 0.1);
+
+  /* Primary actions & navigation accent — trustworthy blue */
+  --color-cta-primary: #2563eb;
+  --color-cta-primary-hover: #1d4ed8;
+  --color-cta-shadow: rgba(37, 99, 235, 0.28);
+
+  /* Emergency / critical only (e.g. hero “Scan”) */
+  --color-emergency: #dc2626;
+
+  --color-primary-blue: #2563eb;
+  --color-brand-blue-glow: #3b82f6;
+
+  /* Footer: light clinical band (logo + dark type) */
+  --footer-surface-bg: #f1f5f9;
+  --footer-surface-text: #0f172a;
+  --footer-surface-muted: #475569;
+  --footer-surface-border: rgba(15, 23, 42, 0.1);
+  --footer-bottom-text: #64748b;
+
+  --font-heading: 'Century Gothic', CenturyGothic, AppleGothic, 'Trebuchet MS', 'Jost', sans-serif;
+}
+
+html[data-theme="light"] body,
+html[data-theme="light"] .App {
+  color: var(--text-secondary);
+  font-family: 'Roboto', sans-serif;
+}
+
+/* Headings: slate + Century Gothic stack (Jost loads for the web); RTL keeps Arabic from body rules */
+html[data-theme="light"] body:not(.rtl-active) h1,
+html[data-theme="light"] body:not(.rtl-active) h2,
+html[data-theme="light"] body:not(.rtl-active) h3,
+html[data-theme="light"] body:not(.rtl-active) h4,
+html[data-theme="light"] body:not(.rtl-active) h5,
+html[data-theme="light"] body:not(.rtl-active) h6 {
+  font-family: var(--font-heading);
+  color: var(--text-primary);
+  font-weight: 700;
+}
+
+html[data-theme="light"] body:not(.rtl-active) .hero-title,
+html[data-theme="light"] body:not(.rtl-active) .section-title,
+html[data-theme="light"] body:not(.rtl-active) .bracelet-title {
+  font-family: var(--font-heading);
+  color: var(--text-primary);
+}
+
+/* Light: accent text & highlights use medical blue (dark keeps red .red-text) */
+html[data-theme="light"] .red-text {
+  color: var(--color-cta-primary);
+}
+
+/* Home “QR / scan” card: red icon + tint in dark, blue in light */
+html[data-theme="light"] .info-card.bg-blue-light .icon-wrap {
+  color: var(--color-cta-primary) !important;
+}
+
+html[data-theme="light"] .info-card.bg-blue-light,
+html[data-theme="light"] .bg-blue-light {
+  background: rgba(37, 99, 235, 0.08) !important;
+}
+
+/* Help Center & similar: inline red icons → blue in light */
+html[data-theme="light"] .icon-wrap.icon-wrap-red {
+  color: var(--color-cta-primary) !important;
+}
+
+/* Emergency feature rows: row 3 accent — blue in light, warm red in dark */
+html[data-theme="light"] .es-feature-row:nth-child(3) .es-f-subtitle {
+  color: var(--color-cta-primary);
+}
+
+/* Setup section: blue step orb + icon in light only */
+html[data-theme="light"] .setup-section-wrapper .ball-3 {
+  background: var(--color-primary-blue);
+}
+
+html[data-theme="light"] .setup-section-wrapper .icon-blue {
+  background: rgba(37, 99, 235, 0.15);
+  color: var(--color-cta-primary);
+  box-shadow: 0 0 20px rgba(37, 99, 235, 0.2);
+}
+
+html[data-theme="light"] .navbar-pill {
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  box-shadow: 0 8px 32px rgba(15, 23, 42, 0.08);
+}
+
+html[data-theme="light"] .navbar-links li a.nav-link:hover,
+html[data-theme="light"] .dropdown:hover .dropbtn {
+  background: rgba(15, 23, 42, 0.06);
+  color: var(--text-primary);
+}
+
+html[data-theme="light"] .dropdown-content {
+  background-color: #ffffff;
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  box-shadow: 0 12px 40px rgba(15, 23, 42, 0.12);
+}
+
+html[data-theme="light"] .dropdown-content a {
+  color: var(--text-secondary);
+}
+
+html[data-theme="light"] .dropdown-content a:hover {
+  background-color: rgba(15, 23, 42, 0.06);
+  color: var(--text-primary);
+}
+
+html[data-theme="light"] .dropdown-content a.submenu-active {
+  background-color: rgba(37, 99, 235, 0.1);
+  color: var(--color-cta-primary);
+  font-weight: 700;
+}
+
+/* Navigation: blue accent — not emergency red */
+html[data-theme="light"] .navbar-links li a.active,
+html[data-theme="light"] .dropbtn.active {
+  background-color: var(--color-cta-primary);
+  color: #fff;
+}
+
+html[data-theme="light"] .navbar-links li a.active:hover,
+html[data-theme="light"] .dropbtn.active:hover {
+  background-color: var(--color-cta-primary-hover);
+  color: #fff;
+}
+
+html[data-theme="light"] .lang-btn {
+  background-color: var(--color-cta-primary);
+  color: #fff;
+}
+
+html[data-theme="light"] .lang-btn:hover {
+  opacity: 0.92;
+}
+
+html[data-theme="light"] .cart-badge {
+  background: var(--color-cta-primary);
+  color: #fff;
+}
+
+/* Primary CTAs — medical blue */
+html[data-theme="light"] .btn-primary {
+  background-color: var(--color-cta-primary);
+  color: #fff;
+  box-shadow: 0 4px 20px var(--color-cta-shadow);
+}
+
+html[data-theme="light"] .btn-primary:hover {
+  background-color: var(--color-cta-primary-hover);
+  color: #fff;
+}
+
+html[data-theme="light"] .home-wrapper .btn-primary {
+  background-color: var(--color-cta-primary);
+  box-shadow: 0 4px 20px var(--color-cta-shadow);
+}
+
+html[data-theme="light"] .home-wrapper .btn-primary:hover {
+  background-color: var(--color-cta-primary-hover);
+}
+
+html[data-theme="light"] .shop-cta-button {
+  background-color: var(--color-cta-primary);
+  color: #fff;
+  box-shadow: 0 4px 15px var(--color-cta-shadow);
+}
+
+html[data-theme="light"] .shop-cta-button:hover {
+  background-color: var(--color-cta-primary-hover);
+}
+
+html[data-theme="light"] .cf-submit {
+  background: var(--color-cta-primary);
+}
+
+html[data-theme="light"] .cf-submit:hover {
+  filter: brightness(1.05);
+}
+
+html[data-theme="light"] .step-grid::after {
+  background: linear-gradient(
+    90deg,
+    rgba(37, 99, 235, 0.12) 0%,
+    rgba(37, 99, 235, 0.12) 40%,
+    var(--color-cta-primary) 50%,
+    rgba(37, 99, 235, 0.12) 60%,
+    rgba(37, 99, 235, 0.12) 100%
+  );
+}
+
+html[data-theme="light"] .cta-footer-text a {
+  color: var(--color-cta-primary);
+}
+
+html[data-theme="light"] .info-card .icon-wrap {
+  color: var(--color-cta-primary);
+}
+
+html[data-theme="light"] .dynamic-bg-container .bg-glow {
+  opacity: 0.22;
+  background: radial-gradient(
+    circle,
+    rgba(37, 99, 235, 0.12) 0%,
+    rgba(59, 130, 246, 0.08) 40%,
+    rgba(37, 99, 235, 0.06) 58%,
+    rgba(37, 99, 235, 0) 72%
+  );
+}
+
+html[data-theme="light"] .bg-glow-4,
+html[data-theme="light"] .bg-glow-5,
+html[data-theme="light"] .bg-glow-6 {
+  background: radial-gradient(
+    circle,
+    rgba(37, 99, 235, 0.1) 0%,
+    rgba(59, 130, 246, 0.06) 50%,
+    rgba(37, 99, 235, 0) 70%
+  );
+}
+
+@media (max-width: 1024px) {
+  html[data-theme="light"] .navbar-pill {
+    background: rgba(255, 255, 255, 0.96);
+    border: 1px solid rgba(15, 23, 42, 0.1);
+    box-shadow: 0 12px 40px rgba(15, 23, 42, 0.12);
+  }
+
+  html[data-theme="light"] .dropdown-content {
+    background-color: rgba(15, 23, 42, 0.04);
+  }
+}
+
+html[data-theme="light"] .btn-secondary {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(15, 23, 42, 0.15);
+  color: var(--text-primary);
+}
+
+html[data-theme="light"] .btn-secondary:hover {
+  background: #ffffff;
+  color: var(--text-primary);
+}
+
+/* Home duplicates .btn-secondary with navy hover; keep light surfaces */
+html[data-theme="light"] .home-wrapper .btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.98);
+  color: var(--text-primary);
+}
+
+html[data-theme="light"] .auth-overlay {
+  background: rgba(15, 23, 42, 0.35);
+}
+
+html[data-theme="light"] .auth-modal {
+  background: linear-gradient(145deg, #ffffff 0%, #f1f5f9 100%);
+  border: 1px solid var(--border-subtle);
+  box-shadow: 0 24px 64px rgba(15, 23, 42, 0.12);
+}
+
+html[data-theme="light"] .auth-modal-close:hover {
+  background: rgba(15, 23, 42, 0.06);
+}
+
+html[data-theme="light"] .auth-modal-input {
+  background: rgba(15, 23, 42, 0.04);
+}
+
+/* Home: app promo band */
+html[data-theme="light"] .app-section-wrapper {
+  background: linear-gradient(
+    135deg,
+    #f1f5f9 0%,
+    #e8f0fc 48%,
+    #e2e8f0 100%
+  );
+  border-top-color: var(--border-subtle);
+  border-bottom-color: var(--border-subtle);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+html[data-theme="light"] .contact-panel {
+  box-shadow: 0 8px 40px rgba(15, 23, 42, 0.06);
+}
+
+html[data-theme="light"] .app-promo-section {
+  background-color: #f1f5f9;
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+html[data-theme="light"] .shop-cta-section {
+  background: #f1f5f9;
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+html[data-theme="light"] .setup-step-card:hover {
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.08);
+}
+
+html[data-theme="light"] .ball-1 {
+  opacity: 0.22 !important;
+}
+
+/* AI Assistant — modal & chat */
+html[data-theme="light"] .ai-chat-overlay {
+  background: rgba(15, 23, 42, 0.4);
+}
+
+html[data-theme="light"] .ai-chat-gate-card,
+html[data-theme="light"] .ai-chat-container {
+  background: rgba(255, 255, 255, 0.98);
+  border-color: var(--border-subtle);
+  box-shadow: 0 24px 64px rgba(15, 23, 42, 0.12);
+}
+
+html[data-theme="light"] .ai-gate-title {
+  color: var(--text-primary);
+}
+
+html[data-theme="light"] .ai-gate-sub {
+  color: var(--text-secondary);
+}
+
+html[data-theme="light"] .ai-gate-label {
+  color: var(--text-secondary);
+}
+
+html[data-theme="light"] .ai-gate-input {
+  background: var(--bg-surface-input);
+  border-color: var(--border-light);
+  color: var(--text-primary);
+}
+
+html[data-theme="light"] .ai-gate-btn-secondary {
+  background: var(--bg-surface-dark);
+  color: var(--text-primary);
+  border-color: var(--border-light);
+}
+
+html[data-theme="light"] .ai-chat-header {
+  border-bottom-color: var(--border-light);
+  background: linear-gradient(
+    180deg,
+    rgba(15, 23, 42, 0.04) 0%,
+    transparent 100%
+  );
+}
+
+html[data-theme="light"] .ai-logo-text {
+  color: var(--text-primary);
+}
+
+html[data-theme="light"] .ai-close-btn {
+  background: var(--bg-surface-input);
+  border-color: var(--border-light);
+  color: var(--text-muted);
+}
+
+html[data-theme="light"] .ai-close-btn:hover {
+  background: var(--bg-surface-highlight);
+  color: var(--text-primary);
+}
+
+html[data-theme="light"] .ai-change-user-btn {
+  color: var(--text-secondary);
+  border-color: var(--border-light);
+}
+
+html[data-theme="light"] .ai-change-user-btn:hover {
+  color: var(--text-primary);
+  background: var(--bg-surface-dark);
+}
+
+html[data-theme="light"] .ai-message-bubble.bot {
+  background: var(--bg-surface-dark);
+  color: var(--text-primary);
+  border-color: var(--border-light);
+}
+
+html[data-theme="light"] .ai-bot-name {
+  color: var(--text-muted);
+}
+
+html[data-theme="light"] .ai-message-time {
+  color: var(--text-muted);
+}
+
+html[data-theme="light"] .ai-chat-footer {
+  background: linear-gradient(
+    0deg,
+    rgba(248, 250, 252, 0.98) 0%,
+    transparent 100%
+  );
+  border-top-color: var(--border-light);
+}
+
+html[data-theme="light"] .ai-input-wrapper {
+  background: var(--bg-surface-input);
+  border-color: var(--border-light);
+}
+
+html[data-theme="light"] .ai-input-wrapper:focus-within {
+  background: #ffffff;
+}
+
+html[data-theme="light"] .ai-input-wrapper input {
+  color: var(--text-primary);
+}
+
+html[data-theme="light"] .ai-send-btn {
+  background: var(--bg-surface-highlight);
+  color: var(--text-muted);
+}
+
+html[data-theme="light"] .ai-chat-messages::-webkit-scrollbar-thumb {
+  background: rgba(15, 23, 42, 0.2);
+}
+
+html[data-theme="light"] .ai-gate-btn-primary {
+  background: linear-gradient(135deg, var(--color-cta-primary), #3b82f6);
+  box-shadow: 0 4px 16px var(--color-cta-shadow);
+}
+
+html[data-theme="light"] .ai-send-btn.active {
+  background: linear-gradient(135deg, var(--color-cta-primary), #3b82f6);
+  color: #fff;
+  box-shadow: 0 4px 15px var(--color-cta-shadow);
+}
+
+html[data-theme="light"] .ai-bot-icon {
+  background: linear-gradient(
+    135deg,
+    rgba(37, 99, 235, 0.2),
+    rgba(37, 99, 235, 0.08)
+  );
+  border-color: rgba(37, 99, 235, 0.35);
+  color: var(--color-cta-primary);
+}
+
+html[data-theme="light"] .ai-message-bubble.user {
+  background: linear-gradient(
+    135deg,
+    var(--color-cta-primary),
+    var(--color-cta-primary-hover)
+  );
+  color: #fff;
+}
+
+/* Product / shop primary actions in light */
+html[data-theme="light"] .btn-buy,
+html[data-theme="light"] .cart-checkout-btn,
+html[data-theme="light"] .cart-empty-btn,
+html[data-theme="light"] .complete-purchase-btn,
+html[data-theme="light"] .add-review-submit,
+html[data-theme="light"] .cta-btn-primary {
+  background-color: var(--color-cta-primary);
+  color: #fff;
+  box-shadow: 0 4px 16px var(--color-cta-shadow);
+}
+
+html[data-theme="light"] .btn-buy:hover,
+html[data-theme="light"] .cart-checkout-btn:hover,
+html[data-theme="light"] .cart-empty-btn:hover,
+html[data-theme="light"] .complete-purchase-btn:hover,
+html[data-theme="light"] .add-review-submit:hover:not(:disabled),
+html[data-theme="light"] .cta-btn-primary:hover {
+  background-color: var(--color-cta-primary-hover);
+}
+
+html[data-theme="light"] .questions-cta-section .btn-cta,
+html[data-theme="light"] .newsletter-form .btn-sub {
+  background: var(--color-cta-primary);
+}
+
+html[data-theme="light"] .questions-cta-section .btn-cta:hover,
+html[data-theme="light"] .newsletter-form .btn-sub:hover {
+  background: var(--color-cta-primary-hover);
+}
+
+html[data-theme="light"] .auth-modal-icon {
+  background: rgba(37, 99, 235, 0.12);
+  border-color: rgba(37, 99, 235, 0.25);
+  color: var(--color-cta-primary);
+}
+
+html[data-theme="light"] .theme-toggle-btn {
+  border-color: rgba(37, 99, 235, 0.2);
+}
+
+html[data-theme="light"] .faqs-cat-chip.faqs-cat-active {
+  background: var(--color-cta-primary);
+  border-color: var(--color-cta-primary);
+  color: #fff;
+}
+
+html[data-theme="light"] .faqs-cat-chip:hover {
+  border-color: var(--color-cta-primary);
+  color: var(--color-cta-primary);
+}
+
+html[data-theme="light"] .auth-modal-hint a {
+  color: var(--color-cta-primary);
+}
+
+html[data-theme="light"] .thumb.active {
+  border-color: var(--color-cta-primary);
+  background: rgba(37, 99, 235, 0.08);
+  box-shadow: 0 0 15px rgba(37, 99, 235, 0.22);
+}
+
+html[data-theme="light"] .ps-terms-btn,
+html[data-theme="light"] .contact-btn-red {
+  background: var(--color-cta-primary);
+  color: #fff;
+}
+
+html[data-theme="light"] .ps-terms-btn:hover,
+html[data-theme="light"] .contact-btn-red:hover {
+  background: var(--color-cta-primary-hover);
+}
+
+/* ── Footer: inputs + subscribe (tokens already light) ── */
+html[data-theme="light"] .footer-container .subscribe-form input {
+  background: #ffffff;
+  border: 1px solid var(--border-subtle);
+  color: var(--text-primary);
+}
+
+html[data-theme="light"] .footer-container .subscribe-form input::placeholder {
+  color: var(--text-muted);
+}
+
+html[data-theme="light"] .footer-container .subscribe-form button {
+  background: var(--color-cta-primary);
+  color: #fff;
+}
+
+html[data-theme="light"] .footer-container .subscribe-form button:hover {
+  background: var(--color-cta-primary-hover);
+}
+
+/* ── App Download: dark hero slab + white type; sections use clinical cards ── */
+html[data-theme="light"] .app-download-page .ad-hero-container {
+  background: linear-gradient(145deg, #0f172a 0%, #1e293b 52%, #0f172a 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 24px 56px rgba(15, 23, 42, 0.22);
+}
+
+html[data-theme="light"] .app-download-page .ad-hero-container .ad-hero-content h1 {
+  color: #f8fafc;
+  font-family: var(--font-heading);
+}
+
+html[data-theme="light"] .app-download-page .ad-hero-container .ad-hero-content h1 span {
+  color: #93c5fd;
+}
+
+html[data-theme="light"] .app-download-page .ad-hero-container .ad-hero-content p,
+html[data-theme="light"] .app-download-page .ad-hero-container .ad-hero-list li {
+  color: rgba(248, 250, 252, 0.9);
+}
+
+html[data-theme="light"] .app-download-page .ad-hero-container .check-icon {
+  color: #34d399;
+}
+
+html[data-theme="light"] .app-download-page .ad-feature-card {
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid var(--border-light);
+  box-shadow: 0 4px 24px rgba(15, 23, 42, 0.06);
+}
+
+html[data-theme="light"] .app-download-page .ad-feature-card:hover {
+  background: #ffffff;
+  border-color: rgba(37, 99, 235, 0.22);
+}
+
+html[data-theme="light"] .app-download-page .ad-feature-card h3 {
+  color: var(--text-primary);
+}
+
+html[data-theme="light"] .app-download-page .ad-feature-card p {
+  color: var(--text-secondary);
+}
+
+html[data-theme="light"] .app-download-page .setup-step h3 {
+  color: var(--text-primary);
+}
+
+html[data-theme="light"] .app-download-page .setup-step p {
+  color: var(--text-secondary);
+}
+
+html[data-theme="light"] .app-download-page .step-number {
+  background: var(--text-primary);
+  border-color: var(--color-cta-primary);
+  color: #f8fafc;
+}
+
+html[data-theme="light"] .app-download-page .ad-setup-timeline::before {
+  background: linear-gradient(
+    to right,
+    var(--color-cta-primary),
+    rgba(37, 99, 235, 0.15)
+  );
+}
+
+html[data-theme="light"] .app-download-page .ad-faq-list li {
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid var(--border-light);
+}
+
+html[data-theme="light"] .app-download-page .ad-faq-a {
+  color: var(--text-secondary);
+}
+
+html[data-theme="light"] .app-download-page .ad-enc-content {
+  background: linear-gradient(
+    135deg,
+    rgba(16, 185, 129, 0.08) 0%,
+    rgba(241, 245, 249, 0.98) 55%,
+    #f8fafc 100%
+  );
+  border: 1px solid rgba(16, 185, 129, 0.22);
+}
+
+html[data-theme="light"] .app-download-page .ad-enc-content h2 {
+  color: var(--text-primary);
+}
+
+html[data-theme="light"] .app-download-page .ad-enc-content p {
+  color: var(--text-secondary);
+}
+
+html[data-theme="light"] .app-download-page .ad-section-title {
+  color: var(--text-primary);
+}
+
+/* How Qlink Works + Emergency: full-bleed heroes stay white on dark overlay */
+html[data-theme="light"] .how-works-page .hw-hero-overlay {
+  background: linear-gradient(
+    to bottom,
+    rgba(15, 23, 42, 0.5),
+    rgba(15, 23, 42, 0.92)
+  );
+}
+
+html[data-theme="light"] .how-works-page .hw-hero .hw-hero-content h1 {
+  color: #f8fafc;
+  font-family: var(--font-heading);
+}
+
+html[data-theme="light"] .how-works-page .hw-hero .hw-hero-content p {
+  color: rgba(248, 250, 252, 0.88);
+}
+
+html[data-theme="light"] .es-page .es-hero-overlay {
+  background: linear-gradient(
+    to bottom,
+    rgba(15, 23, 42, 0.55),
+    rgba(15, 23, 42, 0.88)
+  );
+}
+
+html[data-theme="light"] .es-page .es-hero .es-hero-content h1.es-hero-title {
+  color: #f8fafc;
+  font-family: var(--font-heading);
+}
+
+html[data-theme="light"] .es-page .es-hero .es-hero-subtitle {
+  color: rgba(248, 250, 252, 0.88);
+}
+
+html[data-theme="light"] .es-f-desc {
+  color: var(--text-secondary);
+}
+
+html[data-theme="light"] .es-marquee-container {
+  background: linear-gradient(
+    90deg,
+    rgba(241, 245, 249, 0) 0%,
+    #e2e8f0 45%,
+    #cbd5e1 100%
+  );
+}
+
+html[data-theme="light"] .es-marquee {
+  color: var(--text-primary);
+}
+
+html[data-theme="light"] .es-page .es-hero .btn-secondary {
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  color: #f8fafc;
+}
+
+html[data-theme="light"] .es-page .es-hero .btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+
+/* Reviews: featured band — light panel + dark type */
+html[data-theme="light"] .reviews-page-container .quote-overlay {
+  background: linear-gradient(
+    to top,
+    #f8fafc 0%,
+    #f8fafc 78%,
+    rgba(248, 250, 252, 0.92) 100%
+  );
+}
+
+html[data-theme="light"] .reviews-page-container .quote-overlay h2 {
+  color: var(--text-primary);
+}
+
+html[data-theme="light"] .reviews-page-container .quote-overlay p {
+  color: var(--text-secondary);
+}
+
+html[data-theme="light"] .reviews-page-container .quote-overlay .author-tag strong {
+  color: var(--text-primary);
+}
+
+html[data-theme="light"] .reviews-title-accent {
+  color: var(--color-cta-primary);
+}
+
+html[data-theme="light"] .read-more-link {
+  color: var(--color-cta-primary);
+}
+
+/* Review detail: content cards match light surfaces */
+html[data-theme="light"] .rd-story-card,
+html[data-theme="light"] .rd-list-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  box-shadow: 0 4px 24px rgba(15, 23, 42, 0.05);
+}
+
+html[data-theme="light"] .rd-cta-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  box-shadow: 0 4px 24px rgba(15, 23, 42, 0.06);
+}
+
+html[data-theme="light"] .rd-cta-btn-secondary {
+  background: var(--bg-surface-input);
+  border: 1px solid var(--border-light);
+  color: var(--text-primary);
+}
+
+html[data-theme="light"] .rd-cta-btn-secondary:hover {
+  background: var(--bg-surface-highlight);
+}
+
+html[data-theme="light"] .rd-list-num {
+  background: var(--color-cta-primary);
+  box-shadow: 0 4px 14px var(--color-cta-shadow);
+}
+
+html[data-theme="light"] .rd-feat-icon {
+  background: rgba(37, 99, 235, 0.12);
+  color: var(--color-cta-primary);
+  box-shadow: none;
+}
+
+html[data-theme="light"] .rd-big-quote-author {
+  color: var(--color-cta-primary);
+}
+
+html[data-theme="light"] .how-works-page .pricing-box {
+  background: rgba(15, 23, 42, 0.04);
+  border-color: var(--border-light);
+}
+
+html[data-theme="light"] .how-works-page .timeline-marker-inner {
+  background: var(--color-cta-primary);
+  box-shadow: 0 0 20px rgba(37, 99, 235, 0.35);
+  color: #fff;
+}
+
+html[data-theme="light"] .how-works-page .timeline-card {
+  box-shadow: 0 8px 28px rgba(15, 23, 42, 0.08);
+}
+
+/* Navbar: logout — neutral in light (not emergency red) */
+html[data-theme="light"] .logout-btn {
+  background: rgba(15, 23, 42, 0.06);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+}
+
+html[data-theme="light"] .logout-btn:hover {
+  background: rgba(15, 23, 42, 0.1);
+  border-color: rgba(15, 23, 42, 0.15);
+  color: var(--text-primary);
+}
+
+/* Home hero: theme toggle must not ease color/font */
+html[data-theme="light"] .home-wrapper .hero-title,
+html[data-theme="light"] .home-wrapper .hero-desc,
+html[data-theme="light"] .home-wrapper .hero-desc p,
+html[data-theme="light"] .home-wrapper .hero-title .red-text {
+  transition: opacity 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* ── About: Our Story — light surfaces, dark type, blue accents ── */
+html[data-theme="light"] .our-story-detailed-page .badge-red,
+html[data-theme="light"] .our-story-detailed-page .badge-red-small {
+  color: var(--color-cta-primary);
+}
+
+html[data-theme="light"] .our-story-detailed-page .main-title span {
+  color: var(--color-cta-primary);
+}
+
+html[data-theme="light"] .our-story-detailed-page .step-number {
+  background: var(--bg-surface-input);
+  border: 1px solid var(--border-light);
+  color: var(--text-primary);
+}
+
+html[data-theme="light"] .our-story-detailed-page .dark-quote-box {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  box-shadow: 0 4px 24px rgba(15, 23, 42, 0.06);
+}
+
+html[data-theme="light"] .our-story-detailed-page .dark-quote-box p {
+  color: var(--text-secondary);
+}
+
+html[data-theme="light"] .our-story-detailed-page .case-card-main {
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid var(--border-light);
+  box-shadow: 0 8px 40px rgba(15, 23, 42, 0.06);
+}
+
+html[data-theme="light"] .our-story-detailed-page .case-info-side p {
+  color: var(--text-secondary);
+}
+
+html[data-theme="light"] .our-story-detailed-page .case-quote-tag {
+  color: var(--text-secondary);
+  border-left-color: var(--color-cta-primary);
+}
+
+html[data-theme="light"] .our-story-detailed-page .case-icon-bg.red {
+  background: rgba(37, 99, 235, 0.12);
+  color: var(--color-cta-primary);
+}
+
+html[data-theme="light"] .our-story-detailed-page .detail-item {
+  background: var(--bg-surface-input);
+  border: 1px solid var(--border-light);
+}
+
+html[data-theme="light"] .our-story-detailed-page .detail-item p {
+  color: var(--text-secondary);
+}
+
+html[data-theme="light"] .our-story-detailed-page .detail-item.red h4 {
+  color: #b91c1c;
+}
+
+html[data-theme="light"] .our-story-detailed-page .detail-item.green h4 {
+  color: #047857;
+}
+
+html[data-theme="light"] .our-story-detailed-page .learn-tech-btn {
+  background: var(--color-cta-primary);
+  border: 1px solid var(--color-cta-primary);
+  color: #fff;
+}
+
+html[data-theme="light"] .our-story-detailed-page .learn-tech-btn:hover {
+  background: var(--color-cta-primary-hover);
+  border-color: var(--color-cta-primary-hover);
+  color: #fff;
+}
+
+html[data-theme="light"] .our-story-detailed-page .innovation-extra-box {
+  background: rgba(37, 99, 235, 0.06);
+  border: 1px solid rgba(37, 99, 235, 0.15);
+}
+
+html[data-theme="light"] .our-story-detailed-page .mission-glass-box {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid var(--border-light);
+  box-shadow: 0 8px 40px rgba(15, 23, 42, 0.06);
+}
+
+html[data-theme="light"] .our-story-detailed-page .mission-quote-icon {
+  color: rgba(15, 23, 42, 0.12);
+}
+
+html[data-theme="light"] .our-story-detailed-page .founder-line {
+  background: var(--color-cta-primary);
+}
+
+html[data-theme="light"] .our-story-detailed-page .founder-role {
+  color: var(--color-cta-primary);
+}
+
+html[data-theme="light"] .our-story-detailed-page .value-card-dark {
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid var(--border-light);
+  box-shadow: 0 4px 24px rgba(15, 23, 42, 0.05);
+}
+
+html[data-theme="light"] .our-story-detailed-page .value-card-dark:hover {
+  border-color: rgba(37, 99, 235, 0.35);
+}
+
+html[data-theme="light"] .our-story-detailed-page .value-icon-circle {
+  background: rgba(37, 99, 235, 0.12);
+  color: var(--color-cta-primary);
+}
+
+html[data-theme="light"] .our-story-detailed-page .value-card-dark h3 {
+  color: var(--text-primary);
+}
+
+html[data-theme="light"] .our-story-detailed-page .value-card-dark p {
+  color: var(--text-secondary);
+}
+
+html[data-theme="light"] .our-story-detailed-page .member-role {
+  color: var(--color-cta-primary);
+}
+
+html[data-theme="light"] .our-story-detailed-page .story-stats-section {
+  background: rgba(241, 245, 249, 0.95);
+  border-top: 1px solid var(--border-light);
+  border-bottom: 1px solid var(--border-light);
+}
+
+html[data-theme="light"] .our-story-detailed-page .member-photo-wrapper {
+  border-color: var(--border-light);
+}
+
+/* ── About: Privacy & Security — promise + grid cards on light surfaces ── */
+html[data-theme="light"] .privacy-security-page .ps-header .red-text {
+  color: var(--color-cta-primary);
+}
+
+html[data-theme="light"] .privacy-security-page .ps-promise-card {
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid var(--border-light);
+  border-left: 3px solid var(--color-cta-primary);
+  box-shadow: 0 8px 36px rgba(15, 23, 42, 0.06);
+}
+
+html[data-theme="light"] .privacy-security-page .ps-icon-box {
+  background: rgba(37, 99, 235, 0.1);
+  color: var(--color-cta-primary);
+}
+
+html[data-theme="light"] .privacy-security-page .red-glow {
+  box-shadow: 0 4px 24px rgba(37, 99, 235, 0.08);
+}
+
+html[data-theme="light"] .privacy-security-page .ps-promise-text h2 {
+  color: var(--text-primary);
+}
+
+html[data-theme="light"] .privacy-security-page .ps-promise-text p {
+  color: var(--text-secondary);
+}
+
+html[data-theme="light"] .privacy-security-page .ps-shared-card {
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid var(--border-light);
+  box-shadow: 0 4px 28px rgba(15, 23, 42, 0.06);
+}
+
+html[data-theme="light"] .privacy-security-page .ps-grid-header h3 {
+  color: var(--text-primary);
+}
+
+html[data-theme="light"] .privacy-security-page .ps-list li {
+  color: var(--text-secondary);
+}
+
+html[data-theme="light"] .privacy-security-page .ps-list.green li {
+  color: var(--text-secondary);
+}
+
+html[data-theme="light"] .privacy-security-page .ps-list.red li {
+  color: var(--text-secondary);
+}
+
+html[data-theme="light"] .privacy-security-page .ps-list.green li .dot {
+  background: #059669;
+}
+
+html[data-theme="light"] .privacy-security-page .ps-list.red li .dot {
+  background: #dc2626;
+}
+
+html[data-theme="light"] .privacy-security-page .ps-control-box {
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid var(--border-light);
+  box-shadow: 0 8px 40px rgba(15, 23, 42, 0.07);
+}
+
+html[data-theme="light"] .privacy-security-page .ps-control-box h2 {
+  color: var(--text-primary);
+}
+
+html[data-theme="light"] .privacy-security-page .ps-disclaimer-card {
+  background: rgba(254, 242, 242, 0.95);
+  border: 1px solid rgba(220, 38, 38, 0.22);
+  box-shadow: 0 4px 24px rgba(15, 23, 42, 0.04);
+}
+
+html[data-theme="light"] .privacy-security-page .ps-disclaimer-header h4 {
+  color: var(--text-primary);
+}
+
+html[data-theme="light"] .privacy-security-page .ps-disclaimer-card p {
+  color: var(--text-secondary);
+}
+
+html[data-theme="light"] .privacy-security-page .ps-disclaimer-icon-box {
+  background: rgba(220, 38, 38, 0.1);
+  color: #dc2626;
+}
+
+html[data-theme="light"] .privacy-security-page .ps-app-header {
+  background: linear-gradient(180deg, #f1f5f9 0%, #e8f0fc 100%);
+  border-top: 1px solid var(--border-light);
+  border-bottom: 1px solid var(--border-light);
+}
+
+html[data-theme="light"] .privacy-security-page .ps-app-header h2 {
+  color: var(--text-primary);
+}
+
+html[data-theme="light"] .privacy-security-page .ps-app-header h2 .red-text {
+  color: var(--color-cta-primary);
+}
+
+html[data-theme="light"] .privacy-security-page .ps-promo-inner {
+  background: linear-gradient(135deg, #f8fafc 0%, #e8f0fc 45%, #f1f5f9 100%);
+  border-top: 1px solid var(--border-light);
+  border-bottom: 1px solid var(--border-light);
+  box-shadow: none;
+}

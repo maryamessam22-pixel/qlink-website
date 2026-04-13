@@ -1,7 +1,7 @@
 .contact-page {
   padding-top: 120px;
   min-height: 100vh;
-  color: white;
+  color: var(--text-primary);
   position: relative;
   overflow: hidden;
   padding-left: 20px;
@@ -41,7 +41,7 @@
 
 .contact-hero p {
   font-size: 18px;
-  color: #94A3B8;
+  color: var(--text-secondary);
   max-width: 600px;
   margin: 0 auto;
   line-height: 1.6;
@@ -79,7 +79,7 @@
 
 .questions-cta-section p {
   font-size: 16px;
-  color: #94A3B8;
+  color: var(--text-secondary);
   margin-bottom: 32px;
   max-width: 650px;
   margin: 0 auto 32px;
@@ -115,7 +115,7 @@
 }
 
 .newsletter-section p {
-  color: #94A3B8;
+  color: var(--text-secondary);
   font-size: 15px;
   margin-bottom: 32px;
   max-width: 600px;
@@ -131,11 +131,11 @@
 
 .newsletter-form input {
   flex: 1;
-  background: rgba(15, 23, 42, 0.4);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--bg-surface-input);
+  border: 1px solid var(--border-light);
   padding: 12px 20px;
   border-radius: 8px;
-  color: white;
+  color: var(--text-primary);
 }
 
 .newsletter-form .btn-sub {
