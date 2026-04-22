@@ -9,6 +9,7 @@ import pulseIcon from '../../assets/icons/PULSE-ICON.png';
 import SetupSection from '../../components/Sections/SetupSection';
 import AppPromoSection from '../../components/Sections/AppPromoSection';
 import promoAltImg from '../../assets/images/mobile2.png';
+import qlinkVideo from '../../assets/videos/vidd.mp4';
 import ShopCTA from '../../components/Sections/ShopCTA';
 
 function Compare() {
@@ -111,30 +112,55 @@ function Compare() {
       <div className="compare-page-container scroll-animate stag-1">
         
    
-        <CompareCard 
+        <CompareCard
           title={novaProduct ? (lang === 'ar' ? novaProduct.name_ar : novaProduct.name_en) : t('compare.novaTitle')}
           subTitle={t('compare.novaSub')}
           icon={novaIcon}
           features={novaFeatures}
-          
+
           price={novaProduct ? novaProduct.price : "1,499"}
           buttonText={t('compare.novaBtn')}
-          accentColor="#0097b2" 
+          accentColor="#0097b2"
           to="/shop/nova"
         />
 
-      
-        <CompareCard 
+        <div className="compare-vs-divider">
+          <div className="compare-vs-line" />
+          <div className="compare-vs-circle">VS</div>
+          <div className="compare-vs-line" />
+        </div>
+
+        <CompareCard
           title={pulseProduct ? (lang === 'ar' ? pulseProduct.name_ar : pulseProduct.name_en) : t('compare.pulseTitle')}
           subTitle={t('compare.pulseSub')}
           icon={pulseIcon}
           features={pulseFeatures}
           price={pulseProduct ? pulseProduct.price : "1,199"}
           buttonText={t('compare.pulseBtn')}
-          accentColor="#00c853" 
+          accentColor="#00c853"
           to="/shop/pulse"
         />
 
+      </div>
+      <div className="compare-video-section scroll-animate">
+        <div className="compare-video-left">
+          <h3 className="cvs-heading">Built for Those<br />Who Matter Most</h3>
+          <p className="cvs-text">Q-Link is designed to keep your loved ones safe — whether at home or on the go. One tap connects them to help instantly.</p>
+          <p className="cvs-text">Trusted by families across the region to deliver peace of mind, every single day.</p>
+        </div>
+        <video
+          src={qlinkVideo}
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="compare-video"
+        />
+        <div className="compare-video-right">
+          <h3 className="cvs-heading">Smart Tech,<br />Simple Safety</h3>
+          <p className="cvs-text">Powered by real-time GPS and emergency alerts, Q-Link bracelets respond the moment they're needed most.</p>
+          <p className="cvs-text">Two models. One mission — protecting the people you love with cutting-edge, wearable technology.</p>
+        </div>
       </div>
       <SetupSection />
       <ShopCTA />

@@ -1,12 +1,21 @@
 .compare-card {
-  background-color: var(--bg-surface-navy);   
+  background-color: var(--bg-surface-navy);
   border-radius: 10px;
-  width: 435px;
+  flex: 1;
+  min-width: 280px;
+  max-width: 435px;
+  width: 100%;
   color: var(--text-primary);
   display: flex;
   flex-direction: column;
   overflow: hidden;
   box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+@media (max-width: 850px) {
+  .compare-card {
+    max-width: 480px;
+  }
 }
 
 body.rtl-active .compare-card {
