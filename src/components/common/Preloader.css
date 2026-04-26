@@ -236,6 +236,21 @@
   }
 }
 
+/* ── Light mode: swap red → blue ── */
+html[data-theme="light"] .letter-4,
+html[data-theme="light"] .letter-5 {
+  color: var(--color-cta-primary);
+}
+
+html[data-theme="light"] .loading-bar-fill {
+  background: var(--color-cta-primary);
+  box-shadow: 0 0 10px var(--color-cta-shadow);
+}
+
+html[data-theme="light"] .loading-bar-container {
+  background: rgba(37, 99, 235, 0.12);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .qlink-logo-loader--light .qlink-logo-img--whole {
     animation: none;

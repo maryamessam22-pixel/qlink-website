@@ -1,0 +1,330 @@
+/* ── Page shell ── */
+.ep-page {
+  min-height: 100vh;
+  background: #0f1826;
+  color: #fff;
+  font-family: 'Roboto', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 99;
+}
+
+.ep-page * {
+  box-sizing: border-box;
+}
+
+/* ── Header ── */
+.ep-header {
+  width: 100%;
+  max-width: 900px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 32px;
+  z-index: 99;
+}
+
+.ep-header-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.ep-header-btn {
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid rgba(255,255,255,0.3);
+  background: transparent;
+  color: #fff;
+  transition: background 0.2s;
+  font-family: inherit;
+}
+
+.ep-header-btn:hover {
+  background: rgba(255,255,255,0.08);
+}
+
+.ep-header-btn-outline {
+  border-color: rgba(255,255,255,0.55);
+}
+
+/* ── Nav ── */
+.ep-nav {
+  width: 100%;
+  max-width: 900px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 32px 20px;
+  z-index: 99;
+}
+
+.ep-nav-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: none;
+  color: rgba(255,255,255,0.75);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 0.2s;
+  font-family: inherit;
+}
+
+.ep-nav-btn:hover {
+  color: #fff;
+}
+
+/* ── Hero ── */
+.ep-hero {
+  width: 100%;
+  background: linear-gradient(160deg, #d62b2b 0%, #b91c1c 100%);
+  padding: 36px 20px 52px;
+  text-align: center;
+  border-radius: 0 0 28px 28px;
+  z-index: 99;
+}
+
+.ep-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.25);
+  border-radius: 20px;
+  padding: 6px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.ep-hero-name {
+  font-size: 26px;
+  font-weight: 800;
+  margin: 0 0 10px;
+}
+
+.ep-hero-sub {
+  font-size: 14px;
+  color: rgba(255,255,255,0.85);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ── Body cards ── */
+.ep-body {
+  width: 100%;
+  max-width: 900px;
+  margin: 28px 0;
+  padding: 0 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  z-index: 99;
+}
+
+.ep-card {
+  background: #1a2540;
+  border-radius: 12px;
+  padding: 20px;
+  width: 100%;
+}
+
+.ep-row-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  width: 100%;
+}
+
+.ep-card-title {
+  font-size: 15px;
+  font-weight: 700;
+  margin: 0 0 10px;
+  color: #fff;
+}
+
+.ep-card-item {
+  font-size: 14px;
+  color: rgba(255,255,255,0.75);
+  margin: 0 0 5px;
+  line-height: 1.5;
+}
+
+.ep-card-item:last-child { margin-bottom: 0; }
+
+.ep-card-value {
+  font-size: 20px;
+  font-weight: 700;
+  color: #fff;
+  margin: 0;
+}
+
+/* ── Contacts ── */
+.ep-contact-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #0f1826;
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin-bottom: 8px;
+}
+
+.ep-contact-row:last-child { margin-bottom: 0; }
+
+.ep-contact-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  margin: 0 0 4px;
+}
+
+.ep-contact-phone {
+  font-size: 13px;
+  color: rgba(255,255,255,0.6);
+  margin: 0;
+  direction: ltr;
+}
+
+.ep-call-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: #22c55e;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  flex-shrink: 0;
+  transition: background 0.2s, transform 0.15s;
+}
+
+.ep-call-btn:hover {
+  background: #16a34a;
+  transform: scale(1.05);
+}
+
+/* ── CTA ── */
+.ep-cta {
+  width: 100%;
+  background: #131c2f;
+  padding: 48px 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  z-index: 99;
+  margin-top: auto;
+}
+
+.ep-cta-text h2 {
+  font-size: 22px;
+  font-weight: 800;
+  margin: 0 0 10px;
+}
+
+.ep-cta-brand { color: #E03232; }
+
+.ep-cta-text p {
+  font-size: 13px;
+  color: rgba(255,255,255,0.6);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.ep-cta-buttons {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  flex-shrink: 0;
+}
+
+.ep-cta-btn {
+  padding: 11px 24px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: inherit;
+  border: none;
+  white-space: nowrap;
+}
+
+.ep-cta-primary {
+  background: #fff;
+  color: #0f1826;
+}
+
+.ep-cta-primary:hover { background: #e2e8f0; }
+
+.ep-cta-secondary {
+  background: transparent;
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.3);
+}
+
+.ep-cta-secondary:hover { background: rgba(255,255,255,0.08); }
+
+/* ── Footer ── */
+.ep-footer {
+  width: 100%;
+  background: #0d1520;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  padding: 20px 16px;
+  text-align: center;
+  z-index: 99;
+}
+
+.ep-footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 28px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+
+.ep-footer-links a {
+  font-size: 13px;
+  color: rgba(255,255,255,0.45);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.ep-footer-links a:hover { color: rgba(255,255,255,0.85); }
+
+.ep-footer-copy {
+  font-size: 12px;
+  color: rgba(255,255,255,0.25);
+  margin: 0;
+}
+
+/* ── Responsive ── */
+@media (max-width: 520px) {
+  .ep-cta {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .ep-cta-buttons {
+    width: 100%;
+  }
+  .ep-cta-btn {
+    flex: 1;
+    text-align: center;
+    justify-content: center;
+  }
+  .ep-row-2 {
+    grid-template-columns: 1fr 1fr;
+  }
+  .ep-hero-name {
+    font-size: 22px;
+  }
+}

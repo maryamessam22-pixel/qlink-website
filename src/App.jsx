@@ -39,6 +39,7 @@ import CompletePurchase from './pages/CompletePurchase';
 
 // Auth
 import AuthPage from './pages/Auth/AuthPage';
+import EmergencyPreview from './pages/HowItWorks/EmergencyPreview';
 
 // Protected routes: redirect to home if not logged in (no modal here — avoids popup on refresh).
 // In-app navigation to these routes uses openModalWithRoute / guarded links so the login modal still appears when the user chooses a page.
@@ -103,6 +104,7 @@ function App() {
         <Routes>
 
           <Route path="/auth" element={<AuthPage />} />
+          <Route path="/how-it-works/emergency-preview" element={<EmergencyPreview />} />
 
           {/* Public Home */}
           <Route element={<MainLayout />}>

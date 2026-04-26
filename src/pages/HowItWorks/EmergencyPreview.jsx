@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Phone, ArrowLeft, ArrowRight, AlertTriangle } from 'lucide-react';
+import { Phone, ArrowLeft, AlertTriangle } from 'lucide-react';
+import Logo from '../../components/layout/Logo';
 import './EmergencyPreview.css';
 
 const profiles = [
@@ -17,15 +18,15 @@ const profiles = [
     ],
   },
   {
-    name: 'Sara Ali',
-    age: '45 years',
+    name: 'Karma Ahmed',
+    age: '10 years',
     bloodType: 'O+',
-    allergies: ['Peanut Allergy', 'Latex Allergy'],
-    safetyNotes: ['Carries EpiPen', 'Do not give NSAIDs'],
-    medicalNotes: ['Asthma', 'Anaphylaxis risk'],
+    allergies: ['Allergic to Penicillin', 'Diabetic Type 1'],
+    safetyNotes: ['Requires insulin', 'Avoid penicillin medications'],
+    medicalNotes: ['Type 1 Diabetes', 'Hypertension'],
     contacts: [
-      { label: 'Primary Contact', phone: '01001234567' },
-      { label: 'Secondary Contact', phone: '01227654321' },
+      { label: 'Primary Contact', phone: '01779998265' },
+      { label: 'Secondary Contact', phone: '01119988299' },
     ],
   },
 ];
@@ -40,9 +41,7 @@ export default function EmergencyPreview() {
 
       {/* Header */}
       <header className="ep-header">
-        <div className="ep-logo">
-          <span className="ep-logo-q">Q</span>link
-        </div>
+        <Logo style={{ height: '32px', display: 'block' }} />
         <div className="ep-header-actions">
           <button className="ep-header-btn" onClick={() => navigate('/auth')}>Login</button>
           <button className="ep-header-btn ep-header-btn-outline" onClick={() => navigate('/auth')}>Sign Up</button>
@@ -52,13 +51,13 @@ export default function EmergencyPreview() {
       {/* Nav bar */}
       <div className="ep-nav">
         <button className="ep-nav-btn" onClick={() => navigate('/how-it-works/qlink')}>
-          <ArrowLeft size={16} /> Close Preview
+          <ArrowLeft size={16} /> Back
         </button>
         <button
-          className="ep-nav-btn"
+          className="ep-nav-btn ep-nav-next"
           onClick={() => setIdx((i) => (i + 1) % profiles.length)}
         >
-          Next Preview <ArrowRight size={16} />
+          Next Profile →
         </button>
       </div>
 
@@ -117,7 +116,7 @@ export default function EmergencyPreview() {
                 <p className="ep-contact-phone">{c.phone}</p>
               </div>
               <a href={`tel:${c.phone}`} className="ep-call-btn" aria-label={`Call ${c.label}`}>
-                <Phone size={18} fill="white" />
+                <Phone size={18} fill="white" color="white" />
               </a>
             </div>
           ))}

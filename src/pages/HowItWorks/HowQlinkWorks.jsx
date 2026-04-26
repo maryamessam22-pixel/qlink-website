@@ -287,7 +287,7 @@ function HowQlinkWorks() {
         <h2 style={{ fontSize: '32px', fontWeight: '800' }}>{t('howWorks.ctaTitle')}</h2>
         <div className={`hw-cta-buttons ${lang === 'ar' ? 'rtl-buttons' : ''}`}>
           <Link to="/shop/bracelet" className="btn btn-primary">{t('howWorks.ctaBtn1')}</Link>
-          <a href="#" className="btn btn-secondary" style={{ width: '250px', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'transparent', border: '1px solid rgba(255,255,255,0.2)' }}>{t('howWorks.ctaBtn2')}</a>
+          <Link to="/how-it-works/emergency-preview" className="btn btn-secondary" style={{ width: '250px', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'transparent', border: '1px solid rgba(255,255,255,0.2)' }}>{t('howWorks.ctaBtn2')}</Link>
         </div>
       </section>
 
