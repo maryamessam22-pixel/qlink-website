@@ -32,10 +32,45 @@ const publicReviewBody = (text) => {
   return text.slice(0, i).trim();
 };
 
+function useCountUp(target, decimals = 0, duration = 1800) {
+  const [count, setCount] = useState(0);
+  const [started, setStarted] = useState(false);
+  const ref = React.useRef(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) { setStarted(true); obs.disconnect(); }
+    }, { threshold: 0.4 });
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!started) return;
+    let start = null;
+    const step = (ts) => {
+      if (!start) start = ts;
+      const progress = Math.min((ts - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setCount(parseFloat((eased * target).toFixed(decimals)));
+      if (progress < 1) requestAnimationFrame(step);
+      else setCount(target);
+    };
+    requestAnimationFrame(step);
+  }, [started, target, decimals, duration]);
+
+  return [count, ref];
+}
+
 const Reviews = () => {
   const { t, lang } = useContext(LanguageContext);
   const navigate = useNavigate();
   const [addReviewCms, setAddReviewCms] = useState(null);
+  const [usersCount, usersRef] = useCountUp(10, 0);
+  const [trustCount, trustRef] = useCountUp(4.9, 1);
+  const [recommendCount, recommendRef] = useCountUp(99, 0);
   const [publicReviews, setPublicReviews] = useState([]);
   const [reviewForm, setReviewForm] = useState({
     name: '',
@@ -228,15 +263,15 @@ const Reviews = () => {
         </div>
   
         <div className="reviews-stats-bar scroll-animate stag-3">
-          <div className="stat-card">
-            <h3>{t('reviews.statUsers')}</h3>
+          <div className="stat-card" ref={usersRef}>
+            <h3>{usersCount}k+</h3>
             <div className="stat-sub">
               <Users size={16} color="var(--color-cta-primary)" />
               <span>{t('reviews.statUsersLabel')}</span>
             </div>
           </div>
-          <div className="stat-card">
-            <h3>{t('reviews.statTrust')}</h3>
+          <div className="stat-card" ref={trustRef}>
+            <h3>{trustCount}/5</h3>
             <div className="stat-stars">
               {[...Array(5)].map((_, i) => <Star key={i} size={14} fill="#ffb800" color="#ffb800" />)}
             </div>
@@ -244,8 +279,8 @@ const Reviews = () => {
               <span>{t('reviews.statTrustLabel')}</span>
             </div>
           </div>
-          <div className="stat-card">
-            <h3>{t('reviews.statRecommend')}</h3>
+          <div className="stat-card" ref={recommendRef}>
+            <h3>{recommendCount}%</h3>
             <div className="stat-sub">
               <Share2 size={16} color="#10b981" />
               <span>{t('reviews.statRecommendLabel')}</span>

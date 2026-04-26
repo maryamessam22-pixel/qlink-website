@@ -196,7 +196,7 @@ const PulseDetails = () => {
                 <div>
                   <h1 className="pulse-title">{isAr ? product.name_ar : product.name_en}</h1>
                   <div className="pulse-subtitle">{isAr ? product.subtitle_ar : product.subtitle_en}</div>
-                  <p className="pulse-desc">{isAr ? product.description_ar : product.description_en}</p>
+                  <p className="pulse-desc" dangerouslySetInnerHTML={{ __html: isAr ? product.description_ar : product.description_en }} />
                   
                   <div className="price-row">
                     <div className="price">{product.price} EGP</div>

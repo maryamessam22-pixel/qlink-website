@@ -229,7 +229,7 @@ const NovaDetails = () => {
             <div className="nova-info scroll-animate stag-2">
               <h1 className="nova-title">{isAr ? product.name_ar : product.name_en}</h1>
               <div className="nova-subtitle">{isAr ? product.subtitle_ar : product.subtitle_en}</div>
-              <p className="nova-desc">{isAr ? product.description_ar : product.description_en}</p>
+              <p className="nova-desc" dangerouslySetInnerHTML={{ __html: isAr ? product.description_ar : product.description_en }} />
               
               <div className="price-row">
                 <div className="price">{product.price} EGP</div>

@@ -353,11 +353,16 @@
 .tab-btn {
   background: transparent;
   border: none;
+  outline: none;
   color: var(--text-muted);
   font-size: 16px;
   padding: 16px 0;
   cursor: pointer;
   position: relative;
+}
+
+.tab-btn:focus {
+  outline: none;
 }
 
 .tab-btn.active {
