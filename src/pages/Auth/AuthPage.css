@@ -200,6 +200,7 @@ html[data-theme="light"] .auth-theme-toggle:hover {
   border: 1px solid var(--border-subtle);
   border-radius: 12px;
   padding: 30px;
+  -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
 }
 

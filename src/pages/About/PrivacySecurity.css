@@ -135,6 +135,7 @@
   border-radius: 20px;
   padding: 40px;
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+  -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
 }
 

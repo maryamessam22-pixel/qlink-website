@@ -424,6 +424,7 @@
   background: var(--bg-card);
   color: var(--text-primary);
   border: 1px solid var(--border-light);
+  -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
 }
 

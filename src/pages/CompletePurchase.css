@@ -47,6 +47,7 @@
 
 .cp-order-card {
     background: var(--bg-card);
+    -webkit-backdrop-filter: blur(12px);
     backdrop-filter: blur(12px);
     border: 1px solid var(--border-light);
     border-radius: 20px;
@@ -106,6 +107,7 @@
 
 .cp-app-quick-card {
     background: var(--bg-card);
+    -webkit-backdrop-filter: blur(12px);
     backdrop-filter: blur(12px);
     border: 1px solid var(--border-light);
     border-radius: 20px;
