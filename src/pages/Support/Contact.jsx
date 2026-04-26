@@ -84,9 +84,7 @@ function Contact() {
         <h1>
           {cms['contact_info'] ? pick(cms['contact_info'], 'title') : (isArabic ? 'تواصل معنا' : 'Get in Touch')}
         </h1>
-        <p>
-          {cms['contact_info'] ? pick(cms['contact_info'], 'subtitle') : (isArabic ? 'هل لديك أسئلة؟' : 'Have questions?')}
-        </p>
+        <p dangerouslySetInnerHTML={{ __html: cms['contact_info'] ? pick(cms['contact_info'], 'subtitle') : (isArabic ? 'هل لديك أسئلة؟' : 'Have questions?') }} />
       </section>
 
       {/* 2. Contact Main (Form + Info) */}

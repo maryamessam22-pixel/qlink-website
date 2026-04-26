@@ -55,23 +55,25 @@
 }
 
 body {
-  font-family: var(--font-family-primary);
+  font-family: 'Roboto', sans-serif;
   margin: 0;
   padding: 0;
   overflow-x: hidden;
    background: var(--app-body-bg);
-   
+
   color: var(--text-primary);
 }
 
 .App {
-  font-family: var(--font-family-primary);
+  font-family: 'Roboto', sans-serif;
   line-height: 1.9;
 }
 
-/* RTL Support */
-body.rtl-active, 
-body.rtl-active * {
+/* RTL / Arabic font — covers body class AND any element with dir=rtl */
+body.rtl-active,
+body.rtl-active *,
+[dir="rtl"],
+[dir="rtl"] * {
   font-family: 'Noto Kufi Arabic', sans-serif !important;
   line-height: 2.3;
 }

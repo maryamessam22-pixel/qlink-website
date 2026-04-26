@@ -98,7 +98,7 @@ const ContactSection = () => {
       <div className="contact-panel">
         <div className="contact-info-col">
           <h2>{title}</h2>
-          <p>{subtitle}</p>
+          <p dangerouslySetInnerHTML={{ __html: subtitle }} />
           <div className="contact-method-row">
             <span className="cm-icon"><Mail size={16} /></span>
             <span className="cm-text">{emailVal}</span>

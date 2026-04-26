@@ -5,6 +5,7 @@ import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import ArrowUp from './components/layout/ArrowUp';
 import AIAssistantBtn from './components/layout/AIAssistantBtn';
+import FloatingSidebar from './components/layout/FloatingSidebar';
 import './App.css';
 import './theme-light.css';
 import Preloader from './components/common/Preloader';
@@ -58,6 +59,7 @@ const MainLayout = () => (
     <LoginModal />
     <AIAssistantBtn />
     <ArrowUp />
+    <FloatingSidebar />
     <Footer />
   </>
 );

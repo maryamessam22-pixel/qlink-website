@@ -123,10 +123,6 @@ function Navbar() {
       </div>
 
       <div className="navbar-actions">
-        <button className="lang-btn" onClick={toggleLanguage}>
-          {lang === 'en' ? 'AR' : 'EN'}
-        </button>
-        <ThemeToggleButton className="theme-toggle-btn" />
         <button
           className="icon-btn cart-icon-wrapper"
           onClick={() => {
