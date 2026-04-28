@@ -130,8 +130,8 @@ function Navbar() {
         <button
           className="icon-btn cart-icon-wrapper"
           onClick={() => {
-            if (isAuthenticated) navigate('/cart');
-            else openModalWithRoute('/cart');
+            if (isAuthenticated) navigate(p('/cart'));
+            else openModalWithRoute(p('/cart'));
           }}
         >
           <ShoppingCart size={22} color="var(--text-primary)" />
