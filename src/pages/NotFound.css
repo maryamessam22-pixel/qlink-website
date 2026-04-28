@@ -53,7 +53,7 @@
   font-size: clamp(100px, 20vw, 160px);
   font-weight: 700;
   line-height: 1;
-  background: linear-gradient(135deg, var(--color-primary-blue) 0%, var(--color-brand-blue-glow) 100%);
+  background: linear-gradient(135deg, #e03232 0%, #ffa1a1 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -120,11 +120,17 @@
 }
 
 /* Light theme overrides */
-.theme-light .nf-code {
+html[data-theme="light"] .nf-code {
+  background: linear-gradient(135deg, #3b82f6 0%, #116BFD 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   filter: drop-shadow(0 0 30px rgba(17, 107, 253, 0.25));
 }
 
-/* RTL */
+/* Arabic font */
+.rtl-active .nf-title,
+.rtl-active .nf-desc,
 .rtl-active .nf-btn-primary,
 .rtl-active .nf-btn-secondary {
   font-family: 'Noto Kufi Arabic', sans-serif;
