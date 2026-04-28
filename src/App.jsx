@@ -46,18 +46,13 @@ function LanguageSync() {
   const { lang, setLang } = useContext(LanguageContext);
 
   useEffect(() => {
-    let fallbackLang = 'en';
-    try {
-      const storedLang = localStorage.getItem('appLang');
-      if (storedLang === 'ar' || storedLang === 'en') {
-        fallbackLang = storedLang;
-      }
-    } catch {
+    // Detect strictly from path. Pass null to avoid forcing a fallback on '/'
+    const detected = detectLangFromPath(pathname, null);
+    
+    if (detected && detected !== lang) {
+      setLang(detected);
     }
-
-    const detected = detectLangFromPath(pathname, fallbackLang);
-    setLang((prevLang) => (prevLang === detected ? prevLang : detected));
-  }, [pathname, setLang]);
+  }, [pathname, setLang, lang]);
 
   useEffect(() => {
     const makeCurrentAnimatedSectionsVisible = () => {

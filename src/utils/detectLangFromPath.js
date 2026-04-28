@@ -1,6 +1,7 @@
-import { arToEn } from '../routeMap';
+import { arToEn, enToAr } from '../routeMap';
 
 const arabicPaths = Object.keys(arToEn).filter((path) => path !== '/');
+const englishPaths = Object.keys(enToAr).filter((path) => path !== '/');
 
 const normalizePath = (path) => {
   if (!path || path === '/') return '/';
@@ -20,21 +21,33 @@ const safeDecodePath = (path) => {
 };
 
 export function detectLangFromPath(pathname, fallbackLang = 'en') {
-  const rawPath =
-    pathname ?? (typeof window !== 'undefined' ? window.location.pathname : '/');
-  const normalizedRawPath = normalizePath(rawPath);
-  const defaultLang = fallbackLang === 'ar' ? 'ar' : 'en';
-
-  if (normalizedRawPath === '/') {
-    return defaultLang;
+  if (typeof window !== 'undefined') {
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const langParam = params.get('lang');
+      if (langParam === 'ar' || langParam === 'en') {
+        return langParam;
+      }
+    } catch {
+    }
   }
 
-  const decodedPath = normalizePath(safeDecodePath(normalizedRawPath));
+  const rawPath = pathname ?? (typeof window !== 'undefined' ? window.location.pathname : '/');
+  const decodedPath = normalizePath(safeDecodePath(rawPath));
 
-  const matchesArabicRoute = arabicPaths.some(
+  if (decodedPath === '/') {
+    return fallbackLang;
+  }
+
+  const isArabic = arabicPaths.some(
     (path) => decodedPath === path || decodedPath.startsWith(`${path}/`)
   );
-  const isArabic = matchesArabicRoute;
+  if (isArabic) return 'ar';
 
-  return isArabic ? 'ar' : 'en';
+  const isEnglish = englishPaths.some(
+    (path) => decodedPath === path || decodedPath.startsWith(`${path}/`)
+  );
+  if (isEnglish) return 'en';
+
+  return fallbackLang;
 }

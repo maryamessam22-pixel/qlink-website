@@ -15,6 +15,8 @@ export const enToAr = {
   '/cart': '/عربة-التسوق',
   '/checkout': '/الدفع',
   '/complete-purchase': '/اكتمال-الشراء',
+  '/auth': '/auth',
+  '/how-it-works/emergency-preview': '/how-it-works/emergency-preview',
 };
 
 export const arToEn = Object.fromEntries(

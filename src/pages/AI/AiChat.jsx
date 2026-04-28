@@ -205,7 +205,7 @@ const AiChat = ({ isOpen, onClose }) => {
           apikey: authKey,
           Authorization: `Bearer ${authKey}`,
         },
-        body: JSON.stringify({ message: userText, session_id: sessionId }),
+        body: JSON.stringify({ message: userText, session_id: sessionId, lang: lang }),
       });
 
       const result = await res.json();
