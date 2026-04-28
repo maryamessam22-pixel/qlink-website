@@ -76,8 +76,6 @@ function Compare() {
     { label: t('compare.fEmergency'), value: t('compare.fEmergencyV1') },
     { label: t('compare.fMedical'), value: t('compare.fMedicalV') },
     { label: t('compare.fPrivacy'), value: t('compare.fPrivacyV1') },
-    { label: t('compare.fFeedback'), value: t('compare.fFeedbackV1') },
-    { label: t('compare.fDesign'), value: t('compare.fDesignV1') },
     { label: t('compare.fBestFor'), value: t('compare.fBestForV1') },
   ];
 
@@ -86,8 +84,6 @@ function Compare() {
     { label: t('compare.fEmergency'), value: t('compare.fEmergencyV2') },
     { label: t('compare.fMedical'), value: t('compare.fMedicalV') },
     { label: t('compare.fPrivacy'), value: t('compare.fPrivacyV2') },
-    { label: t('compare.fFeedback'), value: t('compare.fFeedbackV2') },
-    { label: t('compare.fDesign'), value: t('compare.fDesignV2') },
     { label: t('compare.fBestFor'), value: t('compare.fBestForV2') },
   ];
 
