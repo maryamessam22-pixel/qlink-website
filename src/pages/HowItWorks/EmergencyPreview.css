@@ -391,3 +391,74 @@
     gap: 20px;
   }
 }
+
+html[data-theme="light"] .ep-page,
+html[data-theme="light"] .ep-page * {
+  color: #fff !important;
+}
+
+html[data-theme="light"] .ep-page {
+  background: #0f1826;
+}
+
+html[data-theme="light"] .ep-card {
+  background: #1a2540;
+}
+
+html[data-theme="light"] .ep-contact-row {
+  background: #0f1826;
+}
+
+html[data-theme="light"] .ep-cta {
+  background: #131c2f;
+}
+
+html[data-theme="light"] .ep-footer {
+  background: #0d1520;
+  border-top-color: rgba(255,255,255,0.06);
+}
+
+html[data-theme="light"] .ep-footer-links a {
+  color: rgba(255,255,255,0.45);
+}
+
+html[data-theme="light"] .ep-footer-copy {
+  color: rgba(255,255,255,0.25);
+}
+
+html[data-theme="light"] .ep-header-btn {
+  border-color: rgba(255,255,255,0.3);
+  background: transparent;
+  color: #fff;
+}
+
+html[data-theme="light"] .ep-header-btn-outline {
+  border-color: rgba(255,255,255,0.55);
+}
+
+html[data-theme="light"] .ep-nav-btn {
+  color: rgba(255,255,255,0.75);
+}
+
+html[data-theme="light"] .ep-cta-text p {
+  color: rgba(255,255,255,0.6);
+}
+
+html[data-theme="light"] .ep-card-item {
+  color: rgba(255,255,255,0.75);
+}
+
+html[data-theme="light"] .ep-contact-phone {
+  color: rgba(255,255,255,0.6);
+}
+
+html[data-theme="light"] .ep-cta-primary {
+  background: #fff;
+  color: #0f1826;
+}
+
+html[data-theme="light"] .ep-cta-secondary {
+  background: transparent;
+  color: #fff;
+  border-color: rgba(255,255,255,0.3);
+}
