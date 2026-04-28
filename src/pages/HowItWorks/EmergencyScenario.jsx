@@ -188,8 +188,7 @@ const EmergencyScenario = () => {
           <p>{t('emergency.ctaDesc')}</p>
           <Link
             to="/shop/bracelet"
-            className="btn btn-primary btn-cta-full"
-            style={lang === 'ar' ? { display: 'flex', gap: '8px', alignItems: 'center', justifyContent: 'center', textDecoration: 'none' } : { textDecoration: 'none', display: 'flex', gap: '8px', alignItems: 'center', justifyContent: 'center' }}
+            className="es-cta-shop-btn"
           >
             {t('emergency.ctaBtn')} {lang === 'ar' ? <ArrowLeft size={16}/> : <ArrowRight size={16}/>}
           </Link>
