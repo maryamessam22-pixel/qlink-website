@@ -663,10 +663,16 @@
     right: auto;
     top: auto;
     transform: none;
-    margin-top: 40px;
+    margin-top: 0;
+    margin-bottom: 28px;
     width: 100%;
     justify-content: center;
+    order: -1;
     animation: slideInUp 1.2s ease forwards;
+  }
+
+  .hero-text {
+    order: 1;
   }
 
   @keyframes slideInUp {
