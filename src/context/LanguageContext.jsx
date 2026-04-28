@@ -1,13 +1,21 @@
 import React, { createContext, useState, useEffect } from 'react';
 
-
 import en from '../locales/en';
 import ar from '../locales/ar';
+import { arToEn } from '../routeMap';
 
 export const LanguageContext = createContext();
 
+const arabicPaths = Object.keys(arToEn).filter(p => p !== '/');
+
+const detectLangFromPath = () => {
+  const pathname = decodeURIComponent(window.location.pathname);
+  const isArabic = arabicPaths.some(arPath => pathname === arPath || pathname.startsWith(arPath + '/'));
+  return isArabic ? 'ar' : 'en';
+};
+
 export const LanguageProvider = ({ children }) => {
-  const [lang, setLang] = useState('en');
+  const [lang, setLang] = useState(detectLangFromPath);
 
   
   useEffect(() => {
