@@ -7,6 +7,13 @@ import AppPromoSection from '../../components/Sections/AppPromoSection';
 import { supabase } from '../../lib/Supabase';
 import mobilesImg from '../../assets/images/mobile3rd.png';
 import './Reviews.css';
+import {
+  pickCustomerName,
+  pickCustomerSubtitle,
+  pickReviewSnippetRaw,
+  publicReviewBody,
+} from '../../utils/reviewText';
+import { getInlineLangAttr, getInlineTextDir } from '../../utils/textDirection';
 
 import heroImg from '../../assets/images/hero.png'; 
 import salmaImg from '../../assets/images/salma.png';
@@ -16,19 +23,12 @@ import annImg from '../../assets/images/ann.png';
 
 const getAvatarForUser = (name) => {
   if (!name) return heroImg;
-  if (name.includes('Salma') || name.includes('سلمى')) return salmaImg;
-  if (name.includes('Sarah') || name.includes('سارة')) return sarahImg;
-  if (name.includes('Malak') || name.includes('ملاك')) return malakImg;
-  if (name.includes('Ann') || name.includes('آن')) return annImg;
-  return heroImg; 
-};
-
-const publicReviewBody = (text) => {
-  if (!text || typeof text !== 'string') return '';
-  const marker = '\n\n— ';
-  const i = text.lastIndexOf(marker);
-  if (i === -1) return text.trim();
-  return text.slice(0, i).trim();
+  const n = String(name);
+  if (name.includes('Salma') || n.includes('سلمى')) return salmaImg;
+  if (name.includes('Sarah') || n.includes('سارة')) return sarahImg;
+  if (name.includes('Malak') || n.includes('ملاك') || n.includes('ملك')) return malakImg;
+  if (name.includes('Ann') || n.includes('آن') || n.includes('ان مازن')) return annImg;
+  return heroImg;
 };
 
 function useCountUp(target, decimals = 0, duration = 1800) {
@@ -82,6 +82,11 @@ const Reviews = () => {
   const [reviewSuccess, setReviewSuccess] = useState(false);
   const [reviewError, setReviewError] = useState('');
 
+  const reviewDetailHref = useCallback((reviewId) => {
+    const base = lang === 'ar' ? '/تسوق/التقييمات' : '/shop/reviews';
+    return `${base}/${reviewId}`;
+  }, [lang]);
+
   const pickCms = useCallback(
     (row, field) => {
       if (!row) return null;
@@ -127,20 +132,26 @@ const Reviews = () => {
       try {
         const { data, error } = await supabase
           .from('reviews')
-          .select('id, customer_name, customer_subtitle, rating, review_text, created_at')
+          .select('*')
           .eq('is_visible', true)
           .eq('is_featured', true)
           .order('created_at', { ascending: false });
 
         if (!error && Array.isArray(data) && data.length > 0) {
           setPublicReviews(
-            data.map((row) => ({
-              id: row.id,
-              author: row.customer_name,
-              role: row.customer_subtitle ?? '',
-              stars: row.rating,
-              quote: publicReviewBody(row.review_text),
-            }))
+            data.map((row) => {
+              const avatarHint = [row.customer_name, row.customer_name_ar]
+                .filter(Boolean)
+                .join(' ');
+              return {
+                id: row.id,
+                author: pickCustomerName(row, lang),
+                role: pickCustomerSubtitle(row, lang),
+                stars: row.rating,
+                quote: publicReviewBody(pickReviewSnippetRaw(row, lang)),
+                avatarHint,
+              };
+            })
           );
           return;
         }
@@ -247,10 +258,13 @@ const Reviews = () => {
               </div>
               
      
-              <h2>"{t('reviews.featuredQuote')}"</h2>
+              <h2 dir={getInlineTextDir(t('reviews.featuredQuote'))} lang={getInlineLangAttr(t('reviews.featuredQuote'))}>
+                &quot;{t('reviews.featuredQuote')}&quot;
+              </h2>
               
-        
-              <p>{t('reviews.featuredStory')}</p>
+              <p dir={getInlineTextDir(t('reviews.featuredStory'))} lang={getInlineLangAttr(t('reviews.featuredStory'))}>
+                {t('reviews.featuredStory')}
+              </p>
               
               <div className="author-tag">
              
@@ -293,20 +307,26 @@ const Reviews = () => {
             <div 
               key={item.id} 
               className="testimonial-card"
-              onClick={() => navigate(`/shop/reviews/${item.id}`)}
+              onClick={() => navigate(reviewDetailHref(item.id))}
             >
               <div className="card-header">
                 <div className="user-info">
                   <div className="user-avatar">
                     <img 
-                      src={getAvatarForUser(item.author)} 
+                      src={getAvatarForUser(item.avatarHint || item.author)} 
                       alt={item.author} 
                       style={{width:'100%', height:'100%', borderRadius:'50%', objectFit: 'cover'}} 
                     />
                   </div>
                   <div>
-                    <h4>{item.author}</h4>
-                    {item.role ? <span>{item.role}</span> : null}
+                    <h4 dir={getInlineTextDir(item.author)} lang={getInlineLangAttr(item.author)}>
+                      {item.author}
+                    </h4>
+                    {item.role ? (
+                      <span dir={getInlineTextDir(item.role)} lang={getInlineLangAttr(item.role)}>
+                        {item.role}
+                      </span>
+                    ) : null}
                   </div>
                 </div>
                 <Quote size={24} className="quote-icon" />
@@ -322,7 +342,13 @@ const Reviews = () => {
                 ))}
               </div>
 
-              <p className="card-quote">{item.quote}</p>
+              <p
+                className="card-quote"
+                dir={getInlineTextDir(item.quote)}
+                lang={getInlineLangAttr(item.quote)}
+              >
+                {item.quote}
+              </p>
               <div className="read-more-link">
                 {lang === 'ar' ? 'اقرأ المزيد >' : 'Read More >'}
               </div>

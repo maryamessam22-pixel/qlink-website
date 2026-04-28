@@ -7,6 +7,16 @@ import {
 } from 'lucide-react';
 import { LanguageContext } from '../../context/LanguageContext';
 import { supabase } from '../../lib/Supabase';
+import {
+  pickCustomerName,
+  pickCustomerSubtitle,
+  pickReviewSnippetRaw,
+  pickReviewTitle,
+  pickReviewDescription,
+  publicReviewBody,
+  splitReviewParagraphs,
+} from '../../utils/reviewText';
+import { getInlineLangAttr, getInlineTextDir } from '../../utils/textDirection';
 import './ReviewDetail.css';
 
 import salmaImg from '../../assets/images/salma.png';
@@ -20,48 +30,13 @@ const avatarImages = { 1: heroImg, 2: malakImg, 3: sarahImg, 4: annImg };
 
 const ICON_MAP = { Activity, Heart, Clock, MapPin, Users, Settings, Shield, Star, Zap };
 
-const publicReviewBody = (text) => {
-  if (!text || typeof text !== 'string') return '';
-  const marker = '\n\n— ';
-  const i = text.lastIndexOf(marker);
-  if (i === -1) return text.trim();
-  return text.slice(0, i).trim();
-};
-
-const pickReviewTitle = (row, lang) => {
-  if (!row) return '';
-  const en = row.title_en;
-  const ar = row.title_ar;
-  if (lang === 'ar') {
-    if (ar != null && String(ar).trim()) return String(ar).trim();
-    if (en != null && String(en).trim()) return String(en).trim();
-  } else {
-    if (en != null && String(en).trim()) return String(en).trim();
-    if (ar != null && String(ar).trim()) return String(ar).trim();
-  }
-  return '';
-};
-
-const pickReviewDescription = (row, lang) => {
-  if (!row) return '';
-  const en = row.description_en ?? row['description _en'];
-  const ar = row.description_ar ?? row['description _ar'];
-  if (lang === 'ar') {
-    if (ar != null && String(ar).trim()) return String(ar).trim();
-    if (en != null && String(en).trim()) return String(en).trim();
-  } else {
-    if (en != null && String(en).trim()) return String(en).trim();
-    if (ar != null && String(ar).trim()) return String(ar).trim();
-  }
-  return '';
-};
-
 const getAvatarForUser = (name) => {
   if (!name) return fallbackHero;
-  if (name.includes('Salma') || name.includes('سلمى')) return salmaImg;
-  if (name.includes('Sarah') || name.includes('سارة')) return sarahImg;
-  if (name.includes('Malak') || name.includes('ملاك')) return malakImg;
-  if (name.includes('Ann') || name.includes('آن')) return annImg;
+  const n = String(name);
+  if (name.includes('Salma') || n.includes('سلمى')) return salmaImg;
+  if (name.includes('Sarah') || n.includes('سارة')) return sarahImg;
+  if (name.includes('Malak') || n.includes('ملاك') || n.includes('ملك')) return malakImg;
+  if (name.includes('Ann') || n.includes('آن') || n.includes('ان مازن')) return annImg;
   return fallbackHero;
 };
 
@@ -69,6 +44,7 @@ const ReviewDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const { t, lang } = useContext(LanguageContext);
+  const reviewsListPath = lang === 'ar' ? '/تسوق/التقييمات' : '/shop/reviews';
   const [loading, setLoading] = useState(true);
   const [dbReview, setDbReview] = useState(null);
   const [localeReview, setLocaleReview] = useState(null);
@@ -140,7 +116,7 @@ const ReviewDetail = () => {
     return (
       <div className="rd-not-found">
         <p>{t('reviews.notFound')}</p>
-        <button className="rd-back-btn" onClick={() => navigate('/shop/reviews')}>
+        <button className="rd-back-btn" onClick={() => navigate(reviewsListPath)}>
           ← {t('reviews.backToReviews')}
         </button>
       </div>
@@ -148,13 +124,23 @@ const ReviewDetail = () => {
   }
 
   if (dbReview) {
-    const displayQuote = publicReviewBody(dbReview.review_text);
-    const paragraphs = displayQuote.split(/\n\n+/).filter(Boolean);
-    const avatarSrc = getAvatarForUser(dbReview.customer_name);
+    const customerNameDisplay = pickCustomerName(dbReview, lang);
+    const customerSubtitleDisplay = pickCustomerSubtitle(dbReview, lang);
+    const avatarLookup = [
+      dbReview.customer_name,
+      dbReview.customer_name_ar,
+    ]
+      .filter(Boolean)
+      .join(' ');
+    const displayQuote = publicReviewBody(
+      pickReviewSnippetRaw(dbReview, lang)
+    );
+    const paragraphs = splitReviewParagraphs(displayQuote);
+    const avatarSrc = getAvatarForUser(avatarLookup);
     const storyTitle = pickReviewTitle(dbReview, lang);
     const storyDescription = pickReviewDescription(dbReview, lang);
     const descParagraphs = storyDescription
-      ? storyDescription.split(/\n\n+/).map((p) => p.trim()).filter(Boolean)
+      ? splitReviewParagraphs(storyDescription)
       : [];
     const hasCmsStory = Boolean(storyTitle || descParagraphs.length);
     const seoDesc = (storyDescription || displayQuote).slice(0, 160);
@@ -164,17 +150,17 @@ const ReviewDetail = () => {
         <SEO
           title={
             storyTitle
-              ? `${storyTitle} — ${dbReview.customer_name}`
+              ? `${storyTitle} — ${customerNameDisplay}`
               : lang === 'ar'
-                ? `تقييم ${dbReview.customer_name}`
-                : `${dbReview.customer_name}'s review`
+                ? `تقييم ${customerNameDisplay}`
+                : `${customerNameDisplay}'s review`
           }
           description={seoDesc}
           slug={`shop/reviews/${id}`}
         />
 
         <div className="rd-back-container">
-          <Link to="/shop/reviews" className="rd-back-btn">
+          <Link to={reviewsListPath} className="rd-back-btn">
             <ChevronLeft size={16} /> {t('reviews.backToReviews')}
           </Link>
         </div>
@@ -182,12 +168,24 @@ const ReviewDetail = () => {
         <div className="rd-hero-avatar-wrap scroll-animate">
           <div className="rd-hero-avatar-row">
             <div className="rd-avatar-img-wrap">
-              <img src={avatarSrc} alt={dbReview.customer_name} className="rd-avatar-img" />
+              <img src={avatarSrc} alt={customerNameDisplay} className="rd-avatar-img" />
             </div>
             <div className="rd-avatar-meta">
-              <h2 className="rd-avatar-name">{dbReview.customer_name}</h2>
-              {dbReview.customer_subtitle ? (
-                <span className="rd-avatar-role">{dbReview.customer_subtitle}</span>
+              <h2
+                className="rd-avatar-name"
+                dir={getInlineTextDir(customerNameDisplay)}
+                lang={getInlineLangAttr(customerNameDisplay)}
+              >
+                {customerNameDisplay}
+              </h2>
+              {customerSubtitleDisplay ? (
+                <span
+                  className="rd-avatar-role"
+                  dir={getInlineTextDir(customerSubtitleDisplay)}
+                  lang={getInlineLangAttr(customerSubtitleDisplay)}
+                >
+                  {customerSubtitleDisplay}
+                </span>
               ) : null}
               <div className="rd-hero-stars">
                 {[...Array(5)].map((_, i) => (
@@ -201,7 +199,13 @@ const ReviewDetail = () => {
               </div>
             </div>
           </div>
-          <blockquote className="rd-hero-big-quote">&ldquo;{paragraphs[0] || displayQuote}&rdquo;</blockquote>
+          <blockquote
+            className="rd-hero-big-quote"
+            dir={getInlineTextDir(paragraphs[0] || displayQuote)}
+            lang={getInlineLangAttr(paragraphs[0] || displayQuote)}
+          >
+            &ldquo;{paragraphs[0] || displayQuote}&rdquo;
+          </blockquote>
           <p className="rd-verified-tag">
             <CheckCircle2 size={14} /> {t('reviews.verified')}
           </p>
@@ -212,12 +216,23 @@ const ReviewDetail = () => {
             <section className="rd-story-section scroll-animate">
               <div className="rd-story-card">
                 {storyTitle ? (
-                  <h2 className="rd-section-title">{storyTitle}</h2>
+                  <h2
+                    className="rd-section-title"
+                    dir={getInlineTextDir(storyTitle)}
+                    lang={getInlineLangAttr(storyTitle)}
+                  >
+                    {storyTitle}
+                  </h2>
                 ) : (
                   <h2 className="rd-section-title">{t('reviews.dbDetailStory')}</h2>
                 )}
                 {descParagraphs.map((para, i) => (
-                  <p key={i} className="rd-story-para">
+                  <p
+                    key={i}
+                    className="rd-story-para"
+                    dir={getInlineTextDir(para)}
+                    lang={getInlineLangAttr(para)}
+                  >
                     {para}
                   </p>
                 ))}
@@ -230,7 +245,12 @@ const ReviewDetail = () => {
               <div className="rd-story-card">
                 <h2 className="rd-section-title">{t('reviews.dbDetailStory')}</h2>
                 {paragraphs.slice(1).map((para, i) => (
-                  <p key={i} className="rd-story-para">
+                  <p
+                    key={i}
+                    className="rd-story-para"
+                    dir={getInlineTextDir(para)}
+                    lang={getInlineLangAttr(para)}
+                  >
                     {para}
                   </p>
                 ))}
@@ -270,7 +290,7 @@ const ReviewDetail = () => {
       />
 
       <div className="rd-back-container">
-        <Link to="/shop/reviews" className="rd-back-btn">
+        <Link to={reviewsListPath} className="rd-back-btn">
           <ChevronLeft size={16} /> {t('reviews.backToReviews')}
         </Link>
       </div>
@@ -281,8 +301,20 @@ const ReviewDetail = () => {
             <img src={avatarSrc} alt={review.author} className="rd-avatar-img" />
           </div>
           <div className="rd-avatar-meta">
-            <h2 className="rd-avatar-name">{review.author}</h2>
-            <span className="rd-avatar-role">{review.role}</span>
+            <h2
+              className="rd-avatar-name"
+              dir={getInlineTextDir(review.author)}
+              lang={getInlineLangAttr(review.author)}
+            >
+              {review.author}
+            </h2>
+            <span
+              className="rd-avatar-role"
+              dir={getInlineTextDir(review.role)}
+              lang={getInlineLangAttr(review.role)}
+            >
+              {review.role}
+            </span>
             <div className="rd-hero-stars">
               {[...Array(5)].map((_, i) => (
                 <Star
@@ -295,7 +327,13 @@ const ReviewDetail = () => {
             </div>
           </div>
         </div>
-        <blockquote className="rd-hero-big-quote">&ldquo;{review.quote}&rdquo;</blockquote>
+        <blockquote
+          className="rd-hero-big-quote"
+          dir={getInlineTextDir(review.quote)}
+          lang={getInlineLangAttr(review.quote)}
+        >
+          &ldquo;{review.quote}&rdquo;
+        </blockquote>
         <p className="rd-verified-tag">
           <CheckCircle2 size={14} /> {t('reviews.verified')}
         </p>
@@ -304,9 +342,20 @@ const ReviewDetail = () => {
       <div className="rd-content">
         <section className="rd-story-section scroll-animate">
           <div className="rd-story-card">
-            <h2 className="rd-section-title">{review.storyTitle}</h2>
+            <h2
+              className="rd-section-title"
+              dir={getInlineTextDir(review.storyTitle)}
+              lang={getInlineLangAttr(review.storyTitle)}
+            >
+              {review.storyTitle}
+            </h2>
             {review.storyParagraphs?.map((para, i) => (
-              <p key={i} className="rd-story-para">
+              <p
+                key={i}
+                className="rd-story-para"
+                dir={getInlineTextDir(para)}
+                lang={getInlineLangAttr(para)}
+              >
                 {para}
               </p>
             ))}
@@ -316,14 +365,24 @@ const ReviewDetail = () => {
         {review.listItems && (
           <section className="rd-list-section scroll-animate">
             <div className="rd-list-card">
-              <h2 className="rd-section-title">{review.listTitle}</h2>
+              <h2
+                className="rd-section-title"
+                dir={getInlineTextDir(review.listTitle)}
+                lang={getInlineLangAttr(review.listTitle)}
+              >
+                {review.listTitle}
+              </h2>
               <ol className="rd-numbered-list">
                 {review.listItems.map((item, i) => (
                   <li key={i} className="rd-list-item">
                     <div className="rd-list-num">{i + 1}</div>
                     <div className="rd-list-text">
-                      <strong>{item.title}</strong>
-                      <p>{item.desc}</p>
+                      <strong dir={getInlineTextDir(item.title)} lang={getInlineLangAttr(item.title)}>
+                        {item.title}
+                      </strong>
+                      <p dir={getInlineTextDir(item.desc)} lang={getInlineLangAttr(item.desc)}>
+                        {item.desc}
+                      </p>
                     </div>
                   </li>
                 ))}
@@ -341,8 +400,20 @@ const ReviewDetail = () => {
                   <div className="rd-feat-icon">
                     <IconComp size={24} />
                   </div>
-                  <strong className="rd-feat-label">{feat.label}</strong>
-                  <p className="rd-feat-sub">{feat.sub}</p>
+                  <strong
+                    className="rd-feat-label"
+                    dir={getInlineTextDir(feat.label)}
+                    lang={getInlineLangAttr(feat.label)}
+                  >
+                    {feat.label}
+                  </strong>
+                  <p
+                    className="rd-feat-sub"
+                    dir={getInlineTextDir(feat.sub)}
+                    lang={getInlineLangAttr(feat.sub)}
+                  >
+                    {feat.sub}
+                  </p>
                 </div>
               );
             })}
@@ -352,16 +423,40 @@ const ReviewDetail = () => {
         {review.bigQuote && (
           <section className="rd-big-quote-wrap scroll-animate">
             <div className="rd-big-quote-card">
-              <p className="rd-big-quote-text">{review.bigQuote}</p>
-              <span className="rd-big-quote-author">{review.bigQuoteAuthor}</span>
+              <p
+                className="rd-big-quote-text"
+                dir={getInlineTextDir(review.bigQuote)}
+                lang={getInlineLangAttr(review.bigQuote)}
+              >
+                {review.bigQuote}
+              </p>
+              <span
+                className="rd-big-quote-author"
+                dir={getInlineTextDir(review.bigQuoteAuthor)}
+                lang={getInlineLangAttr(review.bigQuoteAuthor)}
+              >
+                {review.bigQuoteAuthor}
+              </span>
             </div>
           </section>
         )}
 
         <section className="rd-cta-section scroll-animate">
           <div className="rd-cta-card">
-            <h2 className="rd-cta-title">{review.ctaTitle}</h2>
-            <p className="rd-cta-desc">{review.ctaDesc}</p>
+            <h2
+              className="rd-cta-title"
+              dir={getInlineTextDir(review.ctaTitle)}
+              lang={getInlineLangAttr(review.ctaTitle)}
+            >
+              {review.ctaTitle}
+            </h2>
+            <p
+              className="rd-cta-desc"
+              dir={getInlineTextDir(review.ctaDesc)}
+              lang={getInlineLangAttr(review.ctaDesc)}
+            >
+              {review.ctaDesc}
+            </p>
             <div className="rd-cta-buttons">
               <button
                 className="rd-cta-btn rd-cta-btn-primary"

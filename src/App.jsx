@@ -180,6 +180,7 @@ function App() {
               <Route path="/تسوق/السوار" element={<TheBracelet />} />
               <Route path="/تسوق/مقارنة" element={<Compare />} />
               <Route path="/تسوق/التقييمات" element={<Reviews />} />
+              <Route path="/تسوق/التقييمات/:id" element={<ReviewDetail />} />
               <Route path="/لمقدمي-الرعاية" element={<ForCaregivers />} />
               <Route path="/عن/قصتنا" element={<OurStory />} />
               <Route path="/عن/الخصوصية" element={<PrivacySecurity />} />

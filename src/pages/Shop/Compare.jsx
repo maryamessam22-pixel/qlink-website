@@ -142,11 +142,19 @@ function Compare() {
         />
 
       </div>
-      <div className="compare-video-section scroll-animate">
-        <div className="compare-video-left">
-          <h3 className="cvs-heading">Built for Those<br />Who Matter Most</h3>
-          <p className="cvs-text">Q-Link is designed to keep your loved ones safe — whether at home or on the go. One tap connects them to help instantly.</p>
-          <p className="cvs-text">Trusted by families across the region to deliver peace of mind, every single day.</p>
+      <section
+        className="compare-video-section scroll-animate"
+        dir={lang === 'ar' ? 'rtl' : 'ltr'}
+        lang={lang}
+      >
+        <div className="compare-video-column compare-video-left">
+          <h3 className="cvs-heading">
+            {t('compare.videoLeftH1')}
+            <br />
+            {t('compare.videoLeftH2')}
+          </h3>
+          <p className="cvs-text">{t('compare.videoLeftP1')}</p>
+          <p className="cvs-text">{t('compare.videoLeftP2')}</p>
         </div>
         <video
           src={qlinkVideo}
@@ -156,12 +164,16 @@ function Compare() {
           playsInline
           className="compare-video"
         />
-        <div className="compare-video-right">
-          <h3 className="cvs-heading">Smart Tech,<br />Simple Safety</h3>
-          <p className="cvs-text">Powered by real-time GPS and emergency alerts, Q-Link bracelets respond the moment they're needed most.</p>
-          <p className="cvs-text">Two models. One mission — protecting the people you love with cutting-edge, wearable technology.</p>
+        <div className="compare-video-column compare-video-right">
+          <h3 className="cvs-heading">
+            {t('compare.videoRightH1')}
+            <br />
+            {t('compare.videoRightH2')}
+          </h3>
+          <p className="cvs-text">{t('compare.videoRightP1')}</p>
+          <p className="cvs-text">{t('compare.videoRightP2')}</p>
         </div>
-      </div>
+      </section>
       <SetupSection />
       <ShopCTA />
       <AppPromoSection imageSrc={promoAltImg} imgClassName="compare-promo-large" />

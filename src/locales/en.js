@@ -202,7 +202,19 @@ const translations = {
     fPrivacyV2: "Same protection core system",
     fBestFor: "Best For",
     fBestForV1: "Tech-savvy users",
-    fBestForV2: "Users who prefer quick activation"
+    fBestForV2: "Users who prefer quick activation",
+    videoLeftH1: "Built for Those",
+    videoLeftH2: "Who Matter Most",
+    videoLeftP1:
+      "Q-Link is designed to keep your loved ones safe — whether at home or on the go. One tap connects them to help instantly.",
+    videoLeftP2:
+      "Trusted by families across the region to deliver peace of mind, every single day.",
+    videoRightH1: "Smart Tech,",
+    videoRightH2: "Simple Safety",
+    videoRightP1:
+      "Powered by real-time GPS and emergency alerts, Q-Link bracelets respond the moment they're needed most.",
+    videoRightP2:
+      "Two models. One mission — protecting the people you love with cutting-edge, wearable technology."
   },
   privacy: {
     heroTitle: "Privacy & ",

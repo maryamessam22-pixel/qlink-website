@@ -242,6 +242,7 @@
   color: var(--text-secondary);
   line-height: 1.6;
   margin-bottom: 24px;
+  unicode-bidi: isolate;
 }
 
 .read-more-link {
@@ -255,7 +256,7 @@
   align-items: center;
   gap: 4px;
   transition: opacity 0.2s;
-  margin-left: auto;
+  margin-inline-start: auto;
   margin-top: auto;
   padding-top: 8px;
 }

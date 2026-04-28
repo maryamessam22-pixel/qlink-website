@@ -167,20 +167,27 @@ body.rtl-active .compare-hero {
   box-shadow: 0 8px 40px rgba(0, 151, 178, 0.18);
 }
 
-.compare-video-left,
-.compare-video-right {
+.compare-video-column {
   flex: 1;
   display: flex;
   flex-direction: column;
   gap: 14px;
 }
 
-.compare-video-left {
-  text-align: right;
+.compare-video-section[dir="ltr"] .compare-video-left {
+  text-align: end;
 }
 
-.compare-video-right {
-  text-align: left;
+.compare-video-section[dir="ltr"] .compare-video-right {
+  text-align: start;
+}
+
+.compare-video-section[dir="rtl"] .compare-video-left {
+  text-align: start;
+}
+
+.compare-video-section[dir="rtl"] .compare-video-right {
+  text-align: end;
 }
 
 .cvs-heading {
@@ -208,8 +215,7 @@ body.rtl-active .compare-hero {
     gap: 24px;
   }
 
-  .compare-video-left,
-  .compare-video-right {
+  .compare-video-section .compare-video-column {
     text-align: center;
   }
 

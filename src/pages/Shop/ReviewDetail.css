@@ -171,6 +171,7 @@
   margin: 0 0 20px;
   border: none;
   padding: 0;
+  unicode-bidi: isolate;
 }
 
 .rd-verified-tag {
@@ -212,6 +213,7 @@
   color: var(--text-secondary);
   line-height: 1.8;
   margin: 0 0 20px;
+  unicode-bidi: isolate;
 }
 
 .rd-story-para:last-child {
