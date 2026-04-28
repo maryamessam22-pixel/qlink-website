@@ -11,15 +11,29 @@ export default function FloatingSidebar() {
   const { isLight, toggleTheme } = useTheme();
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
-  const { pathname } = useLocation();
+  const { pathname, search } = useLocation();
 
   const handleLangSwitch = () => {
     const targetLang = lang === 'en' ? 'ar' : 'en';
-    const newPath = switchLangPath(pathname, targetLang);
     setLang(targetLang);
+
+    const params = new URLSearchParams(search);
+    params.set('lang', targetLang);
+    const langQuery = `?${params.toString()}`;
+
+    if (pathname === '/') {
+      navigate(`/${langQuery}`);
+      return;
+    }
+
+    const newPath = switchLangPath(pathname, targetLang);
     if (newPath !== pathname) {
       navigate(newPath);
+      return;
     }
+
+    // Keep explicit language when path is neutral/unchanged.
+    navigate(`${pathname}${langQuery}`);
   };
 
   return (
