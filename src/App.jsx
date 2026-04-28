@@ -40,6 +40,7 @@ import CompletePurchase from './pages/CompletePurchase';
 // Auth
 import AuthPage from './pages/Auth/AuthPage';
 import EmergencyPreview from './pages/HowItWorks/EmergencyPreview';
+import NotFound from './pages/NotFound';
 
 // Protected routes: redirect to home if not logged in (no modal here — avoids popup on refresh).
 // In-app navigation to these routes uses openModalWithRoute / guarded links so the login modal still appears when the user chooses a page.
@@ -151,7 +152,7 @@ function App() {
               <Route path="/الدفع" element={<Checkout />} />
             </Route>
           </Route>
-          <Route path="*" element={<Navigate to="/" replace />} />
+          <Route path="*" element={<NotFound />} />
 
         </Routes>
       </div>
