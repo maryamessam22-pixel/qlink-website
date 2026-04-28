@@ -73,6 +73,10 @@ function Home() {
   };
 
   useEffect(() => {
+    document.title = 'Qlink | Smart Emergency QR Bracelet | Q-Link';
+  }, []);
+
+  useEffect(() => {
     const fetchContent = async () => {
       try {
         const { data: seo } = await supabase

@@ -4,7 +4,7 @@ import { ShoppingCart, User, Menu, X, LogOut } from 'lucide-react';
 import { LanguageContext } from '../../context/LanguageContext';
 import { AuthContext } from '../../context/AuthContext';
 import { useCart } from '../../context/CartContext';
-import { enToAr } from '../../routeMap';
+import { enToAr, arToEn } from '../../routeMap';
 import Dropdown from './Dropdown';
 import Logo from './Logo';
 import ThemeToggleButton from '../common/ThemeToggleButton';
@@ -22,6 +22,7 @@ function Navbar() {
   const closeMobileMenu = () => setIsMobileMenuOpen(false);
 
   const p = (enPath) => lang === 'ar' ? (enToAr[enPath] ?? enPath) : enPath;
+  const enPathname = arToEn[pathname] ?? pathname;
 
 
   const handleGuardedNav = (e, href) => {
@@ -57,7 +58,7 @@ function Navbar() {
             <Link
               to="/"
               onClick={closeMobileMenu}
-              className={`nav-link ${pathname === '/' ? 'active' : ''}`}
+              className={`nav-link ${enPathname === '/' ? 'active' : ''}`}
             >
               {t('nav.home')}
             </Link>
@@ -66,7 +67,6 @@ function Navbar() {
           <li>
             <Dropdown
               label={t('nav.howItWorks')}
-              isActive={pathname.startsWith('/how-it-works') || pathname.startsWith('/كيف-يعمل')}
               items={[
                 { name: t('nav.drop.howQlink'), href: p('/how-it-works/qlink') },
                 { name: t('nav.drop.emergency'), href: p('/how-it-works/emergency') },
@@ -77,7 +77,6 @@ function Navbar() {
           <li>
             <Dropdown
               label={t('nav.shop')}
-              isActive={pathname.startsWith('/shop') || pathname.startsWith('/تسوق')}
               items={[
                 { name: t('nav.drop.bracelet'), href: p('/shop/bracelet') },
                 { name: t('nav.drop.compare'), href: p('/shop/compare') },
@@ -91,7 +90,7 @@ function Navbar() {
           <li>
             <Link
               to={p('/for-caregivers')}
-              className={`nav-link ${pathname.startsWith('/for-caregivers') || pathname.startsWith('/لمقدمي-الرعاية') ? 'active' : ''}`}
+              className={`nav-link ${enPathname.startsWith('/for-caregivers') ? 'active' : ''}`}
               onClick={(e) => handleGuardedNav(e, p('/for-caregivers'))}
             >
               {t('nav.forCaregivers')}
@@ -101,7 +100,6 @@ function Navbar() {
           <li>
             <Dropdown
               label={t('nav.about')}
-              isActive={pathname.startsWith('/about') || pathname.startsWith('/عن')}
               items={[
                 { name: t('nav.drop.story'), href: p('/about/our-story') },
                 { name: t('nav.drop.privacy'), href: p('/about/privacy') },
@@ -112,7 +110,6 @@ function Navbar() {
           <li>
             <Dropdown
               label={t('nav.support')}
-              isActive={pathname.startsWith('/support') || pathname.startsWith('/الدعم')}
               items={[
                 { name: t('nav.drop.help'), href: p('/support/help-center') },
                 { name: t('nav.drop.faqs'), href: p('/support/faqs') },

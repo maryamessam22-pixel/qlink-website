@@ -3,10 +3,13 @@ import { ChevronDown } from 'lucide-react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
 
-function Dropdown({ label, items, isActive, onItemClick }) {
+function Dropdown({ label, items, onItemClick }) {
   const { pathname } = useLocation();
   const navigate  = useNavigate();
   const { isAuthenticated, openModalWithRoute } = useContext(AuthContext);
+
+  const decodedPathname = decodeURIComponent(pathname);
+  const isActive = items.some(item => decodedPathname === decodeURIComponent(item.href));
 
   const handleItemClick = (e, href) => {
     e.preventDefault();
@@ -29,7 +32,7 @@ function Dropdown({ label, items, isActive, onItemClick }) {
           <Link
             key={index}
             to={item.href}
-            className={pathname === item.href ? 'submenu-active' : ''}
+            className={decodedPathname === decodeURIComponent(item.href) ? 'submenu-active' : ''}
             onClick={(e) => handleItemClick(e, item.href)}
           >
             {item.name}
