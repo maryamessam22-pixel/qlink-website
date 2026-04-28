@@ -1,7 +1,6 @@
 .nova-details-container {
   min-height: 100vh;
   padding-top: 150px;
-  /* background-color: transparent; */
   position: relative;
   z-index: 1;
   color: var(--text-primary);
@@ -29,7 +28,6 @@
   opacity: 0.8;
 }
 
-/* Product Top Section */
 .nova-product-top {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -451,7 +449,6 @@
   color: var(--text-muted);
 }
 
-/* Animation */
 .scroll-animate {
   opacity: 0;
   transform: translateY(30px);

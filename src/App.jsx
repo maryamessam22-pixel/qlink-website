@@ -14,7 +14,6 @@ import LoginModal from './components/common/LoginModal';
 import DynamicBackground from './components/common/DynamicBackground';
 import { useAuth } from './context/AuthContext';
 
-// Pages
 import Home from './pages/Home';
 import HowQlinkWorks from './pages/HowItWorks/HowQlinkWorks';
 import EmergencyScenario from './pages/HowItWorks/EmergencyScenario';
@@ -37,13 +36,10 @@ import CartScreen from './pages/CartScreen';
 import Checkout from './pages/Checkout';
 import CompletePurchase from './pages/CompletePurchase';
 
-// Auth
 import AuthPage from './pages/Auth/AuthPage';
 import EmergencyPreview from './pages/HowItWorks/EmergencyPreview';
 import NotFound from './pages/NotFound';
 
-// Protected routes: redirect to home if not logged in (no modal here — avoids popup on refresh).
-// In-app navigation to these routes uses openModalWithRoute / guarded links so the login modal still appears when the user chooses a page.
 const ProtectedRoute = () => {
   const { isAuthenticated } = useAuth();
 
@@ -107,12 +103,10 @@ function App() {
           <Route path="/auth" element={<AuthPage />} />
           <Route path="/how-it-works/emergency-preview" element={<EmergencyPreview />} />
 
-          {/* Public Home */}
           <Route element={<MainLayout />}>
             <Route path="/" element={<Home />} />
             
             <Route element={<ProtectedRoute />}>
-              {/* English routes */}
               <Route path="/complete-purchase" element={<CompletePurchase />} />
               <Route path="/how-it-works/qlink" element={<HowQlinkWorks />} />
               <Route path="/how-it-works/emergency" element={<EmergencyScenario />} />
@@ -134,7 +128,6 @@ function App() {
               <Route path="/support/download" element={<AppDownload />} />
               <Route path="/cart" element={<CartScreen />} />
               <Route path="/checkout" element={<Checkout />} />
-              {/* Arabic routes */}
               <Route path="/اكتمال-الشراء" element={<CompletePurchase />} />
               <Route path="/كيف-يعمل/كيو-لينك" element={<HowQlinkWorks />} />
               <Route path="/كيف-يعمل/الطوارئ" element={<EmergencyScenario />} />

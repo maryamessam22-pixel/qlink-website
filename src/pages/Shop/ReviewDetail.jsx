@@ -28,7 +28,6 @@ const publicReviewBody = (text) => {
   return text.slice(0, i).trim();
 };
 
-/** CMS fields on `reviews`; supports typo column names with a space before `_en` / `_ar`. */
 const pickReviewTitle = (row, lang) => {
   if (!row) return '';
   const en = row.title_en;

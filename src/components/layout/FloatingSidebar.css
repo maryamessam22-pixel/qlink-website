@@ -9,7 +9,6 @@
   align-items: center;
 }
 
-/* Always-visible tab */
 .fsb-tab {
   position: relative;
   z-index: 2;
@@ -36,10 +35,9 @@
   background: var(--bg-surface-highlight);
 }
 
-/* Sliding panel — sits to the right of the tab, slides in/out */
 .fsb-body {
   position: absolute;
-  right: 20px; /* start just behind the tab */
+  right: 20px;
   top: 50%;
   transform: translateY(-50%) translateX(100%);
   display: flex;

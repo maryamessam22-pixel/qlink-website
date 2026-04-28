@@ -431,7 +431,6 @@ html[data-theme="light"] .rd-cta-btn-primary:hover {
   border-radius: 8px;
 }
 
-/* ── RESPONSIVE ── */
 @media (max-width: 900px) {
   .rd-page {
     padding-top: 60px;

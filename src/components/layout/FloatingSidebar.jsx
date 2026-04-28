@@ -22,7 +22,6 @@ export default function FloatingSidebar() {
 
   return (
     <div className={`floating-sidebar ${open ? 'fsb-open' : 'fsb-closed'}`}>
-      {/* Toggle tab — always visible */}
       <button className="fsb-tab" onClick={() => setOpen(o => !o)} aria-label="Toggle sidebar">
         {open
           ? <ChevronRight size={14} strokeWidth={2.5} />
@@ -30,7 +29,6 @@ export default function FloatingSidebar() {
         }
       </button>
 
-      {/* Buttons — slide in/out */}
       <div className="fsb-body">
         <button className="fsb-btn fsb-lang" onClick={handleLangSwitch} aria-label="Toggle language">
           {lang === 'en' ? 'AR' : 'EN'}

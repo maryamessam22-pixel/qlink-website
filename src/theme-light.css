@@ -1,6 +1,3 @@
-/* Jost loads from public/index.html for early fetch (heading font in light mode). */
-
-/* Light theme: clinical / medical-tech aesthetic (soft surfaces, blue CTAs, red = emergency only) */
 html[data-theme="light"] {
   --app-body-bg: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 55%, #eef2f6 100%);
 
@@ -13,9 +10,7 @@ html[data-theme="light"] {
   --bg-surface-highlight: #e2e8f0;
   --bg-surface-deep: #f1f5f9;
 
-  /* Headings & high-emphasis type */
   --text-primary: #0f172a;
-  /* Body copy */
   --text-secondary: #475569;
   --text-muted: #64748b;
   --text-muted-dark: #94a3b8;
@@ -23,18 +18,15 @@ html[data-theme="light"] {
   --border-subtle: #cbd5e1;
   --border-light: rgba(15, 23, 42, 0.1);
 
-  /* Primary actions & navigation accent — trustworthy blue */
   --color-cta-primary: #2563eb;
   --color-cta-primary-hover: #1d4ed8;
   --color-cta-shadow: rgba(37, 99, 235, 0.28);
 
-  /* Emergency / critical only (e.g. hero “Scan”) */
   --color-emergency: #dc2626;
 
   --color-primary-blue: #2563eb;
   --color-brand-blue-glow: #3b82f6;
 
-  /* Footer: light clinical band (logo + dark type) */
   --footer-surface-bg: #f1f5f9;
   --footer-surface-text: #0f172a;
   --footer-surface-muted: #475569;
@@ -50,7 +42,6 @@ html[data-theme="light"] .App {
   font-family: 'Roboto', sans-serif;
 }
 
-/* Headings: slate + Century Gothic stack (Jost loads for the web); RTL keeps Arabic from body rules */
 html[data-theme="light"] body:not(.rtl-active) h1,
 html[data-theme="light"] body:not(.rtl-active) h2,
 html[data-theme="light"] body:not(.rtl-active) h3,
@@ -69,12 +60,10 @@ html[data-theme="light"] body:not(.rtl-active) .bracelet-title {
   color: var(--text-primary);
 }
 
-/* Light: accent text & highlights use medical blue (dark keeps red .red-text) */
 html[data-theme="light"] .red-text {
   color: var(--color-cta-primary);
 }
 
-/* Home “QR / scan” card: red icon + tint in dark, blue in light */
 html[data-theme="light"] .info-card.bg-blue-light .icon-wrap {
   color: var(--color-cta-primary) !important;
 }
@@ -84,17 +73,14 @@ html[data-theme="light"] .bg-blue-light {
   background: rgba(37, 99, 235, 0.08) !important;
 }
 
-/* Help Center & similar: inline red icons → blue in light */
 html[data-theme="light"] .icon-wrap.icon-wrap-red {
   color: var(--color-cta-primary) !important;
 }
 
-/* Emergency feature rows: row 3 accent — blue in light, warm red in dark */
 html[data-theme="light"] .es-feature-row:nth-child(3) .es-f-subtitle {
   color: var(--color-cta-primary);
 }
 
-/* Setup section: blue step orb + icon in light only */
 html[data-theme="light"] .setup-section-wrapper .ball-3 {
   background: var(--color-primary-blue);
 }
@@ -138,7 +124,6 @@ html[data-theme="light"] .dropdown-content a.submenu-active {
   font-weight: 700;
 }
 
-/* Navigation: blue accent — not emergency red */
 html[data-theme="light"] .navbar-links li a.active,
 html[data-theme="light"] .dropbtn.active {
   background-color: var(--color-cta-primary);
@@ -165,7 +150,6 @@ html[data-theme="light"] .cart-badge {
   color: #fff;
 }
 
-/* Primary CTAs — medical blue */
 html[data-theme="light"] .btn-primary {
   background-color: var(--color-cta-primary);
   color: #fff;
@@ -268,7 +252,6 @@ html[data-theme="light"] .btn-secondary:hover {
   color: var(--text-primary);
 }
 
-/* Home duplicates .btn-secondary with navy hover; keep light surfaces */
 html[data-theme="light"] .home-wrapper .btn-secondary:hover {
   background: rgba(255, 255, 255, 0.98);
   color: var(--text-primary);
@@ -292,7 +275,6 @@ html[data-theme="light"] .auth-modal-input {
   background: rgba(15, 23, 42, 0.04);
 }
 
-/* Home: app promo band */
 html[data-theme="light"] .app-section-wrapper {
   background: linear-gradient(
     135deg,
@@ -329,7 +311,6 @@ html[data-theme="light"] .ball-1 {
   opacity: 0.22 !important;
 }
 
-/* AI Assistant — modal & chat */
 html[data-theme="light"] .ai-chat-overlay {
   background: rgba(15, 23, 42, 0.4);
 }
@@ -474,7 +455,6 @@ html[data-theme="light"] .ai-message-bubble.user {
   color: #fff;
 }
 
-/* Product / shop primary actions in light */
 html[data-theme="light"] .btn-buy,
 html[data-theme="light"] .cart-checkout-btn,
 html[data-theme="light"] .cart-empty-btn,
@@ -547,7 +527,6 @@ html[data-theme="light"] .contact-btn-red:hover {
   background: var(--color-cta-primary-hover);
 }
 
-/* ── Footer: inputs + subscribe (tokens already light) ── */
 html[data-theme="light"] .footer-container .subscribe-form input {
   background: #ffffff;
   border: 1px solid var(--border-subtle);
@@ -567,7 +546,6 @@ html[data-theme="light"] .footer-container .subscribe-form button:hover {
   background: var(--color-cta-primary-hover);
 }
 
-/* ── App Download: dark hero slab + white type; sections use clinical cards ── */
 html[data-theme="light"] .app-download-page .ad-hero-container {
   background: linear-gradient(145deg, #0f172a 0%, #1e293b 52%, #0f172a 100%);
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -664,7 +642,6 @@ html[data-theme="light"] .app-download-page .ad-section-title {
   color: var(--text-primary);
 }
 
-/* How Qlink Works + Emergency: full-bleed heroes stay white on dark overlay */
 html[data-theme="light"] .how-works-page .hw-hero-overlay {
   background: linear-gradient(
     to bottom,
@@ -727,7 +704,6 @@ html[data-theme="light"] .es-page .es-hero .btn-secondary:hover {
   color: #fff;
 }
 
-/* Reviews: featured band — light panel + dark type */
 html[data-theme="light"] .reviews-page-container .quote-overlay {
   background: linear-gradient(
     to top,
@@ -757,7 +733,6 @@ html[data-theme="light"] .read-more-link {
   color: var(--color-cta-primary);
 }
 
-/* Review detail: content cards match light surfaces */
 html[data-theme="light"] .rd-story-card,
 html[data-theme="light"] .rd-list-card {
   background: var(--bg-card);
@@ -811,7 +786,6 @@ html[data-theme="light"] .how-works-page .timeline-card {
   box-shadow: 0 8px 28px rgba(15, 23, 42, 0.08);
 }
 
-/* Navbar: logout — neutral in light (not emergency red) */
 html[data-theme="light"] .logout-btn {
   background: rgba(15, 23, 42, 0.06);
   border: 1px solid var(--border-subtle);
@@ -824,7 +798,6 @@ html[data-theme="light"] .logout-btn:hover {
   color: var(--text-primary);
 }
 
-/* Home hero: theme toggle must not ease color/font */
 html[data-theme="light"] .home-wrapper .hero-title,
 html[data-theme="light"] .home-wrapper .hero-desc,
 html[data-theme="light"] .home-wrapper .hero-desc p,
@@ -833,7 +806,6 @@ html[data-theme="light"] .home-wrapper .hero-title .red-text {
     transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-/* ── About: Our Story — light surfaces, dark type, blue accents ── */
 html[data-theme="light"] .our-story-detailed-page .badge-red,
 html[data-theme="light"] .our-story-detailed-page .badge-red-small {
   color: var(--color-cta-primary);
@@ -968,7 +940,6 @@ html[data-theme="light"] .our-story-detailed-page .member-photo-wrapper {
   border-color: var(--border-light);
 }
 
-/* ── About: Privacy & Security — promise + grid cards on light surfaces ── */
 html[data-theme="light"] .privacy-security-page .ps-header .red-text {
   color: var(--color-cta-primary);
 }

@@ -357,7 +357,6 @@
 .stag-2 { transition-delay: 0.2s; }
 .stag-3 { transition-delay: 0.3s; }
 
-/* RTL  */
 .rtl-text {
     text-align: right;
 }

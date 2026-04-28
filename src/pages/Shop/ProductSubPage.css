@@ -293,7 +293,6 @@
 }
 .privacy-check { color: #10b981; flex-shrink: 0; margin-top: 3px; }
 
-/* ── LOADING STATE ── */
 .subpage-loading-container {
   min-height: 100vh;
   display: flex;
@@ -329,7 +328,6 @@
   40% { transform: scale(1); opacity: 1; }
 }
 
-/* ── ANIMATIONS ── */
 .scroll-animate {
   opacity: 0;
   transform: translateY(30px);
@@ -383,7 +381,6 @@
 }
 
 
-/* ── RESPONSIVE ── */
 @media (max-width: 900px) {
   .subpage-product-top {
     grid-template-columns: 1fr;

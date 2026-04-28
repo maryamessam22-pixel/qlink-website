@@ -19,7 +19,7 @@ const PulseDetails = () => {
   
   const [qty, setQty] = useState(1);
   const [activeColor, setActiveColor] = useState('gray');
-  const [strapType, setStrapType] = useState('solid'); // 'solid' or 'woven'
+  const [strapType, setStrapType] = useState('solid');
   const [rating, setRating] = useState(5);
   const [hoverRating, setHoverRating] = useState(0);
   
@@ -40,7 +40,6 @@ const PulseDetails = () => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        // Fetch Product Details
         const { data: prodData } = await supabase
           .from('products')
           .select('*')
@@ -52,7 +51,6 @@ const PulseDetails = () => {
           setSelectedImg(prodData.image_url);
         }
 
-        // Fetch SEO Details
         const { data: seo } = await supabase
           .from('seo')
           .select('*')
@@ -70,7 +68,6 @@ const PulseDetails = () => {
     fetchData();
   }, []);
 
-  // Animation Observer
   useEffect(() => {
     if (loading || !product) return; 
 
@@ -95,7 +92,6 @@ const PulseDetails = () => {
 
   const mainImg = product?.image_url;
   
-  // My Images that i add at Supabase is (JSON string or array)
   const galleryImages = React.useMemo(() => {
     if (!product?.['gallery-images']) return [];
     try {

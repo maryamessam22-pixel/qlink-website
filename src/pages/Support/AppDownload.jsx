@@ -40,7 +40,6 @@ const AppDownload = () => {
   const locale = isArabic ? 'ar' : 'en';
   const altLocale = isArabic ? 'en' : 'ar';
 
-  /** CMS hyphen keys: card-one-title-en, card-one-desc-ar, … */
   const cmsCardField = (row, ordinal, part) => {
     if (!row) return null;
     const k = `card-${ordinal}-${part}-${locale}`;
@@ -182,7 +181,6 @@ const AppDownload = () => {
         }
         slug={seoData ? seoData.slug : "app-download"}
       />
-      {/* Backdrop: DynamicBackground is mounted once in App.jsx — do not add it here */}
       <section className="ad-hero-wrapper scroll-animate">
         <div className="ad-hero-container">
           <div className="ad-hero-content">

@@ -9,19 +9,16 @@ import './Faqs.css';
 function Faqs() {
   const { lang, t } = useContext(LanguageContext);
 
-  // State 
   const [faqs, setFaqs]           = useState([]);
   const [seoData, setSeoData]     = useState(null); 
   const [loading, setLoading]     = useState(true);
   const [activeIdx, setActiveIdx] = useState(null);
   const [searchQuery, setSearch]  = useState('');
 
-  // Supabase fetch 
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        // 1. Fetch FAQs
         const { data: faqsData, error: faqsError } = await supabase
           .from('faqs')
           .select('id, question_en, question_ar, answer_en, answer_ar, display_order')
@@ -92,8 +89,7 @@ function Faqs() {
 
   return (
     <div className="faqs-wrapper">
-      {/* SEO Component */}
-      <SEO 
+      <SEO
         title={
           seoData 
             ? (isArabic ? seoData.title_ar : seoData.title_en) 
@@ -109,7 +105,6 @@ function Faqs() {
 
       <div className={`faqs-content ${isArabic ? 'rtl-text' : ''}`}>
 
-        {/* HERO */}
         <section className="faqs-hero-section scroll-animate stag-1">
           <h1>
             {t('faqsPage.heroTitle')}
@@ -117,7 +112,6 @@ function Faqs() {
           </h1>
           <p>{t('faqsPage.heroDesc')}</p>
 
-          {/* Search */}
           <div className="faqs-search-wrap">
             <input
               id="faqs-search"
@@ -131,7 +125,6 @@ function Faqs() {
           </div>
         </section>
 
-        {/* ACCORDION */}
         <div className="scroll-animate stag-3" style={{ marginTop: '48px' }}>
           {loading ? (
             <div className="faqs-loading">
@@ -166,7 +159,6 @@ function Faqs() {
           )}
         </div>
 
-        {/* CTA */}
         <div className="faqs-cta-section scroll-animate stag-2">
           <h2>{t('faqsPage.ctaTitle')}</h2>
           <p>{t('faqsPage.ctaDesc')}</p>

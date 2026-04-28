@@ -6,7 +6,6 @@
 .for-caregivers-page {
   min-height: 100vh;
   position: relative;
-  /* background: linear-gradient(180deg, #12203a 0%, #0a1423 100%); */
   color: var(--text-primary);
   overflow: hidden;
 }
@@ -28,7 +27,6 @@
   align-items: center;
   justify-content: space-between;
   gap: 40px;
-  /* padding: 150px 24px; */
   padding-bottom: 0px;
   padding-top: 150px;
   padding-left: 24px;
@@ -160,9 +158,6 @@
 
 .fc-connect-image img {
   width: 100%;
-  /* border-radius: 20px;
-  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.6);
-  border: 1px solid rgba(255, 255, 255, 0.1); */
 }
 
 .fc-connect-info {
@@ -505,8 +500,19 @@
 
 @media (max-width: 768px) {
   .fc-container {
-    padding: 30px 0px 60px;
+    padding: 30px 0px  60px;
   }
+
+   .fc-feature-item.scroll-animate.stag-1.is-visible {
+    margin-left: 24px;
+  }
+  .fc-feature-item.scroll-animate.stag-2.is-visible {
+    margin-left: 24px;
+  }
+  .fc-feature-item.scroll-animate.stag-3.is-visible {
+    margin-left: 24px;
+  } 
+ 
 
   .fc-hero {
     padding-top: 120px;

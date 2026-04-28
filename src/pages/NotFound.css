@@ -119,7 +119,6 @@
   transform: translateY(-2px);
 }
 
-/* Light theme overrides */
 html[data-theme="light"] .nf-code {
   background: linear-gradient(135deg, #3b82f6 0%, #116BFD 100%);
   -webkit-background-clip: text;
@@ -128,7 +127,6 @@ html[data-theme="light"] .nf-code {
   filter: drop-shadow(0 0 30px rgba(17, 107, 253, 0.25));
 }
 
-/* Arabic font */
 .rtl-active .nf-title,
 .rtl-active .nf-desc,
 .rtl-active .nf-btn-primary,

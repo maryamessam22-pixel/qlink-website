@@ -1,11 +1,8 @@
 .es-page {
-  /* background: linear-gradient(180deg, #1D2C4B 0%, #192149 100%); */
   min-height: 100vh;
   color: var(--text-primary);
   padding-bottom: 0px;
   position: relative;
-  /* overflow-x: hidden; */
-  /* overflow-y: hidden; */
   font-family: var(--font-family-primary);
 }
 
@@ -281,7 +278,6 @@ html[data-theme="light"] .es-hero {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  /* padding: 0 24px; */
   padding-left: 24px;
   padding-right: 24px;
   padding-top: 0px;

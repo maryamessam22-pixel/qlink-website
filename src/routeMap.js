@@ -1,4 +1,3 @@
-// Bidirectional route map: English path → Arabic path
 export const enToAr = {
   '/': '/',
   '/how-it-works/qlink': '/كيف-يعمل/كيو-لينك',
@@ -18,14 +17,10 @@ export const enToAr = {
   '/complete-purchase': '/اكتمال-الشراء',
 };
 
-// Reverse map: Arabic path → English path
 export const arToEn = Object.fromEntries(
   Object.entries(enToAr).map(([en, ar]) => [ar, en])
 );
 
-/**
- * Given the current pathname and target language, return the equivalent path.
- */
 export function switchLangPath(currentPath, targetLang) {
   if (targetLang === 'ar') {
     return enToAr[currentPath] ?? currentPath;

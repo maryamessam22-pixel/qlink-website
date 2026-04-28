@@ -7,18 +7,16 @@ import { HelpCircle } from 'lucide-react';
 import { supabase } from '../../lib/Supabase';
 import './Contact.css';
 
-// Assets
 import mobileVisuals from '../../assets/images/mobile3rd.png';
 
 function Contact() {
   const { lang, t } = useContext(LanguageContext);
   
   const [seoData, setSeoData] = useState(null);
-  const [cms, setCms] = useState({}); // State لتخزين بيانات الـ CMS
+  const [cms, setCms] = useState({});
 
   const isArabic = typeof lang === 'string' && lang.toLowerCase().includes('ar');
 
-  // دالة مساعدة لجلب النص حسب اللغة
   const pick = (row, field) => {
     if (!row) return null;
     return isArabic ? row[`${field}_ar`] : row[`${field}_en`];
@@ -27,7 +25,6 @@ function Contact() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // 1. Fetch SEO
         const { data: seo } = await supabase
           .from('seo')
           .select('*')
@@ -35,11 +32,10 @@ function Contact() {
           .single();
         if (seo) setSeoData(seo);
 
-        // 2. Fetch CMS Content (سحب بيانات التواصل والأبلكيشن)
         const { data: content } = await supabase
           .from('cms_content')
           .select('*')
-          .in('section_key', ['contact_info', 'home_app_section']); // ضيفي أي keys تانية محتاجاها هنا
+          .in('section_key', ['contact_info', 'home_app_section']);
 
         if (content) {
           const map = {};
@@ -54,7 +50,6 @@ function Contact() {
     fetchData();
   }, [lang]);
 
-  // Animations Observer
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -79,7 +74,6 @@ function Contact() {
         slug={seoData ? seoData.slug : "support/contact"}
       />
       
-      {/* 1. Hero - Dynamic from contact_info */}
       <section className="contact-hero scroll-animate stag-1">
         <h1>
           {cms['contact_info'] ? pick(cms['contact_info'], 'title') : (isArabic ? 'تواصل معنا' : 'Get in Touch')}
@@ -87,12 +81,10 @@ function Contact() {
         <p dangerouslySetInnerHTML={{ __html: cms['contact_info'] ? pick(cms['contact_info'], 'subtitle') : (isArabic ? 'هل لديك أسئلة؟' : 'Have questions?') }} />
       </section>
 
-      {/* 2. Contact Main (Form + Info) */}
       <div className="contact-main-wrapper">
         <ContactSection />
       </div>
 
-      {/* 3. Questions CTA */}
       <section className="questions-cta-section scroll-animate stag-2">
         <div className="q-icon">
           <HelpCircle size={32} />
@@ -104,7 +96,6 @@ function Contact() {
         </button>
       </section>
 
-      {/* 4. Stay Updated (Newsletter) */}
       <section className="newsletter-section scroll-animate stag-3">
         <h2>{isArabic ? 'ابق على اطلاع' : 'Stay Updated'}</h2>
         <p>{isArabic ? 'اشترك في نشرتنا الإخبارية للحصول على أحدث نصائح الأمان.' : 'Subscribe for the latest safety tips.'}</p>
@@ -114,8 +105,7 @@ function Contact() {
         </div>
       </section>
 
-      {/* 5. Install App - Dynamic from home_app_section */}
-      <AppPromoSection 
+      <AppPromoSection
         imageSrc={mobileVisuals}
         customTitle={cms['home_app_section'] ? pick(cms['home_app_section'], 'title') : (isArabic ? 'ثبت التطبيق ' : 'Install the App ')}
         customFocus={isArabic ? 'الآن!' : 'Now!'}

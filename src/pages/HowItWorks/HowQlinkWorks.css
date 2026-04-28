@@ -1,6 +1,4 @@
 .how-works-page {
-  /* background: linear-gradient(180deg, #1D2C4B 0%, #192149 100%); */
-  /* background: linear-gradient(180deg, #12203a 0%, #0a1423 100%); */
   min-height: 100vh;
   color: var(--text-primary);
   padding-bottom: 100px;
@@ -334,7 +332,6 @@
   line-height: 1.6;
 }
 
-/* One video + feathered lens: blur via backdrop-filter mask (no second <video>) */
 .features-video-wrapper.hw-lens-wrapper {
   position: relative;
   width: 100%;
@@ -366,7 +363,6 @@
   transform: scale(1.02);
 }
 
-/* Soft feathered “window”: transparent center shows sharp video; edges blur what’s behind */
 .hw-blur-overlay {
   position: absolute;
   inset: 0;
@@ -481,7 +477,6 @@
 
 @media (max-width: 768px) {
 
-  /* Hide the vertical line when cards stack vertically */
   .timeline-container::before {
     display: none;
   }

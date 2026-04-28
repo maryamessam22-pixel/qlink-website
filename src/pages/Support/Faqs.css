@@ -264,7 +264,6 @@
   flex-direction: row-reverse;
 }
 
-/* RESPONSIVE    */
 @media (max-width: 768px) {
   .faqs-wrapper {
     padding-top: 100px;

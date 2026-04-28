@@ -400,7 +400,6 @@
   display: block;
 }
 
-/* RESPONSIVE */
 @media (max-width: 991px) {
   .ad-hero-container {
     flex-direction: column;
@@ -455,7 +454,6 @@
   }
 }
 
-/* RTL SUPPORT */
 .rtl-text .btn-text,
 .rtl-text .ad-hero-buttons {
   direction: ltr;

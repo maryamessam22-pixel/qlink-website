@@ -1,4 +1,3 @@
-/* ── Page shell ── */
 .ep-page {
   min-height: 100vh;
   background: #0f1826;
@@ -15,7 +14,6 @@
   box-sizing: border-box;
 }
 
-/* ── Header ── */
 .ep-header {
   width: 100%;
   max-width: 900px;
@@ -52,7 +50,6 @@
   border-color: rgba(255,255,255,0.55);
 }
 
-/* ── Nav ── */
 .ep-nav {
   width: 100%;
   max-width: 900px;
@@ -81,7 +78,6 @@
   color: #fff;
 }
 
-/* ── Hero ── */
 .ep-hero {
   width: 100%;
   background: linear-gradient(160deg, #d62b2b 0%, #b91c1c 100%);
@@ -117,7 +113,6 @@
   margin: 0;
 }
 
-/* ── Body cards ── */
 .ep-body {
   width: 100%;
   max-width: 900px;
@@ -166,7 +161,6 @@
   margin: 0;
 }
 
-/* ── Contacts ── */
 .ep-contact-row {
   display: flex;
   justify-content: space-between;
@@ -211,7 +205,6 @@
   transform: scale(1.05);
 }
 
-/* ── CTA ── */
 .ep-cta {
   width: 100%;
   background: #131c2f;
@@ -274,7 +267,6 @@
 
 .ep-cta-secondary:hover { background: rgba(255,255,255,0.08); }
 
-/* ── Footer ── */
 .ep-footer {
   width: 100%;
   background: #0d1520;
@@ -307,7 +299,6 @@
   margin: 0;
 }
 
-/* ── Responsive ── */
 @media (max-width: 520px) {
   .ep-cta {
     flex-direction: column;

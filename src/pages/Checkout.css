@@ -100,7 +100,6 @@
   border-color: #e03232;
 }
 
-/* Payment Method Styles */
 .checkout-payment-options {
   display: flex;
   flex-direction: column;
@@ -202,7 +201,6 @@
   box-shadow: 0 8px 24px rgba(224, 50, 50, 0.3);
 }
 
-/* Order Summary Column */
 .chk-summary-col {
   position: sticky;
   top: 140px;
@@ -337,7 +335,6 @@
   color: #10b981;
 }
 
-/* Promo Code Box */
 .promo-box {
   display: flex;
   gap: 10px;
@@ -370,12 +367,10 @@
   background: var(--border-subtle);
 }
 
-/* RTL Support */
 .rtl-text .checkout-layout {
   direction: rtl;
 }
 
-/* Animation Classes */
 .checkout-page .scroll-animate {
   opacity: 0;
   transform: translateY(30px);
@@ -392,7 +387,6 @@
 .stag-2 { transition-delay: 0.2s; }
 .stag-3 { transition-delay: 0.3s; }
 
-/* Responsive adjustments */
 @media (max-width: 1024px) {
   .checkout-layout {
     grid-template-columns: 1fr;

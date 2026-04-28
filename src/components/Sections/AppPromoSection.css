@@ -121,11 +121,11 @@
   height: auto;
   max-height: 550px;
   object-fit: contain;
-  margin-bottom: -180px;
+  margin-bottom: -85px;
+  margin-top: 50px;
   filter: drop-shadow(0 20px 50px rgba(0, 0, 0, 0.3));
 }
 
-/* RTL Support */
 .rtl-text {
   direction: rtl;
 }
@@ -147,7 +147,6 @@
   justify-content: flex-start;
 }
 
-/* Animations */
 .scroll-animate {
   opacity: 0;
   transform: translateY(40px);
@@ -167,7 +166,6 @@
   transition-delay: 0.4s;
 }
 
-/* Responsive Breakpoints */
 @media (max-width: 1024px) {
   .promo-content h2 {
     font-size: 36px;

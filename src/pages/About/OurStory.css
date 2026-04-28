@@ -1,7 +1,6 @@
 .our-story-detailed-page {
   min-height: 100vh;
   position: relative;
- /* background: rgba(16, 9, 62, 0.2); */
   color: var(--text-primary);
   padding-bottom: 120px;
   overflow-x: hidden;
@@ -448,7 +447,6 @@
   background: var(--color-primary-red-hover);
 }
 
-/* Animations */
 .scroll-animate {
   opacity: 0;
   transform: translateY(30px);
@@ -465,7 +463,6 @@
 .stag-2 { transition-delay: 200ms; }
 .stag-3 { transition-delay: 400ms; }
 
-/* RTL */
 .rtl-text { direction: rtl; text-align: right; }
 .rtl-text .main-title, .rtl-text .mission-glass-box, .rtl-text .core-values-section, .rtl-text .team-header, .rtl-text .story-final-cta {
   text-align: center;

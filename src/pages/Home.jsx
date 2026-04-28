@@ -64,7 +64,6 @@ function Home() {
     return lang === 'ar' ? row[`${field}_ar`] : row[`${field}_en`];
   };
 
-  /** CMS columns use hyphens: card-one-title-en, card-one-desc-ar, … */
   const cmsCard = (row, ordinal, part) => {
     if (!row) return null;
     const key = `card-${ordinal}-${part}-${lang}`;
@@ -172,7 +171,6 @@ function Home() {
               )}
             </h1>
 
-            {/* التعديل الأول: هنا استخدمنا dangerouslySetInnerHTML للـ Subtitle */}
             <div className="hero-desc scroll-animate stag-2">
               {cms['home_hero'] ? (
                 <span dangerouslySetInnerHTML={{ __html: pick(cms['home_hero'], 'subtitle') || '' }} />
@@ -301,7 +299,6 @@ function Home() {
               {cms['home_simple_secure'] ? pick(cms['home_simple_secure'], 'title') : t('splitFeature.title')}
             </h2>
             
-          {/* التعديل هنا: استخدمنا dangerouslySetInnerHTML للـ Content */}
             <div className="split-desc">
               {cms['home_simple_secure'] ? (
                 <span dangerouslySetInnerHTML={{ __html: pick(cms['home_simple_secure'], 'content') || '' }} />

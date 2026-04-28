@@ -71,7 +71,6 @@ function HowQlinkWorks() {
 
   const centerVideoSrc = watchVidSrc;
 
-  // Single video + feathered lens: follow pointer (mouse / touch / pen)
   useEffect(() => {
     const wrapper = lensRef.current;
     if (!wrapper) return;
@@ -267,21 +266,6 @@ function HowQlinkWorks() {
           />
         </div>
       </section>
-
-      {/* <section className={`hw-help-grid ${lang === 'ar' ? 'rtl-text' : ''}`}>
-        <HelpCard
-          icon={HelpCircle}
-          iconColor="#E03232"
-          title={t('howWorks.helpTitle')}
-          description={t('howWorks.helpDesc')}
-        />
-        <HelpCard
-          icon={PhoneCall}
-          iconColor="#10B981"
-          title={t('howWorks.helpTitle')}
-          description={t('howWorks.helpDesc')}
-        />
-      </section> */}
 
       <section className={`hw-cta-section ${lang === 'ar' ? 'rtl-text' : ''}`}>
         <h2 style={{ fontSize: '32px', fontWeight: '800' }}>{t('howWorks.ctaTitle')}</h2>

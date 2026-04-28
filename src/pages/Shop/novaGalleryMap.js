@@ -1,12 +1,3 @@
-/**
- * Nova gallery in Supabase: 8 items, adjacent solid + woven pairs:
- * 0–1 black | 2–3 silver/grey | 4–5 red | 6–7 blue
- *
- * Black: index 0 = solid (smooth band), index 1 = woven (braided band).
- *
- * Always index into the **original** gallery array (do not use filter(Boolean)
- * for lookups — that shifts indices and breaks solid vs woven).
- */
 export const NOVA_STRAP_GALLERY_INDEX = {
   black: { solid: 0, woven: 1 },
   grey: { solid: 2, woven: 3 },
@@ -14,7 +5,6 @@ export const NOVA_STRAP_GALLERY_INDEX = {
   blue: { solid: 6, woven: 7 },
 };
 
-/** Bundled fallbacks when CMS slots 0–1 are empty (black solid / woven). */
 export const NOVA_LOCAL_BLACK_SOLID = `${process.env.PUBLIC_URL || ''}/images/nova/black-solid.png`;
 export const NOVA_LOCAL_BLACK_WOVEN = `${process.env.PUBLIC_URL || ''}/images/nova/black-woven.png`;
 
@@ -29,7 +19,6 @@ export const parseProductGallery = (product) => {
   }
 };
 
-/** Pad to 8 slots; fill black solid/woven from `/public/images/nova/` if missing. */
 export const mergeNovaGallerySlots = (rawGallery) => {
   const out = Array.isArray(rawGallery)
     ? rawGallery.map((x) => (x == null ? '' : String(x)))
@@ -65,7 +54,6 @@ export const resolveNovaGalleryUrl = (galleryList, colorId, strap) => {
   return firstPresentUrl(galleryList);
 };
 
-/** When user clicks a gallery thumb by its real index, keep color + strap in sync */
 export const inferNovaSelectionFromGalleryIndex = (idx) => {
   if (idx === 0 || idx === 1) return { color: 'black', strap: idx === 1 ? 'woven' : 'solid' };
   if (idx === 2 || idx === 3) return { color: 'grey', strap: idx === 3 ? 'woven' : 'solid' };

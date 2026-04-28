@@ -203,7 +203,6 @@
 
 
  
-/* Responsive */
 @media (max-width: 480px) {
   .auth-modal {
     padding: 36px 24px;
@@ -211,7 +210,6 @@
   }
 }
 
-/* RTL Styles */
 .rtl-active.auth-modal {
   text-align: right;
 }

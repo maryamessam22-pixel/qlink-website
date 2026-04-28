@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import SEO from '../../components/common/SEO';
 import './EmergencyScenario.css';
 import { LanguageContext } from '../../context/LanguageContext';
-import { supabase } from '../../lib/Supabase'; 
+import { supabase } from '../../lib/Supabase';
 
 import heroImg from '../../assets/images/hero-emergency.png';
 import img1 from '../../assets/images/1img.png';

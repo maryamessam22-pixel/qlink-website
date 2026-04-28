@@ -19,6 +19,7 @@
   margin: 0 auto;
 }
 
+
 .compare-title {
   font-size: 42px;
   font-weight: 700;
@@ -29,6 +30,10 @@
 
 .compare-highlight {
   color: var(--color-primary-red);
+}
+
+html[data-theme="light"] .compare-highlight {
+  color: var(--color-primary-blue);
 }
 
 .compare-subtitle {
@@ -127,7 +132,6 @@ body.rtl-active .compare-hero {
   }
 }
 
-/* Specific Promo Image Overrides for Compare Screen */
 .compare-promo-large {
   max-height: 450px !important;
   transform: scale(1.15);

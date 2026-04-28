@@ -26,7 +26,6 @@ function AuthPage() {
     setShowLoginModal(false);
   }, [setShowLoginModal]);
 
-  // States الأساسية
   const [seoData, setSeoData] = useState(null);
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');

@@ -26,7 +26,6 @@ const loadStoredIdentity = () => {
       };
     }
   } catch {
-    /* ignore */
   }
   return null;
 };
@@ -44,7 +43,7 @@ const AiChat = ({ isOpen, onClose }) => {
   const [messages, setMessages] = useState([INITIAL_MESSAGE]);
   const messagesEndRef = useRef(null);
 
-  const [gatePhase, setGatePhase] = useState(identityInit.phase); // 'form' | 'chat'
+  const [gatePhase, setGatePhase] = useState(identityInit.phase);
   const [gateName, setGateName] = useState('');
   const [gateEmail, setGateEmail] = useState('');
   const [gateError, setGateError] = useState('');

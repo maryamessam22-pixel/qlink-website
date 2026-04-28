@@ -23,7 +23,6 @@ const getAvatarForUser = (name) => {
   return heroImg; 
 };
 
-/** Strip internal email footnote we append on submit (`\n\n— email`). */
 const publicReviewBody = (text) => {
   if (!text || typeof text !== 'string') return '';
   const marker = '\n\n— ';

@@ -338,7 +338,6 @@
   }
 }
 
-/* ── Light mode overrides ── */
 html[data-theme="light"] .highlight-red {
   color: var(--color-cta-primary);
 }

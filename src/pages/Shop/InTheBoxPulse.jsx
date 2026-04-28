@@ -23,7 +23,7 @@ const InTheBoxPulse = () => {
 
   const [qty, setQty] = useState(1);
   const [activeColor, setActiveColor] = useState('gray');
-  const [strapType, setStrapType] = useState('solid'); // 'solid' or 'woven'
+  const [strapType, setStrapType] = useState('solid');
   
   const [product, setProduct] = useState(null);
   const [seoData, setSeoData] = useState(null);

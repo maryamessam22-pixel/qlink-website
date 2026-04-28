@@ -114,10 +114,6 @@ const PrivacySecurity = () => {
   const protocolTitle = protocol ? (isArabic ? protocol.title_ar : protocol.title_en) : t('privacy.protocolTitle');
   const protocolDesc = protocol ? (isArabic ? protocol.content_ar : protocol.content_en) : t('privacy.protocolDesc');
 
-  /**
-   * Seed rows use correct titles per card_type, but bullet arrays were attached to the opposite row.
-   * Titles come from matching type; lists are taken from the other row so copy matches each heading.
-   */
   const { sharedTitle, notSharedTitle, sharedItems, notSharedItems } = useMemo(() => {
     const sharedRow = privacyCardRows?.find(r => r.card_type === 'shared');
     const notSharedRow = privacyCardRows?.find(r => r.card_type === 'not_shared');

@@ -34,10 +34,9 @@ export const AuthProvider = ({ children }) => {
       setShowLoginModal(true);
       setLoginError('');
       setPassword('');
-      // setEmail('maryamessam22@gmail.com'); // 
-      return false; 
+      return false;
     }
-    return true; 
+    return true;
   }, [isAuthenticated]);
 
  
@@ -47,7 +46,6 @@ export const AuthProvider = ({ children }) => {
       try {
         localStorage.setItem(STORAGE_KEY, 'true');
       } catch {
-        /* ignore */
       }
       setShowLoginModal(false);
       setLoginError('');

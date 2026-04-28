@@ -467,7 +467,6 @@ form {
   100% { opacity: 0; }
 }
 
-/* RTL Styles */
 .rtl-active .input-icon {
   left: auto;
   right: 14px;

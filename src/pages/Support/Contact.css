@@ -18,7 +18,6 @@
   opacity: 1;
   transform: translateY(0);
   padding-right: 0px;
-  /* padding-left: 50px; */
 }
 
 
@@ -148,7 +147,6 @@
   cursor: pointer;
 }
 
-/* RTL Support */
 .rtl-text .newsletter-form {
   direction: ltr;
 }

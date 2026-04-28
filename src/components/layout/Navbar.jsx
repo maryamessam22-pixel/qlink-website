@@ -21,7 +21,6 @@ function Navbar() {
 
   const closeMobileMenu = () => setIsMobileMenuOpen(false);
 
-  // Returns the correct path for the current language
   const p = (enPath) => lang === 'ar' ? (enToAr[enPath] ?? enPath) : enPath;
 
 

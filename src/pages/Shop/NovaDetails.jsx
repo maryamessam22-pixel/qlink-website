@@ -32,7 +32,7 @@ const NovaDetails = () => {
   
   const [qty, setQty] = useState(1);
   const [activeColor, setActiveColor] = useState('black');
-  const [strapType, setStrapType] = useState('solid'); // 'solid' or 'woven'
+  const [strapType, setStrapType] = useState('solid');
   const [rating, setRating] = useState(5);
   const [hoverRating, setHoverRating] = useState(0);
   

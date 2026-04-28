@@ -16,7 +16,6 @@ function readInitialTheme() {
     const stored = localStorage.getItem(STORAGE_KEY);
     if (stored === 'light' || stored === 'dark') return stored;
   } catch (_) {
-    /* ignore */
   }
   return 'dark';
 }
@@ -30,8 +29,7 @@ export function ThemeProvider({ children }) {
     try {
       localStorage.setItem(STORAGE_KEY, next);
     } catch (_) {
-      /* ignore */
-    }
+      }
   }, []);
 
   const toggleTheme = useCallback(() => {
@@ -40,8 +38,7 @@ export function ThemeProvider({ children }) {
       try {
         localStorage.setItem(STORAGE_KEY, next);
       } catch (_) {
-        /* ignore */
-      }
+          }
       return next;
     });
   }, []);
