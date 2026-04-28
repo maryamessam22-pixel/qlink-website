@@ -16,11 +16,12 @@
 
 .ep-header {
   width: 100%;
-  max-width: 900px;
+  /* max-width: 900px; */
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 20px 32px;
+  gap: 60px;
   z-index: 99;
 }
 
@@ -52,7 +53,7 @@
 
 .ep-nav {
   width: 100%;
-  max-width: 900px;
+  /* max-width: 900px; */
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -115,7 +116,7 @@
 
 .ep-body {
   width: 100%;
-  max-width: 900px;
+  /* max-width: 900px; */
   margin: 28px 0;
   padding: 0 32px;
   display: flex;
@@ -299,23 +300,94 @@
   margin: 0;
 }
 
-@media (max-width: 520px) {
+@media (max-width: 768px) {
+  .ep-header {
+    padding: 16px 20px;
+    max-width: 100%;
+  }
+
+  .ep-nav {
+    padding: 12px 20px 16px;
+    max-width: 100%;
+  }
+
+  .ep-hero {
+    padding: 28px 20px 44px;
+  }
+
+  .ep-hero-name {
+    font-size: 24px;
+  }
+
+  .ep-body {
+    padding: 0 20px;
+    margin: 20px 0;
+    max-width: 100%;
+  }
+
+  .ep-card {
+    padding: 18px 16px;
+  }
+
   .ep-cta {
+    padding: 36px 20px;
     flex-direction: column;
     align-items: flex-start;
   }
+
   .ep-cta-buttons {
     width: 100%;
   }
+
   .ep-cta-btn {
     flex: 1;
     text-align: center;
-    justify-content: center;
   }
+
+  .ep-cta-text h2 {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .ep-header {
+    padding: 14px 16px;
+  }
+
+  .ep-nav {
+    padding: 10px 16px 14px;
+  }
+
+  .ep-hero {
+    padding: 24px 16px 40px;
+  }
+
+  .ep-hero-name {
+    font-size: 22px;
+  }
+
+  .ep-body {
+    padding: 0 16px;
+    gap: 12px;
+  }
+
   .ep-row-2 {
     grid-template-columns: 1fr 1fr;
   }
-  .ep-hero-name {
-    font-size: 22px;
+
+  .ep-contact-row {
+    padding: 12px 14px;
+  }
+
+  .ep-cta {
+    padding: 32px 16px;
+  }
+
+  .ep-footer {
+    padding: 20px 16px;
+  }
+
+  .ep-footer-links {
+    gap: 20px;
   }
 }
