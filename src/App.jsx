@@ -1,6 +1,7 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate, Outlet } from 'react-router-dom';
-
+import React, { useContext, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate, Outlet, useLocation } from 'react-router-dom';
+import { LanguageContext } from './context/LanguageContext';
+import { detectLangFromPath } from './utils/detectLangFromPath';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import ArrowUp from './components/layout/ArrowUp';
@@ -39,6 +40,42 @@ import CompletePurchase from './pages/CompletePurchase';
 import AuthPage from './pages/Auth/AuthPage';
 import EmergencyPreview from './pages/HowItWorks/EmergencyPreview';
 import NotFound from './pages/NotFound';
+
+function LanguageSync() {
+  const { pathname } = useLocation();
+  const { lang, setLang } = useContext(LanguageContext);
+
+  useEffect(() => {
+    let fallbackLang = 'en';
+    try {
+      const storedLang = localStorage.getItem('appLang');
+      if (storedLang === 'ar' || storedLang === 'en') {
+        fallbackLang = storedLang;
+      }
+    } catch {
+    }
+
+    const detected = detectLangFromPath(pathname, fallbackLang);
+    setLang((prevLang) => (prevLang === detected ? prevLang : detected));
+  }, [pathname, setLang]);
+
+  useEffect(() => {
+    const makeCurrentAnimatedSectionsVisible = () => {
+      document.querySelectorAll('.scroll-animate').forEach((el) => {
+        el.classList.add('is-visible');
+      });
+    };
+
+    const rafId = window.requestAnimationFrame(() => {
+      makeCurrentAnimatedSectionsVisible();
+      window.setTimeout(makeCurrentAnimatedSectionsVisible, 80);
+    });
+
+    return () => window.cancelAnimationFrame(rafId);
+  }, [lang]);
+
+  return null;
+}
 
 const ProtectedRoute = () => {
   const { isAuthenticated } = useAuth();
@@ -94,6 +131,7 @@ function App() {
 
   return (
     <Router>
+      <LanguageSync />
       <div className="App">
         <DynamicBackground />
         {loading && <Preloader onFinish={() => setLoading(false)} />}

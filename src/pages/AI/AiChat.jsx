@@ -1,17 +1,11 @@
-import React, { useState, useRef, useEffect, useLayoutEffect, useCallback, useMemo } from 'react';
+import React, { useState, useRef, useEffect, useLayoutEffect, useCallback, useMemo, useContext } from 'react';
 import { createPortal } from 'react-dom';
 import { Sparkles, ArrowUp, X, Loader2, Trash2, UserCircle } from 'lucide-react';
 import { supabase } from '../../lib/Supabase';
+import { LanguageContext } from '../../context/LanguageContext';
 import './AiChat.css';
 
 const IDENTITY_STORAGE_KEY = 'qlink_chat_identity';
-
-const INITIAL_MESSAGE = {
-  id: 1,
-  sender: 'bot',
-  text: "Hello! I'm your Qlink AI Assistant. How can I help you today?",
-  time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
-};
 
 const loadStoredIdentity = () => {
   try {
@@ -31,6 +25,21 @@ const loadStoredIdentity = () => {
 };
 
 const AiChat = ({ isOpen, onClose }) => {
+  const { lang, t } = useContext(LanguageContext);
+  const isAr = lang === 'ar';
+  const getCurrentTime = useCallback(
+    () => new Date().toLocaleTimeString(isAr ? 'ar-EG' : 'en-US', { hour: '2-digit', minute: '2-digit' }),
+    [isAr]
+  );
+  const initialMessage = useMemo(
+    () => ({
+      id: 1,
+      sender: 'bot',
+      text: t('aiChat.initialMessage'),
+      time: getCurrentTime(),
+    }),
+    [t, getCurrentTime]
+  );
   const identityInit = useMemo(() => {
     const s = loadStoredIdentity();
     return s
@@ -40,7 +49,7 @@ const AiChat = ({ isOpen, onClose }) => {
 
   const [inputValue, setInputValue] = useState('');
   const [isTyping, setIsTyping] = useState(false);
-  const [messages, setMessages] = useState([INITIAL_MESSAGE]);
+  const [messages, setMessages] = useState([initialMessage]);
   const messagesEndRef = useRef(null);
 
   const [gatePhase, setGatePhase] = useState(identityInit.phase);
@@ -58,12 +67,12 @@ const AiChat = ({ isOpen, onClose }) => {
     setUserName('');
     setUserEmail('');
     setSessionId('');
-    setMessages([INITIAL_MESSAGE]);
+    setMessages([initialMessage]);
     setGatePhase('form');
     setGateName('');
     setGateEmail('');
     setGateError('');
-  }, []);
+  }, [initialMessage]);
 
   useLayoutEffect(() => {
     if (!isOpen) return;
@@ -87,14 +96,14 @@ const AiChat = ({ isOpen, onClose }) => {
   }, [messages, isTyping, gatePhase]);
 
   const clearHistory = async () => {
-    if (!window.confirm('Clear all chat history?')) return;
+    if (!window.confirm(t('aiChat.confirmClearHistory'))) return;
     if (!sessionId) return;
     const { error } = await supabase.from('chat_messages').delete().eq('session_id', sessionId);
     if (error) {
       console.error('Failed to clear chat history:', error);
       return;
     }
-    setMessages([INITIAL_MESSAGE]);
+    setMessages([initialMessage]);
   };
 
   const handleGateSubmit = async (e) => {
@@ -103,15 +112,15 @@ const AiChat = ({ isOpen, onClose }) => {
     const name = gateName.trim();
     const email = gateEmail.trim();
     if (!name) {
-      setGateError('Please enter your name.');
+      setGateError(t('aiChat.errors.enterName'));
       return;
     }
     if (!email) {
-      setGateError('Please enter your email.');
+      setGateError(t('aiChat.errors.enterEmail'));
       return;
     }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      setGateError('Please enter a valid email address.');
+      setGateError(t('aiChat.errors.invalidEmail'));
       return;
     }
 
@@ -126,7 +135,7 @@ const AiChat = ({ isOpen, onClose }) => {
 
       if (sessionErr) {
         console.error(sessionErr);
-        setGateError(sessionErr.message || 'Could not start session. Check Supabase policies.');
+        setGateError(sessionErr.message || t('aiChat.errors.sessionStartFailed'));
         setGateSubmitting(false);
         return;
       }
@@ -138,11 +147,11 @@ const AiChat = ({ isOpen, onClose }) => {
       setUserName(name);
       setUserEmail(email);
       setSessionId(newSessionId);
-      setMessages([INITIAL_MESSAGE]);
+      setMessages([initialMessage]);
       setGatePhase('chat');
     } catch (err) {
       console.error(err);
-      setGateError('Something went wrong. Please try again.');
+      setGateError(t('aiChat.errors.generic'));
     } finally {
       setGateSubmitting(false);
     }
@@ -175,7 +184,7 @@ const AiChat = ({ isOpen, onClose }) => {
         id: Date.now(),
         sender: 'user',
         text: userText,
-        time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+        time: getCurrentTime()
       }
     ]);
 
@@ -214,7 +223,7 @@ const AiChat = ({ isOpen, onClose }) => {
           id: Date.now() + 1,
           sender: 'bot',
           text: replyText,
-          time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+          time: getCurrentTime()
         }
       ]);
 
@@ -231,11 +240,11 @@ const AiChat = ({ isOpen, onClose }) => {
         {
           id: Date.now() + 1,
           sender: 'bot',
-          text: `Service error: ${errorMessage}`,
-          time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+          text: `${t('aiChat.errors.servicePrefix')}${errorMessage}`,
+          time: getCurrentTime()
         }
       ]);
-      await insertChatMessage({ sender: 'bot', text: `Service error: ${errorMessage}`, model_used: null });
+      await insertChatMessage({ sender: 'bot', text: `${t('aiChat.errors.servicePrefix')}${errorMessage}`, model_used: null });
     } finally {
       setIsTyping(false);
     }
@@ -245,18 +254,18 @@ const AiChat = ({ isOpen, onClose }) => {
 
   const overlay =
     gatePhase === 'form' ? (
-      <div className="ai-chat-overlay">
+      <div className="ai-chat-overlay" dir={isAr ? 'rtl' : 'ltr'}>
         <div className="ai-chat-gate-card">
           <div className="ai-chat-gate-head">
             <div className="ai-gate-icon">
               <UserCircle size={28} />
             </div>
-            <h2 className="ai-gate-title">Start chatting</h2>
-            <p className="ai-gate-sub">Please enter your name and email so we can help you with Qlink safety.</p>
+            <h2 className="ai-gate-title">{t('aiChat.startTitle')}</h2>
+            <p className="ai-gate-sub">{t('aiChat.startSubtitle')}</p>
           </div>
           <form className="ai-chat-gate-form" onSubmit={handleGateSubmit}>
             {gateError && <div className="ai-gate-error" role="alert">{gateError}</div>}
-            <label className="ai-gate-label" htmlFor="ai-gate-name">Name</label>
+            <label className="ai-gate-label" htmlFor="ai-gate-name">{t('aiChat.nameLabel')}</label>
             <input
               id="ai-gate-name"
               className="ai-gate-input"
@@ -264,10 +273,10 @@ const AiChat = ({ isOpen, onClose }) => {
               autoComplete="name"
               value={gateName}
               onChange={(e) => setGateName(e.target.value)}
-              placeholder="Your name"
+              placeholder={t('aiChat.namePlaceholder')}
               disabled={gateSubmitting}
             />
-            <label className="ai-gate-label" htmlFor="ai-gate-email">Email</label>
+            <label className="ai-gate-label" htmlFor="ai-gate-email">{t('aiChat.emailLabel')}</label>
             <input
               id="ai-gate-email"
               className="ai-gate-input"
@@ -275,43 +284,43 @@ const AiChat = ({ isOpen, onClose }) => {
               autoComplete="email"
               value={gateEmail}
               onChange={(e) => setGateEmail(e.target.value)}
-              placeholder="you@example.com"
+              placeholder={t('aiChat.emailPlaceholder')}
               disabled={gateSubmitting}
             />
             <div className="ai-gate-actions">
               <button type="button" className="ai-gate-btn ai-gate-btn-secondary" onClick={onClose} disabled={gateSubmitting}>
-                Cancel
+                {t('aiChat.cancel')}
               </button>
               <button type="submit" className="ai-gate-btn ai-gate-btn-primary" disabled={gateSubmitting}>
-                {gateSubmitting ? 'Please wait…' : 'Confirm'}
+                {gateSubmitting ? t('aiChat.pleaseWait') : t('aiChat.confirm')}
               </button>
             </div>
           </form>
         </div>
       </div>
     ) : (
-      <div className="ai-chat-overlay">
+      <div className="ai-chat-overlay" dir={isAr ? 'rtl' : 'ltr'}>
         <div className="ai-chat-container">
           <div className="ai-chat-header">
             <div className="ai-header-left">
               <h2 className="ai-logo-text">Qlink</h2>
-              <span className="ai-badge">AI Assistant</span>
+              <span className="ai-badge">{t('aiChat.badge')}</span>
             </div>
             <div className="ai-header-actions">
               <button
                 type="button"
                 className="ai-change-user-btn"
                 onClick={clearIdentityAndGate}
-                title="Change name / email"
+                title={t('aiChat.changeUserTitle')}
               >
-                Change user
+                {t('aiChat.changeUser')}
               </button>
               {messages.length > 1 && (
-                <button className="ai-close-btn" onClick={clearHistory} title="Clear Chat History">
+                <button className="ai-close-btn" onClick={clearHistory} title={t('aiChat.clearHistory')}>
                   <Trash2 size={20} />
                 </button>
               )}
-              <button className="ai-close-btn" onClick={onClose} title="Close Chat">
+              <button className="ai-close-btn" onClick={onClose} title={t('aiChat.close')}>
                 <X size={24} />
               </button>
             </div>
@@ -325,7 +334,7 @@ const AiChat = ({ isOpen, onClose }) => {
                     <div className="ai-bot-icon">
                       <Sparkles size={16} color="white" />
                     </div>
-                    <span className="ai-bot-name">Qlink Safety Bot</span>
+                    <span className="ai-bot-name">{t('aiChat.botName')}</span>
                   </div>
                 )}
                 <div className={`ai-message-bubble ${msg.sender}`}>
@@ -340,11 +349,11 @@ const AiChat = ({ isOpen, onClose }) => {
                   <div className="ai-bot-icon">
                     <Sparkles size={16} color="white" />
                   </div>
-                  <span className="ai-bot-name">Qlink Safety Bot</span>
+                  <span className="ai-bot-name">{t('aiChat.botName')}</span>
                 </div>
                 <div className="ai-message-bubble bot" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                   <Loader2 size={18} className="spin-animation" color="#888" />
-                  <span style={{ color: '#888', fontStyle: 'italic', fontSize: '14px' }}>Thinking...</span>
+                  <span style={{ color: '#888', fontStyle: 'italic', fontSize: '14px' }}>{t('aiChat.thinking')}</span>
                 </div>
               </div>
             )}
@@ -355,7 +364,7 @@ const AiChat = ({ isOpen, onClose }) => {
             <form className="ai-input-wrapper" onSubmit={sendMessage}>
               <input
                 type="text"
-                placeholder="Ask about Qlink safety..."
+                placeholder={t('aiChat.inputPlaceholder')}
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
                 disabled={isTyping}

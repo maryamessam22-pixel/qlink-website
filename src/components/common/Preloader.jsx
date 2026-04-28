@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import qlinkLogoMark from '../../assets/brand/qlink-logo-mark.png';
 import qlinkPreloaderLight from '../../assets/brand/qlink-preloader-light.png';
 import { useTheme } from '../../context/ThemeContext';
+import { LanguageContext } from '../../context/LanguageContext';
 import './Preloader.css';
 
 const MEET_MS = 1100;
@@ -9,6 +10,7 @@ const SPIN_BEFORE_FADE_MS = 1200;
 
 const Preloader = ({ onFinish }) => {
   const { isLight } = useTheme();
+  const { lang } = useContext(LanguageContext);
   const [isVisible, setIsVisible] = useState(true);
   const [phase, setPhase] = useState('meet');
 
@@ -58,12 +60,25 @@ const Preloader = ({ onFinish }) => {
           </div>
         </div>
 
-        <div className="loading-text">
-          <span className="letter letter-1">Q</span>
-          <span className="letter letter-2">L</span>
-          <span className="letter letter-3">I</span>
-          <span className="letter letter-4">N</span>
-          <span className="letter letter-5">K</span>
+        <div className={`loading-text ${lang === 'ar' ? 'loading-text--ar' : 'loading-text--en'}`}>
+          {lang === 'ar' ? (
+            <span className="letter letter--word-ar" style={{ animationDelay: '0.25s' }}>
+              كيولينك
+            </span>
+          ) : (
+            Array.from('QLINK').map((char, idx, arr) => {
+              const isAccentChar = idx >= arr.length - 2;
+              return (
+                <span
+                  key={`${char}-${idx}`}
+                  className={`letter ${isAccentChar ? 'letter--accent' : ''}`}
+                  style={{ animationDelay: `${0.25 + idx * 0.1}s` }}
+                >
+                  {char}
+                </span>
+              );
+            })
+          )}
         </div>
 
         <div className="loading-bar-container">

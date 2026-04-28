@@ -103,7 +103,7 @@ function AuthPage() {
           if (error) {
             console.error("Supabase Error:", error);
            
-            setErrorMsg(`Supabase Error: ${error.message}. Hint: Change id type to UUID in Supabase.`);
+            setErrorMsg(`${t('auth.supabaseErrorPrefix')}${error.message}. ${t('auth.supabaseErrorHint')}`);
             setIsLoading(false);
             return; 
           }
@@ -199,7 +199,7 @@ function AuthPage() {
       <button 
         className="auth-back-btn" 
         onClick={() => navigate('/')}
-        aria-label="Back to home"
+        aria-label={t('auth.backToHome')}
       >
         {isAr ? <ArrowRight size={20} /> : <ArrowLeft size={20} />}
         <span>{t('auth.back')}</span>
@@ -297,7 +297,7 @@ function AuthPage() {
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
                     style={{ position: 'absolute', [isAr ? 'left' : 'right']: '15px', top: '50%', transform: 'translateY(-50%)', background: 'none', border: 'none', cursor: 'pointer', color: '#888', display: 'flex', alignItems: 'center' }}
-                    aria-label={showPassword ? 'Hide password' : 'Show password'}
+                    aria-label={showPassword ? t('auth.hidePassword') : t('auth.showPassword')}
                   >
                     {showPassword ? (
                       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">

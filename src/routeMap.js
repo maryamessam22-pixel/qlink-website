@@ -21,10 +21,30 @@ export const arToEn = Object.fromEntries(
   Object.entries(enToAr).map(([en, ar]) => [ar, en])
 );
 
+const normalizePath = (path) => {
+  if (!path || path === '/') return '/';
+  return path.endsWith('/') ? path.slice(0, -1) : path;
+};
+
+const safeDecodePath = (path) => {
+  try {
+    return decodeURIComponent(path);
+  } catch {
+    try {
+      return decodeURI(path);
+    } catch {
+      return path;
+    }
+  }
+};
+
 export function switchLangPath(currentPath, targetLang) {
+  const normalizedPath = normalizePath(currentPath);
+  const decodedPath = normalizePath(safeDecodePath(normalizedPath));
+
   if (targetLang === 'ar') {
-    return enToAr[currentPath] ?? currentPath;
+    return enToAr[decodedPath] ?? enToAr[normalizedPath] ?? decodedPath;
   } else {
-    return arToEn[currentPath] ?? currentPath;
+    return arToEn[decodedPath] ?? arToEn[normalizedPath] ?? decodedPath;
   }
 }

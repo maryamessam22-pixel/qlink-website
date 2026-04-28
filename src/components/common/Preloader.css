@@ -48,6 +48,7 @@
   align-items: center;
   justify-content: center;
   transform-origin: center center;
+  direction: ltr;
 }
 
 .qlink-logo-split {
@@ -170,28 +171,30 @@
   flex-wrap: nowrap;
 }
 
+.loading-text--en {
+  direction: ltr;
+}
+
+.loading-text--ar {
+  direction: rtl;
+  letter-spacing: normal;
+  gap: clamp(2px, 1vw, 8px);
+  font-family: 'Tajawal', 'Cairo', 'Noto Sans Arabic', var(--font-family-primary, 'Roboto', sans-serif);
+}
+
 .letter {
   opacity: 0;
   transform: translateY(15px);
   animation: float-up 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
 }
 
-.letter-1 {
-  animation-delay: 0.25s;
-}
-.letter-2 {
-  animation-delay: 0.35s;
-}
-.letter-3 {
-  animation-delay: 0.45s;
-}
-.letter-4 {
-  animation-delay: 0.55s;
+.letter--accent {
   color: var(--color-primary-red, #e03232);
 }
-.letter-5 {
-  animation-delay: 0.65s;
-  color: var(--color-primary-red, #e03232);
+
+.letter--word-ar {
+  display: inline-block;
+  color: var(--text-primary);
 }
 
 .loading-bar-container {
@@ -234,8 +237,7 @@
   }
 }
 
-html[data-theme="light"] .letter-4,
-html[data-theme="light"] .letter-5 {
+html[data-theme="light"] .letter--accent {
   color: var(--color-cta-primary);
 }
 

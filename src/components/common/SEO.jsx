@@ -6,7 +6,12 @@ export default function SEO({ title, description, slug, imageAlt }) {
   const { lang } = useContext(LanguageContext);
   const siteName = lang === 'ar' ? 'كيو لينك' : 'Q-Link';
   const url = `https://qlink.me/${slug || ''}`;
-  const fullTitle = title ? `${title} | ${siteName}` : siteName;
+  const normalizedTitle = (title || '').trim();
+  const fullTitle = normalizedTitle
+    ? normalizedTitle.includes(siteName)
+      ? normalizedTitle
+      : `${normalizedTitle} | ${siteName}`
+    : siteName;
 
   const defaultDesc = lang === 'ar' 
     ? "كيو لينك - سوار الطوارئ الذكي المتصل دائماً."
