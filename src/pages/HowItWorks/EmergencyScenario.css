@@ -81,6 +81,10 @@ html[data-theme="light"] .es-hero-overlay {
   background: none;
 }
 
+html[data-theme="light"] .es-hero {
+  background-color: transparent;
+}
+
 .es-hero-content {
   position: relative;
   z-index: 2;

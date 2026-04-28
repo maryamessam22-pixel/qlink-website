@@ -111,6 +111,7 @@ function App() {
             <Route path="/" element={<Home />} />
             
             <Route element={<ProtectedRoute />}>
+              {/* English routes */}
               <Route path="/complete-purchase" element={<CompletePurchase />} />
               <Route path="/how-it-works/qlink" element={<HowQlinkWorks />} />
               <Route path="/how-it-works/emergency" element={<EmergencyScenario />} />
@@ -132,6 +133,22 @@ function App() {
               <Route path="/support/download" element={<AppDownload />} />
               <Route path="/cart" element={<CartScreen />} />
               <Route path="/checkout" element={<Checkout />} />
+              {/* Arabic routes */}
+              <Route path="/اكتمال-الشراء" element={<CompletePurchase />} />
+              <Route path="/كيف-يعمل/كيو-لينك" element={<HowQlinkWorks />} />
+              <Route path="/كيف-يعمل/الطوارئ" element={<EmergencyScenario />} />
+              <Route path="/تسوق/السوار" element={<TheBracelet />} />
+              <Route path="/تسوق/مقارنة" element={<Compare />} />
+              <Route path="/تسوق/التقييمات" element={<Reviews />} />
+              <Route path="/لمقدمي-الرعاية" element={<ForCaregivers />} />
+              <Route path="/عن/قصتنا" element={<OurStory />} />
+              <Route path="/عن/الخصوصية" element={<PrivacySecurity />} />
+              <Route path="/الدعم/مركز-المساعدة" element={<HelpCenter />} />
+              <Route path="/الدعم/الأسئلة-الشائعة" element={<Faqs />} />
+              <Route path="/الدعم/اتصل-بنا" element={<Contact />} />
+              <Route path="/الدعم/تنزيل-التطبيق" element={<AppDownload />} />
+              <Route path="/عربة-التسوق" element={<CartScreen />} />
+              <Route path="/الدفع" element={<Checkout />} />
             </Route>
           </Route>
           <Route path="*" element={<Navigate to="/" replace />} />

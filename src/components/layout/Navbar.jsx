@@ -4,6 +4,7 @@ import { ShoppingCart, User, Menu, X, LogOut } from 'lucide-react';
 import { LanguageContext } from '../../context/LanguageContext';
 import { AuthContext } from '../../context/AuthContext';
 import { useCart } from '../../context/CartContext';
+import { enToAr } from '../../routeMap';
 import Dropdown from './Dropdown';
 import Logo from './Logo';
 import ThemeToggleButton from '../common/ThemeToggleButton';
@@ -19,6 +20,9 @@ function Navbar() {
   const { cartCount } = useCart();
 
   const closeMobileMenu = () => setIsMobileMenuOpen(false);
+
+  // Returns the correct path for the current language
+  const p = (enPath) => lang === 'ar' ? (enToAr[enPath] ?? enPath) : enPath;
 
 
   const handleGuardedNav = (e, href) => {
@@ -63,10 +67,10 @@ function Navbar() {
           <li>
             <Dropdown
               label={t('nav.howItWorks')}
-              isActive={pathname.startsWith('/how-it-works')}
+              isActive={pathname.startsWith('/how-it-works') || pathname.startsWith('/كيف-يعمل')}
               items={[
-                { name: t('nav.drop.howQlink'), href: '/how-it-works/qlink' },
-                { name: t('nav.drop.emergency'), href: '/how-it-works/emergency' },
+                { name: t('nav.drop.howQlink'), href: p('/how-it-works/qlink') },
+                { name: t('nav.drop.emergency'), href: p('/how-it-works/emergency') },
               ]}
               onItemClick={closeMobileMenu}
             />
@@ -74,22 +78,22 @@ function Navbar() {
           <li>
             <Dropdown
               label={t('nav.shop')}
-              isActive={pathname.startsWith('/shop')}
+              isActive={pathname.startsWith('/shop') || pathname.startsWith('/تسوق')}
               items={[
-                { name: t('nav.drop.bracelet'), href: '/shop/bracelet' },
-                { name: t('nav.drop.compare'), href: '/shop/compare' },
-                { name: t('nav.drop.reviews'), href: '/shop/reviews' },
+                { name: t('nav.drop.bracelet'), href: p('/shop/bracelet') },
+                { name: t('nav.drop.compare'), href: p('/shop/compare') },
+                { name: t('nav.drop.reviews'), href: p('/shop/reviews') },
               ]}
               onItemClick={closeMobileMenu}
             />
           </li>
 
-      
+
           <li>
             <Link
-              to="/for-caregivers"
-              className={`nav-link ${pathname.startsWith('/for-caregivers') ? 'active' : ''}`}
-              onClick={(e) => handleGuardedNav(e, '/for-caregivers')}
+              to={p('/for-caregivers')}
+              className={`nav-link ${pathname.startsWith('/for-caregivers') || pathname.startsWith('/لمقدمي-الرعاية') ? 'active' : ''}`}
+              onClick={(e) => handleGuardedNav(e, p('/for-caregivers'))}
             >
               {t('nav.forCaregivers')}
             </Link>
@@ -98,10 +102,10 @@ function Navbar() {
           <li>
             <Dropdown
               label={t('nav.about')}
-              isActive={pathname.startsWith('/about')}
+              isActive={pathname.startsWith('/about') || pathname.startsWith('/عن')}
               items={[
-                { name: t('nav.drop.story'), href: '/about/our-story' },
-                { name: t('nav.drop.privacy'), href: '/about/privacy' },
+                { name: t('nav.drop.story'), href: p('/about/our-story') },
+                { name: t('nav.drop.privacy'), href: p('/about/privacy') },
               ]}
               onItemClick={closeMobileMenu}
             />
@@ -109,12 +113,12 @@ function Navbar() {
           <li>
             <Dropdown
               label={t('nav.support')}
-              isActive={pathname.startsWith('/support')}
+              isActive={pathname.startsWith('/support') || pathname.startsWith('/الدعم')}
               items={[
-                { name: t('nav.drop.help'), href: '/support/help-center' },
-                { name: t('nav.drop.faqs'), href: '/support/faqs' },
-                { name: t('nav.drop.contact'), href: '/support/contact' },
-                { name: t('nav.drop.download'), href: '/support/download' },
+                { name: t('nav.drop.help'), href: p('/support/help-center') },
+                { name: t('nav.drop.faqs'), href: p('/support/faqs') },
+                { name: t('nav.drop.contact'), href: p('/support/contact') },
+                { name: t('nav.drop.download'), href: p('/support/download') },
               ]}
               onItemClick={closeMobileMenu}
             />
