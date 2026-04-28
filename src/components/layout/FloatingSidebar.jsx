@@ -7,7 +7,7 @@ import { switchLangPath } from '../../routeMap';
 import './FloatingSidebar.css';
 
 export default function FloatingSidebar() {
-  const { lang, toggleLanguage } = useContext(LanguageContext);
+  const { lang, setLang } = useContext(LanguageContext);
   const { isLight, toggleTheme } = useTheme();
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
@@ -15,9 +15,11 @@ export default function FloatingSidebar() {
 
   const handleLangSwitch = () => {
     const targetLang = lang === 'en' ? 'ar' : 'en';
-    toggleLanguage();
     const newPath = switchLangPath(pathname, targetLang);
-    if (newPath !== pathname) navigate(newPath);
+    setLang(targetLang);
+    if (newPath !== pathname) {
+      navigate(newPath);
+    }
   };
 
   return (

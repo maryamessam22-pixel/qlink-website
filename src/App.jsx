@@ -1,7 +1,8 @@
-import React, { useContext, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate, Outlet, useLocation } from 'react-router-dom';
+import React, { useContext, useEffect, useRef } from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { LanguageContext } from './context/LanguageContext';
 import { detectLangFromPath } from './utils/detectLangFromPath';
+import { switchLangPath } from './routeMap';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import ArrowUp from './components/layout/ArrowUp';
@@ -43,16 +44,28 @@ import NotFound from './pages/NotFound';
 
 function LanguageSync() {
   const { pathname } = useLocation();
+  const navigate = useNavigate();
   const { lang, setLang } = useContext(LanguageContext);
+  const hasNormalizedInitialPath = useRef(false);
 
   useEffect(() => {
+    if (!hasNormalizedInitialPath.current) {
+      const englishPath = switchLangPath(pathname, 'en');
+      hasNormalizedInitialPath.current = true;
+      if (englishPath !== pathname) {
+        setLang('en');
+        navigate(englishPath, { replace: true });
+        return;
+      }
+    }
+
     // Detect strictly from path. Pass null to avoid forcing a fallback on '/'
     const detected = detectLangFromPath(pathname, null);
     
-    if (detected && detected !== lang) {
-      setLang(detected);
+    if (detected) {
+      setLang((prevLang) => (prevLang === detected ? prevLang : detected));
     }
-  }, [pathname, setLang, lang]);
+  }, [pathname, navigate, setLang]);
 
   useEffect(() => {
     const makeCurrentAnimatedSectionsVisible = () => {

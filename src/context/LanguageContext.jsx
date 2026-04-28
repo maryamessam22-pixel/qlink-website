@@ -8,17 +8,7 @@ export const LanguageContext = createContext();
 const LANG_STORAGE_KEY = 'appLang';
 
 export const LanguageProvider = ({ children }) => {
-  const [lang, setLang] = useState(() => {
-    let savedLang = 'en';
-    try {
-      const stored = localStorage.getItem(LANG_STORAGE_KEY);
-      if (stored === 'ar' || stored === 'en') {
-        savedLang = stored;
-      }
-    } catch {
-    }
-    return detectLangFromPath(undefined, savedLang);
-  });
+  const [lang, setLang] = useState(() => detectLangFromPath(undefined, 'en'));
 
   
   useEffect(() => {
