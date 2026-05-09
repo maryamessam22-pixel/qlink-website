@@ -47,6 +47,15 @@ function AuthPage() {
     setShowLoginModal(false);
   }, [setShowLoginModal]);
 
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const urlLang = params.get('lang');
+
+    if (urlLang !== 'ar' && urlLang !== 'en' && lang !== 'en') {
+      setLang('en');
+    }
+  }, [lang, location.search, setLang]);
+
   const [seoData, setSeoData] = useState(null);
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');

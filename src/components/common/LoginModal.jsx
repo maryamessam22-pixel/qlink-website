@@ -127,7 +127,7 @@ function LoginModal({ isOpen }) {
 
         <p className="auth-modal-hint">
           {t('auth.modalHint')}{' '}
-          <Link to="/auth" state={{ mode: 'signup' }} onClick={closeModal}>
+          <Link to={`/auth?lang=${lang}`} state={{ mode: 'signup' }} onClick={closeModal}>
             {t('auth.modalCreate')}
           </Link>
         </p>

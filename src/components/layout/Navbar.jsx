@@ -138,7 +138,7 @@ function Navbar() {
 
       
         <Link
-          to="/auth"
+          to={`/auth?lang=${lang}`}
           className="icon-btn"
           onClick={closeMobileMenu}
         >
