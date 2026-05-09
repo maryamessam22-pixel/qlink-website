@@ -10,6 +10,7 @@
   flex-direction: column;
   overflow: hidden;
   box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  box-sizing: border-box;
 }
 
 @media (max-width: 850px) {
@@ -23,12 +24,12 @@ body.rtl-active .compare-card {
   direction: rtl;
 }
 
-.card-top-section {
+.compare-card-top {
   padding: 40px 30px;
   flex-grow: 1;
 }
 
-.card-custom-icon {
+.compare-card-icon {
   width: 60px;
   height: 60px;
   object-fit: contain;
@@ -37,14 +38,14 @@ body.rtl-active .compare-card {
   filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.3));
 }
 
-.card-main-title {
+.compare-card-title {
   text-align: center;
   font-size: 26px;
   margin: 0;
   font-weight: 700;
 }
 
-.card-sub-title {
+.compare-card-subtitle {
   text-align: center;
   font-size: 13px;
   margin: 5px 0 35px;
@@ -52,11 +53,11 @@ body.rtl-active .compare-card {
   text-transform: uppercase;
 }
 
-.feature-row {
+.compare-feature-row {
   margin-bottom: 22px;
 }
 
-.feature-label-text {
+.compare-feature-label {
   color: var(--text-muted); 
   font-size: 11px;
   display: block;
@@ -64,20 +65,20 @@ body.rtl-active .compare-card {
   font-weight: 500;
 }
 
-.feature-value-container {
+.compare-feature-value {
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
-.feature-inline-icon {
+.compare-feature-icon {
   width: 52px;
   height: 72px;
   object-fit: contain;
   display: block;
 }
 
-.feature-value-text {
+.compare-feature-text {
   font-size: 14px;
   font-weight: 600;
   margin: 0;
@@ -85,7 +86,7 @@ body.rtl-active .compare-card {
 }
 
 
-.card-bottom-section {
+.compare-card-bottom {
   background-color: var(--bg-surface-input); 
   padding: 25px 30px;
   border-top: 1px solid var(--border-light);
@@ -94,7 +95,7 @@ body.rtl-active .compare-card {
   align-items: center;
 }
 
-.price-display {
+.compare-price-display {
   margin-bottom: 15px;
   display: flex;
   align-items: baseline;
@@ -102,10 +103,10 @@ body.rtl-active .compare-card {
   gap: 6px;
 }
 
-.currency-label { font-size: 16px; font-weight: 600; }
-.price-amount { font-size: 28px; font-weight: 700; }
+.compare-currency-label { font-size: 16px; font-weight: 600; }
+.compare-price-amount { font-size: 28px; font-weight: 700; }
 
-.action-button {
+.compare-action-button {
   width: 100%;
   padding: 12px;
   border: none;
@@ -118,6 +119,25 @@ body.rtl-active .compare-card {
   transition: transform 0.2s;
 }
 
-.action-button:hover {
+.compare-action-button:hover {
   transform: translateY(-2px);
+}
+
+@media (max-width: 520px) {
+  .compare-card {
+    min-width: 0;
+  }
+
+  .compare-card-top,
+  .compare-card-bottom {
+    padding-inline: 20px;
+  }
+
+  .compare-card-title {
+    font-size: 22px;
+  }
+
+  .compare-feature-value {
+    align-items: flex-start;
+  }
 }

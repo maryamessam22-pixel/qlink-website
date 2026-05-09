@@ -178,16 +178,16 @@ function AuthPage() {
     return (
       <div className="auth-container">
         {renderTopButtons()}
-        <div className="dynamic-light"></div>
-        <div className="dynamic-light-2"></div>
-        <div className="dynamic-light-3"></div>
+        <div className="auth-light"></div>
+        <div className="auth-light-two"></div>
+        <div className="auth-light-three"></div>
         <img src={qlinkBg} className="auth-bg-graphic" alt="Qlink pattern" />
-        <div className="splash-screen">
-          <div className="splash-watch-wrapper">
-            <img src={watchImg} className="splash-watch" alt="Qlink Smartwatch" />
+        <div className="auth-splash">
+          <div className="auth-splash-watch-wrap">
+            <img src={watchImg} className="auth-splash-watch" alt="Qlink Smartwatch" />
           </div>
-          <Logo className="splash-logo" />
-          <div className="splash-tagline">{t('auth.splashTagline')}</div>
+          <Logo className="auth-splash-logo" />
+          <div className="auth-splash-tagline">{t('auth.splashTagline')}</div>
         </div>
       </div>
     );
@@ -197,13 +197,13 @@ function AuthPage() {
     return (
       <div className="auth-container">
         {renderTopButtons()}
-        <div className="dynamic-light"></div>
-        <div className="dynamic-light-2"></div>
-        <div className="dynamic-light-3"></div>
+        <div className="auth-light"></div>
+        <div className="auth-light-two"></div>
+        <div className="auth-light-three"></div>
         <img src={qlinkBg} className="auth-bg-graphic" alt="Qlink pattern" />
-        <div className="loader-screen">
+        <div className="auth-loader">
           <Logo className="auth-loader-logo" />
-          <div className="spinner"></div>
+          <div className="auth-spinner"></div>
         </div>
       </div>
     );
@@ -228,29 +228,29 @@ function AuthPage() {
 
       {renderTopButtons()}
 
-      <div className="dynamic-light"></div>
-      <div className="dynamic-light-2"></div>
-      <div className="dynamic-light-3"></div>
+      <div className="auth-light"></div>
+      <div className="auth-light-two"></div>
+      <div className="auth-light-three"></div>
       <img src={qlinkBg} className="auth-bg-graphic" alt="Qlink pattern" />
 
       <div className="auth-content">
-        <div className="screen" id={isLogin ? 'signin' : 'signup'}>
+        <div className="auth-screen" id={isLogin ? 'signin' : 'signup'}>
           <div className="auth-header">
             <Logo className="auth-logo" />
-            <div className="tagline">{t('auth.welcome')}</div>
+            <div className="auth-tagline">{t('auth.welcome')}</div>
           </div>
 
-          <div className="card">
-            <div className="tab-row">
+          <div className="auth-card">
+            <div className="auth-tabs">
               <button
-                className={`tab-btn ${isLogin ? 'active' : ''}`}
+                className={`auth-tab ${isLogin ? 'active' : ''}`}
                 onClick={() => { setIsLogin(true); setErrorMsg(''); }}
                 type="button"
               >
                 {t('auth.signIn')}
               </button>
               <button
-                className={`tab-btn ${!isLogin ? 'active' : ''}`}
+                className={`auth-tab ${!isLogin ? 'active' : ''}`}
                 onClick={() => { setIsLogin(false); setErrorMsg(''); }}
                 type="button"
               >
@@ -265,12 +265,12 @@ function AuthPage() {
               </div>
             )}
 
-            <form onSubmit={handleSubmit}>
+            <form className="auth-form" onSubmit={handleSubmit}>
               {!isLogin && (
-                <div className="field">
+                <div className="auth-field">
                   <label>{t('auth.fullName')}</label>
-                  <div className="input-wrap">
-                    <svg className="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+                  <div className="auth-input-wrap">
+                    <svg className="auth-input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
                       <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
                       <circle cx="12" cy="7" r="4" />
                     </svg>
@@ -285,10 +285,10 @@ function AuthPage() {
                 </div>
               )}
 
-              <div className="field">
+              <div className="auth-field">
                 <label>{t('auth.email')}</label>
-                <div className="input-wrap">
-                  <svg className="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+                <div className="auth-input-wrap">
+                  <svg className="auth-input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
                     <rect x="2" y="4" width="20" height="16" rx="3" /><path d="m2 7 10 7 10-7" />
                   </svg>
                   <input 
@@ -301,10 +301,10 @@ function AuthPage() {
                 </div>
               </div>
 
-              <div className="field">
+              <div className="auth-field">
                 <label>{t('auth.password')}</label>
-                <div className="input-wrap" style={{ position: 'relative' }}>
-                  <svg className="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+                <div className="auth-input-wrap" style={{ position: 'relative' }}>
+                  <svg className="auth-input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
                     <rect x="3" y="11" width="18" height="11" rx="2" /><path d="M7 11V7a5 5 0 0 1 10 0v4" />
                   </svg>
                   <input 
@@ -337,18 +337,18 @@ function AuthPage() {
               </div>
 
               <button type="submit" className="auth-btn-primary">
-                {isLogin ? t('auth.btnSignIn') : t('auth.btnSignUp')} <span className="btn-arrow">{t('auth.btnArrow')}</span>
+                {isLogin ? t('auth.btnSignIn') : t('auth.btnSignUp')} <span className="auth-btn-arrow">{t('auth.btnArrow')}</span>
               </button>
             </form>
 
-            <div className="divider"><span>{t('auth.continue')}</span></div>
-            <div className="social-row">
-              <button type="button" className="btn-social">{t('auth.google')}</button>
-              <button type="button" className="btn-social">{t('auth.github')}</button>
+            <div className="auth-divider"><span>{t('auth.continue')}</span></div>
+            <div className="auth-socials">
+              <button type="button" className="auth-social-btn">{t('auth.google')}</button>
+              <button type="button" className="auth-social-btn">{t('auth.github')}</button>
             </div>
           </div>
 
-          <div className="card-footer">
+          <div className="auth-card-footer">
             {isLogin ? t('auth.noAccount') : t('auth.hasAccount')}{' '}
             <a href="#" className="auth-link" onClick={(e) => { e.preventDefault(); setIsLogin(!isLogin); setErrorMsg(''); }}>
               {isLogin ? t('auth.signUp') : t('auth.signIn')}

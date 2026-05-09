@@ -144,13 +144,13 @@ function Compare() {
         lang={lang}
       >
         <div className="compare-video-column compare-video-left">
-          <h3 className="cvs-heading">
+          <h3 className="compare-video-heading">
             {t('compare.videoLeftH1')}
             <br />
             {t('compare.videoLeftH2')}
           </h3>
-          <p className="cvs-text">{t('compare.videoLeftP1')}</p>
-          <p className="cvs-text">{t('compare.videoLeftP2')}</p>
+          <p className="compare-video-text">{t('compare.videoLeftP1')}</p>
+          <p className="compare-video-text">{t('compare.videoLeftP2')}</p>
         </div>
         <video
           src={qlinkVideo}
@@ -161,13 +161,13 @@ function Compare() {
           className="compare-video"
         />
         <div className="compare-video-column compare-video-right">
-          <h3 className="cvs-heading">
+          <h3 className="compare-video-heading">
             {t('compare.videoRightH1')}
             <br />
             {t('compare.videoRightH2')}
           </h3>
-          <p className="cvs-text">{t('compare.videoRightP1')}</p>
-          <p className="cvs-text">{t('compare.videoRightP2')}</p>
+          <p className="compare-video-text">{t('compare.videoRightP1')}</p>
+          <p className="compare-video-text">{t('compare.videoRightP2')}</p>
         </div>
       </section>
       <SetupSection />

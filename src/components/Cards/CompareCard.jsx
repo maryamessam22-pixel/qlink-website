@@ -14,23 +14,23 @@ const CompareCard = ({
   return (
     <div className="compare-card">
     
-      <div className="card-top-section">
-        {icon && <img src={icon} alt={title} className="card-custom-icon" />}
+      <div className="compare-card-top">
+        {icon && <img src={icon} alt={title} className="compare-card-icon" />}
         
-        <h2 className="card-main-title">{title}</h2>
-        <p className="card-sub-title" style={{ color: accentColor }}>{subTitle}</p>
+        <h2 className="compare-card-title">{title}</h2>
+        <p className="compare-card-subtitle" style={{ color: accentColor }}>{subTitle}</p>
 
-        <div className="features-list-wrapper">
+        <div className="compare-features-list">
           {features.map((item, index) => (
-            <div key={index} className="feature-row">
-              <span className="feature-label-text">{item.label}</span>
-              <div className="feature-value-container">
+            <div key={index} className="compare-feature-row">
+              <span className="compare-feature-label">{item.label}</span>
+              <div className="compare-feature-value">
                 {item.valueIcon && (
-                  <span className="value-icon">
-                    <img src={item.valueIcon} alt="" className="feature-inline-icon" />
+                  <span className="compare-value-icon">
+                    <img src={item.valueIcon} alt="" className="compare-feature-icon" />
                   </span>
                 )}
-                <p className="feature-value-text">{item.value}</p>
+                <p className="compare-feature-text">{item.value}</p>
               </div>
             </div>
           ))}
@@ -38,14 +38,14 @@ const CompareCard = ({
       </div>
 
       
-      <div className="card-bottom-section">
-        <div className="price-display">
-          <span className="currency-label">EGP</span>
-          <span className="price-amount">{price}</span>
+      <div className="compare-card-bottom">
+        <div className="compare-price-display">
+          <span className="compare-currency-label">EGP</span>
+          <span className="compare-price-amount">{price}</span>
         </div>
         <Link 
           to={to}
-          className="action-button" 
+          className="compare-action-button"
           style={{ backgroundColor: accentColor, textDecoration: 'none', display: 'flex', justifyContent: 'center', alignItems: 'center' }}
         >
           {buttonText}

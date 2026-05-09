@@ -327,14 +327,7 @@
     gap: 40px;
   }
   .timeline-line-fw {
-    top: 0;
-    bottom: 0;
-    left: 50%;
-    right: auto;
-    width: 2px;
-    height: 100%;
-    transform: translateX(-50%);
-    background: linear-gradient(180deg, var(--color-primary-red), rgba(59,130,246,0.4));
+    display: none;
   }
 }
 
