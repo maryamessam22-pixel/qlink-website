@@ -43,7 +43,7 @@ import EmergencyPreview from './pages/HowItWorks/EmergencyPreview';
 import NotFound from './pages/NotFound';
 
 function LanguageSync() {
-  const { pathname } = useLocation();
+  const { pathname, search } = useLocation();
   const navigate = useNavigate();
   const { lang, setLang } = useContext(LanguageContext);
   const hasNormalizedInitialPath = useRef(false);
@@ -65,7 +65,7 @@ function LanguageSync() {
     if (detected) {
       setLang((prevLang) => (prevLang === detected ? prevLang : detected));
     }
-  }, [pathname, navigate, setLang]);
+  }, [pathname, search, navigate, setLang]);
 
   useEffect(() => {
     const makeCurrentAnimatedSectionsVisible = () => {

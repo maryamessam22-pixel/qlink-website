@@ -13,18 +13,11 @@
   overflow: hidden;
 }
 
-.auth-top-buttons {
+.auth-theme-toggle {
   position: absolute;
   top: 40px;
   inset-inline-end: 40px;
   z-index: 12;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.auth-theme-toggle,
-.auth-lang-toggle {
   width: 42px;
   height: 42px;
   border-radius: 50%;
@@ -40,27 +33,18 @@
   box-sizing: border-box;
 }
 
-.auth-lang-toggle {
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 0;
-}
-
-.auth-theme-toggle:hover,
-.auth-lang-toggle:hover {
+.auth-theme-toggle:hover {
   transform: translateY(-2px);
   background: rgba(255, 255, 255, 0.1);
 }
 
-html[data-theme="light"] .auth-theme-toggle,
-html[data-theme="light"] .auth-lang-toggle {
+html[data-theme="light"] .auth-theme-toggle {
   background: rgba(255, 255, 255, 0.95);
   border-color: rgba(15, 23, 42, 0.12);
   box-shadow: 0 2px 12px rgba(15, 23, 42, 0.08);
 }
 
-html[data-theme="light"] .auth-theme-toggle:hover,
-html[data-theme="light"] .auth-lang-toggle:hover {
+html[data-theme="light"] .auth-theme-toggle:hover {
   background: #ffffff;
 }
 
@@ -504,7 +488,6 @@ form {
   text-align: center;
 }
 
-
 @media (max-width: 768px) {
   .auth-back-btn {
     top: 20px;
@@ -514,19 +497,10 @@ form {
     padding: 4px;
   }
 
-  .auth-top-buttons {
+  .auth-theme-toggle {
     top: 20px;
     inset-inline-end: 20px;
-    gap: 8px;
-  }
-
-  .auth-theme-toggle,
-  .auth-lang-toggle {
     width: 36px;
     height: 36px;
-  }
-
-  .auth-lang-toggle {
-    font-size: 12px;
   }
 }

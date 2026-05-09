@@ -13,13 +13,34 @@ import './AuthPage.css';
 
 function AuthPage() {
   const { login, closeModal, setShowLoginModal, pendingRoute, setPendingRoute, isAuthenticated } = useAuth();
-  const { lang, t } = useContext(LanguageContext);
+  const { lang, setLang, t } = useContext(LanguageContext);
   const isAr = lang === 'ar';
   const location = useLocation();
   const [isLogin, setIsLogin] = useState(location.state?.mode !== 'signup');
   const [isLoading, setIsLoading] = useState(false);
   const [showSplash, setShowSplash] = useState(false);
   const navigate = useNavigate();
+
+  const handleLanguageToggle = () => {
+    const nextLang = isAr ? 'en' : 'ar';
+    setLang(nextLang);
+    navigate(`/auth?lang=${nextLang}`, { replace: true, state: location.state });
+  };
+
+  const renderTopButtons = () => (
+    <div className="auth-top-buttons">
+      <button
+        className="auth-lang-toggle"
+        onClick={handleLanguageToggle}
+        aria-label="Toggle language"
+        title={isAr ? 'English' : 'العربية'}
+        type="button"
+      >
+        {isAr ? 'EN' : 'AR'}
+      </button>
+      <ThemeToggleButton className="auth-theme-toggle" />
+    </div>
+  );
 
 
   useEffect(() => {
@@ -156,7 +177,7 @@ function AuthPage() {
   if (showSplash) {
     return (
       <div className="auth-container">
-        <ThemeToggleButton className="auth-theme-toggle" />
+        {renderTopButtons()}
         <div className="dynamic-light"></div>
         <div className="dynamic-light-2"></div>
         <div className="dynamic-light-3"></div>
@@ -175,7 +196,7 @@ function AuthPage() {
   if (isLoading) {
     return (
       <div className="auth-container">
-        <ThemeToggleButton className="auth-theme-toggle" />
+        {renderTopButtons()}
         <div className="dynamic-light"></div>
         <div className="dynamic-light-2"></div>
         <div className="dynamic-light-3"></div>
@@ -205,7 +226,7 @@ function AuthPage() {
         <span>{t('auth.back')}</span>
       </button>
 
-      <ThemeToggleButton className="auth-theme-toggle" />
+      {renderTopButtons()}
 
       <div className="dynamic-light"></div>
       <div className="dynamic-light-2"></div>

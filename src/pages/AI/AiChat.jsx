@@ -38,7 +38,7 @@ const AiChat = ({ isOpen, onClose }) => {
       text: t('aiChat.initialMessage'),
       time: getCurrentTime(),
     }),
-    [t, getCurrentTime]
+    [t, getCurrentTime, lang]
   );
   const identityInit = useMemo(() => {
     const s = loadStoredIdentity();
@@ -51,6 +51,13 @@ const AiChat = ({ isOpen, onClose }) => {
   const [isTyping, setIsTyping] = useState(false);
   const [messages, setMessages] = useState([initialMessage]);
   const messagesEndRef = useRef(null);
+
+  // Update initial message when language changes
+  useEffect(() => {
+    if (messages.length === 1 && messages[0].id === 1) {
+      setMessages([initialMessage]);
+    }
+  }, [lang, initialMessage]);
 
   const [gatePhase, setGatePhase] = useState(identityInit.phase);
   const [gateName, setGateName] = useState('');
@@ -84,8 +91,9 @@ const AiChat = ({ isOpen, onClose }) => {
       setGatePhase('chat');
     } else {
       setGatePhase('form');
+      setMessages([initialMessage]);
     }
-  }, [isOpen]);
+  }, [isOpen, initialMessage]);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
