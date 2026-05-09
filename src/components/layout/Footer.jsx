@@ -1,11 +1,13 @@
 import React, { useContext } from 'react';
 import { LanguageContext } from '../../context/LanguageContext';
+import { enToAr } from '../../routeMap';
 import Logo from './Logo';
 import './Footer.css';
 
 const Footer = () => {
   const { t, lang } = useContext(LanguageContext);
   const isAr = lang === 'ar';
+  const p = (path) => (isAr ? (enToAr[path] ?? path) : path);
 
   return (
     <footer className="footer-container" dir={isAr ? 'rtl' : 'ltr'}>
@@ -37,8 +39,8 @@ const Footer = () => {
           <div className="footer-links-col">
             <h4>{t('footer.productTitle')}</h4>
             <ul>
-              <li><a href="/shop/bracelet">{t('footer.productLink1')}</a></li>
-              <li><a href="/how-it-works/qlink">{t('footer.productLink2')}</a></li>
+              <li><a href={p('/shop/bracelet')}>{t('footer.productLink1')}</a></li>
+              <li><a href={p('/how-it-works/qlink')}>{t('footer.productLink2')}</a></li>
               <li><a href="/">{t('footer.productLink3')}</a></li>
             </ul>
           </div>
@@ -46,9 +48,9 @@ const Footer = () => {
           <div className="footer-links-col">
             <h4>{t('footer.supportTitle')}</h4>
             <ul>
-              <li><a href="/support/faqs">{t('footer.supportLink1')}</a></li>
-              <li><a href="/about/privacy">{t('footer.supportLink2')}</a></li>
-              <li><a href="/support/contact">{t('footer.supportLink3')}</a></li>
+              <li><a href={p('/support/faqs')}>{t('footer.supportLink1')}</a></li>
+              <li><a href={p('/about/privacy')}>{t('footer.supportLink2')}</a></li>
+              <li><a href={p('/support/contact')}>{t('footer.supportLink3')}</a></li>
             </ul>
           </div>
         </div>

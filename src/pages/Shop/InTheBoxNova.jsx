@@ -8,6 +8,7 @@ import {
 import { LanguageContext } from '../../context/LanguageContext';
 import { useCart } from '../../context/CartContext';
 import { supabase } from '../../lib/Supabase';
+import { localizedPath } from '../../routeMap';
 import {
   resolveNovaGalleryUrl,
   formatNovaCartColorName,
@@ -27,6 +28,7 @@ const InTheBoxNova = () => {
   const { addToCart } = useCart();
   const navigate = useNavigate();
   const isAr = lang === 'ar';
+  const p = (path) => localizedPath(path, lang);
 
   const [qty, setQty] = useState(1);
   const [activeColor, setActiveColor] = useState('black');
@@ -103,7 +105,7 @@ const InTheBoxNova = () => {
 
   const goTab = (path) => {
     sessionStorage.setItem('tabScrollY', window.scrollY);
-    navigate(path);
+    navigate(`${path}?lang=${lang}`);
   };
 
   const galleryImages = React.useMemo(() => getMergedNovaGallery(product), [product]);
@@ -155,7 +157,7 @@ const InTheBoxNova = () => {
       />
 
       <div className="subpage-wrapper">
-        <Link to="/shop/bracelet" className="back-btn scroll-animate">
+        <Link to={p('/shop/bracelet')} className="back-btn scroll-animate">
           <ArrowLeft size={20} style={isAr ? { transform: 'rotate(180deg)' } : {}} />
           {t('novaDetails.back')}
         </Link>
@@ -257,7 +259,7 @@ const InTheBoxNova = () => {
                   price: product.price,
                   image: selectedImg || product.image_url
                 });
-                navigate('/checkout');
+                navigate(p('/checkout'));
               }}>
                 <Zap fill="white" size={18} /> {t('novaDetails.buyNow')}
               </button>
@@ -272,7 +274,7 @@ const InTheBoxNova = () => {
                   price: product.price,
                   image: selectedImg || product.image_url
                 });
-                navigate('/cart');
+                navigate(p('/cart'));
               }}>
                 <ShoppingCart size={18} /> {t('novaDetails.addCart')}
               </button>

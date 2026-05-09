@@ -14,6 +14,7 @@ import {
   Play
 } from 'lucide-react';
 import { supabase } from '../../lib/Supabase';
+import { localizedPath } from '../../routeMap';
 import './HelpCenter.css';
 import ContactSection from '../../components/Sections/ContactSection';
 import appScreenImg from '../../assets/images/appscreen.png';
@@ -24,6 +25,7 @@ function HelpCenter() {
   const [seoData, setSeoData] = useState(null);
 
   const isArabic = typeof lang === 'string' && lang.toLowerCase().includes('ar');
+  const p = (path) => localizedPath(path, lang);
 
   const toggleFaq = (index) => {
     setActiveFaq(activeFaq === index ? null : index);
@@ -165,7 +167,7 @@ function HelpCenter() {
           </div>
 
           <div className="faq-more">
-            <Link to="/support/faqs" className="btn btn-primary">
+            <Link to={p('/support/faqs')} className="btn btn-primary">
               {t('supportCenter.faqMoreBtn')}
             </Link>
           </div>

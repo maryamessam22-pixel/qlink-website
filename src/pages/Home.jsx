@@ -4,6 +4,7 @@ import SEO from '../components/common/SEO';
 import { LanguageContext } from '../context/LanguageContext';
 import { useAuth } from '../context/AuthContext';
 import { supabase } from "../lib/Supabase";
+import { localizedPath } from '../routeMap';
 import {
   WifiOff,
   QrCode,
@@ -45,19 +46,21 @@ function Home() {
   const [cms, setCms] = useState({});
   const [seoData, setSeoData] = useState(null);
   const { t, lang } = useContext(LanguageContext);
+  const p = useCallback((path) => localizedPath(path, lang), [lang]);
 
   const handleGuardedClick = useCallback((e, href) => {
     e.preventDefault();
+    const targetHref = localizedPath(href, lang);
     if (isAuthenticated) {
       if (href.startsWith('http')) {
         window.open(href, '_blank');
-      } else if (href !== '#') {
-        navigate(href);
+      } else if (targetHref !== '#') {
+        navigate(targetHref);
       }
     } else {
-      openModalWithRoute(href);
+      openModalWithRoute(targetHref);
     }
-  }, [isAuthenticated, openModalWithRoute, navigate]);
+  }, [isAuthenticated, openModalWithRoute, navigate, lang]);
 
   const pick = (row, field) => {
     if (!row) return null;
@@ -312,7 +315,7 @@ function Home() {
             </div>
 
             <Link
-              to="/about/our-story"
+              to={p('/about/our-story')}
               className="btn btn-primary link-btn-inline"
               onClick={(e) => handleGuardedClick(e, '/about/our-story')}
             >

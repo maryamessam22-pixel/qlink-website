@@ -117,7 +117,7 @@ function Compare() {
           price={novaProduct ? novaProduct.price : "1,499"}
           buttonText={t('compare.novaBtn')}
           accentColor="#0097b2"
-          to="/shop/nova"
+          to={`/shop/nova?lang=${lang}`}
         />
 
         <div className="compare-vs-divider">
@@ -134,7 +134,7 @@ function Compare() {
           price={pulseProduct ? pulseProduct.price : "1,199"}
           buttonText={t('compare.pulseBtn')}
           accentColor="#00c853"
-          to="/shop/pulse"
+          to={`/shop/pulse?lang=${lang}`}
         />
 
       </div>

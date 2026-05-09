@@ -5,6 +5,7 @@ import ContactSection from '../../components/Sections/ContactSection';
 import AppPromoSection from '../../components/Sections/AppPromoSection';
 import { HelpCircle } from 'lucide-react';
 import { supabase } from '../../lib/Supabase';
+import { localizedPath } from '../../routeMap';
 import './Contact.css';
 
 import mobileVisuals from '../../assets/images/mobile3rd.png';
@@ -16,6 +17,7 @@ function Contact() {
   const [cms, setCms] = useState({});
 
   const isArabic = typeof lang === 'string' && lang.toLowerCase().includes('ar');
+  const p = (path) => localizedPath(path, lang);
 
   const pick = (row, field) => {
     if (!row) return null;
@@ -91,7 +93,7 @@ function Contact() {
         </div>
         <h2>{isArabic ? 'لا تزال لديك أسئلة؟' : 'Still have questions?'}</h2>
         <p>{isArabic ? 'تحقق من قسم الأسئلة الشائعة للحصول على معلومات مفصلة.' : 'Check out our comprehensive FAQ section.'}</p>
-        <button className="btn-cta" onClick={() => window.location.href = '/support/faqs'}>
+        <button className="btn-cta" onClick={() => window.location.href = p('/support/faqs')}>
           {isArabic ? 'عرض الأسئلة الشائعة' : 'View FAQs'}
         </button>
       </section>

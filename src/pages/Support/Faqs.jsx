@@ -4,10 +4,12 @@ import { LanguageContext } from '../../context/LanguageContext';
 import { Link } from 'react-router-dom';
 import { ChevronDown } from 'lucide-react';
 import { supabase } from '../../lib/Supabase';
+import { enToAr } from '../../routeMap';
 import './Faqs.css';
 
 function Faqs() {
   const { lang, t } = useContext(LanguageContext);
+  const contactPath = lang === 'ar' ? enToAr['/support/contact'] : '/support/contact';
 
   const [faqs, setFaqs]           = useState([]);
   const [seoData, setSeoData]     = useState(null); 
@@ -162,7 +164,7 @@ function Faqs() {
         <div className="faqs-cta-section scroll-animate stag-2">
           <h2>{t('faqsPage.ctaTitle')}</h2>
           <p>{t('faqsPage.ctaDesc')}</p>
-          <Link to="/support/contact" className="btn btn-primary link-btn-inline">
+          <Link to={contactPath} className="btn btn-primary link-btn-inline">
             {t('faqsPage.ctaBtn')}
           </Link>
         </div>

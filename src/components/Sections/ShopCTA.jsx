@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { LanguageContext } from '../../context/LanguageContext';
+import { localizedPath } from '../../routeMap';
 import './ShopCTA.css';
 
 const ShopCTA = () => {
@@ -15,7 +16,7 @@ const ShopCTA = () => {
         </h2>
         <button 
           className="shop-cta-button"
-          onClick={() => navigate('/shop/bracelet')}
+          onClick={() => navigate(localizedPath('/shop/bracelet', lang))}
         >
           {t('cta.btn')}
         </button>

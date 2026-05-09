@@ -4,6 +4,7 @@ import SEO from '../../components/common/SEO';
 import { LanguageContext } from '../../context/LanguageContext';
 import { Quote, AlertCircle, CheckCircle, Shield, Globe, Zap, Users } from 'lucide-react';
 import { supabase } from '../../lib/Supabase';
+import { enToAr } from '../../routeMap';
 
 import './OurStory.css';
 
@@ -14,6 +15,7 @@ function OurStory() {
   const [cmsData, setCmsData] = useState({ founder: null, vision: null });
 
   const isArabic = typeof lang === 'string' && lang.toLowerCase().includes('ar');
+  const contactPath = isArabic ? enToAr['/support/contact'] : '/support/contact';
   const rawStats = useMemo(() => t('ourStory.stats', { returnObjects: true }) || [], [lang, t]);
   const [animatedStats, setAnimatedStats] = useState(rawStats.map((stat) => stat.value));
   const statsSectionRef = useRef(null);
@@ -283,7 +285,7 @@ function OurStory() {
         <section className="story-final-cta scroll-animate stag-3">
            <h2>{t('ourStory.ctaTitle')}</h2>
            <p>{t('ourStory.ctaSubtitle')}</p>
-           <Link to="/support/contact" className="contact-btn-red">
+           <Link to={contactPath} className="contact-btn-red">
              {t('ourStory.ctaBtn')}
            </Link>
         </section>

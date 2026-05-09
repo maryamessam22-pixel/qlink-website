@@ -5,12 +5,14 @@ import { LanguageContext } from '../context/LanguageContext';
 import { useCart } from '../context/CartContext';
 import SEO from '../components/common/SEO';
 import { supabase } from '../lib/Supabase';
+import { localizedPath } from '../routeMap';
 import './Checkout.css';
 
 const Checkout = () => {
     const { t, lang } = useContext(LanguageContext);
     const isAr = lang === 'ar';
     const navigate = useNavigate();
+    const p = (path) => localizedPath(path, lang);
     
     const { cartItems, updateQty, cartTotal, clearCart } = useCart();
 
@@ -51,9 +53,9 @@ const Checkout = () => {
  
     useEffect(() => {
         if (cartItems.length === 0) {
-            navigate('/cart');
+            navigate(p('/cart'));
         }
-    }, [cartItems, navigate]);
+    }, [cartItems, navigate, lang]);
 
   
     useEffect(() => {
@@ -121,7 +123,7 @@ const Checkout = () => {
 
           
             clearCart();
-            navigate('/complete-purchase', { state: { orderNum, email: form.email } }); 
+            navigate(p('/complete-purchase'), { state: { orderNum, email: form.email } });
             
         } catch (error) {
 

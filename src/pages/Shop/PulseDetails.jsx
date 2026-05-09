@@ -8,6 +8,7 @@ import {
 import { LanguageContext } from '../../context/LanguageContext';
 import { useCart } from '../../context/CartContext';
 import { supabase } from '../../lib/Supabase';
+import { localizedPath } from '../../routeMap';
 import './PulseDetails.css';
 
 const PulseDetails = () => {
@@ -16,6 +17,7 @@ const PulseDetails = () => {
   const { addToCart } = useCart();
   const navigate = useNavigate();
   const isAr = lang === 'ar';
+  const p = (path) => localizedPath(path, lang);
   
   const [qty, setQty] = useState(1);
   const [activeColor, setActiveColor] = useState('gray');
@@ -87,7 +89,7 @@ const PulseDetails = () => {
 
   const goTab = (path) => {
     sessionStorage.setItem('tabScrollY', window.scrollY);
-    navigate(path);
+    navigate(`${path}?lang=${lang}`);
   };
 
   const mainImg = product?.image_url;
@@ -146,7 +148,7 @@ const PulseDetails = () => {
        
         <div className="pulse-content-wrapper">
           
-          <Link to="/shop/bracelet" className="back-btn scroll-animate">
+          <Link to={p('/shop/bracelet')} className="back-btn scroll-animate">
             <ArrowLeft size={20} style={lang === 'ar' ? {transform: 'rotate(180deg)'} : {}} />
             {t('pulseDetails.back')}
           </Link>
@@ -307,7 +309,7 @@ const PulseDetails = () => {
                     price: product.price,
                     image: selectedImg || product.image_url
                   });
-                  navigate('/checkout');
+                  navigate(p('/checkout'));
                 }}>
                   <Zap fill="white" size={20} />
                   {t('pulseDetails.buyNow')}
@@ -324,7 +326,7 @@ const PulseDetails = () => {
                     price: product.price,
                     image: selectedImg || product.image_url
                   });
-                  navigate('/cart');
+                  navigate(p('/cart'));
                 }}>
                   <ShoppingCart size={20} />
                   {t('pulseDetails.addCart')}
@@ -349,8 +351,8 @@ const PulseDetails = () => {
           <div className="pulse-tabs scroll-animate stag-3">
             <div className="tab-headers">
               <button className="tab-btn active">{t('pulseDetails.tabDetail')}</button>
-              <button className="tab-btn" onClick={() => navigate('/shop/pulse/privacy')}>{t('pulseDetails.tabPrivacy')}</button>
-              <button className="tab-btn" onClick={() => navigate('/shop/pulse/inbox')}>{t('pulseDetails.tabInbox')}</button>
+              <button className="tab-btn" onClick={() => navigate(`/shop/pulse/privacy?lang=${lang}`)}>{t('pulseDetails.tabPrivacy')}</button>
+              <button className="tab-btn" onClick={() => navigate(`/shop/pulse/inbox?lang=${lang}`)}>{t('pulseDetails.tabInbox')}</button>
             </div>
             
             <div className="bridge-content">

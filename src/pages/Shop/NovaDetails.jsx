@@ -8,6 +8,7 @@ import {
 import { LanguageContext } from '../../context/LanguageContext';
 import { useCart } from '../../context/CartContext';
 import { supabase } from '../../lib/Supabase';
+import { localizedPath } from '../../routeMap';
 import {
   resolveNovaGalleryUrl,
   formatNovaCartColorName,
@@ -29,6 +30,7 @@ const NovaDetails = () => {
   const { addToCart } = useCart();
   const navigate = useNavigate();
   const isAr = lang === 'ar';
+  const p = (path) => localizedPath(path, lang);
   
   const [qty, setQty] = useState(1);
   const [activeColor, setActiveColor] = useState('black');
@@ -102,7 +104,7 @@ const NovaDetails = () => {
 
   const goTab = (path) => {
     sessionStorage.setItem('tabScrollY', window.scrollY);
-    navigate(path);
+    navigate(`${path}?lang=${lang}`);
   };
 
   const galleryImages = React.useMemo(() => getMergedNovaGallery(product), [product]);
@@ -159,7 +161,7 @@ const NovaDetails = () => {
 
         <div className="nova-content-wrapper">
           
-          <Link to="/shop/bracelet" className="back-btn scroll-animate">
+          <Link to={p('/shop/bracelet')} className="back-btn scroll-animate">
             <ArrowLeft size={20} style={lang === 'ar' ? {transform: 'rotate(180deg)'} : {}} />
             {t('novaDetails.back')}
           </Link>
@@ -320,7 +322,7 @@ const NovaDetails = () => {
                     price: product.price,
                     image: selectedImg || product.image_url
                   });
-                  navigate('/checkout');
+                  navigate(p('/checkout'));
                 }}>
                   <Zap fill="white" size={20} />
                   {t('novaDetails.buyNow')}
@@ -336,7 +338,7 @@ const NovaDetails = () => {
                     price: product.price,
                     image: selectedImg || product.image_url
                   });
-                  navigate('/cart');
+                  navigate(p('/cart'));
                 }}>
                   <ShoppingCart size={20} />
                   {t('novaDetails.addCart')}
@@ -361,8 +363,8 @@ const NovaDetails = () => {
           <div className="nova-tabs scroll-animate stag-3">
             <div className="tab-headers">
               <button className="tab-btn active">{t('novaDetails.tabDetail')}</button>
-              <button className="tab-btn" onClick={() => navigate('/shop/nova/privacy')}>{t('novaDetails.tabPrivacy')}</button>
-              <button className="tab-btn" onClick={() => navigate('/shop/nova/inbox')}>{t('novaDetails.tabInbox')}</button>
+              <button className="tab-btn" onClick={() => navigate(`/shop/nova/privacy?lang=${lang}`)}>{t('novaDetails.tabPrivacy')}</button>
+              <button className="tab-btn" onClick={() => navigate(`/shop/nova/inbox?lang=${lang}`)}>{t('novaDetails.tabInbox')}</button>
             </div>
             
             <div className="bridge-content">

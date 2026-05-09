@@ -8,6 +8,7 @@ import {
 import { LanguageContext } from '../../context/LanguageContext';
 import { useCart } from '../../context/CartContext';
 import { supabase } from '../../lib/Supabase';
+import { localizedPath } from '../../routeMap';
 import './ProductSubPage.css';
 
 const checkIsVideo = (url) => {
@@ -20,6 +21,7 @@ const InTheBoxPulse = () => {
   const { addToCart } = useCart();
   const navigate = useNavigate();
   const isAr = lang === 'ar';
+  const p = (path) => localizedPath(path, lang);
 
   const [qty, setQty] = useState(1);
   const [activeColor, setActiveColor] = useState('gray');
@@ -93,7 +95,7 @@ const InTheBoxPulse = () => {
 
   const goTab = (path) => {
     sessionStorage.setItem('tabScrollY', window.scrollY);
-    navigate(path);
+    navigate(`${path}?lang=${lang}`);
   };
 
   const galleryImages = React.useMemo(() => {
@@ -151,7 +153,7 @@ const InTheBoxPulse = () => {
       />
 
       <div className="subpage-wrapper">
-        <Link to="/shop/bracelet" className="back-btn scroll-animate">
+        <Link to={p('/shop/bracelet')} className="back-btn scroll-animate">
           <ArrowLeft size={20} style={isAr ? { transform: 'rotate(180deg)' } : {}} />
           {t('pulseDetails.back')}
         </Link>
@@ -265,7 +267,7 @@ const InTheBoxPulse = () => {
                   price: product.price,
                   image: selectedImg || product.image_url
                 });
-                navigate('/checkout');
+                navigate(p('/checkout'));
               }}>
                 <Zap fill="white" size={18} /> {t('pulseDetails.buyNow')}
               </button>
@@ -281,7 +283,7 @@ const InTheBoxPulse = () => {
                   price: product.price,
                   image: selectedImg || product.image_url
                 });
-                navigate('/cart');
+                navigate(p('/cart'));
               }}>
                 <ShoppingCart size={18} /> {t('pulseDetails.addCart')}
               </button>

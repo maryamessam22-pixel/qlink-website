@@ -4,6 +4,7 @@ import SEO from '../../components/common/SEO';
 import './HowQlinkWorks.css';
 import { LanguageContext } from '../../context/LanguageContext';
 import { supabase } from '../../lib/Supabase';
+import { localizedPath } from '../../routeMap';
 import {
   ShieldCheck,
   Database,
@@ -32,6 +33,7 @@ import qlinkVideoSrc from '../../assets/videos/qlink-video.mp4';
 function HowQlinkWorks() {
   const lensRef = useRef(null);
   const { t, lang } = useContext(LanguageContext);
+  const p = (path) => localizedPath(path, lang);
 
 
   const [seoData, setSeoData] = useState(null);
@@ -270,8 +272,8 @@ function HowQlinkWorks() {
       <section className={`hw-cta-section ${lang === 'ar' ? 'rtl-text' : ''}`}>
         <h2 style={{ fontSize: '32px', fontWeight: '800' }}>{t('howWorks.ctaTitle')}</h2>
         <div className={`hw-cta-buttons ${lang === 'ar' ? 'rtl-buttons' : ''}`}>
-          <Link to="/shop/bracelet" className="btn btn-primary">{t('howWorks.ctaBtn1')}</Link>
-          <Link to="/how-it-works/emergency-preview" className="btn btn-secondary" style={{ width: '250px', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'transparent', border: '1px solid rgba(255,255,255,0.2)' }}>{t('howWorks.ctaBtn2')}</Link>
+          <Link to={p('/shop/bracelet')} className="btn btn-primary">{t('howWorks.ctaBtn1')}</Link>
+          <Link to={p('/how-it-works/emergency-preview')} className="btn btn-secondary" style={{ width: '250px', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'transparent', border: '1px solid rgba(255,255,255,0.2)' }}>{t('howWorks.ctaBtn2')}</Link>
         </div>
       </section>
 

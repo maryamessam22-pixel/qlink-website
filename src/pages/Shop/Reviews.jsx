@@ -5,6 +5,7 @@ import { Quote, Star, MessageSquare, Share2, Users, CheckCircle2, PenLine } from
 import { LanguageContext } from '../../context/LanguageContext';
 import AppPromoSection from '../../components/Sections/AppPromoSection';
 import { supabase } from '../../lib/Supabase';
+import { enToAr } from '../../routeMap';
 import mobilesImg from '../../assets/images/mobile3rd.png';
 import './Reviews.css';
 import {
@@ -30,6 +31,8 @@ const getAvatarForUser = (name) => {
   if (name.includes('Ann') || n.includes('آن') || n.includes('ان مازن')) return annImg;
   return heroImg;
 };
+
+const localizedPath = (path, lang) => (lang === 'ar' ? (enToAr[path] ?? path) : path);
 
 function useCountUp(target, decimals = 0, duration = 1800) {
   const [count, setCount] = useState(0);
@@ -508,7 +511,7 @@ const Reviews = () => {
              <p>{t('reviews.shareDesc')}</p>
              <button 
                className="cta-btn-primary" 
-               onClick={() => navigate('/support/contact')}
+               onClick={() => navigate(localizedPath('/support/contact', lang))}
              >
                {t('reviews.shareBtn')}
              </button>

@@ -4,12 +4,14 @@ import { Trash2, Minus, Plus, ShoppingBag, ArrowLeft } from 'lucide-react';
 import { LanguageContext } from '../context/LanguageContext';
 import { useCart } from '../context/CartContext';
 import SEO from '../components/common/SEO';
+import { localizedPath } from '../routeMap';
 import './CartScreen.css';
 
 const CartScreen = () => {
     const { t, lang } = useContext(LanguageContext);
     const isAr = lang === 'ar';
     const navigate = useNavigate();
+    const p = (path) => localizedPath(path, lang);
     const { cartItems, removeFromCart, updateQty, cartTotal } = useCart();
 
     useEffect(() => {
@@ -39,7 +41,7 @@ const CartScreen = () => {
                 slug="cart"
             />
             <div className="cart-wrapper">
-                <Link to="/shop/bracelet" className="cart-back-btn scroll-animate">
+                <Link to={p('/shop/bracelet')} className="cart-back-btn scroll-animate">
                     <ArrowLeft size={20} style={isAr ? { transform: 'rotate(180deg)' } : {}} />
                     {t('cart.backToShop')}
                 </Link>
@@ -51,7 +53,7 @@ const CartScreen = () => {
                         <ShoppingBag size={64} strokeWidth={1} />
                         <h2>{t('cart.emptyTitle')}</h2>
                         <p>{t('cart.emptyDesc')}</p>
-                        <Link to="/shop/bracelet" className="cart-empty-btn">
+                        <Link to={p('/shop/bracelet')} className="cart-empty-btn">
                             {t('cart.continueShopping')}
                         </Link>
                     </div>
@@ -125,7 +127,7 @@ const CartScreen = () => {
                                     <span>{formatPrice(cartTotal)} EGP</span>
                                 </div>
 
-                                <button className="cart-checkout-btn" onClick={() => navigate('/checkout')}>
+                                <button className="cart-checkout-btn" onClick={() => navigate(p('/checkout'))}>
                                     {t('cart.checkout')}
                                 </button>
                             </div>

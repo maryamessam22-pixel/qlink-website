@@ -4,6 +4,7 @@ import SEO from '../components/common/SEO';
 import { LanguageContext } from '../context/LanguageContext';
 import { ShieldCheck, MapPin, BellRing, HeartPulse } from 'lucide-react';
 import { supabase } from '../lib/Supabase';
+import { localizedPath } from '../routeMap';
 import './ForCaregivers.css';
 
 import heroImage from '../assets/images/hero-caregivers.png';
@@ -20,6 +21,7 @@ function ForCaregivers() {
   const [cmsHero, setCmsHero] = useState(null);
 
   const isArabic = typeof lang === 'string' && lang.toLowerCase().includes('ar');
+  const p = (path) => localizedPath(path, lang);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -83,7 +85,7 @@ function ForCaregivers() {
               </span>
             </h1>
             <p className="fc-hero-subtitle scroll-animate stag-2">{heroDescription}</p>
-            <Link to="/shop/bracelet" className="btn btn-primary fc-hero-action scroll-animate stag-3" style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>
+            <Link to={p('/shop/bracelet')} className="btn btn-primary fc-hero-action scroll-animate stag-3" style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>
               {t("reviews.caregivers.heroBtn")}
             </Link>
           </div>
@@ -191,7 +193,7 @@ function ForCaregivers() {
             <div className="fc-gift-icon"><HeartPulse size={40} /></div>
             <h3>{t("reviews.caregivers.giftTitle")}</h3>
             <p>{t("reviews.caregivers.giftDesc")}</p>
-            <Link to="/shop/bracelet" className="btn btn-primary" style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>
+            <Link to={p('/shop/bracelet')} className="btn btn-primary" style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>
               {t("reviews.caregivers.giftBtn")}
             </Link>
           </div>

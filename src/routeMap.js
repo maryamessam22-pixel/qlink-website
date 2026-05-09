@@ -50,3 +50,11 @@ export function switchLangPath(currentPath, targetLang) {
     return arToEn[decodedPath] ?? arToEn[normalizedPath] ?? decodedPath;
   }
 }
+
+export function localizedPath(path, lang) {
+  if (lang === 'ar') {
+    return enToAr[path] ?? path;
+  }
+
+  return arToEn[path] ?? path;
+}

@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Phone, ArrowLeft, AlertTriangle } from 'lucide-react';
 import Logo from '../../components/layout/Logo';
+import { LanguageContext } from '../../context/LanguageContext';
+import { localizedPath } from '../../routeMap';
 import './EmergencyPreview.css';
 
 const profiles = [
@@ -33,6 +35,8 @@ const profiles = [
 
 export default function EmergencyPreview() {
   const navigate = useNavigate();
+  const { lang } = useContext(LanguageContext);
+  const p = (path) => localizedPath(path, lang);
   const [idx, setIdx] = useState(0);
   const profile = profiles[idx];
 
@@ -43,14 +47,14 @@ export default function EmergencyPreview() {
       <header className="ep-header">
         <Logo style={{ height: '32px', display: 'block' }} />
         <div className="ep-header-actions">
-          <button className="ep-header-btn" onClick={() => navigate('/auth')}>Login</button>
-          <button className="ep-header-btn ep-header-btn-outline" onClick={() => navigate('/auth')}>Sign Up</button>
+          <button className="ep-header-btn" onClick={() => navigate(`/auth?lang=${lang}`)}>Login</button>
+          <button className="ep-header-btn ep-header-btn-outline" onClick={() => navigate(`/auth?lang=${lang}`)}>Sign Up</button>
         </div>
       </header>
 
       {/* Nav bar */}
       <div className="ep-nav">
-        <button className="ep-nav-btn" onClick={() => navigate('/how-it-works/qlink')}>
+        <button className="ep-nav-btn" onClick={() => navigate(p('/how-it-works/qlink'))}>
           <ArrowLeft size={16} /> Back
         </button>
         <button
@@ -131,17 +135,17 @@ export default function EmergencyPreview() {
           <p>Qlink helps protect you and your loved ones by providing instant access to critical.<br />Medical information during emergencies.</p>
         </div>
         <div className="ep-cta-buttons">
-          <button className="ep-cta-btn ep-cta-primary" onClick={() => navigate('/support/download')}>Install the App</button>
-          <button className="ep-cta-btn ep-cta-secondary" onClick={() => navigate('/auth')}>Create Account</button>
+          <button className="ep-cta-btn ep-cta-primary" onClick={() => navigate(p('/support/download'))}>Install the App</button>
+          <button className="ep-cta-btn ep-cta-secondary" onClick={() => navigate(`/auth?lang=${lang}`)}>Create Account</button>
         </div>
       </div>
 
       {/* Footer */}
       <footer className="ep-footer">
         <div className="ep-footer-links">
-          <a href="/about/privacy">Privacy Policy</a>
+          <a href={p('/about/privacy')}>Privacy Policy</a>
           <a href="#">Terms of Service</a>
-          <a href="/support/contact">Support</a>
+          <a href={p('/support/contact')}>Support</a>
         </div>
         <p className="ep-footer-copy">© 2026 Qlink Emergency. All rights reserved.</p>
       </footer>

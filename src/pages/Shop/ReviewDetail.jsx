@@ -17,6 +17,7 @@ import {
   splitReviewParagraphs,
 } from '../../utils/reviewText';
 import { getInlineLangAttr, getInlineTextDir } from '../../utils/textDirection';
+import { localizedPath } from '../../routeMap';
 import './ReviewDetail.css';
 
 import salmaImg from '../../assets/images/salma.png';
@@ -44,7 +45,8 @@ const ReviewDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const { t, lang } = useContext(LanguageContext);
-  const reviewsListPath = lang === 'ar' ? '/تسوق/التقييمات' : '/shop/reviews';
+  const p = (path) => localizedPath(path, lang);
+  const reviewsListPath = p('/shop/reviews');
   const [loading, setLoading] = useState(true);
   const [dbReview, setDbReview] = useState(null);
   const [localeReview, setLocaleReview] = useState(null);
@@ -266,7 +268,7 @@ const ReviewDetail = () => {
                 <button
                   className="rd-cta-btn rd-cta-btn-primary"
                   type="button"
-                  onClick={() => navigate('/shop/bracelet')}
+                  onClick={() => navigate(p('/shop/bracelet'))}
                 >
                   {t('reviews.dbDetailCtaBtn')}
                 </button>
@@ -461,7 +463,7 @@ const ReviewDetail = () => {
               <button
                 className="rd-cta-btn rd-cta-btn-primary"
                 type="button"
-                onClick={() => navigate('/shop/bracelet')}
+                onClick={() => navigate(p('/shop/bracelet'))}
               >
                 {review.ctaBtn}
               </button>
@@ -469,7 +471,7 @@ const ReviewDetail = () => {
                 <button
                   className="rd-cta-btn rd-cta-btn-secondary"
                   type="button"
-                  onClick={() => navigate('/shop/bracelet')}
+                  onClick={() => navigate(p('/shop/bracelet'))}
                 >
                   {review.ctaBtn2}
                 </button>

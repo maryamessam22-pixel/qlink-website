@@ -4,6 +4,7 @@ import SEO from '../../components/common/SEO';
 import './EmergencyScenario.css';
 import { LanguageContext } from '../../context/LanguageContext';
 import { supabase } from '../../lib/Supabase';
+import { localizedPath } from '../../routeMap';
 
 import heroImg from '../../assets/images/hero-emergency.png';
 import img1 from '../../assets/images/1img.png';
@@ -27,6 +28,7 @@ const watchImages = [w1, w2, w3, w4, w5];
 const EmergencyScenario = () => {
   const [currentWatch, setCurrentWatch] = useState(0);
   const { t, lang } = useContext(LanguageContext);
+  const p = (path) => localizedPath(path, lang);
   
  
   const [seoData, setSeoData] = useState(null);
@@ -96,8 +98,8 @@ const EmergencyScenario = () => {
             {t('emergency.heroSubtitle')}
           </p>
           <div className={`es-hero-buttons ${lang === 'ar' ? 'rtl-buttons' : ''}`}>
-            <Link to="/how-it-works/qlink" className="btn btn-secondary">{t('emergency.btnHow')}</Link>
-            <Link to="/shop/bracelet" className="btn btn-primary">{t('emergency.btnProtect')}</Link>
+            <Link to={p('/how-it-works/qlink')} className="btn btn-secondary">{t('emergency.btnHow')}</Link>
+            <Link to={p('/shop/bracelet')} className="btn btn-primary">{t('emergency.btnProtect')}</Link>
           </div>
         </div>
       </section>
@@ -187,7 +189,7 @@ const EmergencyScenario = () => {
           <h2 style={lang === 'ar' ? {} : { whiteSpace: 'pre-wrap' }}>{t('emergency.ctaSubtitle')}</h2>
           <p>{t('emergency.ctaDesc')}</p>
           <Link
-            to="/shop/bracelet"
+            to={p('/shop/bracelet')}
             className="es-cta-shop-btn"
           >
             {t('emergency.ctaBtn')} {lang === 'ar' ? <ArrowLeft size={16}/> : <ArrowRight size={16}/>}
