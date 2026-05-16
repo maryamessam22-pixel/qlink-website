@@ -15,8 +15,8 @@ const profiles = [
     safetyNotes: ['Requires insulin', 'Avoid penicillin medications'],
     medicalNotes: ['Type 1 Diabetes', 'Hypertension'],
     contacts: [
-      { label: 'Primary Contact', phone: '01779998265' },
-      { label: 'Secondary Contact', phone: '01119988299' },
+      { labelKey: 'emergencyPreview.primaryContact', phone: '01779998265' },
+      { labelKey: 'emergencyPreview.secondaryContact', phone: '01119988299' },
     ],
   },
   {
@@ -27,60 +27,58 @@ const profiles = [
     safetyNotes: ['Requires insulin', 'Avoid penicillin medications'],
     medicalNotes: ['Type 1 Diabetes', 'Hypertension'],
     contacts: [
-      { label: 'Primary Contact', phone: '01779998265' },
-      { label: 'Secondary Contact', phone: '01119988299' },
+      { labelKey: 'emergencyPreview.primaryContact', phone: '01779998265' },
+      { labelKey: 'emergencyPreview.secondaryContact', phone: '01119988299' },
     ],
   },
 ];
 
 export default function EmergencyPreview() {
   const navigate = useNavigate();
-  const { lang } = useContext(LanguageContext);
+  const { t, lang } = useContext(LanguageContext);
   const p = (path) => localizedPath(path, lang);
   const [idx, setIdx] = useState(0);
   const profile = profiles[idx];
 
   return (
-    <div className="ep-page">
+    <div className={`ep-page ${lang === 'ar' ? 'rtl-text' : ''}`}>
 
       {/* Header */}
       <header className="ep-header">
         <Logo style={{ height: '32px', display: 'block' }} />
         <div className="ep-header-actions">
-          <button className="ep-header-btn" onClick={() => navigate(`/auth?lang=${lang}`)}>Login</button>
-          <button className="ep-header-btn ep-header-btn-outline" onClick={() => navigate(`/auth?lang=${lang}`)}>Sign Up</button>
+          <button className="ep-header-btn" onClick={() => navigate(`/auth?lang=${lang}`)}>{t('emergencyPreview.login')}</button>
+          <button className="ep-header-btn ep-header-btn-outline" onClick={() => navigate(`/auth?lang=${lang}`)}>{t('emergencyPreview.signUp')}</button>
         </div>
       </header>
 
       {/* Nav bar */}
       <div className="ep-nav">
         <button className="ep-nav-btn" onClick={() => navigate(p('/how-it-works/qlink'))}>
-          <ArrowLeft size={16} /> Back
+          <ArrowLeft size={16} /> {t('emergencyPreview.back')}
         </button>
         <button
           className="ep-nav-btn ep-nav-next"
           onClick={() => setIdx((i) => (i + 1) % profiles.length)}
         >
-          Next Profile →
+          {t('emergencyPreview.nextProfile')} →
         </button>
       </div>
 
       {/* Hero */}
       <div className="ep-hero">
         <div className="ep-hero-badge">
-          <AlertTriangle size={14} /> Emergency Info
+          <AlertTriangle size={14} /> {t('emergencyPreview.heroBadge')}
         </div>
         <h1 className="ep-hero-name">{profile.name}</h1>
-        <p className="ep-hero-sub">
-          This is the information first responders see<br />when scanning the QR code.
-        </p>
+        <p className="ep-hero-sub" dangerouslySetInnerHTML={{ __html: t('emergencyPreview.heroSub') }} />
       </div>
 
       {/* Cards */}
       <div className="ep-body">
 
         <div className="ep-card ep-card-full">
-          <h3 className="ep-card-title">Allergies</h3>
+          <h3 className="ep-card-title">{t('emergencyPreview.allergies')}</h3>
           {profile.allergies.map((a, i) => (
             <p key={i} className="ep-card-item">• {a}</p>
           ))}
@@ -88,38 +86,38 @@ export default function EmergencyPreview() {
 
         <div className="ep-row-2">
           <div className="ep-card">
-            <h3 className="ep-card-title">Blood Type</h3>
+            <h3 className="ep-card-title">{t('emergencyPreview.bloodType')}</h3>
             <p className="ep-card-value">{profile.bloodType}</p>
           </div>
           <div className="ep-card">
-            <h3 className="ep-card-title">Years</h3>
+            <h3 className="ep-card-title">{t('emergencyPreview.years')}</h3>
             <p className="ep-card-value">{profile.age}</p>
           </div>
         </div>
 
         <div className="ep-card ep-card-full">
-          <h3 className="ep-card-title">Safety Notes</h3>
+          <h3 className="ep-card-title">{t('emergencyPreview.safetyNotes')}</h3>
           {profile.safetyNotes.map((n, i) => (
             <p key={i} className="ep-card-item">• {n}</p>
           ))}
         </div>
 
         <div className="ep-card ep-card-full">
-          <h3 className="ep-card-title">Medical Notes</h3>
+          <h3 className="ep-card-title">{t('emergencyPreview.medicalNotes')}</h3>
           {profile.medicalNotes.map((n, i) => (
             <p key={i} className="ep-card-item">• {n}</p>
           ))}
         </div>
 
         <div className="ep-card ep-card-full">
-          <h3 className="ep-card-title">Emergency Contacts</h3>
+          <h3 className="ep-card-title">{t('emergencyPreview.emergencyContacts')}</h3>
           {profile.contacts.map((c, i) => (
             <div key={i} className="ep-contact-row">
               <div>
-                <p className="ep-contact-label">{c.label}</p>
+                <p className="ep-contact-label">{t(c.labelKey)}</p>
                 <p className="ep-contact-phone">{c.phone}</p>
               </div>
-              <a href={`tel:${c.phone}`} className="ep-call-btn" aria-label={`Call ${c.label}`}>
+              <a href={`tel:${c.phone}`} className="ep-call-btn" aria-label={`${t('emergencyPreview.call')} ${t(c.labelKey)}`}>
                 <Phone size={18} fill="white" color="white" />
               </a>
             </div>
@@ -131,23 +129,23 @@ export default function EmergencyPreview() {
       {/* CTA */}
       <div className="ep-cta">
         <div className="ep-cta-text">
-          <h2>Stay Protected with <span className="ep-cta-brand">Qlink!</span></h2>
-          <p>Qlink helps protect you and your loved ones by providing instant access to critical.<br />Medical information during emergencies.</p>
+          <h2>{t('emergencyPreview.ctaTitle')} <span className="ep-cta-brand">Qlink!</span></h2>
+          <p>{t('emergencyPreview.ctaText')}</p>
         </div>
         <div className="ep-cta-buttons">
-          <button className="ep-cta-btn ep-cta-primary" onClick={() => navigate(p('/support/download'))}>Install the App</button>
-          <button className="ep-cta-btn ep-cta-secondary" onClick={() => navigate(`/auth?lang=${lang}`)}>Create Account</button>
+          <button className="ep-cta-btn ep-cta-primary" onClick={() => navigate(p('/support/download'))}>{t('emergencyPreview.installBtn')}</button>
+          <button className="ep-cta-btn ep-cta-secondary" onClick={() => navigate(`/auth?lang=${lang}`)}>{t('emergencyPreview.createAccountBtn')}</button>
         </div>
       </div>
 
       {/* Footer */}
       <footer className="ep-footer">
         <div className="ep-footer-links">
-          <a href={p('/about/privacy')}>Privacy Policy</a>
-          <a href="#">Terms of Service</a>
-          <a href={p('/support/contact')}>Support</a>
+          <a href={p('/about/privacy')}>{t('emergencyPreview.privacyPolicy')}</a>
+          <a href="#">{t('emergencyPreview.termsOfService')}</a>
+          <a href={p('/support/contact')}>{t('emergencyPreview.support')}</a>
         </div>
-        <p className="ep-footer-copy">© 2026 Qlink Emergency. All rights reserved.</p>
+        <p className="ep-footer-copy">© 2026 Qlink Emergency. {t('emergencyPreview.allRightsReserved')}</p>
       </footer>
 
     </div>

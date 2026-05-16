@@ -135,6 +135,7 @@ function App() {
 
           <Route path="/auth" element={<AuthPage />} />
           <Route path="/how-it-works/emergency-preview" element={<EmergencyPreview />} />
+          <Route path="/كيف-يعمل/معاينة-الطوارئ" element={<EmergencyPreview />} />
 
           <Route element={<MainLayout />}>
             <Route path="/" element={<Home />} />
